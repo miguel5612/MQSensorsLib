@@ -1,0 +1,49 @@
+Mario.
+Extraer de las graficas los puntos correspondientes a cada medicion de calibracion
+para los sensores:
+
+* MQ-8
+* MQ-9
+* MQ-131
+* MQ-135
+
+Recopilar informacion y actualizar la carpeta datasheets.
+
+Ghiordy
+*Documentacion (Wiki, manual de colaboracion).
+ 	- Documentacion automatica.
+	- Como presentar un issue?.
+	- Como se usa.
+	- Como contribuir.
+	- Licenciamiento.
+	- Cada sensor tiene un gas al que es mas sensible (Para el que fue diseñado) Resaltar.
+
+*Ajustar el readme:
+	- Actualizar autores.
+	- Describir que metodos se pueden llamar para cada sensor (Sacar esto del datasheet).
+
+
+Miguel.
+
+Realizar el POO.
+Que la lectura por defecto sea el gas para el cual fue diseñado MQ.read().
+
+
+Definir:
+* Motivacion - Bajo costo, relativamente faciles de emplear.
+* Problematica - Unificar la lectura de los sensores
+* objetivos.
+* Contribucion o lo que vamos a solucionar.
+* introduccion grande donde van conceptos, motivacion, problematica, breve resumen del objetivo a solucionar.
+* Metodos y materiales : Ecuaciones, interpolaciones, sw libre, arduino, sensores.
+* Resultados presentar: 
+	- Se carga matematicamente la ecuacion en el matlab y se calcula la desviacion.
+	- Buscar el equipo de medicion de referencia ... *****
+* Conclusiones.
+ 
+
+
+
+Objetivo ppal:
+
+	
