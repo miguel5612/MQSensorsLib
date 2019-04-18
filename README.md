@@ -57,7 +57,7 @@ Please read [CONTRIBUTING.md](https://github.com/miguel5612/MQSensorsLib/blob/NO
 * **Ghiordy F. Contreras C.** - [*GitHub*](https://github.com/Ghiordy) - [CV](https://scienti.colciencias.gov.co/cvlac/visualizador/generarCurriculoCv.do?cod_rh=0000050476)
 * **Mario A. Rodríguez O.** - [*GitHub*](https://github.com/MarioAndresR)
 
-See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
+See also the list of [contributors](https://github.com/miguel5612/MQSensorsLib/contributors) who participated in this project.
 
 ## License
 
