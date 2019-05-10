@@ -53,9 +53,9 @@ Please read [CONTRIBUTING.md](https://github.com/miguel5612/MQSensorsLib/blob/NO
 
 ## Authors
 
-* **Miguel A. Califa U.** - [*GitHub*](https://github.com/miguel5612)
-* **Ghiordy F. Contreras C.** - [*GitHub*](https://github.com/Ghiordy) - [CV](https://scienti.colciencias.gov.co/cvlac/visualizador/generarCurriculoCv.do?cod_rh=0000050476)
-* **Mario A. Rodríguez O.** - [*GitHub*](https://github.com/MarioAndresR)
+* **Miguel A. Califa U.** - [*GitHub*](https://github.com/miguel5612) - [CV](https://scienti.colciencias.gov.co/cvlac/visualizador/generarCurriculoCv.do?cod_rh=0000050477)
+* **Ghiordy F. Contreras C.** - [*GitHub*](https://github.com/Ghiordy) - [CV](https://scienti.colciencias.gov.co/cvlac/visualizador/generarCurriculoCv.do?cod_rh=0000050476) 
+* **Mario A. Rodríguez O.** - [*GitHub*](https://github.com/MarioAndresR) - [CV](https://scienti.colciencias.gov.co/cvlac/visualizador/generarCurriculoCv.do?cod_rh=0000111304)
 
 See also the list of [contributors](https://github.com/miguel5612/MQSensorsLib/contributors) who participated in this project.
 
