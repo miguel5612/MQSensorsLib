@@ -15,7 +15,8 @@ You'll need Arduino desftop app 1.8.9 or later.
 
 ### Sensor manufacter:
 | Sensor | Manufacter | URL Datasheet |
-| MQ-2 | Pololulu | [datasheet](https://www.pololu.com/file/0J309/MQ2.pdf) |
+|----------|----------|----------|
+| MQ-2 | Pololulu| [datasheet](https://www.pololu.com/file/0J309/MQ2.pdf) |
 | MQ-3 | Sparkfun | [datasheet](https://www.sparkfun.com/datasheets/Sensors/MQ-3.pdf) |
 | MQ-4 | Sparkfun | [datasheet](https://www.sparkfun.com/datasheets/Sensors/Biometric/MQ-4.pdf) |
 | MQ-5 | parallax | [datasheet](https://www.parallax.com/sites/default/files/downloads/605-00009-MQ-5-Datasheet.pdf) |
