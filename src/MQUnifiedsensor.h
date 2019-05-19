@@ -1,7 +1,8 @@
 #ifndef MQUnifiedsensor_H
-#define MQUnifiedsensor_H
+  #define MQUnifiedsensor_H
 
 #include <Arduino.h>
+#include <stdint.h>
 
 class MQUnifiedsensor
 {
@@ -9,9 +10,24 @@ class MQUnifiedsensor
     /**
      * Constructor
      */
-    MQSensor(int pin);
-    setR0(double R0);
-    setSensorTyp(int sensorNumber);
+    void MQSensor(int pin, int type);
+    void setR0(double R0);
+    void setSensorTyp(int sensorNumber);
+    void getSensorCharacteristics(int MQ[38], String nameLectureReqeuired);
+    String readSensor(String nameLectureReqeuired);
+    int readPPM(int m, int b);
+
+    /**
+     * Calibrates the start point of 400
+    */    
+    double calibrate();
+
+    /**
+     * Returns the voltage
+     */
+    double getVoltage();
+    
+
     /**
      * Returns the PPM concentration    
     MQ-2 - Methane, Butane, LPG, smoke
@@ -48,40 +64,14 @@ class MQUnifiedsensor
     int MQ303A[38] = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-2.3543,1.144,-2.4338,0.7558,-2.5597,0.4436};
     int MQ309A[38] = {-2.1311,3.0886,0,0,-1.6554,2.985,-4.7623,6.7413,-3.7686,5.6744,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
 
-    int readMethane();
-    int readButane();
-    int readLPG();
-    int readSmoke();
-    int readAlcohol();
-    int readEthanol();
-    int readCNG();
-    int readLPG();
-    int readCO();
-    int readHO();
-    int readCarbonMonoxide();
-    int readNH4();
-    int readbenzene();
-    int readAlcohol();
-    int readHidrogen();
-    int readToluene();
-    int readAcetone();
-    int readPropane();
-    int readCoalGas();
 
-
-    /**
-     * Calibrates the start point of 400
-     */    
-    double calibrate();
-
-    /**
-     * Returns the voltage
-     */
-    double getVoltage();
-    
   private:
-    int _pin;
-    double _R0;
+    int _pin, _type;
+    double _R0, _m, _b;
+    const float VOLT_RESOLUTION = 5.0; // if 3.3v use 3.3
+    const int ADC_RESOLUTION = 10; // for 10bit analog to digital converter.
+    const int retries = 50;
+    const int retry_interval = 20;
 };
 
 #endif //MQUnifiedsensor_H

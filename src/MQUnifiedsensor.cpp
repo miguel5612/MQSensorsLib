@@ -1,167 +1,36 @@
 #include "MQUnifiedsensor.h"
 
-MQUnifiedsensor::MQSensor(int pin) {
+
+void MQUnifiedsensor::MQSensor(int pin, int type) {
   this->_pin = pin;
+  this->_type = type; //2,3,4,5,6,7,8,9,131,135,303,309
 }
 
-MQUnifiedsensor::setR0(double R0) {
+void MQUnifiedsensor::setR0(double R0) {
   this->_R0 = R0;
 }
 
-/******************  Info of sensor graphic      *******************/
-//MQ-2 - Methane, Butane, LPG, smoke
-
-
-
-//MQ-3 - Alcohol, Ethanol, smoke
-
-
-
-//MQ-4 - Methane, CNG Gas
-
-const float R0 = 11.820;
-const float m = -0.318;
-const float b = 1.133;
-
-//MQ-5 - Natural gas, LPG
-
-
-
-//MQ-6 - LPG, butane gas
-
-
-
-//MQ-7 - Carbon Monoxide
-
-
-
-//MQ-8 - Hydrogen Gas
-
-
-
-//MQ-9 - Carbon Monoxide, flammable gasses
-
-
-
-//MQ131 - Ozone
-
-
-
-//MQ135 - Air Quality (CO, Ammonia, Benzene, Alcohol, smoke)
-
-
-
-//MQ136 - Hydrogen Sulfide gas
-
-
-
-//MQ137 - Ammonia
-   
-
-/******************  Info of sensor graphic      *******************/
-
-
-
-//***************** Operations ************************************/
-
-
-int readMethane()
+String MQUnifiedsensor::readSensor(String nameLectureReqeuired)
 {
+  switch (_type)
+  {
+  case 1:
+    break;
+  
+  default:
+    break;
+  }
 
 }
-int readButane()
+
+void MQUnifiedsensor::getSensorCharacteristics(int MQ[38], String nameLectureReqeuired)
 {
-
+  if(nameLectureReqeuired = nameLecture[0])
+  {
+    _m = MQ[indexSlopeLectures[0]];
+    _b = MQ[indexBPointLectures[0]];
+  }
 }
-int readLPG()
-{
-
-}
-int readSmoke()
-{
-
-}
-int readAlcohol()
-{
-
-}
-int readEthanol()
-{
-
-}
-int readCNG()
-{
-
-}
-int readLPG()
-{
-
-}
-int readCO()
-{
-
-}
-int readHO()
-{
-
-}
-int readCarbonMonoxide()
-{
-    
-}
-int readNH4()
-{
-    
-}
-int readbenzene()
-{
-    
-}
-int readAlcohol()
-{
-    
-}
-int readHidrogen()
-{
-    
-}
-int readToluene()
-{
-    
-}
-int readAcetone()
-{
-    
-}
-int readPropane()
-{
-    
-}
-int readCoalGas()
-{
-    
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-const float VOLT_RESOLUTION = 5.0; // if 3.3v use 3.3
-const int ADC_RESOLUTION = 10; // for 10bit analog to digital converter.
-
-const int retries = 50;
-const int retry_interval = 20;
 
 double MQUnifiedsensor::calibrate() {
     float sensor_volt; //Define variable for sensor voltage
@@ -189,7 +58,7 @@ double MQUnifiedsensor::getVoltage() {
   /**
     * Returns the PPM concentration
     */
-  int MQUnifiedsensor::read() {
+  int MQUnifiedsensor::readPPM(int m, int b) {
     double sensor_volt = this->getVoltage();
     double RS_gas; //Define variable for sensor resistance
     double ratio; //Define variable for ratio
@@ -201,4 +70,4 @@ double MQUnifiedsensor::getVoltage() {
     double ppm_log = (log10(ratio) - b) / m; //Get ppm value in linear scale according to the the ratio value
     double ppm = pow(10, ppm_log); //Convert ppm value to log scale
     return floor(ppm);
-}
+  }
