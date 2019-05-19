@@ -97,7 +97,47 @@ You'll need Arduino desftop app 1.8.9 or later.
             <td>m</td>
             <td>b</td>
         </tr>
-         
+         <tr>
+           <td>-MQ-2 Pololulu</td>
+            <td>-2.2459</td>
+            <td>2.9845</td>
+            <td>-2.2879</td>
+            <td>2.7901</td>
+            <td>-2.6208</td>
+            <td>3.6075</td>
+            <td>-3.1157</td>
+            <td>4.5134</td>
+            <td>-2.7028</td>
+            <td>3.5595</td>
+            <td>-2.2879</td>
+            <td>2.7901</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
     </tbody>
 </table>
 
