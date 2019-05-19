@@ -98,7 +98,7 @@ You'll need Arduino desftop app 1.8.9 or later.
             <td>b</td>
         </tr>
          <tr>
-           <td>-MQ-2 Pololulu</td>
+           <td>MQ-2 Pololulu</td>
             <td>-2.2459</td>
             <td>2.9845</td>
             <td>-2.2879</td>
@@ -139,7 +139,7 @@ You'll need Arduino desftop app 1.8.9 or later.
             <td></td>
         </tr>
          <tr>
-           <td>-MQ-3 Sparkfun</td>
+           <td>MQ-3 Sparkfun</td>
             <td></td>
             <td></td>
             <td>-3.1851</td>
@@ -180,7 +180,7 @@ You'll need Arduino desftop app 1.8.9 or later.
             <td></td>
         </tr>
         <tr>
-           <td>-MQ-4 Sparkfun</td>
+           <td>MQ-4 Sparkfun</td>
             <td></td>
             <td></td>
             <td>-2.5818</td>
@@ -221,7 +221,7 @@ You'll need Arduino desftop app 1.8.9 or later.
             <td></td>
         </tr>
         <tr>
-           <td>-MQ-5 Sparkfun</td>
+           <td>MQ-5 Sparkfun</td>
             <td>-4.368</td>
             <td>2.9667</td>
             <td>-2.5723</td>
@@ -262,7 +262,7 @@ You'll need Arduino desftop app 1.8.9 or later.
             <td></td>
         </tr>
         <tr>
-           <td>-MQ-6 Sparkfun</td>
+           <td>MQ-6 Sparkfun</td>
             <td>-3.6775</td>
             <td>5.0286</td>
             <td>-1.6567</td>
@@ -303,7 +303,7 @@ You'll need Arduino desftop app 1.8.9 or later.
             <td></td>
         </tr>
         <tr>
-           <td>-MQ-7 Sparkfun</td>
+           <td>MQ-7 Sparkfun</td>
             <td>-1.329</td>
             <td>1.8864</td>
             <td>-7.8626</td>
