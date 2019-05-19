@@ -425,6 +425,89 @@ You'll need Arduino desftop app 1.8.9 or later.
             <td></td>
             <td></td>
         </tr>
+        <tr>
+           <td>MQ131- Sensorsportal</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>-2.7245</td>
+            <td>3.3004</td>
+            <td>-1.0333</td>
+            <td>1.7117</td>
+            <td>-1.2037</td>
+            <td>1.6455</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+
+        <tr>
+           <td>MQ135 - HANWEI</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>-2.7268</td>
+            <td>2.301</td>
+            <td>-2.8608</td>
+            <td>1.8627</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>-3.2819</td>
+            <td>1.9903</td>
+            <td>-5.7015</td>
+            <td>1.1612</td>
+            <td>-2.2119</td>
+            <td>2.0473</td>
+            <td>-5.9682</td>
+            <td>1.0175</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
     </tbody>
 </table>
 
