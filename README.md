@@ -468,17 +468,7 @@ You'll need Arduino desftop app 1.8.9 or later.
         </tr>
 
         <tr>
-           <td>MQ135 - HANWEI</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td>-2.7268</td>
-            <td>2.301</td>
-            <td>-2.8608</td>
-            <td>1.8627</td>
+           <td>MQ303A - HANWEI</td>
             <td></td>
             <td></td>
             <td></td>
@@ -493,14 +483,65 @@ You'll need Arduino desftop app 1.8.9 or later.
             <td></td>
             <td></td>
             <td></td>
-            <td>-3.2819</td>
-            <td>1.9903</td>
-            <td>-5.7015</td>
-            <td>1.1612</td>
-            <td>-2.2119</td>
-            <td>2.0473</td>
-            <td>-5.9682</td>
-            <td>1.0175</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>-2.3543</td>
+            <td>1.144</td>
+            <td>-2.4338</td>
+            <td>0.7558</td>
+            <td>-2.5597</td>
+            <td>0.4436</td>
+        </tr>
+        <tr>
+           <td>MQ309A - HANWEI</td>
+            <td>-2.1311</td>
+            <td>3.0886</td>
+            <td></td>
+            <td></td>
+            <td>-1.6554</td>
+            <td>2.985</td>
+            <td>-4.7623</td>
+            <td>6.7413</td>
+            <td>-3.7686</td>
+            <td>5.6744</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
             <td></td>
             <td></td>
             <td></td>
