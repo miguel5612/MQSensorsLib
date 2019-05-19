@@ -29,30 +29,71 @@ You'll need Arduino desftop app 1.8.9 or later.
 | MQ-303A | HANWEI Electronics | [datasheet](http://www.kosmodrom.com.ua/pdf/MQ303A.pdf) |
 | MQ-309A | HANWEI Electronics | [datasheet](http://www.sensorica.ru/pdf/MQ-309A.pdf) |
 
-
+### Info of datasheets (Lineal analisis of Logarithmic rects
 <table>
     <thead>
         <tr>
-            <th>Layer 1</th>
-            <th>Layer 2</th>
-            <th>Layer 3</th>
+            <th colspan="2">Sensor</th>
+            <th colspan="2">H2</th>
+            <th colspan="2">LPG</th>
+            <th colspan="2">CH4</th>
+            <th colspan="2">CO</th>
+            <th colspan="2">Alcohol</th>
+            <th colspan="2">Propane</th>
+            <th colspan="2">Benzine</th>
+            <th colspan="2">Hexane</th>
+            <th colspan="2">Smoke</th>
+            <th colspan="2">Nox</th>
+            <th colspan="2">CL2</th>
+            <th colspan="2">O3</th>
+            <th colspan="2">CO2</th>
+            <th colspan="2">Tolueno</th>
+            <th colspan="2">NH4</th>
+            <th colspan="2">Iso-butano</th>
+            <th colspan="2">Hydrogeno</th>
+            <th colspan="2">Ethanol</th>
         </tr>
     </thead>
     <tbody>
-        <tr>
-            <td rowspan=4>L1 Name</td>
-            <td rowspan=2>L2 Name A</td>
-            <td>L3 Name A</td>
-        </tr>
-        <tr>
-            <td>L3 Name B</td>
-        </tr>
-        <tr>
-            <td rowspan=2>L2 Name B</td>
-            <td>L3 Name C</td>
-        </tr>
-        <tr>
-            <td>L3 Name D</td>
+        <tr rowspan=1>
+            <td rowspan=1>m (slope)</td>
+            <td rowspan=1> (Cut x axis)</td>
+            <td rowspan=1>m (slope)</td>
+            <td rowspan=1> (Cut x axis)</td>
+            <td rowspan=1>m (slope)</td>
+            <td rowspan=1> (Cut x axis)</td>
+            <td rowspan=1>m (slope)</td>
+            <td rowspan=1> (Cut x axis)</td>
+            <td rowspan=1>m (slope)</td>
+            <td rowspan=1> (Cut x axis)</td>
+            <td rowspan=1>m (slope)</td>
+            <td rowspan=1> (Cut x axis)</td>
+            <td rowspan=1>m (slope)</td>
+            <td rowspan=1> (Cut x axis)</td>
+            <td rowspan=1>m (slope)</td>
+            <td rowspan=1> (Cut x axis)</td>
+            <td rowspan=1>m (slope)</td>
+            <td rowspan=1> (Cut x axis)</td>
+            <td rowspan=1>m (slope)</td>
+            <td rowspan=1> (Cut x axis)</td>
+            <td rowspan=1>m (slope)</td>
+            <td rowspan=1> (Cut x axis)</td>
+            <td rowspan=1>m (slope)</td>
+            <td rowspan=1> (Cut x axis)</td>
+            <td rowspan=1>m (slope)</td>
+            <td rowspan=1> (Cut x axis)</td>
+            <td rowspan=1>m (slope)</td>
+            <td rowspan=1> (Cut x axis)</td>
+            <td rowspan=1>m (slope)</td>
+            <td rowspan=1> (Cut x axis)</td>
+            <td rowspan=1>m (slope)</td>
+            <td rowspan=1> (Cut x axis)</td>
+            <td rowspan=1>m (slope)</td>
+            <td rowspan=1> (Cut x axis)</td>
+            <td rowspan=1>m (slope)</td>
+            <td rowspan=1> (Cut x axis)</td>
+            <td rowspan=1>m (slope)</td>
+            <td rowspan=1> (Cut x axis)</td>
         </tr>
     </tbody>
 </table>
