@@ -636,6 +636,8 @@ Please read [CONTRIBUTING.md](https://github.com/miguel5612/MQSensorsLib/blob/NO
 * **Ghiordy F. Contreras C.** - [*GitHub*](https://github.com/Ghiordy) - [CV](https://scienti.colciencias.gov.co/cvlac/visualizador/generarCurriculoCv.do?cod_rh=0000050476) 
 * **Mario A. Rodríguez O.** - [*GitHub*](https://github.com/MarioAndresR) - [CV](https://scienti.colciencias.gov.co/cvlac/visualizador/generarCurriculoCv.do?cod_rh=0000111304)
 * **Yersson Carrillo** - [*GitHub*](https://github.com/Yercar18/Dronefenix)  - [CV]()
+
+
 See also the list of [contributors](https://github.com/miguel5612/MQSensorsLib/contributors) who participated in this project.
 
 ## License
