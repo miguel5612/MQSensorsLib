@@ -29,7 +29,7 @@ You'll need Arduino desftop app 1.8.9 or later.
 | MQ-303A | HANWEI Electronics | [datasheet](http://www.kosmodrom.com.ua/pdf/MQ303A.pdf) |
 | MQ-309A | HANWEI Electronics | [datasheet](http://www.sensorica.ru/pdf/MQ-309A.pdf) |
 
-### Info of datasheets (Lineal analisis of Logarithmic rects
+### Info of datasheets (Lineal analisis of Logarithmic rects)
 <table>
     <thead>
         <tr>
