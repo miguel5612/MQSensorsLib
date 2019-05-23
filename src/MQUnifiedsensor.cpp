@@ -65,7 +65,10 @@ int MQUnifiedsensor::readSensor(String nameLectureRequeired = "")
   setSensorCharacteristics(nameLectureRequeired);
   return readPPM(_m, _b);
 }
-
+void MQUnifiedsensor::inicializar()
+{
+  pinMode(_pin, INPUT);
+}
 void MQUnifiedsensor::setSensorCharacteristics(String nameLectureRequeired)
 {
   int wantedpos = 0;

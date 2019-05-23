@@ -16,6 +16,7 @@ class MQUnifiedsensor
     
     int readSensor(String nameLectureReqeuired = "");
     int readPPM(int m, int b);
+    void inicializar();
 
     /**
      * Calibrates the start point of 400
