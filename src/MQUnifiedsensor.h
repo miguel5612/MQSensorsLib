@@ -45,13 +45,25 @@ class MQUnifiedsensor
     MQ138 - Benzene, Toluene, Alcohol, Acetone, Propane, Formaldehyde gas, Hydrogen
     */
     
+    /* Index definitions and header names*/
     int lecturesAvailable = 19;
     String nameLecture[lecturesAvailable] = {"H2","LPG","CH4","CO","Alcohol","Propane","Benzine","Hexane","Smoke","Nox","CL2","O3","CO2","Tolueno","NH4","Acetona","Iso-butano","Hydrogeno","Ethanol"};
     int indexSlopeLectures[lecturesAvailable] ={0, 2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30, 32, 34, 36};
     int indexBPointLectures[lecturesAvailable] ={1, 3, 5, 7, 9, 11, 13, 15, 17, 19, 21, 23, 25, 27, 29, 31, 33, 35, 37};
+    const int defaultMQ2 = 4; // LPG
+    const int defaultMQ3 = 10 // Alcohol
+    const int defaultMQ4 = 6; // CH4
+    const int defaultMQ5 = 0; //H2 
+    const int defaultMQ6 = 6; // CH4
+    const int defaultMQ7 = 8; //CO
+    const int defaultMQ8 = 0; //H2 
+    const int defaultMQ9 = 4; // LPG
+    const int defaultMQ131 = 24; //O3
+    const int defaultMQ135 = 30; //NH4
+    const int defaultMQ303 = 34; //Isobutano
+    const int defaultMQ309 = 8; //CO
 
-    String units[lecturesAvailable] = {"ppm", "ppm", "ppm", "ppm", "ppm", "ppm", "ppm", "ppm", "ppm", "ppm", "ppm", "ppm", "ppm", "ppm", "ppm", "ppm"};
-
+    /* Value of m (Slope) and b (Cut on x axis) points */
     int MQ2[38] = {-2.2459,2.9845,-2.2879,2.7901,-2.6208,3.6075,-3.1157,4.5134,-2.7028,3.5595,-2.2879,2.7901,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
     int MQ3[38] = {0,0,-3.1851,4.7048,-17.531,28.785,-4.339,6.4432,-1.435,0.4103,0,0,-2.7009,0.632,-2.7268,3.6299,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
     int MQ4[38] = {0,0,-2.5818,3.6303,0.9873,2.6386,-5.5945,5.6693,-11.89,9.0375,0,0,0,0,0,0,-11.189,9.0375,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
