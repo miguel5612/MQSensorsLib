@@ -68,14 +68,69 @@ String MQUnifiedsensor::readSensor(String nameLectureRequeired = "")
 void MQUnifiedsensor::setSensorCharacteristics(String nameLectureRequeired)
 {
   int wantedpos = 0;
-  for (int i=0; i<lecturesAvailable; i++) {
-    if (nameLectureRequeired = nameLecture[i]) {    //modified here
-      wantedpos = i;
-      break;
+  if(nameLectureRequeired == "")
+  {
+    if(_type == 2)
+    {
+      wantedpos = defaultMQ2;
+    }
+    else if(_type == 3)
+    {
+      wantedpos = defaultMQ3;
+    }
+    else if(_type == 4)
+    {
+      wantedpos = defaultMQ4;
+    }
+    else if(_type == 5)
+    {
+      wantedpos = defaultMQ5;
+    }
+    else if(_type == 6)
+    {
+      wantedpos = defaultMQ6;
+    }
+    else if(_type == 7)
+    {
+      wantedpos = defaultMQ7;
+    }
+    else if(_type == 8)
+    {
+      wantedpos = defaultMQ8;
+    }
+    else if(_type == 9)
+    {
+      wantedpos = defaultMQ9;
+    }
+    else if(_type == 131)
+    {
+      wantedpos = defaultMQ131;
+    }
+    else if(_type == 135)
+    {
+      wantedpos = defaultMQ135;
+    }
+    else if(_type == 303)
+    {
+      wantedpos = defaultMQ303;
+    }
+    else if(_type == 309)
+    {
+      wantedpos = defaultMQ309;
     }
   }
-  _m = MQ[indexSlopeLectures[i]];
-  _b = MQ[indexBPointLectures[i]];
+  else 
+  {
+    for (int i=0; i<lecturesAvailable; i++) {
+        if (nameLectureRequeired = nameLecture[i]) {    //modified here
+          wantedpos = i;
+          break;
+        }
+      }
+  }
+    
+  _m = MQ[indexSlopeLectures[wantedpos]];
+  _b = MQ[indexBPointLectures[wantedpos]];
 }
 
 double MQUnifiedsensor::calibrate() {
