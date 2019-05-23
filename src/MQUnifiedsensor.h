@@ -12,9 +12,9 @@ class MQUnifiedsensor
      */
     void MQSensor(int pin, int type);
     void setR0(double R0);
-    void setSensorTyp(int sensorNumber);
-    void getSensorCharacteristics(int MQ[38], String nameLectureReqeuired);
-    String readSensor(String nameLectureReqeuired);
+    void setSensorCharacteristics(int MQ[38], String nameLectureReqeuired);
+    
+    String readSensor(String nameLectureReqeuired = "");
     int readPPM(int m, int b);
 
     /**
@@ -44,12 +44,13 @@ class MQUnifiedsensor
     MQ137 - Ammonia
     MQ138 - Benzene, Toluene, Alcohol, Acetone, Propane, Formaldehyde gas, Hydrogen
     */
+    
+    int lecturesAvailable = 19;
+    String nameLecture[lecturesAvailable] = {"H2","LPG","CH4","CO","Alcohol","Propane","Benzine","Hexane","Smoke","Nox","CL2","O3","CO2","Tolueno","NH4","Acetona","Iso-butano","Hydrogeno","Ethanol"};
+    int indexSlopeLectures[lecturesAvailable] ={0, 2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30, 32, 34, 36};
+    int indexBPointLectures[lecturesAvailable] ={1, 3, 5, 7, 9, 11, 13, 15, 17, 19, 21, 23, 25, 27, 29, 31, 33, 35, 37};
 
-    String nameLecture[19] = {"H2","LPG","CH4","CO","Alcohol","Propane","Benzine","Hexane","Smoke","Nox","CL2","O3","CO2","Tolueno","NH4","Acetona","Iso-butano","Hydrogeno","Ethanol"};
-    int indexSlopeLectures[19] ={0, 2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30, 32, 34, 36};
-    int indexBPointLectures[19] ={1, 3, 5, 7, 9, 11, 13, 15, 17, 19, 21, 23, 25, 27, 29, 31, 33, 35, 37};
-
-    String units[19] = {"ppm", "ppm", "ppm", "ppm", "ppm", "ppm", "ppm", "ppm", "ppm", "ppm", "ppm", "ppm", "ppm", "ppm", "ppm", "ppm"};
+    String units[lecturesAvailable] = {"ppm", "ppm", "ppm", "ppm", "ppm", "ppm", "ppm", "ppm", "ppm", "ppm", "ppm", "ppm", "ppm", "ppm", "ppm", "ppm"};
 
     int MQ2[38] = {-2.2459,2.9845,-2.2879,2.7901,-2.6208,3.6075,-3.1157,4.5134,-2.7028,3.5595,-2.2879,2.7901,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
     int MQ3[38] = {0,0,-3.1851,4.7048,-17.531,28.785,-4.339,6.4432,-1.435,0.4103,0,0,-2.7009,0.632,-2.7268,3.6299,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
@@ -66,7 +67,7 @@ class MQUnifiedsensor
 
 
   private:
-    int _pin, _type;
+    int _pin, _type, _MQ[38];
     double _R0, _m, _b;
     const float VOLT_RESOLUTION = 5.0; // if 3.3v use 3.3
     const int ADC_RESOLUTION = 10; // for 10bit analog to digital converter.

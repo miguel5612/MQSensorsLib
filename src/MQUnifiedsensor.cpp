@@ -2,34 +2,80 @@
 
 
 void MQUnifiedsensor::MQSensor(int pin, int type) {
+
   this->_pin = pin;
   this->_type = type; //2,3,4,5,6,7,8,9,131,135,303,309
+  //Set _MQ variable with MQ sensor selected
+  if(_type == 2)
+  {
+    _MQ = MQ2;
+  }
+  else if(_type == 3)
+  {
+    _MQ = MQ3;
+  }
+  else if(_type == 4)
+  {
+    _MQ = MQ4;
+  }
+  else if(_type == 5)
+  {
+    _MQ = MQ5;
+  }
+  else if(_type == 6)
+  {
+    _MQ = MQ6;
+  }
+  else if(_type == 7)
+  {
+    _MQ = MQ7;
+  }
+  else if(_type == 8)
+  {
+    _MQ = MQ8;
+  }
+  else if(_type == 9)
+  {
+    _MQ = MQ9;
+  }
+  else if(_type == 131)
+  {
+    _MQ = MQ131;
+  }
+  else if(_type == 135)
+  {
+    _MQ = MQ135;
+  }
+  else if(_type == 303)
+  {
+    _MQ = MQ303A;
+  }
+  else if(_type == 309)
+  {
+    _MQ = MQ309;
+  }
 }
 
 void MQUnifiedsensor::setR0(double R0) {
   this->_R0 = R0;
 }
 
-String MQUnifiedsensor::readSensor(String nameLectureReqeuired)
+String MQUnifiedsensor::readSensor(String nameLectureRequeired = "")
 {
-  switch (_type)
-  {
-  case 1:
-    break;
-  
-  default:
-    break;
-  }
-
+  setSensorCharacteristics(nameLectureRequeired);
 }
 
-void MQUnifiedsensor::getSensorCharacteristics(int MQ[38], String nameLectureReqeuired)
+void MQUnifiedsensor::setSensorCharacteristics(String nameLectureRequeired)
 {
-  if(nameLectureReqeuired = nameLecture[0])
-  {
-    _m = MQ[indexSlopeLectures[0]];
-    _b = MQ[indexBPointLectures[0]];
+  int wantedpos = 0;
+  for (int i=0; i<lecturesAvailable; i++) {
+    if (nameLectureRequeired = nameLecture[i]) {    //modified here
+      wantedpos = i;
+      break;
+    }
   }
+  _m = MQ[indexSlopeLectures[i]];
+  _b = MQ[indexBPointLectures[i]];
 }
 
 double MQUnifiedsensor::calibrate() {
