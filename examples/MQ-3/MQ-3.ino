@@ -1,5 +1,5 @@
 /*
-  MQUnifiedsensor Library - reading an MQ4
+  MQUnifiedsensor Library - reading an MQ3
 
   Demonstrates the use a MQ3 sensor.
   Library originally added 01 may 2019
