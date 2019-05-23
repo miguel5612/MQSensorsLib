@@ -60,9 +60,10 @@ void MQUnifiedsensor::setR0(double R0) {
   this->_R0 = R0;
 }
 
-String MQUnifiedsensor::readSensor(String nameLectureRequeired = "")
+int MQUnifiedsensor::readSensor(String nameLectureRequeired = "")
 {
   setSensorCharacteristics(nameLectureRequeired);
+  return readPPM(_m, _b);
 }
 
 void MQUnifiedsensor::setSensorCharacteristics(String nameLectureRequeired)

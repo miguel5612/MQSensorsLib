@@ -14,7 +14,7 @@ class MQUnifiedsensor
     void setR0(double R0);
     void setSensorCharacteristics(int MQ[38], String nameLectureReqeuired);
     
-    String readSensor(String nameLectureReqeuired = "");
+    int readSensor(String nameLectureReqeuired = "");
     int readPPM(int m, int b);
 
     /**
@@ -43,6 +43,8 @@ class MQUnifiedsensor
     MQ136 - Hydrogen Sulfide gas
     MQ137 - Ammonia
     MQ138 - Benzene, Toluene, Alcohol, Acetone, Propane, Formaldehyde gas, Hydrogen
+    MQ303A - Isobutano
+    MQ309A - Monoxide
     */
     
     /* Index definitions and header names*/
