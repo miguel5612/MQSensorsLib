@@ -1,6 +1,5 @@
 #include "MQUnifiedsensor.h"
 
-
  MQUnifiedsensor::MQUnifiedsensor(int pin, int type) {
 
   this->_pin = pin;
@@ -67,11 +66,10 @@
     //_MQ = MQ309;
   }
 }
-
-void MQUnifiedsensor::setR0(double R0) {
-  this->_R0 = R0;
+void MQUnifiedsensor::inicializar()
+{
+  pinMode(_pin, INPUT);
 }
-
 int MQUnifiedsensor::readSensor(String nameLectureRequeired, bool print)
 {
   setSensorCharacteristics(nameLectureRequeired);
@@ -87,78 +85,92 @@ int MQUnifiedsensor::readSensor(String nameLectureRequeired, bool print)
   }
   return _PPM;
 }
-void MQUnifiedsensor::inicializar()
+String MQUnifiedsensor::getnameLecture()
 {
-  pinMode(_pin, INPUT);
+  return nameLecture[_lecturePosInArray];
 }
 void MQUnifiedsensor::setSensorCharacteristics(String nameLectureRequeired)
 {
-  int wantedpos = 0;
   if(nameLectureRequeired == "")
   {
     if(_type == 2)
     {
-      wantedpos = defaultMQ2;
+      _lecturePosInArray = defaultMQ2;
     }
     else if(_type == 3)
     {
-      wantedpos = defaultMQ3;
+      _lecturePosInArray = defaultMQ3;
     }
     else if(_type == 4)
     {
-      wantedpos = defaultMQ4;
+      _lecturePosInArray = defaultMQ4;
     }
     else if(_type == 5)
     {
-      wantedpos = defaultMQ5;
+      _lecturePosInArray = defaultMQ5;
     }
     else if(_type == 6)
     {
-      wantedpos = defaultMQ6;
+      _lecturePosInArray = defaultMQ6;
     }
     else if(_type == 7)
     {
-      wantedpos = defaultMQ7;
+      _lecturePosInArray = defaultMQ7;
     }
     else if(_type == 8)
     {
-      wantedpos = defaultMQ8;
+      _lecturePosInArray = defaultMQ8;
     }
     else if(_type == 9)
     {
-      wantedpos = defaultMQ9;
+      _lecturePosInArray = defaultMQ9;
     }
     else if(_type == 131)
     {
-      wantedpos = defaultMQ131;
+      _lecturePosInArray = defaultMQ131;
     }
     else if(_type == 135)
     {
-      wantedpos = defaultMQ135;
+      _lecturePosInArray = defaultMQ135;
     }
     else if(_type == 303)
     {
-      wantedpos = defaultMQ303;
+      _lecturePosInArray = defaultMQ303;
     }
     else if(_type == 309)
     {
-      wantedpos = defaultMQ309;
+      _lecturePosInArray = defaultMQ309;
     }
   }
   else 
   {
     for (int i=0; i<lecturesAvailable; i++) {
         if (nameLectureRequeired = nameLecture[i]) {    //modified here
-          wantedpos = i;
+          _lecturePosInArray = i;
           break;
         }
       }
   }
     
-  _m = _MQ[indexSlopeLectures[wantedpos]];
-  _b = _MQ[indexBPointLectures[wantedpos]];
+  _m = _MQ[indexSlopeLectures[_lecturePosInArray]];
+  _b = _MQ[indexBPointLectures[_lecturePosInArray]];
 }
+int MQUnifiedsensor::readPPM(int m, int b) {
+  /**
+  * Returns the PPM concentration
+  */
+  double sensor_volt = this->getVoltage();
+  double RS_gas; //Define variable for sensor resistance
+  double ratio; //Define variable for ratio
 
+  RS_gas = ((5.0 * 10.0) / sensor_volt) - 10.0; //Get value of RS in a gas
+
+  ratio = RS_gas / this->_R0;   // Get ratio RS_gas/RS_air
+
+  double ppm_log = (log10(ratio) - b) / m; //Get ppm value in linear scale according to the the ratio value
+  double ppm = pow(10, ppm_log); //Convert ppm value to log scale
+  return floor(ppm);
+}
 double MQUnifiedsensor::calibrate() {
     float sensor_volt; //Define variable for sensor voltage
     float RS_air; //Define variable for sensor resistance
@@ -169,7 +181,6 @@ double MQUnifiedsensor::calibrate() {
     R0 = RS_air / 4.4; //Calculate R0
     return R0;
 }
-
 double MQUnifiedsensor::getVoltage() {
   double avg = 0.0;
   for (int i = 0; i < retries; i ++) {
@@ -181,20 +192,6 @@ double MQUnifiedsensor::getVoltage() {
 
   return voltage;
 }
-  
-  /**
-    * Returns the PPM concentration
-    */
-  int MQUnifiedsensor::readPPM(int m, int b) {
-    double sensor_volt = this->getVoltage();
-    double RS_gas; //Define variable for sensor resistance
-    double ratio; //Define variable for ratio
-
-    RS_gas = ((5.0 * 10.0) / sensor_volt) - 10.0; //Get value of RS in a gas
-
-    ratio = RS_gas / this->_R0;   // Get ratio RS_gas/RS_air
-
-    double ppm_log = (log10(ratio) - b) / m; //Get ppm value in linear scale according to the the ratio value
-    double ppm = pow(10, ppm_log); //Convert ppm value to log scale
-    return floor(ppm);
-  }
+void MQUnifiedsensor::setR0(double R0) {
+  this->_R0 = R0;
+}
