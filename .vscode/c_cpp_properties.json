@@ -3,8 +3,8 @@
         {
             "name": "Win32",
             "includePath": [
-                "C:\\\\Users\\\\migue\\\\AppData\\\\Local\\\\Arduino15\\\\packages\\\\esp8266\\\\tools\\\\**",
-                "C:\\\\Users\\\\migue\\\\AppData\\\\Local\\\\Arduino15\\\\packages\\\\esp8266\\\\hardware\\\\esp8266\\\\2.4.2\\\\**"
+                "C:\\\\\\\\Users\\\\\\\\migue\\\\\\\\AppData\\\\\\\\Local\\\\\\\\Arduino15\\\\\\\\packages\\\\\\\\esp8266\\\\\\\\tools\\\\\\\\**",
+                "C:\\\\\\\\Users\\\\\\\\migue\\\\\\\\AppData\\\\\\\\Local\\\\\\\\Arduino15\\\\\\\\packages\\\\\\\\esp8266\\\\\\\\hardware\\\\\\\\esp8266\\\\\\\\2.4.2\\\\\\\\**"
             ],
             "forcedInclude": [],
             "intelliSenseMode": "msvc-x64",
@@ -13,5 +13,5 @@
             "cppStandard": "c++17"
         }
     ],
-    "version": 3
+    "version": 4
 }
