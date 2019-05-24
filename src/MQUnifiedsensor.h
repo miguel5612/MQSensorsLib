@@ -15,7 +15,7 @@ class MQUnifiedsensor
     MQUnifiedsensor(int pin, int type);
     void inicializar();
     void setR0(double R0);
-    void setSensorCharacteristics(String nameLectureReqeuired);
+    void setSensorCharacteristics(String nameLectureReqeuired, bool print);
     
     int readSensor(String nameLectureRequeired = "", bool print = false);
     int readPPM(int m, int b);

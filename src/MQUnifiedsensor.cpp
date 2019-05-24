@@ -72,15 +72,18 @@ void MQUnifiedsensor::inicializar()
 }
 int MQUnifiedsensor::readSensor(String nameLectureRequeired, bool print)
 {
-  setSensorCharacteristics(nameLectureRequeired);
+  setSensorCharacteristics(nameLectureRequeired, print);
   _PPM =readPPM(_m, _b);
   if(print)
   {
-    Serial.print("Medicion: ");
+    String nameLecture = getnameLecture();
+  
+    Serial.print("Medicion");
+    Serial.print("(" + nameLecture + "): ");
     Serial.println(_PPM);
     Serial.print("Slope: ");
     Serial.print(String(_m));
-    Serial.print("B point: ");
+    Serial.print(", B point: ");
     Serial.println(String(_b));
   }
   return _PPM;
@@ -89,8 +92,9 @@ String MQUnifiedsensor::getnameLecture()
 {
   return nameLecture[_lecturePosInArray];
 }
-void MQUnifiedsensor::setSensorCharacteristics(String nameLectureRequeired)
+void MQUnifiedsensor::setSensorCharacteristics(String nameLectureRequeired, bool print)
 {
+  //Defaults index
   if(nameLectureRequeired == "")
   {
     if(_type == 2)
@@ -144,6 +148,7 @@ void MQUnifiedsensor::setSensorCharacteristics(String nameLectureRequeired)
   }
   else 
   {
+    //Dinamic index search
     for (int i=0; i<lecturesAvailable; i++) {
         if (nameLectureRequeired = nameLecture[i]) {    //modified here
           _lecturePosInArray = i;
@@ -151,7 +156,18 @@ void MQUnifiedsensor::setSensorCharacteristics(String nameLectureRequeired)
         }
       }
   }
-    
+  //Serial debugging
+  if(print)
+  {
+    String nameLecture = getnameLecture();
+  
+    Serial.print("index in nameLectures: ");
+    Serial.println(_lecturePosInArray);
+    Serial.print("Slope index: ");
+    Serial.println(indexSlopeLectures[_lecturePosInArray]);
+    Serial.print("B point index: ");
+    Serial.println(indexBPointLectures[_lecturePosInArray]);
+  }
   _m = _MQ[indexSlopeLectures[_lecturePosInArray]];
   _b = _MQ[indexBPointLectures[_lecturePosInArray]];
 }
