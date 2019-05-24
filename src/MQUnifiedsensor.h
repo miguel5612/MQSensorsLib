@@ -12,11 +12,11 @@ class MQUnifiedsensor
     /**
      * Constructor
      */
-    void MQUnifiedsensor(int pin, int type);
+    MQUnifiedsensor(int pin, int type);
     void setR0(double R0);
-    void setSensorCharacteristics(int MQ[38], String nameLectureReqeuired);
+    void setSensorCharacteristics(String nameLectureReqeuired);
     
-    int readSensor(String nameLectureReqeuired = "");
+    int readSensor(String nameLectureRequeired = "", bool print = false);
     int readPPM(int m, int b);
     void inicializar();
 
@@ -84,7 +84,7 @@ class MQUnifiedsensor
 
 
   private:
-    int _pin, _type;
+    int _pin, _type, _PPM;
     double _R0, _m, _b, _MQ[38];
     const float VOLT_RESOLUTION = 5.0; // if 3.3v use 3.3
     const int ADC_RESOLUTION = 10; // for 10bit analog to digital converter.

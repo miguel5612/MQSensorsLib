@@ -8,51 +8,63 @@
   //Set _MQ variable with MQ sensor selected
   if(_type == 2)
   {
-    _MQ = MQ2;
+    memcpy(_MQ, MQ2, sizeof(MQ2));
+    //_MQ = MQ2;
   }
   else if(_type == 3)
   {
-    _MQ = MQ3;
+    memcpy(_MQ, MQ3, sizeof(MQ3));
+    //_MQ = MQ3;
   }
   else if(_type == 4)
   {
-    _MQ = MQ4;
+    memcpy(_MQ, MQ4, sizeof(MQ4));
+    //_MQ = MQ4;
   }
   else if(_type == 5)
   {
-    _MQ = MQ5;
+    memcpy(_MQ, MQ5, sizeof(MQ5));
+    //_MQ = MQ5;
   }
   else if(_type == 6)
   {
-    _MQ = MQ6;
+    memcpy(_MQ, MQ6, sizeof(MQ6));
+    //_MQ = MQ6;
   }
   else if(_type == 7)
   {
-    _MQ = MQ7;
+    memcpy(_MQ, MQ7, sizeof(MQ7));
+    //_MQ = MQ7;
   }
   else if(_type == 8)
   {
-    _MQ = MQ8;
+    memcpy(_MQ, MQ8, sizeof(MQ8));
+    //_MQ = MQ8;
   }
   else if(_type == 9)
   {
-    _MQ = MQ9;
+    memcpy(_MQ, MQ9, sizeof(MQ9));
+    //_MQ = MQ9;
   }
   else if(_type == 131)
   {
-    _MQ = MQ131;
+    memcpy(_MQ, MQ131, sizeof(MQ131));
+    //_MQ = MQ131;
   }
   else if(_type == 135)
   {
-    _MQ = MQ135;
+    memcpy(_MQ, MQ135, sizeof(MQ135));
+    //_MQ = MQ135;
   }
   else if(_type == 303)
   {
-    _MQ = MQ303A;
+    memcpy(_MQ, MQ303A, sizeof(MQ303A));
+    //_MQ = MQ303A;
   }
   else if(_type == 309)
   {
-    _MQ = MQ309;
+    memcpy(_MQ, MQ309A, sizeof(MQ309A));
+    //_MQ = MQ309;
   }
 }
 
@@ -60,10 +72,20 @@ void MQUnifiedsensor::setR0(double R0) {
   this->_R0 = R0;
 }
 
-int MQUnifiedsensor::readSensor(String nameLectureRequeired = "")
+int MQUnifiedsensor::readSensor(String nameLectureRequeired, bool print)
 {
   setSensorCharacteristics(nameLectureRequeired);
-  return readPPM(_m, _b);
+  _PPM =readPPM(_m, _b);
+  if(print)
+  {
+    Serial.print("Medicion: ");
+    Serial.println(_PPM);
+    Serial.print("Slope: ");
+    Serial.print(String(_m));
+    Serial.print("B point: ");
+    Serial.println(String(_b));
+  }
+  return _PPM;
 }
 void MQUnifiedsensor::inicializar()
 {
@@ -133,8 +155,8 @@ void MQUnifiedsensor::setSensorCharacteristics(String nameLectureRequeired)
       }
   }
     
-  _m = MQ[indexSlopeLectures[wantedpos]];
-  _b = MQ[indexBPointLectures[wantedpos]];
+  _m = _MQ[indexSlopeLectures[wantedpos]];
+  _b = _MQ[indexBPointLectures[wantedpos]];
 }
 
 double MQUnifiedsensor::calibrate() {
