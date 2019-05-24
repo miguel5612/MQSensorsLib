@@ -1,7 +1,7 @@
 #include "MQUnifiedsensor.h"
 
 
-void MQUnifiedsensor::MQSensor(int pin, int type) {
+ MQUnifiedsensor::MQUnifiedsensor(int pin, int type) {
 
   this->_pin = pin;
   this->_type = type; //2,3,4,5,6,7,8,9,131,135,303,309

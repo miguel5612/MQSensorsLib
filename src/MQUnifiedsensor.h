@@ -12,7 +12,7 @@ class MQUnifiedsensor
     /**
      * Constructor
      */
-    void MQSensor(int pin, int type);
+    void MQUnifiedsensor(int pin, int type);
     void setR0(double R0);
     void setSensorCharacteristics(int MQ[38], String nameLectureReqeuired);
     
