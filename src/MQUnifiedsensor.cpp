@@ -97,70 +97,21 @@ void MQUnifiedsensor::setSensorCharacteristics(String nameLectureRequeired, bool
   //Defaults index
   if(nameLectureRequeired == "")
   {
-    Serial.println("Busqueda manual de los indices");
-    if(_type == 2)
-    {
-      _lecturePosInArray = defaultMQ2;
-    }
-    else if(_type == 3)
-    {
-      _lecturePosInArray = defaultMQ3;
-    }
-    else if(_type == 4)
-    {
-      _lecturePosInArray = defaultMQ4;
-    }
-    else if(_type == 5)
-    {
-      _lecturePosInArray = defaultMQ5;
-    }
-    else if(_type == 6)
-    {
-      _lecturePosInArray = defaultMQ6;
-    }
-    else if(_type == 7)
-    {
-      _lecturePosInArray = defaultMQ7;
-    }
-    else if(_type == 8)
-    {
-      _lecturePosInArray = defaultMQ8;
-    }
-    else if(_type == 9)
-    {
-      _lecturePosInArray = defaultMQ9;
-    }
-    else if(_type == 131)
-    {
-      _lecturePosInArray = defaultMQ131;
-    }
-    else if(_type == 135)
-    {
-      _lecturePosInArray = defaultMQ135;
-    }
-    else if(_type == 303)
-    {
-      _lecturePosInArray = defaultMQ303;
-    }
-    else if(_type == 309)
-    {
-      _lecturePosInArray = defaultMQ309;
-    }
+    
   }
-  else 
+
+  //Dinamic index search
+  if(print)
   {
-    //Dinamic index search
-    if(print)
-    {
-      Serial.println("Busqueda dinamica de los indices");
-    }
-    for (int i=0; i<lecturesAvailable; i++) {
-        if (nameLectureRequeired = nameLecture[i]) {    //modified here
-          _lecturePosInArray = i;
-          break;
-        }
-      }
+    Serial.println("Busqueda dinamica de los indices");
   }
+  for (int i=0; i<sizeof(_MQ); i++) {
+      if (nameLectureRequeired = _MQ[i]) {    //modified here
+        _lecturePosInArray = i;
+        break;
+      }
+    }
+  
   //Serial debugging
   if(print)
   {
@@ -169,12 +120,12 @@ void MQUnifiedsensor::setSensorCharacteristics(String nameLectureRequeired, bool
     Serial.print("index in nameLectures: ");
     Serial.println(_lecturePosInArray);
     Serial.print("Slope index: ");
-    Serial.println(indexSlopeLectures[_lecturePosInArray]);
+    Serial.println(_lecturePosInArray+1);
     Serial.print("B point index: ");
-    Serial.println(indexBPointLectures[_lecturePosInArray]);
+    Serial.println(_lecturePosInArray+2);
   }
-  _m = _MQ[indexSlopeLectures[_lecturePosInArray]];
-  _b = _MQ[indexBPointLectures[_lecturePosInArray]];
+  _m = stringToDouble(_MQ[_lecturePosInArray+1]);
+  _b = stringToDouble(_MQ[_lecturePosInArray+2]);
 }
 int MQUnifiedsensor::readPPM(int m, int b) {
   /**
@@ -215,4 +166,60 @@ double MQUnifiedsensor::getVoltage() {
 }
 void MQUnifiedsensor::setR0(double R0) {
   this->_R0 = R0;
+}
+void MQUnifiedsensor::setDefaultGas()
+{
+  Serial.println("Carga de los gases por defecto");
+    if(_type == 2)
+    {
+      nameLectureRequeired = defaultMQ2;
+    }
+    else if(_type == 3)
+    {
+      nameLectureRequeired = defaultMQ3;
+    }
+    else if(_type == 4)
+    {
+      nameLectureRequeired = defaultMQ4;
+    }
+    else if(_type == 5)
+    {
+      nameLectureRequeired = defaultMQ5;
+    }
+    else if(_type == 6)
+    {
+      nameLectureRequeired = defaultMQ6;
+    }
+    else if(_type == 7)
+    {
+      nameLectureRequeired = defaultMQ7;
+    }
+    else if(_type == 8)
+    {
+      nameLectureRequeired = defaultMQ8;
+    }
+    else if(_type == 9)
+    {
+      nameLectureRequeired = defaultMQ9;
+    }
+    else if(_type == 131)
+    {
+      nameLectureRequeired = defaultMQ131;
+    }
+    else if(_type == 135)
+    {
+      nameLectureRequeired = defaultMQ135;
+    }
+    else if(_type == 303)
+    {
+      nameLectureRequeired = defaultMQ303;
+    }
+    else if(_type == 309)
+    {
+      nameLectureRequeired = defaultMQ309;
+    }
+}
+double MQUnifiedsensor::stringToDouble(String & str)   <-- notice the "&"
+{
+  return atof( str.c_str() );
 }

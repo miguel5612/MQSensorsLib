@@ -8,18 +8,18 @@
 #define lecturesAvailable 19
 
 //Index in the nameLecture vector
-#define defaultMQ2 2 // LPG
-#define defaultMQ3 5 // Alcohol
-#define defaultMQ4 3 // CH4
-#define defaultMQ5 0 //H2 
-#define defaultMQ6 3 // CH4
-#define defaultMQ7 4 //CO
-#define defaultMQ8 0 //H2 
-#define defaultMQ9 2 // LPG
-#define defaultMQ131 12 //O3
-#define defaultMQ135 15 //NH4
-#define defaultMQ303 17 //Isobutano
-#define defaultMQ309 4 //CO
+#define defaultMQ2 "LPG" // LPG
+#define defaultMQ3 "Alcohol" // Alcohol
+#define defaultMQ4 "CH4" // CH4
+#define defaultMQ5 "H2" //H2 
+#define defaultMQ6 "CH4" // CH4
+#define defaultMQ7 "CO" //CO
+#define defaultMQ8 "H2" //H2 
+#define defaultMQ9 "LPG" // LPG
+#define defaultMQ131 "O3" //O3
+#define defaultMQ135 "NH4" //NH4
+#define defaultMQ303 "Isobutano" //Isobutano
+#define defaultMQ309 "CO" //CO
 
 
 class MQUnifiedsensor
@@ -29,12 +29,14 @@ class MQUnifiedsensor
     void inicializar();
     void setR0(double R0);
     void setSensorCharacteristics(String nameLectureReqeuired, bool print);
+    void setDefaultGas();
     
     int readSensor(String nameLectureRequeired = "", bool print = false);
     int readPPM(int m, int b);
     
     double calibrate();
     double getVoltage();
+    double stringToDouble(String & str);
 
     String getnameLecture();
 
@@ -56,7 +58,8 @@ class MQUnifiedsensor
     
   private:
     int _pin, _type, _PPM, _lecturePosInArray;
-    double _R0, _m, _b, _MQ[12];
+    double _R0, _m, _b;
+    String _MQ[19];
     const float VOLT_RESOLUTION = 5.0; // if 3.3v use 3.3
     const int ADC_RESOLUTION = 10; // for 10bit analog to digital converter.
     const int retries = 50;
