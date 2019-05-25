@@ -97,6 +97,9 @@ void MQUnifiedsensor::setSensorCharacteristics(String nameLectureRequeired, bool
   //Defaults index
   if(nameLectureRequeired == "")
   {
+    //Set default
+    setDefaultGas();
+    //Put  the default into variable internally used
     nameLectureRequeired = _nameLectureRequeired;
   }
 
@@ -106,7 +109,7 @@ void MQUnifiedsensor::setSensorCharacteristics(String nameLectureRequeired, bool
     Serial.println("Busqueda dinamica de los indices");
   }
   for (int i=0; i<sizeof(_MQ); i++) {
-      if (nameLectureRequeired = _MQ[i]) {    //modified here
+      if (nameLectureRequeired == _MQ[i]) {    //modified here
         _lecturePosInArray = i;
         break;
       }
