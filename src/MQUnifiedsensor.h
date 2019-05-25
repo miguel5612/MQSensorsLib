@@ -59,7 +59,7 @@ class MQUnifiedsensor
   private:
     int _pin, _type, _PPM, _lecturePosInArray;
     double _R0, _m, _b;
-    String _MQ[19], __nameLectureRequeired;
+    String _MQ[19], _nameLectureRequeired;
     const float VOLT_RESOLUTION = 5.0; // if 3.3v use 3.3
     const int ADC_RESOLUTION = 10; // for 10bit analog to digital converter.
     const int retries = 50;
