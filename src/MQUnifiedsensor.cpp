@@ -90,7 +90,7 @@ int MQUnifiedsensor::readSensor(String nameLectureRequeired, bool print)
 }
 String MQUnifiedsensor::getnameLecture()
 {
-  return __nameLectureRequeired;
+  return _nameLectureRequeired;
 }
 void MQUnifiedsensor::setSensorCharacteristics(String nameLectureRequeired, bool print)
 {
