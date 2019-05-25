@@ -97,7 +97,7 @@ void MQUnifiedsensor::setSensorCharacteristics(String nameLectureRequeired, bool
   //Defaults index
   if(nameLectureRequeired == "")
   {
-    nameLectureRequeired = __nameLectureRequeired;
+    nameLectureRequeired = _nameLectureRequeired;
   }
 
   //Dinamic index search
@@ -127,7 +127,7 @@ void MQUnifiedsensor::setSensorCharacteristics(String nameLectureRequeired, bool
   _m = stringToDouble(_MQ[_lecturePosInArray+1]);
   _b = stringToDouble(_MQ[_lecturePosInArray+2]);
   //Save the name for future calls
-  nameLectureRequeired = __nameLectureRequeired;
+  nameLectureRequeired = _nameLectureRequeired;
 }
 int MQUnifiedsensor::readPPM(int m, int b) {
   /**
