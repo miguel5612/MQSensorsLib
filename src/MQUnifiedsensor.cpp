@@ -7,64 +7,68 @@
   //Set _MQ variable with MQ sensor selected
   if(_type == 2)
   {
-    memcpy(_MQ, MQ2, sizeof(MQ2));
+    memcpy(_MQ, _MQ2, sizeof(_MQ2));
     //_MQ = MQ2;
   }
   else if(_type == 3)
   {
-    memcpy(_MQ, MQ3, sizeof(MQ3));
+    memcpy(_MQ, _MQ3, sizeof(_MQ3));
     //_MQ = MQ3;
   }
   else if(_type == 4)
   {
-    memcpy(_MQ, MQ4, sizeof(MQ4));
+    memcpy(_MQ, _MQ4, sizeof(_MQ4));
     //_MQ = MQ4;
   }
   else if(_type == 5)
   {
-    memcpy(_MQ, MQ5, sizeof(MQ5));
+    memcpy(_MQ, _MQ5, sizeof(_MQ5));
     //_MQ = MQ5;
   }
   else if(_type == 6)
   {
-    memcpy(_MQ, MQ6, sizeof(MQ6));
+    memcpy(_MQ, _MQ6, sizeof(_MQ6));
     //_MQ = MQ6;
   }
   else if(_type == 7)
   {
-    memcpy(_MQ, MQ7, sizeof(MQ7));
+    memcpy(_MQ, _MQ7, sizeof(_MQ7));
     //_MQ = MQ7;
   }
   else if(_type == 8)
   {
-    memcpy(_MQ, MQ8, sizeof(MQ8));
+    memcpy(_MQ, _MQ8, sizeof(_MQ8));
     //_MQ = MQ8;
   }
   else if(_type == 9)
   {
-    memcpy(_MQ, MQ9, sizeof(MQ9));
+    memcpy(_MQ, _MQ9, sizeof(_MQ9));
     //_MQ = MQ9;
   }
   else if(_type == 131)
   {
-    memcpy(_MQ, MQ131, sizeof(MQ131));
+    memcpy(_MQ, _MQ131, sizeof(_MQ131));
     //_MQ = MQ131;
   }
   else if(_type == 135)
   {
-    memcpy(_MQ, MQ135, sizeof(MQ135));
+    memcpy(_MQ, _MQ135, sizeof(_MQ135));
     //_MQ = MQ135;
   }
   else if(_type == 303)
   {
-    memcpy(_MQ, MQ303A, sizeof(MQ303A));
+    memcpy(_MQ, _MQ303A, sizeof(_MQ303A));
     //_MQ = MQ303A;
   }
   else if(_type == 309)
   {
-    memcpy(_MQ, MQ309A, sizeof(MQ309A));
+    memcpy(_MQ, _MQ309A, sizeof(_MQ309A));
     //_MQ = MQ309;
   }
+}
+void MQUnifiedsensor::setVoltResolution(float voltaje)
+{
+  VOLT_RESOLUTION = voltaje;
 }
 void MQUnifiedsensor::inicializar()
 {
