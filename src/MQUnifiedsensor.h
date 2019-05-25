@@ -4,14 +4,27 @@
 #include <Arduino.h>
 #include <stdint.h>
 
+//Count of posible lectures
 #define lecturesAvailable 19
+
+//Index in the nameLecture vector
+#define defaultMQ2 2 // LPG
+#define defaultMQ3 5 // Alcohol
+#define defaultMQ4 3 // CH4
+#define defaultMQ5 0 //H2 
+#define defaultMQ6 3 // CH4
+#define defaultMQ7 4 //CO
+#define defaultMQ8 0 //H2 
+#define defaultMQ9 2 // LPG
+#define defaultMQ131 12 //O3
+#define defaultMQ135 15 //NH4
+#define defaultMQ303 17 //Isobutano
+#define defaultMQ309 4 //CO
+
 
 class MQUnifiedsensor
 {
   public:
-    /**
-     * Constructor
-     */
     MQUnifiedsensor(int pin, int type);
     void inicializar();
     void setR0(double R0);
@@ -24,61 +37,26 @@ class MQUnifiedsensor
     double getVoltage();
 
     String getnameLecture();
-    /**
-     * Returns the PPM concentration    
-    MQ-2 - Methane, Butane, LPG, smoke
-    MQ-3 - Alcohol, Ethanol, smoke
-    MQ-4 - Methane, CNG Gas
-    MQ-5 - Natural gas, LPG
-    MQ-6 - LPG, butane gas
-    MQ-7 - Carbon Monoxide
-    MQ-8 - Hydrogen Gas
-    MQ-9 - Carbon Monoxide, flammable gasses
-    MQ131 - Ozone
-    MQ135 - Air Quality (CO, Ammonia, Benzene, Alcohol, smoke)
-    MQ136 - Hydrogen Sulfide gas
-    MQ137 - Ammonia
-    MQ138 - Benzene, Toluene, Alcohol, Acetone, Propane, Formaldehyde gas, Hydrogen
-    MQ303A - Isobutano
-    MQ309A - Monoxide
-    */
+
     
-    /* Index definitions and header names*/
-
-    const String nameLecture[lecturesAvailable] = {"H2","LPG","CH4","CO","Alcohol","Propane","Benzine","Hexane","Smoke","Nox","CL2","O3","CO2","Tolueno","NH4","Acetona","Iso-butano","Hydrogeno","Ethanol"};
-    const int indexSlopeLectures[lecturesAvailable] ={0, 2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30, 32, 34, 36};
-    const int indexBPointLectures[lecturesAvailable] ={1, 3, 5, 7, 9, 11, 13, 15, 17, 19, 21, 23, 25, 27, 29, 31, 33, 35, 37};
-    const int defaultMQ2 = 4; // LPG
-    const int defaultMQ3 = 10; // Alcohol
-    const int defaultMQ4 = 6; // CH4
-    const int defaultMQ5 = 0; //H2 
-    const int defaultMQ6 = 6; // CH4
-    const int defaultMQ7 = 8; //CO
-    const int defaultMQ8 = 0; //H2 
-    const int defaultMQ9 = 4; // LPG
-    const int defaultMQ131 = 24; //O3
-    const int defaultMQ135 = 30; //NH4
-    const int defaultMQ303 = 34; //Isobutano
-    const int defaultMQ309 = 8; //CO
-
-    /* Value of m (Slope) and b (Cut on x axis) points */
-    const double MQ2[38] = {-2.2459,2.9845,-2.2879,2.7901,-2.6208,3.6075,-3.1157,4.5134,-2.7028,3.5595,-2.2879,2.7901,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
-    const double MQ3[38] = {0,0,-3.1851,4.7048,-17.531,28.785,-4.339,6.4432,-1.435,0.4103,0,0,-2.7009,0.632,-2.7268,3.6299,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
-    const double MQ4[38] = {0,0,-2.5818,3.6303,0.9873,2.6386,-5.5945,5.6693,-11.89,9.0375,0,0,0,0,0,0,-11.189,9.0375,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
-    const double MQ5[38] = {-4.368,2.9667,-2.5723,1.8943,-2.4438,2.3044,-4.8188,5.2023,-4.419,4.8044,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
-    const double MQ6[38] = {-3.6775,5.0286,-1.6567,2.8775,-1,3.301,-12.791,14.523,-5.8057,7.5292,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
-    const double MQ7[38] = {-1.329,1.8864,-7.8626,9.1056,-5.4878,8.8387,-1.4065,2.0162,-6.3219,9.924,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
-    const double MQ8[38] = {-0.7152,2.9891,-3.419,7.3513,-7.5609,15.243,-7.0753,15.396,-1.7459,4.7575,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
-    const double MQ9[38] = {0,0,-2.2535,2.9855,-1.6012,3.1476,-1.749,2.827,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
-    const double MQ131[38] = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-2.7245,3.3004,-1.0333,1.7117,-1.2037,1.6455,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
-    const double MQ135[38] = {0,0,0,0,0,0,-2.7268,2.301,-2.8608,1.8627,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-3.2819,1.9903,-5.7015,1.1612,-2.2119,2.0473,-5.9682,1.0175,0,0,0,0,0,0};
-    const double MQ303A[38] = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-2.3543,1.144,-2.4338,0.7558,-2.5597,0.4436};
-    const double MQ309A[38] = {-2.1311,3.0886,0,0,-1.6554,2.985,-4.7623,6.7413,-3.7686,5.6744,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
-
-
+    //Values consolidated
+    /* Gas, Value of m (Slope) and b (Cut on x axis) points */
+    const String MQ2[18] = {"H2","-2.2459","2.9845","LPG","-2.2879","2.7901","CO","-2.6208","3.6075","Alcohol","-3.1157","4.5134","Propane","-2.7028","3.5595","Benzene","-2.2879","2.7901"};
+    const String MQ3[12] = {"LPG","-3.1851","4.7048","CH4","-17.531","28.785","CO","-4.339","6.4432","Alcohol","-1.435","0.4103","Benzene","-2.7009","0.632","Hexane","-2.7268","3.6299"};
+    const String MQ4[15] = {"LPG","-2.5818","3.6303","CH4","0.9873","2.6386","CO","-5.5945","5.6693","Alcohol","-11.89","9.0375","smoke","-11.189","9.0375"};
+    const String MQ5[15] = {"H2","-4.368","2.9667","LPG","-2.5723","1.8943","CH4","-2.4438","2.3044","CO","-4.8188","5.2023","Alcohol","-4.419","4.8044"};
+    const String MQ6[15] = {"H2","-3.6775","5.0286","LPG","-1.6567","2.8775","CH4","-1","3.301","CO","-12.791","14.523","Alcohol","-5.8057","7.5292"};
+    const String MQ7[15] = {"H2","-1.329","1.8864","LPG","-7.8626","9.1056","CH4","-5.4878","8.8387","CO","-1.4065","2.0162","Alcohol","-6.3219","9.924"};
+    const String MQ8[15] = {"H2","-0.7152","2.9891","LPG","-3.419","7.3513","CH4","-7.5609","15.243","CO","-7.0753","15.396","Alcohol","-1.7459","4.7575"};
+    const String MQ9[9] = {"LPG","-2.2535","2.9855","CH4","-1.6012","3.1476","CO","-1.749","2.827"};
+    const String MQ131[9] = {"Nox","-2.7245","3.3004","CL2","-1.0333","1.7117","O3","-1.2037","1.6455"};
+    const String MQ135[18] = {"CO","-2.7268","2.301","Alcohol","-2.8608","1.8627","CO2","-3.2819","1.9903","Tolueno","-5.7015","1.1612","NH4","-2.2119","2.0473","Acetona","-5.9682","1.0175"};
+    const String MQ303A[9] = {"Iso-butano","-2.3543","1.144","Hydrogeno","-2.4338","0.7558","Ethanol","-2.5597","0.4436"};
+    const String MQ309A[12] = {"H2","-2.1311","3.0886","CH4","-1.6554","2.985","CO","-4.7623","6.7413","Alcohol","-3.7686","5.6744"};
+    
   private:
     int _pin, _type, _PPM, _lecturePosInArray;
-    double _R0, _m, _b, _MQ[38];
+    double _R0, _m, _b, _MQ[12];
     const float VOLT_RESOLUTION = 5.0; // if 3.3v use 3.3
     const int ADC_RESOLUTION = 10; // for 10bit analog to digital converter.
     const int retries = 50;

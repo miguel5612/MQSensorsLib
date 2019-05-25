@@ -97,6 +97,7 @@ void MQUnifiedsensor::setSensorCharacteristics(String nameLectureRequeired, bool
   //Defaults index
   if(nameLectureRequeired == "")
   {
+    Serial.println("Busqueda manual de los indices");
     if(_type == 2)
     {
       _lecturePosInArray = defaultMQ2;
@@ -149,6 +150,10 @@ void MQUnifiedsensor::setSensorCharacteristics(String nameLectureRequeired, bool
   else 
   {
     //Dinamic index search
+    if(print)
+    {
+      Serial.println("Busqueda dinamica de los indices");
+    }
     for (int i=0; i<lecturesAvailable; i++) {
         if (nameLectureRequeired = nameLecture[i]) {    //modified here
           _lecturePosInArray = i;
