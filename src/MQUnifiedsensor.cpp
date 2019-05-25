@@ -90,14 +90,14 @@ int MQUnifiedsensor::readSensor(String nameLectureRequeired, bool print)
 }
 String MQUnifiedsensor::getnameLecture()
 {
-  return nameLecture[_lecturePosInArray];
+  return __nameLectureRequeired;
 }
 void MQUnifiedsensor::setSensorCharacteristics(String nameLectureRequeired, bool print)
 {
   //Defaults index
   if(nameLectureRequeired == "")
   {
-    
+    nameLectureRequeired = __nameLectureRequeired;
   }
 
   //Dinamic index search
@@ -126,6 +126,8 @@ void MQUnifiedsensor::setSensorCharacteristics(String nameLectureRequeired, bool
   }
   _m = stringToDouble(_MQ[_lecturePosInArray+1]);
   _b = stringToDouble(_MQ[_lecturePosInArray+2]);
+  //Save the name for future calls
+  nameLectureRequeired = __nameLectureRequeired;
 }
 int MQUnifiedsensor::readPPM(int m, int b) {
   /**
@@ -172,54 +174,54 @@ void MQUnifiedsensor::setDefaultGas()
   Serial.println("Carga de los gases por defecto");
     if(_type == 2)
     {
-      nameLectureRequeired = defaultMQ2;
+      _nameLectureRequeired = defaultMQ2;
     }
     else if(_type == 3)
     {
-      nameLectureRequeired = defaultMQ3;
+      _nameLectureRequeired = defaultMQ3;
     }
     else if(_type == 4)
     {
-      nameLectureRequeired = defaultMQ4;
+      _nameLectureRequeired = defaultMQ4;
     }
     else if(_type == 5)
     {
-      nameLectureRequeired = defaultMQ5;
+      _nameLectureRequeired = defaultMQ5;
     }
     else if(_type == 6)
     {
-      nameLectureRequeired = defaultMQ6;
+      _nameLectureRequeired = defaultMQ6;
     }
     else if(_type == 7)
     {
-      nameLectureRequeired = defaultMQ7;
+      _nameLectureRequeired = defaultMQ7;
     }
     else if(_type == 8)
     {
-      nameLectureRequeired = defaultMQ8;
+      _nameLectureRequeired = defaultMQ8;
     }
     else if(_type == 9)
     {
-      nameLectureRequeired = defaultMQ9;
+      _nameLectureRequeired = defaultMQ9;
     }
     else if(_type == 131)
     {
-      nameLectureRequeired = defaultMQ131;
+      _nameLectureRequeired = defaultMQ131;
     }
     else if(_type == 135)
     {
-      nameLectureRequeired = defaultMQ135;
+      _nameLectureRequeired = defaultMQ135;
     }
     else if(_type == 303)
     {
-      nameLectureRequeired = defaultMQ303;
+      _nameLectureRequeired = defaultMQ303;
     }
     else if(_type == 309)
     {
-      nameLectureRequeired = defaultMQ309;
+      _nameLectureRequeired = defaultMQ309;
     }
 }
-double MQUnifiedsensor::stringToDouble(String & str)   <-- notice the "&"
+double MQUnifiedsensor::stringToDouble(String & str)
 {
   return atof( str.c_str() );
 }

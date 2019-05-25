@@ -44,7 +44,7 @@ class MQUnifiedsensor
     //Values consolidated
     /* Gas, Value of m (Slope) and b (Cut on x axis) points */
     const String MQ2[18] = {"H2","-2.2459","2.9845","LPG","-2.2879","2.7901","CO","-2.6208","3.6075","Alcohol","-3.1157","4.5134","Propane","-2.7028","3.5595","Benzene","-2.2879","2.7901"};
-    const String MQ3[12] = {"LPG","-3.1851","4.7048","CH4","-17.531","28.785","CO","-4.339","6.4432","Alcohol","-1.435","0.4103","Benzene","-2.7009","0.632","Hexane","-2.7268","3.6299"};
+    const String MQ3[18] = {"LPG","-3.1851","4.7048","CH4","-17.531","28.785","CO","-4.339","6.4432","Alcohol","-1.435","0.4103","Benzene","-2.7009","0.632","Hexane","-2.7268","3.6299"};
     const String MQ4[15] = {"LPG","-2.5818","3.6303","CH4","0.9873","2.6386","CO","-5.5945","5.6693","Alcohol","-11.89","9.0375","smoke","-11.189","9.0375"};
     const String MQ5[15] = {"H2","-4.368","2.9667","LPG","-2.5723","1.8943","CH4","-2.4438","2.3044","CO","-4.8188","5.2023","Alcohol","-4.419","4.8044"};
     const String MQ6[15] = {"H2","-3.6775","5.0286","LPG","-1.6567","2.8775","CH4","-1","3.301","CO","-12.791","14.523","Alcohol","-5.8057","7.5292"};
@@ -59,7 +59,7 @@ class MQUnifiedsensor
   private:
     int _pin, _type, _PPM, _lecturePosInArray;
     double _R0, _m, _b;
-    String _MQ[19];
+    String _MQ[19], __nameLectureRequeired;
     const float VOLT_RESOLUTION = 5.0; // if 3.3v use 3.3
     const int ADC_RESOLUTION = 10; // for 10bit analog to digital converter.
     const int retries = 50;
