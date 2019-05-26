@@ -81,14 +81,12 @@ int MQUnifiedsensor::readSensor(String nameLectureRequeired, bool print)
   if(print)
   {
     String nameLecture = getnameLecture();
-  
-    Serial.print("Medicion");
-    Serial.print("(" + nameLecture + "): ");
-    Serial.println(_PPM);
-    Serial.print("Slope: ");
-    Serial.print(String(_m));
-    Serial.print(", B point: ");
-    Serial.println(String(_b));
+    Serial.println("**********************");
+    Serial.println("* Sensor: MQ-" + String(_type));
+    Serial.println("* m =" + String(_m) + " ,b =" + String(_b));
+    Serial.println("* RS/R0 = " + String(_ratio) + " ,Voltaje leido(ADC): " + String(this->getVoltage()));
+    Serial.println("* Lectura(" + nameLecture + ")=" + String(_PPM) + " PPM");
+    Serial.println("**********************");
   }
   return _PPM;
 }
@@ -103,34 +101,20 @@ void MQUnifiedsensor::setSensorCharacteristics(String nameLectureRequeired, bool
   {
     //Set default
     setDefaultGas();
+    //Set ratio in clean air to calc R0
+    setRatioInCleanAir();
     //Put  the default into variable internally used
     nameLectureRequeired = _nameLectureRequeired;
   }
 
   //Dinamic index search
-  if(print)
-  {
-    Serial.println("Busqueda dinamica de los indices");
-  }
   for (int i=0; i<sizeof(_MQ); i++) {
       if (nameLectureRequeired == _MQ[i]) {    //modified here
         _lecturePosInArray = i;
         break;
       }
     }
-  
   //Serial debugging
-  if(print)
-  {
-    String nameLecture = getnameLecture();
-  
-    Serial.print("index in nameLectures: ");
-    Serial.println(_lecturePosInArray);
-    Serial.print("Slope index: ");
-    Serial.println(_lecturePosInArray+1);
-    Serial.print("B point index: ");
-    Serial.println(_lecturePosInArray+2);
-  }
   _m = stringToDouble(_MQ[_lecturePosInArray+1]);
   _b = stringToDouble(_MQ[_lecturePosInArray+2]);
   //Save the name for future calls
@@ -142,13 +126,12 @@ int MQUnifiedsensor::readPPM(int m, int b) {
   */
   double sensor_volt = this->getVoltage();
   double RS_gas; //Define variable for sensor resistance
-  double ratio; //Define variable for ratio
 
   RS_gas = ((5.0 * 10.0) / sensor_volt) - 10.0; //Get value of RS in a gas
 
-  ratio = RS_gas / this->_R0;   // Get ratio RS_gas/RS_air
+  _ratio = RS_gas / this->_R0;   // Get ratio RS_gas/RS_air
 
-  double ppm_log = (log10(ratio) - b) / m; //Get ppm value in linear scale according to the the ratio value
+  double ppm_log = (log10(_ratio) - b) / m; //Get ppm value in linear scale according to the the ratio value
   double ppm = pow(10, ppm_log); //Convert ppm value to log scale
   return floor(ppm);
 }
@@ -158,8 +141,8 @@ double MQUnifiedsensor::calibrate() {
     float R0; //Define variable for R0
     float sensorValue; //Define variable for analog readings
     sensor_volt = this->getVoltage(); //Convert average to voltage
-    RS_air = ((5.0 * 10.0) / sensor_volt) - 10.0; //Calculate RS in fresh air
-    R0 = RS_air / 4.4; //Calculate R0
+    RS_air = (5.0-sensor_volt)/sensor_volt; // omit *RL
+    R0 = RS_air / _ratioInCleanAir; //Calculate R0
     return R0;
 }
 double MQUnifiedsensor::getVoltage() {
@@ -178,7 +161,6 @@ void MQUnifiedsensor::setR0(double R0) {
 }
 void MQUnifiedsensor::setDefaultGas()
 {
-  Serial.println("Carga de los gases por defecto");
     if(_type == 2)
     {
       _nameLectureRequeired = defaultMQ2;
@@ -226,6 +208,57 @@ void MQUnifiedsensor::setDefaultGas()
     else if(_type == 309)
     {
       _nameLectureRequeired = defaultMQ309;
+    }
+}
+void MQUnifiedsensor::setRatioInCleanAir()
+{
+    if(_type == 2)
+    {
+      _ratioInCleanAir = RatioMQ2CleanAir;
+    }
+    else if(_type == 3)
+    {
+      _ratioInCleanAir = RatioMQ3CleanAir;
+    }
+    else if(_type == 4)
+    {
+      _ratioInCleanAir = RatioMQ4CleanAir;
+    }
+    else if(_type == 5)
+    {
+      _ratioInCleanAir = RatioMQ5CleanAir;
+    }
+    else if(_type == 6)
+    {
+      _ratioInCleanAir = RatioMQ6CleanAir;
+    }
+    else if(_type == 7)
+    {
+      _ratioInCleanAir = RatioMQ7CleanAir;
+    }
+    else if(_type == 8)
+    {
+      _ratioInCleanAir = RatioMQ8CleanAir;
+    }
+    else if(_type == 9)
+    {
+      _ratioInCleanAir = RatioMQ9CleanAir;
+    }
+    else if(_type == 131)
+    {
+      _ratioInCleanAir = RatioMQ131CleanAir;
+    }
+    else if(_type == 135)
+    {
+      _ratioInCleanAir = RatioMQ135CleanAir;
+    }
+    else if(_type == 303)
+    {
+      _ratioInCleanAir = RatioMQ303CleanAir;
+    }
+    else if(_type == 309)
+    {
+      _ratioInCleanAir = RatioMQ309CleanAir;
     }
 }
 double MQUnifiedsensor::stringToDouble(String & str)

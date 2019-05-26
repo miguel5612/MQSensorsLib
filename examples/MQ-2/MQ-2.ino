@@ -25,17 +25,14 @@
 MQUnifiedsensor MQ2(pin, type);
 
 void setup() {
+  //Init serial port
+  Serial.begin(115200);
   //init the sensor
   MQ2.inicializar(); 
 }
 
 void loop() {
-  //Read the sensor
-  int read =  MQ2.readSensor();
-  //Print measurements
-  Serial.print("MQ2: ");
-  Serial.print(read);
-  Serial.println(" PPM");
-  //delay 1s to next measure
-  delay(1000);
+  //Read the sensor and print in serial port
+  int lecture =  MQ2.readSensor("", true);
+  delay(400);
 }
