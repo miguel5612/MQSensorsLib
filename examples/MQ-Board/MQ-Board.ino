@@ -37,7 +37,6 @@ MQUnifiedsensor MQ7(pin7, 2);
 MQUnifiedsensor MQ8(pin8, 2);
 MQUnifiedsensor MQ9(pin9, 2);
 
-unsigned long contador = 0;
 
 void setup() {
   //Init serial port
@@ -52,33 +51,19 @@ void setup() {
   MQ8.inicializar(); 
   MQ9.inicializar(); 
   //Print in serial monitor
-  Serial.print("MQ2 to MQ9 - Calibracion");
-  Serial.print("Note - Make sure you are in a clean room and the sensor has pre-heated almost 4 hours");
-  Serial.print("Autonumeric, lecture");
+  Serial.print("MQ2 to MQ9 - lecture");
 }
 
 void loop() {
-  //Read the sensor
-  int lecture2 =  MQ2.calibrate();
-  int lecture3 =  MQ3.calibrate();
-  int lecture4 =  MQ4.calibrate();
-  int lecture5 =  MQ5.calibrate();
-  int lecture6 =  MQ6.calibrate();
-  int lecture7 =  MQ7.calibrate();
-  int lecture8 =  MQ8.calibrate();
-  int lecture9 =  MQ9.calibrate();
-  //Print in serial monitor
-  Serial.print(String(contador) + ",");
-  Serial.println(String(lecture2) + ",";
-  Serial.println(String(lecture3) + ",";
-  Serial.println(String(lecture4) + ",";
-  Serial.println(String(lecture5) + ",";
-  Serial.println(String(lecture6) + ",";
-  Serial.println(String(lecture7) + ",";
-  Serial.println(String(lecture8) + ",";
-  Serial.println(String(lecture9) + ",";
-  //Increment counter
-  contador++;
+  //Read the sensor and print in serial port
+  int lecture2 =  MQ2.read("", true);
+  int lecture3 =  MQ3.read("", true);
+  int lecture4 =  MQ4.read("", true);
+  int lecture5 =  MQ5.read("", true);
+  int lecture6 =  MQ6.read("", true);
+  int lecture7 =  MQ7.read("", true);
+  int lecture8 =  MQ8.read("", true);
+  int lecture9 =  MQ9.read("", true);
   //Wait to measure next sample
   delay(400);
 }
