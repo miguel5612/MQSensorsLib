@@ -15,6 +15,12 @@
 
 //Include the library
 #include <MQUnifiedsensor.h>
+//And lcd library
+#include <Wire.h> 
+#include <LiquidCrystal_I2C.h>
+
+// Set the LCD address to 0x27 for a 16 chars and 2 line display
+LiquidCrystal_I2C lcd(0x27, 16, 2);
 
 //Definitions
 #define pin2 A2 //Analog input 2 of your arduino
@@ -42,7 +48,18 @@ unsigned long contador = 0;
 void setup() {
   //Init serial port
   Serial.begin(115200);
+  // initialize the LCD
+  lcd.begin();
+  // Turn on the blacklight and print a message.
+  lcd.backlight();
+  //Welcome message
+  lcd.clear();
+  lcd.setCursor(0,0);
+  lcd.print("MQ2 to MQ9");
+  lcd.setCursor(0,1);
+  lcd.print("   Calibracion");
   //init the sensor
+  
   MQ2.inicializar(); 
   MQ3.inicializar(); 
   MQ4.inicializar(); 
@@ -50,11 +67,14 @@ void setup() {
   MQ6.inicializar(); 
   MQ7.inicializar(); 
   MQ8.inicializar(); 
-  MQ9.inicializar(); 
+  //MQ9.inicializar();
+  
   //Print in serial monitor
-  Serial.print("MQ2 to MQ9 - Calibracion");
-  Serial.print("Note - Make sure you are in a clean room and the sensor has pre-heated almost 4 hours");
-  Serial.print("Autonumeric, lecture");
+  Serial.println("MQ2 to MQ9 - Calibracion");
+  Serial.println("Note - Make sure you are in a clean room and the sensor has pre-heated almost 4 hours");
+  Serial.println("Autonumeric, MQ2(PPM), MQ3(PPM), MQ4(PPM), MQ5(PPM), MQ6(PPM), MQ7(PPM)");
+  //Wait one second to continue
+  delay(1000);
 }
 
 void loop() {
@@ -67,16 +87,54 @@ void loop() {
   int lecture7 =  MQ7.calibrate();
   int lecture8 =  MQ8.calibrate();
   int lecture9 =  MQ9.calibrate();
+  
   //Print in serial monitor
-  Serial.print(String(contador) + ",");
-  Serial.println(String(lecture2) + ",";
-  Serial.println(String(lecture3) + ",";
-  Serial.println(String(lecture4) + ",";
-  Serial.println(String(lecture5) + ",";
-  Serial.println(String(lecture6) + ",";
-  Serial.println(String(lecture7) + ",";
-  Serial.println(String(lecture8) + ",";
-  Serial.println(String(lecture9) + ",";
+  char out[40];
+  snprintf(out, 30, "%d,%d,%d,%d,%d,%d,%d,%d", contador, lecture2, lecture3, lecture4, lecture5, lecture6, lecture7, lecture8, lecture9);
+  Serial.println(out);
+  
+  //Print in LCD
+  lcd.clear();
+  lcd.setCursor(0,0);
+  lcd.print("MQ2: ");
+  lcd.print(lecture2);
+  lcd.print(" PPM");
+  lcd.setCursor(0,1);
+  lcd.print("MQ3: ");
+  lcd.print(lecture3);
+  lcd.print(" PPM");
+  delay(2000);
+  lcd.clear();
+  lcd.setCursor(0,0);
+  lcd.print("MQ4: ");
+  lcd.print(lecture4);
+  lcd.print(" PPM");
+  lcd.setCursor(0,1);
+  lcd.print("MQ5: ");
+  lcd.print(lecture5);
+  lcd.print(" PPM");
+  delay(2000);
+  lcd.clear();
+  lcd.setCursor(0,0);
+  lcd.print("MQ6: ");
+  lcd.print(lecture6);
+  lcd.print(" PPM");
+  lcd.setCursor(0,1);
+  lcd.print("MQ7: ");
+  lcd.print(lecture7);
+  lcd.print(" PPM");
+  delay(2000);
+  lcd.clear();
+  lcd.setCursor(0,0);
+  lcd.print("MQ8: ");
+  lcd.print(lecture2);
+  lcd.print(" PPM");
+  lcd.setCursor(0,1);
+  lcd.print("MQ8: ");
+  lcd.print(lecture8);
+  lcd.print(" PPM");
+  delay(2000);
+
   //Increment counter
   contador++;
   //Wait to measure next sample
