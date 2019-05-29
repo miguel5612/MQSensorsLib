@@ -9,6 +9,14 @@
   modified 27 May 2019
   by Miguel Califa 
 
+  Added LCD
+  modified 26 May 2019
+  by Miguel Califa 
+
+  Changed sample frecuency
+  modified 28 May 2019
+  by Ghiordy contreras, Miguel Califa 
+
  This example code is in the public domain.
 
 */
@@ -32,6 +40,7 @@ LiquidCrystal_I2C lcd(0x27, 16, 2);
 #define pin8 A8 //Analog input 8 of your arduino
 #define pin9 A9 //Analog input 9 of your arduino
 
+#define timeDelay 500
 //Declare Sensor
 
 MQUnifiedsensor MQ2(pin2, 2);
@@ -67,14 +76,14 @@ void setup() {
   MQ6.inicializar(); 
   MQ7.inicializar(); 
   MQ8.inicializar(); 
-  //MQ9.inicializar();
+  MQ9.inicializar();
   
   //Print in serial monitor
   Serial.println("MQ2 to MQ9 - Calibracion");
   Serial.println("Note - Make sure you are in a clean room and the sensor has pre-heated almost 4 hours");
   Serial.println("Autonumeric, MQ2(PPM), MQ3(PPM), MQ4(PPM), MQ5(PPM), MQ6(PPM), MQ7(PPM)");
   //Wait one second to continue
-  delay(1000);
+  delay(timeDelay/10);
 }
 
 void loop() {
@@ -103,7 +112,7 @@ void loop() {
   lcd.print("MQ3: ");
   lcd.print(lecture3);
   lcd.print(" PPM");
-  delay(2000);
+  delay(timeDelay/4);
   lcd.clear();
   lcd.setCursor(0,0);
   lcd.print("MQ4: ");
@@ -113,7 +122,7 @@ void loop() {
   lcd.print("MQ5: ");
   lcd.print(lecture5);
   lcd.print(" PPM");
-  delay(2000);
+  delay(timeDelay/4);
   lcd.clear();
   lcd.setCursor(0,0);
   lcd.print("MQ6: ");
@@ -123,7 +132,7 @@ void loop() {
   lcd.print("MQ7: ");
   lcd.print(lecture7);
   lcd.print(" PPM");
-  delay(2000);
+  delay(timeDelay/4);
   lcd.clear();
   lcd.setCursor(0,0);
   lcd.print("MQ8: ");
@@ -133,10 +142,10 @@ void loop() {
   lcd.print("MQ8: ");
   lcd.print(lecture8);
   lcd.print(" PPM");
-  delay(2000);
+  delay(timeDelay/4);
 
   //Increment counter
   contador++;
   //Wait to measure next sample
-  delay(400);
+  delay(timeDelay/4);
 }
