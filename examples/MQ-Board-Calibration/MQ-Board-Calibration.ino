@@ -95,27 +95,28 @@ void setup() {
   //Print in serial monitor
   Serial.println("MQ2 to MQ9 - Calibracion");
   Serial.println("Note - Make sure you are in a clean room and the sensor has pre-heated almost 4 hours");
+  Serial.println("Note - All values are in KOhms");
   Serial.println("Autonumeric, MQ2(R0), MQ3(R0), MQ4(R0), MQ5(R0), MQ6(R0), MQ7(R0)");
   //Wait one second to continue
   delay(timeDelay/10);
 }
 
 void loop() {
-  //Review in serial port the measures
-  bool printRawData = true;
+
   //Read the sensor
-  int lecture2 =  MQ2.calibrate(printRawData);
-  int lecture3 =  MQ3.calibrate(printRawData);
-  int lecture4 =  MQ4.calibrate(printRawData);
-  int lecture5 =  MQ5.calibrate(printRawData);
-  int lecture6 =  MQ6.calibrate(printRawData);
-  int lecture7 =  MQ7.calibrate(printRawData);
-  int lecture8 =  MQ8.calibrate(printRawData);
-  int lecture9 =  MQ9.calibrate(printRawData);
+  int lecture2 =  MQ2.calibrate();
+  int lecture3 =  MQ3.calibrate();
+  int lecture4 =  MQ4.calibrate();
+  int lecture5 =  MQ5.calibrate();
+  int lecture6 =  MQ6.calibrate();
+  int lecture7 =  MQ7.calibrate();
+  int lecture8 =  MQ8.calibrate();
+  int lecture9 =  MQ9.calibrate();
 
   
   //Print in serial monitor
   char out[40];
+  //snprintf(out, 30, "%d,%d,%d,%d,%d,%d,%d,%d", contador, lecture2, lecture3, lecture4, lecture5, lecture6, lecture7, lecture8, lecture9);
   snprintf(out, 30, "%d,%d,%d,%d,%d,%d,%d,%d", contador, lecture2, lecture3, lecture4, lecture5, lecture6, lecture7, lecture8, lecture9);
   Serial.println(out);
   

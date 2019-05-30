@@ -527,7 +527,7 @@ int MQUnifiedsensor::readPPM(int m, int b) {
   double ppm = pow(10, ppm_log); //Convert ppm value to log scale
   return floor(ppm);
 }
-int MQUnifiedsensor::calibrate(boolean print) {
+float MQUnifiedsensor::calibrate(boolean print) {
   //More explained in: https://jayconsystems.com/blog/understanding-a-gas-sensor
   /*
   V = I x R 
