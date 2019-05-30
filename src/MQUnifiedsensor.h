@@ -7,6 +7,8 @@
 //Count of posible lectures
 #define lecturesAvailable 19
 
+/************************Hardware Related Macros************************************/
+
 //Index in the nameLecture vector
 #define defaultMQ2 "LPG" // LPG
 #define defaultMQ3 "Alcohol" // Alcohol
@@ -21,6 +23,7 @@
 #define defaultMQ303 "Isobutano" //Isobutano
 #define defaultMQ309 "CO" //CO
 
+/*****************************Globals***********************************************/
 #define RatioMQ2CleanAir 1
 #define RatioMQ3CleanAir 2
 #define RatioMQ4CleanAir 3
@@ -34,12 +37,15 @@
 #define RatioMQ303CleanAir 135
 #define RatioMQ309CleanAir 303
 
+/***********************Software Related Macros************************************/
+
 #define ADC_RESOLUTION 10 // for 10bit analog to digital converter.
 #define retries 50
 #define retry_interval 20
 
-//Values consolidated
+/**********************Application Related Macros**********************************/
 /* Gas, Value of m (Slope) and b (Cut on x axis) points */
+//Values consolidated
 const String PROGMEM _MQ2[18] = {"H2","-2.2459","2.9845","LPG","-2.2879","2.7901","CO","-2.6208","3.6075","Alcohol","-3.1157","4.5134","Propane","-2.7028","3.5595","Benzene","-2.2879","2.7901"};
 const String PROGMEM _MQ3[18] = {"LPG","-3.1851","4.7048","CH4","-17.531","28.785","CO","-4.339","6.4432","Alcohol","-1.435","0.4103","Benzene","-2.7009","0.632","Hexane","-2.7268","3.6299"};
 const String PROGMEM _MQ4[15] = {"LPG","-2.5818","3.6303","CH4","0.9873","2.6386","CO","-5.5945","5.6693","Alcohol","-11.89","9.0375","smoke","-11.189","9.0375"};

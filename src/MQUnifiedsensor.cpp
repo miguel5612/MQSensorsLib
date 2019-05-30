@@ -141,8 +141,7 @@ double MQUnifiedsensor::calibrate() {
     float R0; //Define variable for R0
     float sensorValue; //Define variable for analog readings
     sensor_volt = this->getVoltage(); //Convert average to voltage
-    RS_air = (5.0-sensor_volt)/sensor_volt; // omit *RL
-    R0 = RS_air / _ratioInCleanAir; //Calculate R0
+    R0 = sensor_volt / _ratioInCleanAir; //Calculate R0
     return R0;
 }
 double MQUnifiedsensor::getVoltage() {
