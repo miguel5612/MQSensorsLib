@@ -288,8 +288,8 @@ class MQUnifiedsensor
     String  _nameLectureRequeired;   
     int _VOLT_RESOLUTION  = 5.0; // if 3.3v use 3.3
     int _RLValue = 10; //Value in KiloOhms
-    int  _ratioInCleanAir, _PPM, _sensor_volt;
-    float RS_air, _m, _b, _ratio;
+    int _PPM;
+    float _ratioInCleanAir, _sensor_volt, RS_air, _m, _b, _ratio;
     
 };
 

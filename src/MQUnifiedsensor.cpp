@@ -550,10 +550,12 @@ int MQUnifiedsensor::calibrate(boolean print) {
   if(print)
   {
     Serial.println("*******Calibrating*********");
-    Serial.println("_sensor_volt: " + String(_sensor_volt));
-    Serial.println("_VOLT_RESOLUTION: " + String(_VOLT_RESOLUTION));
-    Serial.println("_ratioInCleanAir: " + String(_ratioInCleanAir));
-    Serial.println("R0: " + String(R0));
+    Serial.println("* Sensor: MQ-" + String(_type) + "*");
+    Serial.println("* _sensor_volt: " + String(_sensor_volt) + "*");
+    Serial.println("* _RLValue: " + String(_RLValue) + "*");
+    Serial.println("* _VOLT_RESOLUTION: " + String(_VOLT_RESOLUTION) + "*");
+    Serial.println("* _ratioInCleanAir: " + String(_ratioInCleanAir) + "*");
+    Serial.println("* R0: " + String(R0) + "*");
     Serial.println("*******Calibrating*********");
   }
   return R0;
