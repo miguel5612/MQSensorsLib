@@ -107,8 +107,8 @@ int MQUnifiedsensor::readSensor(String nameLectureRequeired, bool print)
     String nameLecture = getnameLecture();
     Serial.println("**********************");
     Serial.println("* Sensor: MQ-" + String(_type));
-    Serial.println("* m =" + String(_m) + " ,b =" + String(_b));
-    Serial.println("* RS/R0 = " + String(_ratio) + " ,Voltaje leido(ADC): " + String(this->getVoltage()));
+    Serial.println("* m =" + String(_m) + " ,b =" + String(_b) + ", R0 = " + _R0);
+    Serial.println("* RS/R0 = " + String(_ratio) + " ,Voltaje leido(ADC): " + String(_sensor_volt));
     Serial.println("* Lectura(" + nameLecture + ")=" + String(_PPM) + " PPM");
     Serial.println("**********************");
   }
@@ -148,10 +148,10 @@ int MQUnifiedsensor::readPPM(int m, int b) {
   /**
   * Returns the PPM concentration
   */
-  double sensor_volt = this->getVoltage();
+  _sensor_volt = this->getVoltage();
   double RS_gas; //Define variable for sensor resistance
 
-  RS_gas = ((VOLT_RESOLUTION*RLValue)/sensor_volt)-RLValue; //Get value of RS in a gas
+  RS_gas = ((VOLT_RESOLUTION*RLValue)/_sensor_volt)-RLValue; //Get value of RS in a gas
 
   _ratio = RS_gas / this->_R0;   // Get ratio RS_gas/RS_air
 
@@ -172,12 +172,12 @@ int MQUnifiedsensor::calibrate() {
   RS = [(VC x RL) - (VRL x RL)] / VRL
   RS = [(VC x RL) / VRL] - RL
   */
-  float sensor_volt; //Define variable for sensor voltage
+  _sensor_volt; //Define variable for sensor voltage
   float RS_air; //Define variable for sensor resistance
   float R0; //Define variable for R0
   float sensorValue; //Define variable for analog readings
-  sensor_volt = this->getVoltage(); //Convert average to voltage
-  RS_air = ((VOLT_RESOLUTION*RLValue)/sensor_volt)-RLValue; //Calculate RS in fresh air 
+  _sensor_volt = this->getVoltage(); //Convert average to voltage
+  RS_air = ((VOLT_RESOLUTION*RLValue)/_sensor_volt)-RLValue; //Calculate RS in fresh air 
   R0 = RS_air/_ratioInCleanAir; //Calculate R0 
   return R0;
 }

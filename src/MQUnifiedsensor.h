@@ -11,7 +11,7 @@
 /************************Global vars************************************/
 int VOLT_RESOLUTION  = 5.0; // if 3.3v use 3.3
 int RLValue = 10; //Value in KiloOhms
-int  _ratioInCleanAir, _PPM;
+int  _ratioInCleanAir, _PPM, _sensor_volt;
 double RS_air, _m, _b, _ratio;
 
 /************************Hardware Related Macros************************************/
