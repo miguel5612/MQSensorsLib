@@ -157,7 +157,7 @@ int MQUnifiedsensor::readPPM(int m, int b) {
   double ppm = pow(10, ppm_log); //Convert ppm value to log scale
   return floor(ppm);
 }
-int MQUnifiedsensor::calibrate() {
+int MQUnifiedsensor::calibrate(boolean print) {
   //More explained in: https://jayconsystems.com/blog/understanding-a-gas-sensor
   /*
   V = I x R 
@@ -177,6 +177,13 @@ int MQUnifiedsensor::calibrate() {
   _sensor_volt = this->getVoltage(); //Convert average to voltage
   RS_air = ((_VOLT_RESOLUTION*_RLValue)/_sensor_volt)-_RLValue; //Calculate RS in fresh air 
   R0 = RS_air/_ratioInCleanAir; //Calculate R0 
+  if(print)
+  {
+    Serial.println("_sensor_volt: " + String(_sensor_volt));
+    Serial.println("_VOLT_RESOLUTION: " + String(_VOLT_RESOLUTION));
+    Serial.println("_ratioInCleanAir: " + String(_ratioInCleanAir));
+    Serial.println("R0: " + String(R0));
+  }
   return R0;
 }
 double MQUnifiedsensor::getVoltage() {

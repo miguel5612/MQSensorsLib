@@ -86,7 +86,7 @@ class MQUnifiedsensor
     int readSensor(String nameLectureRequeired = "", bool print = false);
     int readPPM(int m, int b);
     
-    int calibrate();
+    int calibrate(boolean print = false);
     double getVoltage();
     double stringToDouble(String & str);
 
