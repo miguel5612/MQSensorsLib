@@ -179,10 +179,12 @@ int MQUnifiedsensor::calibrate(boolean print) {
   R0 = RS_air/_ratioInCleanAir; //Calculate R0 
   if(print)
   {
+    Serial.println("*******Calibrating*********");
     Serial.println("_sensor_volt: " + String(_sensor_volt));
     Serial.println("_VOLT_RESOLUTION: " + String(_VOLT_RESOLUTION));
     Serial.println("_ratioInCleanAir: " + String(_ratioInCleanAir));
     Serial.println("R0: " + String(R0));
+    Serial.println("*******Calibrating*********");
   }
   return R0;
 }
