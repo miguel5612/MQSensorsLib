@@ -4,8 +4,15 @@
 #include <Arduino.h>
 #include <stdint.h>
 
+
 //Count of posible lectures
 #define lecturesAvailable 19
+
+/************************Global vars************************************/
+int VOLT_RESOLUTION  = 5.0; // if 3.3v use 3.3
+int RLValue = 10; //Value in KiloOhms
+int  _ratioInCleanAir, _PPM;
+double RS_air,_R0, _m, _b, _ratio;
 
 /************************Hardware Related Macros************************************/
 
@@ -82,10 +89,8 @@ class MQUnifiedsensor
     
 
   private:
-    int _pin, _type, _PPM, _lecturePosInArray, _ratioInCleanAir;
-    double RS_air,_R0 = 11.820, _m, _b, _ratio;
+    int _pin, _type; 
     String _MQ[19], _nameLectureRequeired;   
-    int VOLT_RESOLUTION  = 5.0; // if 3.3v use 3.3
 };
 
 #endif //MQUnifiedsensor_H

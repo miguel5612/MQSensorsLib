@@ -136,13 +136,26 @@ int MQUnifiedsensor::readPPM(int m, int b) {
   return floor(ppm);
 }
 double MQUnifiedsensor::calibrate() {
-    float sensor_volt; //Define variable for sensor voltage
-    float RS_air; //Define variable for sensor resistance
-    float R0; //Define variable for R0
-    float sensorValue; //Define variable for analog readings
-    sensor_volt = this->getVoltage(); //Convert average to voltage
-    R0 = sensor_volt / _ratioInCleanAir; //Calculate R0
-    return R0;
+  //More explained in: https://jayconsystems.com/blog/understanding-a-gas-sensor
+  /*
+  V = I x R 
+  VRL = [VC / (RS + RL)] x RL 
+  VRL = (VC x RL) / (RS + RL) 
+  Así que ahora resolvemos para RS: 
+  VRL x (RS + RL) = VC x RL
+  (VRL x RS) + (VRL x RL) = VC x RL 
+  (VRL x RS) = (VC x RL) - (VRL x RL)
+  RS = [(VC x RL) - (VRL x RL)] / VRL
+  RS = [(VC x RL) / VRL] - RL
+  */
+  float sensor_volt; //Define variable for sensor voltage
+  float RS_air; //Define variable for sensor resistance
+  float R0; //Define variable for R0
+  float sensorValue; //Define variable for analog readings
+  sensor_volt = this->getVoltage(); //Convert average to voltage
+  RS_air = ((VOLT_RESOLUTION*RLValue)/sensor_volt)-RLValue; //Calculate RS in fresh air 
+  R0 = RS_air/_ratioInCleanAir; //Calculate R0 
+  return R0;
 }
 double MQUnifiedsensor::getVoltage() {
   double avg = 0.0;
