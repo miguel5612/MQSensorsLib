@@ -31,18 +31,19 @@ double RS_air,_R0, _m, _b, _ratio;
 #define defaultMQ309 "CO" //CO
 
 /*****************************Globals***********************************************/
-#define RatioMQ2CleanAir 1
-#define RatioMQ3CleanAir 2
-#define RatioMQ4CleanAir 3
-#define RatioMQ5CleanAir 4
-#define RatioMQ6CleanAir 5
-#define RatioMQ7CleanAir 6
-#define RatioMQ8CleanAir 7
-#define RatioMQ9CleanAir 8
-#define RatioMQ131CleanAir 9
-#define RatioMQ135CleanAir 131
-#define RatioMQ303CleanAir 135
-#define RatioMQ309CleanAir 303
+//From the graph, we can see that the resistance ratio in fresh air is a constant:
+#define RatioMQ2CleanAir 9.83 //RS / R0 = 9.83 ppm 
+#define RatioMQ3CleanAir 60   //RS / R0 = 9.83 ppm 
+#define RatioMQ4CleanAir 4.4  //RS / R0 = 4.4 ppm 
+#define RatioMQ5CleanAir 6.5  //RS / R0 = 6.5 ppm 
+#define RatioMQ6CleanAir 10   //RS / R0 = 10 ppm 
+#define RatioMQ7CleanAir 11.6 //RS / R0 = 11.6 ppm  
+#define RatioMQ8CleanAir 70   //RS / R0 = 70 ppm   
+#define RatioMQ9CleanAir 9.6  //RS / R0 = 9.6 ppm    
+#define RatioMQ131CleanAir 11 //RS / R0 = 11 ppm
+#define RatioMQ135CleanAir 3.6//RS / R0 = 3.6 ppm     
+#define RatioMQ303CleanAir 1  //RS / R0 = 1 ppm    
+#define RatioMQ309CleanAir 11 //RS / R0 = 11 ppm    
 
 /***********************Software Related Macros************************************/
 
