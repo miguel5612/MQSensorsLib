@@ -7,84 +7,84 @@
   //Set _MQ variable with MQ sensor selected
   if(_type == 2)
   {
-    memcpy(_MQ, _MQ2, sizeof(_MQ2));
+    //memcpy(_MQ, _MQ2, sizeof(_MQ2));
     _ratioInCleanAir = RatioMQ2CleanAir;
     _R0 = R0_MQ2;
     //_MQ = MQ2;
   }
   else if(_type == 3)
   {
-    memcpy(_MQ, _MQ3, sizeof(_MQ3));
+    //memcpy(_MQ, _MQ3, sizeof(_MQ3));
     _ratioInCleanAir = RatioMQ3CleanAir;
     _R0 = R0_MQ3;
     //_MQ = MQ3;
   }
   else if(_type == 4)
   {
-    memcpy(_MQ, _MQ4, sizeof(_MQ4));
+    //memcpy(_MQ, _MQ4, sizeof(_MQ4));
     _ratioInCleanAir = RatioMQ4CleanAir;
     _R0 = R0_MQ4;
     //_MQ = MQ4;
   }
   else if(_type == 5)
   {
-    memcpy(_MQ, _MQ5, sizeof(_MQ5));
+    //memcpy(_MQ, _MQ5, sizeof(_MQ5));
     _ratioInCleanAir = RatioMQ5CleanAir;
     _R0 = R0_MQ5;
     //_MQ = MQ5;
   }
   else if(_type == 6)
   {
-    memcpy(_MQ, _MQ6, sizeof(_MQ6));
+    //memcpy(_MQ, _MQ6, sizeof(_MQ6));
     _ratioInCleanAir = RatioMQ6CleanAir;
     _R0 = R0_MQ6;
     //_MQ = MQ6;
   }
   else if(_type == 7)
   {
-    memcpy(_MQ, _MQ7, sizeof(_MQ7));
+    //memcpy(_MQ, _MQ7, sizeof(_MQ7));
     _ratioInCleanAir = RatioMQ7CleanAir;
     _R0 = R0_MQ7;
     //_MQ = MQ7;
   }
   else if(_type == 8)
   {
-    memcpy(_MQ, _MQ8, sizeof(_MQ8));
+    //memcpy(_MQ, _MQ8, sizeof(_MQ8));
     _ratioInCleanAir = RatioMQ8CleanAir;
     _R0 = R0_MQ8;
     //_MQ = MQ8;
   }
   else if(_type == 9)
   {
-    memcpy(_MQ, _MQ9, sizeof(_MQ9));
+    //memcpy(_MQ, _MQ9, sizeof(_MQ9));
     _ratioInCleanAir = RatioMQ9CleanAir;
     _R0 = R0_MQ9;
     //_MQ = MQ9;
   }
   else if(_type == 131)
   {
-    memcpy(_MQ, _MQ131, sizeof(_MQ131));
+    //memcpy(_MQ, _MQ131, sizeof(_MQ131));
     _ratioInCleanAir = RatioMQ131CleanAir;
     _R0 = R0_MQ131;
     //_MQ = MQ131;
   }
   else if(_type == 135)
   {
-    memcpy(_MQ, _MQ135, sizeof(_MQ135));
+    //memcpy(_MQ, _MQ135, sizeof(_MQ135));
     _ratioInCleanAir = RatioMQ135CleanAir;
     _R0 = R0_MQ135;
     //_MQ = MQ135;
   }
   else if(_type == 303)
   {
-    memcpy(_MQ, _MQ303A, sizeof(_MQ303A));
+    //memcpy(_MQ, _MQ303A, sizeof(_MQ303A));
     _ratioInCleanAir = RatioMQ303CleanAir;
     _R0 = R0_MQ303;
     //_MQ = MQ303A;
   }
   else if(_type == 309)
   {
-    memcpy(_MQ, _MQ309A, sizeof(_MQ309A));
+    //memcpy(_MQ, _MQ309A, sizeof(_MQ309A));
     _ratioInCleanAir = RatioMQ309CleanAir;
     _R0 = R0_MQ309;
     //_MQ = MQ309;
@@ -130,17 +130,387 @@ void MQUnifiedsensor::setSensorCharacteristics(String nameLectureRequeired, bool
   }
 
   //Dinamic index search
+  /*
   for (int i=0; i<sizeof(_MQ); i++) {
       if (nameLectureRequeired == _MQ[i]) {    //modified here
         _lecturePosInArray = i;
         break;
       }
     }
+  */
+  if(_type == 2)
+    {
+      if(_nameLectureRequeired == "H2")
+      {
+        _nameLectureRequeired = "H2";
+        _m = MQ2_H2_m;
+        _b = MQ2_H2_b;
+      }
+      else if(_nameLectureRequeired == "LPG")
+      {
+        _nameLectureRequeired = "LPG";
+        _m = MQ2_LPG_m;
+        _b = MQ2_LPG_b;
+      }
+      else if(_nameLectureRequeired == "CO")
+      {
+        _nameLectureRequeired = "CO";
+        _m = MQ2_CO_m;
+        _b = MQ2_CO_b;
+      }    
+      else if(_nameLectureRequeired == "Alcohol")
+      {
+        _nameLectureRequeired = "Alcohol";
+        _m = MQ2_Alcohol_m;
+        _b = MQ2_Alcohol_b;
+      }  
+      else if(_nameLectureRequeired == "Propane")
+      {
+        _nameLectureRequeired = "Propane";
+        _m = MQ2_Propane_m;
+        _b = MQ2_Propane_b;
+      }   
+      else if(_nameLectureRequeired == "Benzene")
+      {
+        _nameLectureRequeired = "Benzene";
+        _m = MQ2_Benzene_m;
+        _b = MQ2_Benzene_b;
+      }    
+    }
+    else if(_type == 3)
+    {
+      if(_nameLectureRequeired == "LPG")
+      {
+        _nameLectureRequeired = "LPG";
+        _m = MQ3_LPG_m;
+        _b = MQ3_LPG_b;
+      }
+      else if(_nameLectureRequeired == "CH4")
+      {
+        _nameLectureRequeired = "CH4";
+        _m = MQ3_CH4_m;
+        _b = MQ3_CH4_b;
+      }
+      else if(_nameLectureRequeired == "CO")
+      {
+        _nameLectureRequeired = "CO";
+        _m = MQ3_CO_m;
+        _b = MQ3_CO_b;
+      }    
+      else if(_nameLectureRequeired == "Alcohol")
+      {
+        _nameLectureRequeired = "Alcohol";
+        _m = MQ3_Alcohol_m;
+        _b = MQ3_Alcohol_b;
+      }  
+      else if(_nameLectureRequeired == "Hexane")
+      {
+        _nameLectureRequeired = "Hexane";
+        _m = MQ3_Hexane_m;
+        _b = MQ3_Hexane_b;
+      }   
+      else if(_nameLectureRequeired == "Benzene")
+      {
+        _nameLectureRequeired = "Benzene";
+        _m = MQ3_Benzene_m;
+        _b = MQ3_Benzene_b;
+      }
+    }
+    else if(_type == 4)
+    {
+      if(_nameLectureRequeired == "LPG")
+      {
+        _nameLectureRequeired = "LPG";
+        _m = MQ4_LPG_m;
+        _b = MQ4_LPG_b;
+      }
+      else if(_nameLectureRequeired == "CH4")
+      {
+        _nameLectureRequeired = "CH4";
+        _m = MQ4_CH4_m;
+        _b = MQ4_CH4_b;
+      }
+      else if(_nameLectureRequeired == "CO")
+      {
+        _nameLectureRequeired = "CO";
+        _m = MQ4_CO_m;
+        _b = MQ4_CO_b;
+      }    
+      else if(_nameLectureRequeired == "Alcohol")
+      {
+        _nameLectureRequeired = "Alcohol";
+        _m = MQ4_Alcohol_m;
+        _b = MQ4_Alcohol_b;
+      }  
+      else if(_nameLectureRequeired == "smoke")
+      {
+        _nameLectureRequeired = "smoke";
+        _m = MQ4_smoke_m;
+        _b = MQ4_smoke_b;
+      }   
+    }
+    else if(_type == 5)
+    {
+      if(_nameLectureRequeired == "H2")
+      {
+        _nameLectureRequeired = "H2";
+        _m = MQ5_H2_m;
+        _b = MQ5_H2_b;
+      }   
+      else if(_nameLectureRequeired == "LPG")
+      {
+        _nameLectureRequeired = "LPG";
+        _m = MQ5_LPG_m;
+        _b = MQ5_LPG_b;
+      }
+      else if(_nameLectureRequeired == "CH4")
+      {
+        _nameLectureRequeired = "CH4";
+        _m = MQ5_CH4_m;
+        _b = MQ5_CH4_b;
+      }
+      else if(_nameLectureRequeired == "CO")
+      {
+        _nameLectureRequeired = "CO";
+        _m = MQ5_CO_m;
+        _b = MQ5_CO_b;
+      }    
+      else if(_nameLectureRequeired == "Alcohol")
+      {
+        _nameLectureRequeired = "Alcohol";
+        _m = MQ5_Alcohol_m;
+        _b = MQ5_Alcohol_b;
+      }  
+    }
+    else if(_type == 6)
+    {
+      if(_nameLectureRequeired == "H2")
+      {
+        _nameLectureRequeired = "H2";
+        _m = MQ6_H2_m;
+        _b = MQ6_H2_b;
+      }   
+      else if(_nameLectureRequeired == "LPG")
+      {
+        _nameLectureRequeired = "LPG";
+        _m = MQ6_LPG_m;
+        _b = MQ6_LPG_b;
+      }
+      else if(_nameLectureRequeired == "CH4")
+      {
+        _nameLectureRequeired = "CH4";
+        _m = MQ6_CH4_m;
+        _b = MQ6_CH4_b;
+      }
+      else if(_nameLectureRequeired == "CO")
+      {
+        _nameLectureRequeired = "CO";
+        _m = MQ6_CO_m;
+        _b = MQ6_CO_b;
+      }    
+      else if(_nameLectureRequeired == "Alcohol")
+      {
+        _nameLectureRequeired = "Alcohol";
+        _m = MQ6_Alcohol_m;
+        _b = MQ6_Alcohol_b;
+      }  
+    }
+    else if(_type == 7)
+    {
+      if(_nameLectureRequeired == "H2")
+      {
+        _nameLectureRequeired = "H2";
+        _m = MQ7_H2_m;
+        _b = MQ7_H2_b;
+      }   
+      else if(_nameLectureRequeired == "LPG")
+      {
+        _nameLectureRequeired = "LPG";
+        _m = MQ7_LPG_m;
+        _b = MQ7_LPG_b;
+      }
+      else if(_nameLectureRequeired == "CH4")
+      {
+        _nameLectureRequeired = "CH4";
+        _m = MQ7_CH4_m;
+        _b = MQ7_CH4_b;
+      }
+      else if(_nameLectureRequeired == "CO")
+      {
+        _nameLectureRequeired = "CO";
+        _m = MQ7_CO_m;
+        _b = MQ7_CO_b;
+      }    
+      else if(_nameLectureRequeired == "Alcohol")
+      {
+        _nameLectureRequeired = "Alcohol";
+        _m = MQ7_Alcohol_m;
+        _b = MQ7_Alcohol_b;
+      } 
+    }
+    else if(_type == 8)
+    {
+      if(_nameLectureRequeired == "H2")
+      {
+        _nameLectureRequeired = "H2";
+        _m = MQ8_H2_m;
+        _b = MQ8_H2_b;
+      }   
+      else if(_nameLectureRequeired == "LPG")
+      {
+        _nameLectureRequeired = "LPG";
+        _m = MQ8_LPG_m;
+        _b = MQ8_LPG_b;
+      }
+      else if(_nameLectureRequeired == "CH4")
+      {
+        _nameLectureRequeired = "CH4";
+        _m = MQ8_CH4_m;
+        _b = MQ8_CH4_b;
+      }
+      else if(_nameLectureRequeired == "CO")
+      {
+        _nameLectureRequeired = "CO";
+        _m = MQ8_CO_m;
+        _b = MQ8_CO_b;
+      }    
+      else if(_nameLectureRequeired == "Alcohol")
+      {
+        _nameLectureRequeired = "Alcohol";
+        _m = MQ8_Alcohol_m;
+        _b = MQ8_Alcohol_b;
+      } 
+    }
+    else if(_type == 9)
+    {
+      if(_nameLectureRequeired == "LPG")
+      {
+        _nameLectureRequeired = "LPG";
+        _m = MQ9_LPG_m;
+        _b = MQ9_LPG_b;
+      }
+      else if(_nameLectureRequeired == "CH4")
+      {
+        _nameLectureRequeired = "CH4";
+        _m = MQ9_CH4_m;
+        _b = MQ9_CH4_b;
+      }
+      else if(_nameLectureRequeired == "CO")
+      {
+        _nameLectureRequeired = "CO";
+        _m = MQ9_CO_m;
+        _b = MQ9_CO_b;
+      }    
+    }
+    else if(_type == 131)
+    {
+      if(_nameLectureRequeired == "NOx")
+      {
+        _nameLectureRequeired = "NOx";
+        _m = MQ131_NOx_m;
+        _b = MQ131_NOx_b;
+      }
+      else if(_nameLectureRequeired == "CL2")
+      {
+        _nameLectureRequeired = "CL2";
+        _m = MQ131_CL2_m;
+        _b = MQ131_CL2_b;
+      }
+      else if(_nameLectureRequeired == "O3")
+      {
+        _nameLectureRequeired = "O3";
+        _m = MQ131_O3_m;
+        _b = MQ131_O3_b;
+      }    
+    }
+    else if(_type == 135)
+    {
+      if(_nameLectureRequeired == "CO")
+      {
+        _nameLectureRequeired = "CO";
+        _m = MQ135_CO_m;
+        _b = MQ135_CO_b;
+      }
+      else if(_nameLectureRequeired == "Alcohol")
+      {
+        _nameLectureRequeired = "Alcohol";
+        _m = MQ135_Alcohol_m;
+        _b = MQ135_Alcohol_b;
+      }
+      else if(_nameLectureRequeired == "CO2")
+      {
+        _nameLectureRequeired = "CO2";
+        _m = MQ135_CO2_m;
+        _b = MQ135_CO2_b;
+      } 
+      else if(_nameLectureRequeired == "Tolueno")
+      {
+        _nameLectureRequeired = "Tolueno";
+        _m = MQ135_Tolueno_m;
+        _b = MQ135_Tolueno_b;
+      }
+      else if(_nameLectureRequeired == "NH4")
+      {
+        _nameLectureRequeired = "NH4";
+        _m = MQ135_NH4_m;
+        _b = MQ135_NH4_b;
+      }
+      else if(_nameLectureRequeired == "Acetona")
+      {
+        _nameLectureRequeired = "Acetona";
+        _m = MQ135_Acetona_m;
+        _b = MQ135_Acetona_b;
+      } 
+    }
+    else if(_type == 303)
+    {
+      if(_nameLectureRequeired == "Iso_butano")
+      {
+        _nameLectureRequeired = "Iso_butano";
+        _m = MQ303_Iso_butano_m;
+        _b = MQ303_Iso_butano_b;
+      }
+      else if(_nameLectureRequeired == "Hydrogeno")
+      {
+        _nameLectureRequeired = "Hydrogeno";
+        _m = MQ303_Hydrogeno_m;
+        _b = MQ303_Hydrogeno_b;
+      }
+      else if(_nameLectureRequeired == "Ethanol")
+      {
+        _nameLectureRequeired = "Ethanol";
+        _m = MQ303_Ethanol_m;
+        _b = MQ303_Ethanol_b;
+      } 
+    }
+    else if(_type == 309)
+    {      
+      if(_nameLectureRequeired == "H2")
+      {
+        _nameLectureRequeired = "H2";
+        _m = MQ309_H2_m;
+        _b = MQ309_H2_b;
+      } 
+      else if(_nameLectureRequeired == "CH4")
+      {
+        _nameLectureRequeired = "CH4";
+        _m = MQ309_CH4_m;
+        _b = MQ309_CH4_b;
+      }
+      else if(_nameLectureRequeired == "CO")
+      {
+        _nameLectureRequeired = "CO";
+        _m = MQ309_CO_m;
+        _b = MQ309_CO_b;
+      }    
+      else if(_nameLectureRequeired == "Alcohol")
+      {
+        _nameLectureRequeired = "Alcohol";
+        _m = MQ309_Alcohol_m;
+        _b = MQ309_Alcohol_b;
+      } 
+    }
   //Serial debugging
-  _m = stringToDouble(_MQ[_lecturePosInArray+1]);
-  _b = stringToDouble(_MQ[_lecturePosInArray+2]);
-  //Save the name for future calls
-  nameLectureRequeired = _nameLectureRequeired;
 }
 int MQUnifiedsensor::readPPM(int m, int b) {
   /**
