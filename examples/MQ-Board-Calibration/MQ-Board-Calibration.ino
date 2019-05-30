@@ -17,6 +17,10 @@
   modified 28 May 2019
   by Ghiordy contreras, Miguel Califa 
 
+  Added voltaje to log
+  modified 29 May 2019
+  by Miguel Califa 
+  
  This example code is in the public domain.
 
 */
@@ -44,15 +48,16 @@ LiquidCrystal_I2C lcd(0x27, 16, 2);
 //Declare Sensor
 
 MQUnifiedsensor MQ2(pin2, 2);
-MQUnifiedsensor MQ3(pin3, 2);
-MQUnifiedsensor MQ4(pin4, 2);
-MQUnifiedsensor MQ5(pin5, 2);
-MQUnifiedsensor MQ6(pin6, 2);
-MQUnifiedsensor MQ7(pin7, 2);
-MQUnifiedsensor MQ8(pin8, 2);
-MQUnifiedsensor MQ9(pin9, 2);
+MQUnifiedsensor MQ3(pin3, 3);
+MQUnifiedsensor MQ4(pin4, 4);
+MQUnifiedsensor MQ5(pin5, 5);
+MQUnifiedsensor MQ6(pin6, 6);
+MQUnifiedsensor MQ7(pin7, 7);
+MQUnifiedsensor MQ8(pin8, 8);
+MQUnifiedsensor MQ9(pin9, 9);
 
 unsigned long contador = 0;
+unsigned long time = millis();
 
 void setup() {
   //Init serial port
@@ -66,7 +71,7 @@ void setup() {
   lcd.setCursor(0,0);
   lcd.print("MQ2 to MQ9");
   lcd.setCursor(0,1);
-  lcd.print("   Calibracion");
+  lcd.print("   Calibrating");
   //init the sensor
   
   MQ2.inicializar(); 
@@ -77,11 +82,20 @@ void setup() {
   MQ7.inicializar(); 
   MQ8.inicializar(); 
   MQ9.inicializar();
+
+  MQ2.setVoltResolution(5);
+  MQ3.setVoltResolution(5);
+  MQ4.setVoltResolution(5);
+  MQ5.setVoltResolution(5);
+  MQ6.setVoltResolution(5);
+  MQ7.setVoltResolution(5);
+  MQ8.setVoltResolution(5);
+  MQ9.setVoltResolution(5);
   
   //Print in serial monitor
   Serial.println("MQ2 to MQ9 - Calibracion");
   Serial.println("Note - Make sure you are in a clean room and the sensor has pre-heated almost 4 hours");
-  Serial.println("Autonumeric, MQ2(PPM), MQ3(PPM), MQ4(PPM), MQ5(PPM), MQ6(PPM), MQ7(PPM)");
+  Serial.println("Autonumeric, MQ2(R0), MQ3(R0), MQ4(R0), MQ5(R0), MQ6(R0), MQ7(R0)");
   //Wait one second to continue
   delay(timeDelay/10);
 }
@@ -96,6 +110,7 @@ void loop() {
   int lecture7 =  MQ7.calibrate();
   int lecture8 =  MQ8.calibrate();
   int lecture9 =  MQ9.calibrate();
+
   
   //Print in serial monitor
   char out[40];
@@ -105,45 +120,9 @@ void loop() {
   //Print in LCD
   lcd.clear();
   lcd.setCursor(0,0);
-  lcd.print("MQ2: ");
-  lcd.print(lecture2);
-  lcd.print(" PPM");
+  lcd.print("**CALIBRATING***");
   lcd.setCursor(0,1);
-  lcd.print("MQ3: ");
-  lcd.print(lecture3);
-  lcd.print(" PPM");
-  delay(timeDelay/4);
-  lcd.clear();
-  lcd.setCursor(0,0);
-  lcd.print("MQ4: ");
-  lcd.print(lecture4);
-  lcd.print(" PPM");
-  lcd.setCursor(0,1);
-  lcd.print("MQ5: ");
-  lcd.print(lecture5);
-  lcd.print(" PPM");
-  delay(timeDelay/4);
-  lcd.clear();
-  lcd.setCursor(0,0);
-  lcd.print("MQ6: ");
-  lcd.print(lecture6);
-  lcd.print(" PPM");
-  lcd.setCursor(0,1);
-  lcd.print("MQ7: ");
-  lcd.print(lecture7);
-  lcd.print(" PPM");
-  delay(timeDelay/4);
-  lcd.clear();
-  lcd.setCursor(0,0);
-  lcd.print("MQ8: ");
-  lcd.print(lecture2);
-  lcd.print(" PPM");
-  lcd.setCursor(0,1);
-  lcd.print("MQ8: ");
-  lcd.print(lecture8);
-  lcd.print(" PPM");
-  delay(timeDelay/4);
-
+  lcd.print("Time: " + String((millis() - time)/60000) + "min");
   //Increment counter
   contador++;
   //Wait to measure next sample

@@ -92,7 +92,7 @@
 }
 void MQUnifiedsensor::setVoltResolution(float voltaje)
 {
-  VOLT_RESOLUTION = voltaje;
+  _VOLT_RESOLUTION = voltaje;
 }
 void MQUnifiedsensor::inicializar()
 {
@@ -125,8 +125,6 @@ void MQUnifiedsensor::setSensorCharacteristics(String nameLectureRequeired, bool
   {
     //Set default
     setDefaultGas();
-    //Set ratio in clean air to calc R0
-    setRatioInCleanAir();
     //Put  the default into variable internally used
     nameLectureRequeired = _nameLectureRequeired;
   }
@@ -151,7 +149,7 @@ int MQUnifiedsensor::readPPM(int m, int b) {
   _sensor_volt = this->getVoltage();
   double RS_gas; //Define variable for sensor resistance
 
-  RS_gas = ((VOLT_RESOLUTION*RLValue)/_sensor_volt)-RLValue; //Get value of RS in a gas
+  RS_gas = ((_VOLT_RESOLUTION*_RLValue)/_sensor_volt)-_RLValue; //Get value of RS in a gas
 
   _ratio = RS_gas / this->_R0;   // Get ratio RS_gas/RS_air
 
@@ -177,7 +175,7 @@ int MQUnifiedsensor::calibrate() {
   float R0; //Define variable for R0
   float sensorValue; //Define variable for analog readings
   _sensor_volt = this->getVoltage(); //Convert average to voltage
-  RS_air = ((VOLT_RESOLUTION*RLValue)/_sensor_volt)-RLValue; //Calculate RS in fresh air 
+  RS_air = ((_VOLT_RESOLUTION*_RLValue)/_sensor_volt)-_RLValue; //Calculate RS in fresh air 
   R0 = RS_air/_ratioInCleanAir; //Calculate R0 
   return R0;
 }
@@ -188,7 +186,7 @@ double MQUnifiedsensor::getVoltage() {
     delay(retry_interval);
   }
 
-  double voltage = avg * VOLT_RESOLUTION / (pow(2, ADC_RESOLUTION) - 1);
+  double voltage = avg * _VOLT_RESOLUTION / (pow(2, ADC_RESOLUTION) - 1);
 
   return voltage;
 }
