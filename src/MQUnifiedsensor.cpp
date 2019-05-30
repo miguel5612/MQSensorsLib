@@ -139,7 +139,7 @@ int MQUnifiedsensor::readPPM(int m, int b) {
   double sensor_volt = this->getVoltage();
   double RS_gas; //Define variable for sensor resistance
 
-  RS_gas = ((5.0 * 10.0) / sensor_volt) - 10.0; //Get value of RS in a gas
+  RS_gas = ((VOLT_RESOLUTION*RLValue)/sensor_volt)-RLValue; //Get value of RS in a gas
 
   _ratio = RS_gas / this->_R0;   // Get ratio RS_gas/RS_air
 
@@ -147,7 +147,7 @@ int MQUnifiedsensor::readPPM(int m, int b) {
   double ppm = pow(10, ppm_log); //Convert ppm value to log scale
   return floor(ppm);
 }
-double MQUnifiedsensor::calibrate() {
+int MQUnifiedsensor::calibrate() {
   //More explained in: https://jayconsystems.com/blog/understanding-a-gas-sensor
   /*
   V = I x R 

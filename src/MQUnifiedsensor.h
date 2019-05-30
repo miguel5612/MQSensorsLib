@@ -12,7 +12,7 @@
 int VOLT_RESOLUTION  = 5.0; // if 3.3v use 3.3
 int RLValue = 10; //Value in KiloOhms
 int  _ratioInCleanAir, _PPM;
-double RS_air,_R0, _m, _b, _ratio;
+double RS_air, _m, _b, _ratio;
 
 /************************Hardware Related Macros************************************/
 
@@ -44,6 +44,20 @@ double RS_air,_R0, _m, _b, _ratio;
 #define RatioMQ135CleanAir 3.6//RS / R0 = 3.6 ppm     
 #define RatioMQ303CleanAir 1  //RS / R0 = 1 ppm    
 #define RatioMQ309CleanAir 11 //RS / R0 = 11 ppm    
+
+//From the calibration program we can obtain the R0 value for each sensor
+#define R0_MQ2 1 //R0 after 48 hours pre-heating the sensor
+#define R0_MQ3 1   //R0 after 48 hours pre-heating the sensor
+#define R0_MQ4 1  //R0 after 48 hours pre-heating the sensor
+#define R0_MQ5 1  //R0 after 48 hours pre-heating the sensor
+#define R0_MQ6 1   //R0 after 48 hours pre-heating the sensor
+#define R0_MQ7 1 //R0 after 48 hours pre-heating the sensor
+#define R0_MQ8 1   //R0 after 48 hours pre-heating the sensor
+#define R0_MQ9 1  //R0 after 48 hours pre-heating the sensor
+#define R0_MQ131  1 //R0 after 48 hours pre-heating the sensor
+#define R0_MQ135  1//R0 after 48 hours pre-heating the sensor
+#define R0_MQ303  1  //R0 after 48 hours pre-heating the sensor
+#define R0_MQ309  1 //R0 after 48 hours pre-heating the sensor
 
 /***********************Software Related Macros************************************/
 
@@ -80,7 +94,7 @@ class MQUnifiedsensor
     int readSensor(String nameLectureRequeired = "", bool print = false);
     int readPPM(int m, int b);
     
-    double calibrate();
+    int calibrate();
     double getVoltage();
     double stringToDouble(String & str);
 
@@ -89,7 +103,7 @@ class MQUnifiedsensor
     
 
   private:
-    int _pin, _type; 
+    int _pin, _type, _R0; 
     String _MQ[19], _nameLectureRequeired;   
 };
 
