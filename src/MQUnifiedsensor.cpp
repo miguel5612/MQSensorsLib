@@ -9,72 +9,84 @@
   {
     memcpy(_MQ, _MQ2, sizeof(_MQ2));
     _ratioInCleanAir = RatioMQ2CleanAir;
+    _R0 = R0_MQ2;
     //_MQ = MQ2;
   }
   else if(_type == 3)
   {
     memcpy(_MQ, _MQ3, sizeof(_MQ3));
     _ratioInCleanAir = RatioMQ3CleanAir;
+    _R0 = R0_MQ3;
     //_MQ = MQ3;
   }
   else if(_type == 4)
   {
     memcpy(_MQ, _MQ4, sizeof(_MQ4));
     _ratioInCleanAir = RatioMQ4CleanAir;
+    _R0 = R0_MQ4;
     //_MQ = MQ4;
   }
   else if(_type == 5)
   {
     memcpy(_MQ, _MQ5, sizeof(_MQ5));
     _ratioInCleanAir = RatioMQ5CleanAir;
+    _R0 = R0_MQ5;
     //_MQ = MQ5;
   }
   else if(_type == 6)
   {
     memcpy(_MQ, _MQ6, sizeof(_MQ6));
     _ratioInCleanAir = RatioMQ6CleanAir;
+    _R0 = R0_MQ6;
     //_MQ = MQ6;
   }
   else if(_type == 7)
   {
     memcpy(_MQ, _MQ7, sizeof(_MQ7));
     _ratioInCleanAir = RatioMQ7CleanAir;
+    _R0 = R0_MQ7;
     //_MQ = MQ7;
   }
   else if(_type == 8)
   {
     memcpy(_MQ, _MQ8, sizeof(_MQ8));
     _ratioInCleanAir = RatioMQ8CleanAir;
+    _R0 = R0_MQ8;
     //_MQ = MQ8;
   }
   else if(_type == 9)
   {
     memcpy(_MQ, _MQ9, sizeof(_MQ9));
     _ratioInCleanAir = RatioMQ9CleanAir;
+    _R0 = R0_MQ9;
     //_MQ = MQ9;
   }
   else if(_type == 131)
   {
     memcpy(_MQ, _MQ131, sizeof(_MQ131));
     _ratioInCleanAir = RatioMQ131CleanAir;
+    _R0 = R0_MQ131;
     //_MQ = MQ131;
   }
   else if(_type == 135)
   {
     memcpy(_MQ, _MQ135, sizeof(_MQ135));
     _ratioInCleanAir = RatioMQ135CleanAir;
+    _R0 = R0_MQ135;
     //_MQ = MQ135;
   }
   else if(_type == 303)
   {
     memcpy(_MQ, _MQ303A, sizeof(_MQ303A));
     _ratioInCleanAir = RatioMQ303CleanAir;
+    _R0 = R0_MQ303;
     //_MQ = MQ303A;
   }
   else if(_type == 309)
   {
     memcpy(_MQ, _MQ309A, sizeof(_MQ309A));
     _ratioInCleanAir = RatioMQ309CleanAir;
+    _R0 = R0_MQ309;
     //_MQ = MQ309;
   }
 }
