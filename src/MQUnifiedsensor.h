@@ -75,7 +75,6 @@ class MQUnifiedsensor
     void setVoltResolution(float voltaje);
     void setSensorCharacteristics(String nameLectureReqeuired, bool print);
     void setDefaultGas();
-    void setRatioInCleanAir();
     
     int readSensor(String nameLectureRequeired = "", bool print = false);
     int readPPM(int m, int b);
