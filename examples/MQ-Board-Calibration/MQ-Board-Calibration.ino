@@ -104,21 +104,26 @@ void setup() {
 void loop() {
 
   //Read the sensor
-  int lecture2 =  MQ2.calibrate();
-  int lecture3 =  MQ3.calibrate();
-  int lecture4 =  MQ4.calibrate();
-  int lecture5 =  MQ5.calibrate();
-  int lecture6 =  MQ6.calibrate();
-  int lecture7 =  MQ7.calibrate();
-  int lecture8 =  MQ8.calibrate();
-  int lecture9 =  MQ9.calibrate();
+  float lecture2 =  MQ2.calibrate();
+  float lecture3 =  MQ3.calibrate();
+  float lecture4 =  MQ4.calibrate();
+  float lecture5 =  MQ5.calibrate();
+  float lecture6 =  MQ6.calibrate();
+  float lecture7 =  MQ7.calibrate();
+  float lecture8 =  MQ8.calibrate();
+  float lecture9 =  MQ9.calibrate();
 
   
   //Print in serial monitor
-  char out[40];
-  //snprintf(out, 30, "%d,%d,%d,%d,%d,%d,%d,%d", contador, lecture2, lecture3, lecture4, lecture5, lecture6, lecture7, lecture8, lecture9);
-  snprintf(out, 30, "%d,%d,%d,%d,%d,%d,%d,%d", contador, lecture2, lecture3, lecture4, lecture5, lecture6, lecture7, lecture8, lecture9);
-  Serial.println(out);
+  Serial.print(contador);Serial.print(",");
+  Serial.print(lecture2);Serial.print(",");
+  Serial.print(lecture3);Serial.print(",");
+  Serial.print(lecture4);Serial.print(",");
+  Serial.print(lecture5);Serial.print(",");
+  Serial.print(lecture6);Serial.print(",");
+  Serial.print(lecture7);Serial.print(",");
+  Serial.print(lecture8);Serial.print(",");
+  Serial.println(lecture9);
   
   //Print in LCD
   lcd.clear();
