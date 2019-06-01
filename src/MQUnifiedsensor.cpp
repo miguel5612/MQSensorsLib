@@ -527,7 +527,7 @@ int MQUnifiedsensor::readPPM(int m, int b) {
   double ppm = pow(10, ppm_log); //Convert ppm value to log scale
   return floor(ppm);
 }
-float MQUnifiedsensor::calibrate(boolean print) {
+long MQUnifiedsensor::calibrate(boolean print) {
   //More explained in: https://jayconsystems.com/blog/understanding-a-gas-sensor
   /*
   V = I x R 
@@ -541,9 +541,8 @@ float MQUnifiedsensor::calibrate(boolean print) {
   RS = [(VC x RL) / VRL] - RL
   */
   _sensor_volt; //Define variable for sensor voltage
-  float RS_air; //Define variable for sensor resistance
-  float R0; //Define variable for R0
-  float sensorValue; //Define variable for analog readings
+  long RS_air; //Define variable for sensor resistance
+  long R0; //Define variable for R0
   _sensor_volt = this->getVoltage(); //Convert average to voltage
   RS_air = ((_VOLT_RESOLUTION*_RLValue)/_sensor_volt)-_RLValue; //Calculate RS in fresh air 
   R0 = RS_air/_ratioInCleanAir; //Calculate R0 
@@ -560,15 +559,17 @@ float MQUnifiedsensor::calibrate(boolean print) {
   }
   return R0;
 }
-double MQUnifiedsensor::getVoltage() {
-  double avg = 0.0;
-  for (int i = 0; i < retries; i ++) {
-    avg += analogRead(this->_pin) / retries;
-    delay(retry_interval);
+double MQUnifiedsensor::getVoltage(int read) {
+  double voltage = _sensor_volt;
+  if(read)
+  {
+    double avg = 0.0;
+    for (int i = 0; i < retries; i ++) {
+      avg += analogRead(this->_pin) / retries;
+      delay(retry_interval);
+    }
+    voltage = avg * _VOLT_RESOLUTION / (pow(2, ADC_RESOLUTION) - 1);
   }
-
-  double voltage = avg * _VOLT_RESOLUTION / (pow(2, ADC_RESOLUTION) - 1);
-
   return voltage;
 }
 void MQUnifiedsensor::setR0(double R0) {

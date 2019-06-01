@@ -274,8 +274,8 @@ class MQUnifiedsensor
     int readSensor(String nameLectureRequeired = "", bool print = false);
     int readPPM(int m, int b);
     
-    float calibrate(boolean print = false);
-    double getVoltage();
+    long calibrate(boolean print = false);
+    double getVoltage(int read =  true);
     double stringToDouble(String & str);
 
     String getnameLecture();

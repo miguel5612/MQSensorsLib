@@ -96,7 +96,7 @@ void setup() {
   Serial.println("MQ2 to MQ9 - Calibracion");
   Serial.println("Note - Make sure you are in a clean room and the sensor has pre-heated almost 4 hours");
   Serial.println("Note - All values are in KOhms");
-  Serial.println("Autonumeric, MQ2(R0), MQ3(R0), MQ4(R0), MQ5(R0), MQ6(R0), MQ7(R0)");
+  Serial.println("Autonumeric, MQ2(R0), MQ3(R0), MQ4(R0), MQ5(R0), MQ6(R0), MQ7(R0), MQ8(R0), MQ9(R0), v2(VDC), v3(VDC), v4(VDC), v5(VDC), v6(VDC), v7(VDC), v8(VDC), v9(VDC)");
   //Wait one second to continue
   delay(timeDelay/10);
 }
@@ -113,6 +113,16 @@ void loop() {
   float lecture8 =  MQ8.calibrate();
   float lecture9 =  MQ9.calibrate();
 
+    //Read voltage the sensor
+  float v2 =  MQ2.getVoltage(false);
+  float v3 =  MQ3.getVoltage(false);
+  float v4 =  MQ4.getVoltage(false);
+  float v5 =  MQ5.getVoltage(false);
+  float v6 =  MQ6.getVoltage(false);
+  float v7 =  MQ7.getVoltage(false);
+  float v8 =  MQ8.getVoltage(false);
+  float v9 =  MQ9.getVoltage(false);
+
   
   //Print in serial monitor
   Serial.print(contador);Serial.print(",");
@@ -123,8 +133,18 @@ void loop() {
   Serial.print(lecture6);Serial.print(",");
   Serial.print(lecture7);Serial.print(",");
   Serial.print(lecture8);Serial.print(",");
-  Serial.println(lecture9);
+  Serial.println(lecture9);Serial.print(",");
+  //Print voltages
+  Serial.print(v2);Serial.print(",");
+  Serial.print(v3);Serial.print(",");
+  Serial.print(v4);Serial.print(",");
+  Serial.print(v5);Serial.print(",");
+  Serial.print(v6);Serial.print(",");
+  Serial.print(v7);Serial.print(",");
+  Serial.print(v8);Serial.print(",");
+  Serial.println(v9);Serial.print(",");
   
+
   //Print in LCD
   lcd.clear();
   lcd.setCursor(0,0);
