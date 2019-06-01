@@ -565,10 +565,10 @@ double MQUnifiedsensor::getVoltage(int read) {
   {
     double avg = 0.0;
     for (int i = 0; i < retries; i ++) {
-      avg += analogRead(this->_pin) / retries;
+      avg += analogRead(this->_pin);
       delay(retry_interval);
     }
-    voltage = avg * _VOLT_RESOLUTION / (pow(2, ADC_RESOLUTION) - 1);
+    voltage = (avg/ retries) * _VOLT_RESOLUTION / (pow(2, ADC_RESOLUTION) - 1);
   }
   return voltage;
 }

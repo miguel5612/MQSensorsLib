@@ -133,7 +133,7 @@ void loop() {
   Serial.print(lecture6);Serial.print(",");
   Serial.print(lecture7);Serial.print(",");
   Serial.print(lecture8);Serial.print(",");
-  Serial.println(lecture9);Serial.print(",");
+  Serial.print(lecture9);Serial.print(",");
   //Print voltages
   Serial.print(v2);Serial.print(",");
   Serial.print(v3);Serial.print(",");
@@ -142,7 +142,7 @@ void loop() {
   Serial.print(v6);Serial.print(",");
   Serial.print(v7);Serial.print(",");
   Serial.print(v8);Serial.print(",");
-  Serial.println(v9);Serial.print(",");
+  Serial.println(v9);
   
 
   //Print in LCD
