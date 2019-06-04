@@ -47,11 +47,11 @@ You'll need Arduino desftop app 1.8.9 or later.
             <th colspan="2">CL2</th>
             <th colspan="2">O3</th>
             <th colspan="2">CO2</th>
-            <th colspan="2">Tolueno</th>
+            <th colspan="2">Toluene</th>
             <th colspan="2">NH4</th>
-            <th colspan="2">Acetona</th>
-            <th colspan="2">Iso-butano</th>
-            <th colspan="2">Hydrogeno</th>
+            <th colspan="2">Acetone</th>
+            <th colspan="2">Iso-butane</th>
+            <th colspan="2">Hydrogen</th>
             <th colspan="2">Ethanol</th>
         </tr>
     </thead>
