@@ -24,6 +24,7 @@
 
 /*****************************Globals***********************************************/
 //From the graph, we can see that the resistance ratio in fresh air is a constant:
+/*
 #define RatioMQ2CleanAir 9.83 //RS / R0 = 9.83 ppm 
 #define RatioMQ3CleanAir 60   //RS / R0 = 60 ppm 
 #define RatioMQ4CleanAir 4.4  //RS / R0 = 4.4 ppm 
@@ -36,20 +37,21 @@
 #define RatioMQ135CleanAir 3.6//RS / R0 = 3.6 ppm     
 #define RatioMQ303CleanAir 1  //RS / R0 = 1 ppm    
 #define RatioMQ309CleanAir 11 //RS / R0 = 11 ppm    
+ */
 
 //From the calibration program we can obtain the R0 value for each sensor
-#define R0_MQ2 1 //R0 after 48 hours pre-heating the sensor
-#define R0_MQ3 1   //R0 after 48 hours pre-heating the sensor
-#define R0_MQ4 1  //R0 after 48 hours pre-heating the sensor
-#define R0_MQ5 1  //R0 after 48 hours pre-heating the sensor
-#define R0_MQ6 1   //R0 after 48 hours pre-heating the sensor
-#define R0_MQ7 1 //R0 after 48 hours pre-heating the sensor
+#define R0_MQ2 9.659574468 //R0 after 48 hours pre-heating the sensor
+#define R0_MQ3 3.86018237   //R0 after 48 hours pre-heating the sensor
+#define R0_MQ4 47.775076  //R0 after 48 hours pre-heating the sensor
+#define R0_MQ5 71.100304  //R0 after 48 hours pre-heating the sensor
+#define R0_MQ6 13.4285714   //R0 after 48 hours pre-heating the sensor
+#define R0_MQ7 4 //R0 after 48 hours pre-heating the sensor
 #define R0_MQ8 1   //R0 after 48 hours pre-heating the sensor
-#define R0_MQ9 1  //R0 after 48 hours pre-heating the sensor
-#define R0_MQ131  1 //R0 after 48 hours pre-heating the sensor
-#define R0_MQ135  1//R0 after 48 hours pre-heating the sensor
-#define R0_MQ303  1  //R0 after 48 hours pre-heating the sensor
-#define R0_MQ309  1 //R0 after 48 hours pre-heating the sensor
+#define R0_MQ9 9.42857143  //R0 after 48 hours pre-heating the sensor
+#define R0_MQ131  385.40 //R0 after 48 hours pre-heating the sensor Thanks ostaquet HIGH_CONCENTRATION
+#define R0_MQ135  76.63 //R0 after 48 hours pre-heating the sensor  Thanks Georgk https://github.com/GeorgK/MQ135/blob/master/MQ135.h
+#define R0_MQ303  10  //R0 after 48 hours pre-heating the sensor
+#define R0_MQ309  10 //R0 after 48 hours pre-heating the sensor
 
 /***********************Software Related Macros************************************/
 
