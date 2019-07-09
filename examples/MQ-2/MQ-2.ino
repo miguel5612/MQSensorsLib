@@ -20,11 +20,6 @@
 #define pin A0 //Analog input 0 of your arduino
 #define type 2 //MQ2
 
-/*****************************  MQInicializar****************************************
-  Input:  pin, type 
-  Output:  
-  Remarks: This function create the sensor object.
-  ************************************************************************************/ 
 //Declare Sensor
 MQUnifiedsensor MQ2(pin, type);
 
