@@ -49,4 +49,5 @@ void loop() {
   //int lecture =  MQ4.readSensor("CO", true); // Return CO concentration
   //int lecture =  MQ4.readSensor("Alcohol", true); // Return Alcohol concentration
   //int lecture =  MQ4.readSensor("smoke", true); // Return smoke concentration
+  delay(400);
 }
