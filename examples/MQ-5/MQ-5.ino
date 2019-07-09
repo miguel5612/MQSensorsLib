@@ -44,9 +44,10 @@ void loop() {
   //Lecture will be saved in lecture variable
   int lecture =  MQ5.readSensor("", true); // Return H2 concentration
   // Options, uncomment where you need
-  //int lecture =  MQ5.readSensor("H2", true); // Return CH4 concentration
+  //int lecture =  MQ5.readSensor("H2", true); // Return H2 concentration
   //int lecture =  MQ5.readSensor("LPG", true); // Return LPG concentration
-  //int lecture =  MQ5.readSensor("CH4", true); // Return CO concentration
-  //int lecture =  MQ5.readSensor("CO", true); // Return Alcohol concentration
-  //int lecture =  MQ5.readSensor("Alcohol", true); // Return smoke concentration
+  //int lecture =  MQ5.readSensor("CH4", true); // Return CH4 concentration
+  //int lecture =  MQ5.readSensor("CO", true); // Return CO concentration
+  //int lecture =  MQ5.readSensor("smoke", true); // Return smoke concentration
+  delay(400);
 }
