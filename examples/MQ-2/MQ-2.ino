@@ -47,6 +47,14 @@ void setup() {
   Remarks: This function use readPPM to read the value in PPM the gas in the air.
   ************************************************************************************/ 
   //Read the sensor and print in serial port
-  int lecture =  MQ2.readSensor("", true);
+  //Lecture will be saved in lecture variable
+  int lecture =  MQ2.readSensor("", true); // Return LPG concentration
+  // Options, uncomment where you need
+  //int lecture =  MQ2.readSensor("H2", true); // Return H2 concentration
+  //int lecture =  MQ2.readSensor("LPG", true); // Return LPG concentration
+  //int lecture =  MQ2.readSensor("CO", true); // Return CO concentration
+  //int lecture =  MQ2.readSensor("Alcohol", true); // Return Alcohol concentration
+  //int lecture =  MQ2.readSensor("Propane", true); // Return Propane concentration
+  //int lecture =  MQ2.readSensor("Benzene", true); // Return Benzene concentration
   delay(400);
 }
