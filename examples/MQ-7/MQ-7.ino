@@ -51,6 +51,6 @@ void loop() {
   //int lecture =  MQ7.readSensor("LPG", true); // Return LPG concentration
   //int lecture =  MQ7.readSensor("CH4", true); // Return CH4 concentration
   //int lecture =  MQ7.readSensor("CO", true); // Return CO concentration
-  //int lecture =  MQ7.readSensor("Alcohol", true); // Return smoke concentration
+  //int lecture =  MQ7.readSensor("Alcohol", true); // Return Alcohol concentration
   delay(400);
 }
