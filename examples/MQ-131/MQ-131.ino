@@ -25,17 +25,26 @@
 MQUnifiedsensor MQ131(pin, type);
 
 void setup() {
-  //init the sensor
+   //init the sensor
+  /*****************************  MQInicializar****************************************
+  Input:  pin, type 
+  Output:  
+  Remarks: This function create the sensor object.
+  ************************************************************************************/ 
   MQ131.inicializar(); 
 }
 
 void loop() {
-  //Read the sensor
-  int read =  MQ131.readSensor();
-  //Print measurements
-  Serial.print("MQ131: ");
-  Serial.print(read);
-  Serial.println(" PPM");
-  //delay 1s to next measure
-  delay(1000);
+  /*****************************  MQReadSensor  ****************************************
+  Input:   Gas - Serial print flag
+  Output:  Value in PPM
+  Remarks: This function use readPPM to read the value in PPM the gas in the air.
+  ************************************************************************************/ 
+  //Read the sensor and print in serial port
+  //Lecture will be saved in lecture variable
+  int lecture =  MQ131.readSensor("", true); // Return O3 concentration
+  // Options, uncomment where you need
+  //int lecture =  MQ131.readSensor("NOx", true); // Return NOx concentration
+  //int lecture =  MQ131.readSensor("CL2", true); // Return CL2 concentration
+  //int lecture =  MQ131.readSensor("O3", true); // Return O3 concentration
 }

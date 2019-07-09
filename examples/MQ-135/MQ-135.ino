@@ -25,17 +25,29 @@
 MQUnifiedsensor MQ135(pin, type);
 
 void setup() {
-  //init the sensor
+   //init the sensor
+  /*****************************  MQInicializar****************************************
+  Input:  pin, type 
+  Output:  
+  Remarks: This function create the sensor object.
+  ************************************************************************************/ 
   MQ135.inicializar(); 
 }
 
 void loop() {
-  //Read the sensor
-  int read =  MQ135.readSensor();
-  //Print measurements
-  Serial.print("MQ135: ");
-  Serial.print(read);
-  Serial.println(" PPM");
-  //delay 1s to next measure
-  delay(1000);
+   /*****************************  MQReadSensor  ****************************************
+  Input:   Gas - Serial print flag
+  Output:  Value in PPM
+  Remarks: This function use readPPM to read the value in PPM the gas in the air.
+  ************************************************************************************/ 
+  //Read the sensor and print in serial port
+  //Lecture will be saved in lecture variable
+  int lecture =  MQ135.readSensor("", true); // Return NH4 concentration
+  // Options, uncomment where you need
+  //int lecture =  MQ135.readSensor("CO", true); // Return CO concentration
+  //int lecture =  MQ135.readSensor("Alcohol", true); // Return Alcohol concentration
+  //int lecture =  MQ135.readSensor("CO2", true); // Return CO2 concentration
+  //int lecture =  MQ135.readSensor("Tolueno", true); // Return Tolueno concentration
+  //int lecture =  MQ135.readSensor("NH4", true); // Return NH4 concentration
+  //int lecture =  MQ135.readSensor("Acetona", true); // Return Acetona concentration
 }
