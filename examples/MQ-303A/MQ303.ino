@@ -25,17 +25,27 @@
 MQUnifiedsensor MQ303(pin, type);
 
 void setup() {
-  //init the sensor
+   //init the sensor
+  /*****************************  MQInicializar****************************************
+  Input:  pin, type 
+  Output:  
+  Remarks: This function create the sensor object.
+  ************************************************************************************/ 
   MQ303.inicializar(); 
 }
 
 void loop() {
-  //Read the sensor
-  int read =  MQ303.readSensor();
-  //Print measurements
-  Serial.print("MQ303: ");
-  Serial.print(read);
-  Serial.println(" PPM");
-  //delay 1s to next measure
-  delay(1000);
+  /*****************************  MQReadSensor  ****************************************
+  Input:   Gas - Serial print flag
+  Output:  Value in PPM
+  Remarks: This function use readPPM to read the value in PPM the gas in the air.
+  ************************************************************************************/ 
+  //Read the sensor and print in serial port
+  //Lecture will be saved in lecture variable
+  int lecture =  MQ303.readSensor("", true); // Return Isobutano concentration
+  // Options, uncomment where you need
+  //int lecture =  MQ303.readSensor("Iso_butano", true); // Return Iso_butano concentration
+  //int lecture =  MQ303.readSensor("Hydrogeno", true); // Return Hydrogeno concentration
+  //int lecture =  MQ303.readSensor("Ethanol", true); // Return Ethanol concentration
+  delay(400);
 }

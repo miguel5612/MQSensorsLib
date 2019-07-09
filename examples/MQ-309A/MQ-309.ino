@@ -25,17 +25,28 @@
 MQUnifiedsensor MQ309(pin, type);
 
 void setup() {
-  //init the sensor
+    //init the sensor
+  /*****************************  MQInicializar****************************************
+  Input:  pin, type 
+  Output:  
+  Remarks: This function create the sensor object.
+  ************************************************************************************/ 
   MQ309.inicializar(); 
 }
 
 void loop() {
-  //Read the sensor
-  int read =  MQ309.readSensor();
-  //Print measurements
-  Serial.print("MQ309: ");
-  Serial.print(read);
-  Serial.println(" PPM");
-  //delay 1s to next measure
-  delay(1000);
+  /*****************************  MQReadSensor  ****************************************
+  Input:   Gas - Serial print flag
+  Output:  Value in PPM
+  Remarks: This function use readPPM to read the value in PPM the gas in the air.
+  ************************************************************************************/ 
+  //Read the sensor and print in serial port
+  //Lecture will be saved in lecture variable
+  int lecture =  MQ309.readSensor("", true); // Return CO concentration
+  // Options, uncomment where you need
+  //int lecture =  MQ309.readSensor("H2", true); // Return H2 concentration
+  //int lecture =  MQ309.readSensor("CH4", true); // Return CH4 concentration
+  //int lecture =  MQ309.readSensor("CO", true); // Return CO concentration
+  //int lecture =  MQ309.readSensor("Alcohol", true); // Return Alcohol concentration
+  delay(400);
 }
