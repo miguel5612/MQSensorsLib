@@ -42,11 +42,11 @@ void loop() {
   ************************************************************************************/ 
   //Read the sensor and print in serial port
   //Lecture will be saved in lecture variable
-  int lecture =  MQ3.readSensor("", true); // Return Alcohol concentration
+  int lecture =  MQ4.readSensor("", true); // Return CH4 concentration
   // Options, uncomment where you need
-  //int lecture =  MQ3.readSensor("CH4", true); // Return CH4 concentration
-  //int lecture =  MQ3.readSensor("LPG", true); // Return LPG concentration
-  //int lecture =  MQ3.readSensor("CO", true); // Return CO concentration
-  //int lecture =  MQ3.readSensor("Alcohol", true); // Return Alcohol concentration
-  //int lecture =  MQ3.readSensor("smoke", true); // Return smoke concentration
+  //int lecture =  MQ4.readSensor("CH4", true); // Return CH4 concentration
+  //int lecture =  MQ4.readSensor("LPG", true); // Return LPG concentration
+  //int lecture =  MQ4.readSensor("CO", true); // Return CO concentration
+  //int lecture =  MQ4.readSensor("Alcohol", true); // Return Alcohol concentration
+  //int lecture =  MQ4.readSensor("smoke", true); // Return smoke concentration
 }
