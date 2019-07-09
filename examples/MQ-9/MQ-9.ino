@@ -45,6 +45,7 @@ void loop() {
   int lecture =  MQ8.readSensor("", true); // Return LPG concentration
   // Options, uncomment where you need
   //int lecture =  MQ8.readSensor("LPG", true); // Return LPG concentration
-  //int lecture =  MQ8.readSensor("CH4", true); // Return CO concentration
-  //int lecture =  MQ8.readSensor("CO", true); // Return Alcohol concentration
+  //int lecture =  MQ8.readSensor("CH4", true); // Return CH4 concentration
+  //int lecture =  MQ8.readSensor("CO", true); // Return CO concentration
+  delay(400);
 }
