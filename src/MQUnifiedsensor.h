@@ -24,7 +24,7 @@
 
 /*****************************Globals***********************************************/
 //From the graph, we can see that the resistance ratio in fresh air is a constant:
-/*
+
 #define RatioMQ2CleanAir 9.83 //RS / R0 = 9.83 ppm 
 #define RatioMQ3CleanAir 60   //RS / R0 = 60 ppm 
 #define RatioMQ4CleanAir 4.4  //RS / R0 = 4.4 ppm 
@@ -37,7 +37,7 @@
 #define RatioMQ135CleanAir 3.6//RS / R0 = 3.6 ppm     
 #define RatioMQ303CleanAir 1  //RS / R0 = 1 ppm    
 #define RatioMQ309CleanAir 11 //RS / R0 = 11 ppm    
- */
+
 
 //From the calibration program we can obtain the R0 value for each sensor
 #define R0_MQ2 9.659574468 //R0 after 48 hours pre-heating the sensor
