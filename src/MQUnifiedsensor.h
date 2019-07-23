@@ -274,11 +274,12 @@ class MQUnifiedsensor
     void setDefaultGas();
     
     int readSensor(String nameLectureRequeired = "", bool print = false);
-    int readPPM(int m, int b);
     
     long calibrate(boolean print = false);
     double getVoltage(int read =  true);
     double stringToDouble(String & str);
+    double getR0();
+    float readPPM(int m, int b);
 
     String getnameLecture();
 
@@ -286,11 +287,12 @@ class MQUnifiedsensor
 
   private:
     /************************Private vars************************************/
-    int _pin, _type, _R0, _lecturePosInArray; 
+    int _pin, _type, _lecturePosInArray; 
+    double  _R0;
     String  _nameLectureRequeired;   
     int _VOLT_RESOLUTION  = 5.0; // if 3.3v use 3.3
     int _RLValue = 10; //Value in KiloOhms
-    int _PPM;
+    float _PPM, _RS_Calc;
     float _ratioInCleanAir, _sensor_volt, RS_air, _m, _b, _ratio;
     
 };
