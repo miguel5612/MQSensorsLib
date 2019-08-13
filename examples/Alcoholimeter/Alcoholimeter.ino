@@ -40,7 +40,7 @@ void setup() {
   Serial.println(MQ3.getR0());
   Serial.print("R0 clean air: ");
   Serial.println(RoCleanAir);
-  MQ3.setR0(RoCleanAir);
+  //MQ3.setR0(RoCleanAir);
 }
 
 void loop() {
