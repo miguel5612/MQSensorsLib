@@ -146,37 +146,37 @@ void MQUnifiedsensor::setSensorCharacteristics(String nameLectureRequeired, bool
       if(_nameLectureRequeired == "H2")
       {
         _nameLectureRequeired = "H2";
-        _m = MQ2_H2_m;
+        _a = MQ2_H2_m;
         _b = MQ2_H2_b;
       }
       else if(_nameLectureRequeired == "LPG")
       {
         _nameLectureRequeired = "LPG";
-        _m = MQ2_LPG_m;
+        _a = MQ2_LPG_m;
         _b = MQ2_LPG_b;
       }
       else if(_nameLectureRequeired == "CO")
       {
         _nameLectureRequeired = "CO";
-        _m = MQ2_CO_m;
+        _a = MQ2_CO_m;
         _b = MQ2_CO_b;
       }    
       else if(_nameLectureRequeired == "Alcohol")
       {
         _nameLectureRequeired = "Alcohol";
-        _m = MQ2_Alcohol_m;
+        _a = MQ2_Alcohol_m;
         _b = MQ2_Alcohol_b;
       }  
       else if(_nameLectureRequeired == "Propane")
       {
         _nameLectureRequeired = "Propane";
-        _m = MQ2_Propane_m;
+        _a = MQ2_Propane_m;
         _b = MQ2_Propane_b;
       }   
       else if(_nameLectureRequeired == "Benzene")
       {
         _nameLectureRequeired = "Benzene";
-        _m = MQ2_Benzene_m;
+        _a = MQ2_Benzene_m;
         _b = MQ2_Benzene_b;
       }    
     }
@@ -185,37 +185,37 @@ void MQUnifiedsensor::setSensorCharacteristics(String nameLectureRequeired, bool
       if(_nameLectureRequeired == "LPG")
       {
         _nameLectureRequeired = "LPG";
-        _m = MQ3_LPG_m;
+        _a = MQ3_LPG_m;
         _b = MQ3_LPG_b;
       }
       else if(_nameLectureRequeired == "CH4")
       {
         _nameLectureRequeired = "CH4";
-        _m = MQ3_CH4_m;
+        _a = MQ3_CH4_m;
         _b = MQ3_CH4_b;
       }
       else if(_nameLectureRequeired == "CO")
       {
         _nameLectureRequeired = "CO";
-        _m = MQ3_CO_m;
+        _a = MQ3_CO_m;
         _b = MQ3_CO_b;
       }    
       else if(_nameLectureRequeired == "Alcohol")
       {
         _nameLectureRequeired = "Alcohol";
-        _m = MQ3_Alcohol_m;
+        _a = MQ3_Alcohol_m;
         _b = MQ3_Alcohol_b;
       }  
       else if(_nameLectureRequeired == "Hexane")
       {
         _nameLectureRequeired = "Hexane";
-        _m = MQ3_Hexane_m;
+        _a = MQ3_Hexane_m;
         _b = MQ3_Hexane_b;
       }   
       else if(_nameLectureRequeired == "Benzene")
       {
         _nameLectureRequeired = "Benzene";
-        _m = MQ3_Benzene_m;
+        _a = MQ3_Benzene_m;
         _b = MQ3_Benzene_b;
       }
     }
@@ -224,31 +224,31 @@ void MQUnifiedsensor::setSensorCharacteristics(String nameLectureRequeired, bool
       if(_nameLectureRequeired == "LPG")
       {
         _nameLectureRequeired = "LPG";
-        _m = MQ4_LPG_m;
+        _a = MQ4_LPG_m;
         _b = MQ4_LPG_b;
       }
       else if(_nameLectureRequeired == "CH4")
       {
         _nameLectureRequeired = "CH4";
-        _m = MQ4_CH4_m;
+        _a = MQ4_CH4_m;
         _b = MQ4_CH4_b;
       }
       else if(_nameLectureRequeired == "CO")
       {
         _nameLectureRequeired = "CO";
-        _m = MQ4_CO_m;
+        _a = MQ4_CO_m;
         _b = MQ4_CO_b;
       }    
       else if(_nameLectureRequeired == "Alcohol")
       {
         _nameLectureRequeired = "Alcohol";
-        _m = MQ4_Alcohol_m;
+        _a = MQ4_Alcohol_m;
         _b = MQ4_Alcohol_b;
       }  
       else if(_nameLectureRequeired == "smoke")
       {
         _nameLectureRequeired = "smoke";
-        _m = MQ4_smoke_m;
+        _a = MQ4_smoke_m;
         _b = MQ4_smoke_b;
       }   
     }
@@ -257,31 +257,31 @@ void MQUnifiedsensor::setSensorCharacteristics(String nameLectureRequeired, bool
       if(_nameLectureRequeired == "H2")
       {
         _nameLectureRequeired = "H2";
-        _m = MQ5_H2_m;
+        _a = MQ5_H2_m;
         _b = MQ5_H2_b;
       }   
       else if(_nameLectureRequeired == "LPG")
       {
         _nameLectureRequeired = "LPG";
-        _m = MQ5_LPG_m;
+        _a = MQ5_LPG_m;
         _b = MQ5_LPG_b;
       }
       else if(_nameLectureRequeired == "CH4")
       {
         _nameLectureRequeired = "CH4";
-        _m = MQ5_CH4_m;
+        _a = MQ5_CH4_m;
         _b = MQ5_CH4_b;
       }
       else if(_nameLectureRequeired == "CO")
       {
         _nameLectureRequeired = "CO";
-        _m = MQ5_CO_m;
+        _a = MQ5_CO_m;
         _b = MQ5_CO_b;
       }    
       else if(_nameLectureRequeired == "Alcohol")
       {
         _nameLectureRequeired = "Alcohol";
-        _m = MQ5_Alcohol_m;
+        _a = MQ5_Alcohol_m;
         _b = MQ5_Alcohol_b;
       }  
     }
@@ -290,31 +290,31 @@ void MQUnifiedsensor::setSensorCharacteristics(String nameLectureRequeired, bool
       if(_nameLectureRequeired == "H2")
       {
         _nameLectureRequeired = "H2";
-        _m = MQ6_H2_m;
+        _a = MQ6_H2_m;
         _b = MQ6_H2_b;
       }   
       else if(_nameLectureRequeired == "LPG")
       {
         _nameLectureRequeired = "LPG";
-        _m = MQ6_LPG_m;
+        _a = MQ6_LPG_m;
         _b = MQ6_LPG_b;
       }
       else if(_nameLectureRequeired == "CH4")
       {
         _nameLectureRequeired = "CH4";
-        _m = MQ6_CH4_m;
+        _a = MQ6_CH4_m;
         _b = MQ6_CH4_b;
       }
       else if(_nameLectureRequeired == "CO")
       {
         _nameLectureRequeired = "CO";
-        _m = MQ6_CO_m;
+        _a = MQ6_CO_m;
         _b = MQ6_CO_b;
       }    
       else if(_nameLectureRequeired == "Alcohol")
       {
         _nameLectureRequeired = "Alcohol";
-        _m = MQ6_Alcohol_m;
+        _a = MQ6_Alcohol_m;
         _b = MQ6_Alcohol_b;
       }  
     }
@@ -323,31 +323,31 @@ void MQUnifiedsensor::setSensorCharacteristics(String nameLectureRequeired, bool
       if(_nameLectureRequeired == "H2")
       {
         _nameLectureRequeired = "H2";
-        _m = MQ7_H2_m;
+        _a = MQ7_H2_m;
         _b = MQ7_H2_b;
       }   
       else if(_nameLectureRequeired == "LPG")
       {
         _nameLectureRequeired = "LPG";
-        _m = MQ7_LPG_m;
+        _a = MQ7_LPG_m;
         _b = MQ7_LPG_b;
       }
       else if(_nameLectureRequeired == "CH4")
       {
         _nameLectureRequeired = "CH4";
-        _m = MQ7_CH4_m;
+        _a = MQ7_CH4_m;
         _b = MQ7_CH4_b;
       }
       else if(_nameLectureRequeired == "CO")
       {
         _nameLectureRequeired = "CO";
-        _m = MQ7_CO_m;
+        _a = MQ7_CO_m;
         _b = MQ7_CO_b;
       }    
       else if(_nameLectureRequeired == "Alcohol")
       {
         _nameLectureRequeired = "Alcohol";
-        _m = MQ7_Alcohol_m;
+        _a = MQ7_Alcohol_m;
         _b = MQ7_Alcohol_b;
       } 
     }
@@ -356,31 +356,31 @@ void MQUnifiedsensor::setSensorCharacteristics(String nameLectureRequeired, bool
       if(_nameLectureRequeired == "H2")
       {
         _nameLectureRequeired = "H2";
-        _m = MQ8_H2_m;
+        _a = MQ8_H2_m;
         _b = MQ8_H2_b;
       }   
       else if(_nameLectureRequeired == "LPG")
       {
         _nameLectureRequeired = "LPG";
-        _m = MQ8_LPG_m;
+        _a = MQ8_LPG_m;
         _b = MQ8_LPG_b;
       }
       else if(_nameLectureRequeired == "CH4")
       {
         _nameLectureRequeired = "CH4";
-        _m = MQ8_CH4_m;
+        _a = MQ8_CH4_m;
         _b = MQ8_CH4_b;
       }
       else if(_nameLectureRequeired == "CO")
       {
         _nameLectureRequeired = "CO";
-        _m = MQ8_CO_m;
+        _a = MQ8_CO_m;
         _b = MQ8_CO_b;
       }    
       else if(_nameLectureRequeired == "Alcohol")
       {
         _nameLectureRequeired = "Alcohol";
-        _m = MQ8_Alcohol_m;
+        _a = MQ8_Alcohol_m;
         _b = MQ8_Alcohol_b;
       } 
     }
@@ -389,19 +389,19 @@ void MQUnifiedsensor::setSensorCharacteristics(String nameLectureRequeired, bool
       if(_nameLectureRequeired == "LPG")
       {
         _nameLectureRequeired = "LPG";
-        _m = MQ9_LPG_m;
+        _a = MQ9_LPG_m;
         _b = MQ9_LPG_b;
       }
       else if(_nameLectureRequeired == "CH4")
       {
         _nameLectureRequeired = "CH4";
-        _m = MQ9_CH4_m;
+        _a = MQ9_CH4_m;
         _b = MQ9_CH4_b;
       }
       else if(_nameLectureRequeired == "CO")
       {
         _nameLectureRequeired = "CO";
-        _m = MQ9_CO_m;
+        _a = MQ9_CO_m;
         _b = MQ9_CO_b;
       }    
     }
@@ -410,19 +410,19 @@ void MQUnifiedsensor::setSensorCharacteristics(String nameLectureRequeired, bool
       if(_nameLectureRequeired == "NOx")
       {
         _nameLectureRequeired = "NOx";
-        _m = MQ131_NOx_m;
+        _a = MQ131_NOx_m;
         _b = MQ131_NOx_b;
       }
       else if(_nameLectureRequeired == "CL2")
       {
         _nameLectureRequeired = "CL2";
-        _m = MQ131_CL2_m;
+        _a = MQ131_CL2_m;
         _b = MQ131_CL2_b;
       }
       else if(_nameLectureRequeired == "O3")
       {
         _nameLectureRequeired = "O3";
-        _m = MQ131_O3_m;
+        _a = MQ131_O3_m;
         _b = MQ131_O3_b;
       }    
     }
@@ -431,37 +431,37 @@ void MQUnifiedsensor::setSensorCharacteristics(String nameLectureRequeired, bool
       if(_nameLectureRequeired == "CO")
       {
         _nameLectureRequeired = "CO";
-        _m = MQ135_CO_m;
+        _a = MQ135_CO_m;
         _b = MQ135_CO_b;
       }
       else if(_nameLectureRequeired == "Alcohol")
       {
         _nameLectureRequeired = "Alcohol";
-        _m = MQ135_Alcohol_m;
+        _a = MQ135_Alcohol_m;
         _b = MQ135_Alcohol_b;
       }
       else if(_nameLectureRequeired == "CO2")
       {
         _nameLectureRequeired = "CO2";
-        _m = MQ135_CO2_m;
+        _a = MQ135_CO2_m;
         _b = MQ135_CO2_b;
       } 
       else if(_nameLectureRequeired == "Tolueno")
       {
         _nameLectureRequeired = "Tolueno";
-        _m = MQ135_Tolueno_m;
+        _a = MQ135_Tolueno_m;
         _b = MQ135_Tolueno_b;
       }
       else if(_nameLectureRequeired == "NH4")
       {
         _nameLectureRequeired = "NH4";
-        _m = MQ135_NH4_m;
+        _a = MQ135_NH4_m;
         _b = MQ135_NH4_b;
       }
       else if(_nameLectureRequeired == "Acetona")
       {
         _nameLectureRequeired = "Acetona";
-        _m = MQ135_Acetona_m;
+        _a = MQ135_Acetona_m;
         _b = MQ135_Acetona_b;
       } 
     }
@@ -470,19 +470,19 @@ void MQUnifiedsensor::setSensorCharacteristics(String nameLectureRequeired, bool
       if(_nameLectureRequeired == "Iso_butano")
       {
         _nameLectureRequeired = "Iso_butano";
-        _m = MQ303_Iso_butano_m;
+        _a = MQ303_Iso_butano_m;
         _b = MQ303_Iso_butano_b;
       }
       else if(_nameLectureRequeired == "Hydrogeno")
       {
         _nameLectureRequeired = "Hydrogeno";
-        _m = MQ303_Hydrogeno_m;
+        _a = MQ303_Hydrogeno_m;
         _b = MQ303_Hydrogeno_b;
       }
       else if(_nameLectureRequeired == "Ethanol")
       {
         _nameLectureRequeired = "Ethanol";
-        _m = MQ303_Ethanol_m;
+        _a = MQ303_Ethanol_m;
         _b = MQ303_Ethanol_b;
       } 
     }
@@ -491,25 +491,25 @@ void MQUnifiedsensor::setSensorCharacteristics(String nameLectureRequeired, bool
       if(_nameLectureRequeired == "H2")
       {
         _nameLectureRequeired = "H2";
-        _m = MQ309_H2_m;
+        _a = MQ309_H2_m;
         _b = MQ309_H2_b;
       } 
       else if(_nameLectureRequeired == "CH4")
       {
         _nameLectureRequeired = "CH4";
-        _m = MQ309_CH4_m;
+        _a = MQ309_CH4_m;
         _b = MQ309_CH4_b;
       }
       else if(_nameLectureRequeired == "CO")
       {
         _nameLectureRequeired = "CO";
-        _m = MQ309_CO_m;
+        _a = MQ309_CO_m;
         _b = MQ309_CO_b;
       }    
       else if(_nameLectureRequeired == "Alcohol")
       {
         _nameLectureRequeired = "Alcohol";
-        _m = MQ309_Alcohol_m;
+        _a = MQ309_Alcohol_m;
         _b = MQ309_Alcohol_b;
       } 
     }
@@ -522,13 +522,10 @@ float MQUnifiedsensor::readPPM(int m, int b) {
   //More explained in: https://jayconsystems.com/blog/understanding-a-gas-sensor
   _sensor_volt = this->getVoltage();
   //_RS_Calc; //Define variable for sensor resistance
-
   _RS_Calc = ((_VOLT_RESOLUTION*_RLValue)/_sensor_volt)-_RLValue; //Get value of RS in a gas
-
   _ratio = _RS_Calc / this->_R0;   // Get ratio RS_gas/RS_air
-
-  double ppm_log = (log10(_ratio) - b) / m; //Get ppm value in linear scale according to the the ratio value
-  double ppm = pow(10, ppm_log); //Convert ppm value to log scale
+  float ppm = a*pow(_ratio, b);
+  
   return floor(ppm);
 }
 long MQUnifiedsensor::calibrate(boolean print) {
