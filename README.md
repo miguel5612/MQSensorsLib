@@ -80,6 +80,7 @@ Please read [CONTRIBUTING.md](https://github.com/miguel5612/MQSensorsLib/blob/NO
 ## Colaborators
 
 * **Andres A. Martinez.** 
+* **Juan A. Rodríguez.** - [*Github*](https://github.com/Obiot24)
 * **Mario A. Rodríguez O.** - [*GitHub*](https://github.com/MarioAndresR) - [CV](https://scienti.colciencias.gov.co/cvlac/visualizador/generarCurriculoCv.do?cod_rh=0000111304)
 
 See also the list of [contributors](https://github.com/miguel5612/MQSensorsLib/contributors) who participated in this project.
