@@ -21,8 +21,10 @@
 #define type 4 //MQ4
 
 //Declare Sensor
-
 MQUnifiedsensor MQ4(pin, type);
+
+//Variables
+float CH4, LPG, CO, Alcohol, smoke;
 
 void setup() {
   //init the sensor
@@ -35,6 +37,7 @@ void setup() {
 }
 
 void loop() {
+  MQ4.update(); // Update data, the arduino will be read the voltaje in the analog pin
   /*****************************  MQReadSensor  ****************************************
   Input:   Gas - Serial print flag
   Output:  Value in PPM
@@ -42,12 +45,22 @@ void loop() {
   ************************************************************************************/ 
   //Read the sensor and print in serial port
   //Lecture will be saved in lecture variable
-  int lecture =  MQ4.readSensor("", true); // Return CH4 concentration
+  //float lecture =  MQ4.readSensor("", true); // Return CH4 concentration
   // Options, uncomment where you need
-  //int lecture =  MQ4.readSensor("CH4", true); // Return CH4 concentration
-  //int lecture =  MQ4.readSensor("LPG", true); // Return LPG concentration
-  //int lecture =  MQ4.readSensor("CO", true); // Return CO concentration
-  //int lecture =  MQ4.readSensor("Alcohol", true); // Return Alcohol concentration
-  //int lecture =  MQ4.readSensor("smoke", true); // Return smoke concentration
-  delay(400);
+  CH4 =  MQ4.readSensor("CH4"); // Return CH4 concentration
+  LPG =  MQ4.readSensor("LPG"); // Return LPG concentration
+  CO =  MQ4.readSensor("CO"); // Return CO concentration
+  Alcohol =  MQ4.readSensor("Alcohol"); // Return Alcohol concentration
+  smoke =  MQ4.readSensor("smoke"); // Return smoke concentration
+  
+  Serial.println("***************************");
+  Serial.println("Lectures for MQ-4");
+  Serial.print("Volt: ");Serial.print(MQ4.getVoltage(false));Serial.println(" V"); 
+  Serial.print("R0: ");Serial.print(MQ4.getR0());Serial.println(" Ohm"); 
+  Serial.print("CH4: ");Serial.print(CH4,2);Serial.println(" ppm");
+  Serial.print("LPG: ");Serial.print(LPG,2);Serial.println(" ppm");
+  Serial.print("CO: ");Serial.print(CO,2);Serial.println(" ppm");
+  Serial.print("Alcohol: ");Serial.print(Alcohol,2);Serial.println(" ppm");
+  Serial.print("smoke: ");Serial.print(smoke,2);Serial.println(" ppm");
+  Serial.println("***************************");
 }

@@ -21,8 +21,10 @@
 #define type 9 //MQ9
 
 //Declare Sensor
-
 MQUnifiedsensor MQ9(pin, type);
+
+//Variables
+float CO, CH4, LPG;
 
 void setup() {
   //init the sensor
@@ -35,6 +37,7 @@ void setup() {
 }
 
 void loop() {
+  MQ9.update(); // Update data, the arduino will be read the voltaje in the analog pin
  /*****************************  MQReadSensor  ****************************************
   Input:   Gas - Serial print flag
   Output:  Value in PPM
@@ -42,10 +45,18 @@ void loop() {
   ************************************************************************************/ 
   //Read the sensor and print in serial port
   //Lecture will be saved in lecture variable
-  int lecture =  MQ8.readSensor("", true); // Return LPG concentration
+  //float lecture =  MQ9.readSensor("", true); // Return LPG concentration
   // Options, uncomment where you need
-  //int lecture =  MQ8.readSensor("LPG", true); // Return LPG concentration
-  //int lecture =  MQ8.readSensor("CH4", true); // Return CH4 concentration
-  //int lecture =  MQ8.readSensor("CO", true); // Return CO concentration
-  delay(400);
+  LPG =  MQ9.readSensor("LPG"); // Return LPG concentration
+  CH4 =  MQ9.readSensor("CH4"); // Return CH4 concentration
+  CO =  MQ9.readSensor("CO"); // Return CO concentration
+  
+  Serial.println("***************************");
+  Serial.println("Lectures for MQ-9");
+  Serial.print("Volt: ");Serial.print(MQ9.getVoltage(false));Serial.println(" V"); 
+  Serial.print("R0: ");Serial.print(MQ9.getR0());Serial.println(" Ohm"); 
+  Serial.print("CO: ");Serial.print(CO,2);Serial.println(" ppm");
+  Serial.print("LPG: ");Serial.print(LPG,2);Serial.println(" ppm");
+  Serial.print("CH4: ");Serial.print(CH4,2);Serial.println(" ppm");
+  Serial.println("***************************");  
 }

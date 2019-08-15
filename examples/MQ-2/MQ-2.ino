@@ -23,6 +23,9 @@
 //Declare Sensor
 MQUnifiedsensor MQ2(pin, type);
 
+//Variables
+float H2, LPG, CO, Alcohol, Propane, Benzene;
+
 void setup() {
   //Init serial port
   Serial.begin(115200);
@@ -36,6 +39,7 @@ void setup() {
 }
 
   void loop() {
+  MQ2.update(); // Update data, the arduino will be read the voltaje in the analog pin
   /*****************************  MQReadSensor  ****************************************
   Input:   Gas - Serial print flag
   Output:  Value in PPM
@@ -43,13 +47,24 @@ void setup() {
   ************************************************************************************/ 
   //Read the sensor and print in serial port
   //Lecture will be saved in lecture variable
-  int lecture =  MQ2.readSensor("", true); // Return LPG concentration
+  //float lecture =  MQ2.readSensor("", true); // Return LPG concentration
   // Options, uncomment where you need
-  //int lecture =  MQ2.readSensor("H2", true); // Return H2 concentration
-  //int lecture =  MQ2.readSensor("LPG", true); // Return LPG concentration
-  //int lecture =  MQ2.readSensor("CO", true); // Return CO concentration
-  //int lecture =  MQ2.readSensor("Alcohol", true); // Return Alcohol concentration
-  //int lecture =  MQ2.readSensor("Propane", true); // Return Propane concentration
-  //int lecture =  MQ2.readSensor("Benzene", true); // Return Benzene concentration
-  delay(400);
+  H2 =  MQ2.readSensor("H2"); // Return H2 concentration
+  LPG =  MQ2.readSensor("LPG"); // Return LPG concentration
+  CO =  MQ2.readSensor("CO"); // Return CO concentration
+  Alcohol =  MQ2.readSensor("Alcohol"); // Return Alcohol concentration
+  Propane =  MQ2.readSensor("Propane"); // Return Propane concentration
+  Benzene =  MQ2.readSensor("Benzene"); // Return Benzene concentration
+  
+  Serial.println("***************************");
+  Serial.println("Lectures for MQ-2");
+  Serial.print("Volt: ");Serial.print(MQ2.getVoltage(false));Serial.println(" V"); 
+  Serial.print("R0: ");Serial.print(MQ2.getR0());Serial.println(" Ohm"); 
+  Serial.print("H2: ");Serial.print(H2,2);Serial.println(" ppm");
+  Serial.print("LPG: ");Serial.print(LPG,2);Serial.println(" ppm");
+  Serial.print("CO: ");Serial.print(CO,2);Serial.println(" ppm");
+  Serial.print("Alcohol: ");Serial.print(Alcohol,2);Serial.println(" ppm");
+  Serial.print("Propane: ");Serial.print(Propane,2);Serial.println(" ppm");
+  Serial.print("Benzene: ");Serial.print(Benzene,2);Serial.println(" ppm");
+  Serial.println("***************************");
 }

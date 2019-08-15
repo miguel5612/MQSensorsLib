@@ -21,8 +21,10 @@
 #define type 303 //MQ303
 
 //Declare Sensor
-
 MQUnifiedsensor MQ303(pin, type);
+
+//Variables
+float Iso_butano, Hydrogeno, Ethanol;
 
 void setup() {
    //init the sensor
@@ -35,6 +37,7 @@ void setup() {
 }
 
 void loop() {
+  MQ303.update();
   /*****************************  MQReadSensor  ****************************************
   Input:   Gas - Serial print flag
   Output:  Value in PPM
@@ -42,10 +45,19 @@ void loop() {
   ************************************************************************************/ 
   //Read the sensor and print in serial port
   //Lecture will be saved in lecture variable
-  int lecture =  MQ303.readSensor("", true); // Return Isobutano concentration
+  //float lecture =  MQ303.readSensor("", true); // Return Isobutano concentration
   // Options, uncomment where you need
-  //int lecture =  MQ303.readSensor("Iso_butano", true); // Return Iso_butano concentration
-  //int lecture =  MQ303.readSensor("Hydrogeno", true); // Return Hydrogeno concentration
-  //int lecture =  MQ303.readSensor("Ethanol", true); // Return Ethanol concentration
-  delay(400);
+  Iso_butano =  MQ303.readSensor("Iso_butano"); // Return Iso_butano concentration
+  Hydrogeno =  MQ303.readSensor("Hydrogeno"); // Return Hydrogeno concentration
+  Ethanol =  MQ303.readSensor("Ethanol"); // Return Ethanol concentration
+  
+  Serial.println("***************************");
+  Serial.println("Lectures for MQ-135");
+  Serial.print("Volt: ");Serial.print(MQ8.getVoltage(false));Serial.println(" V"); 
+  Serial.print("R0: ");Serial.print(MQ8.getR0());Serial.println(" Ohm"); 
+  Serial.print("Iso_butano: ");Serial.print(Iso_butano,2);Serial.println(" ppm");
+  Serial.print("Hydrogeno: ");Serial.print(Hydrogeno,2);Serial.println(" ppm");
+  Serial.print("Ethanol: ");Serial.print(Ethanol,2);Serial.println(" ppm");
+  Serial.println("***************************");  
+
 }

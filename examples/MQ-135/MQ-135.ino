@@ -21,8 +21,10 @@
 #define type 135 //MQ135
 
 //Declare Sensor
-
 MQUnifiedsensor MQ135(pin, type);
+
+//Variables
+float CO, Alcohol, CO2, Tolueno, NH4, Acetona;
 
 void setup() {
    //init the sensor
@@ -35,6 +37,7 @@ void setup() {
 }
 
 void loop() {
+  MQ135.update(); // Update data, the arduino will be read the voltaje in the analog pin
    /*****************************  MQReadSensor  ****************************************
   Input:   Gas - Serial print flag
   Output:  Value in PPM
@@ -42,12 +45,24 @@ void loop() {
   ************************************************************************************/ 
   //Read the sensor and print in serial port
   //Lecture will be saved in lecture variable
-  int lecture =  MQ135.readSensor("", true); // Return NH4 concentration
+  //float lecture =  MQ135.readSensor("", true); // Return NH4 concentration
   // Options, uncomment where you need
-  //int lecture =  MQ135.readSensor("CO", true); // Return CO concentration
-  //int lecture =  MQ135.readSensor("Alcohol", true); // Return Alcohol concentration
-  //int lecture =  MQ135.readSensor("CO2", true); // Return CO2 concentration
-  //int lecture =  MQ135.readSensor("Tolueno", true); // Return Tolueno concentration
-  //int lecture =  MQ135.readSensor("NH4", true); // Return NH4 concentration
-  //int lecture =  MQ135.readSensor("Acetona", true); // Return Acetona concentration
+  CO =  MQ135.readSensor("CO"); // Return CO concentration
+  Alcohol =  MQ135.readSensor("Alcohol"); // Return Alcohol concentration
+  CO2 =  MQ135.readSensor("CO2"); // Return CO2 concentration
+  Tolueno =  MQ135.readSensor("Tolueno"); // Return Tolueno concentration
+  NH4 =  MQ135.readSensor("NH4"); // Return NH4 concentration
+  Acetona =  MQ135.readSensor("Acetona"); // Return Acetona concentration
+
+  Serial.println("***************************");
+  Serial.println("Lectures for MQ-135");
+  Serial.print("Volt: ");Serial.print(MQ8.getVoltage(false));Serial.println(" V"); 
+  Serial.print("R0: ");Serial.print(MQ8.getR0());Serial.println(" Ohm"); 
+  Serial.print("CO: ");Serial.print(CO,2);Serial.println(" ppm");
+  Serial.print("Alcohol: ");Serial.print(Alcohol,2);Serial.println(" ppm");
+  Serial.print("CO2: ");Serial.print(CO2,2);Serial.println(" ppm");
+  Serial.print("Tolueno: ");Serial.print(Tolueno,2);Serial.println(" ppm");
+  Serial.print("NH4: ");Serial.print(NH4,2);Serial.println(" ppm");
+  Serial.print("Acetona: ");Serial.print(Acetona,2);Serial.println(" ppm");
+  Serial.println("***************************");  
 }

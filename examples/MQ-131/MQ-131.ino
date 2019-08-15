@@ -21,8 +21,10 @@
 #define type 131 //MQ131
 
 //Declare Sensor
-
 MQUnifiedsensor MQ131(pin, type);
+
+//Variables
+float NOx, CL2, O3;
 
 void setup() {
    //init the sensor
@@ -35,6 +37,7 @@ void setup() {
 }
 
 void loop() {
+  MQ131.update(); // Update data, the arduino will be read the voltaje in the analog pin
   /*****************************  MQReadSensor  ****************************************
   Input:   Gas - Serial print flag
   Output:  Value in PPM
@@ -42,9 +45,18 @@ void loop() {
   ************************************************************************************/ 
   //Read the sensor and print in serial port
   //Lecture will be saved in lecture variable
-  int lecture =  MQ131.readSensor("", true); // Return O3 concentration
+  //float lecture =  MQ131.readSensor("", true); // Return O3 concentration
   // Options, uncomment where you need
-  //int lecture =  MQ131.readSensor("NOx", true); // Return NOx concentration
-  //int lecture =  MQ131.readSensor("CL2", true); // Return CL2 concentration
-  //int lecture =  MQ131.readSensor("O3", true); // Return O3 concentration
+  NOx =  MQ131.readSensor("NOx"); // Return NOx concentration
+  CL2 =  MQ131.readSensor("CL2"); // Return CL2 concentration
+  O3 =  MQ131.readSensor("O3"); // Return O3 concentration
+
+  Serial.println("***************************");
+  Serial.println("Lectures for MQ-131");
+  Serial.print("Volt: ");Serial.print(MQ9.getVoltage(false));Serial.println(" V"); 
+  Serial.print("R0: ");Serial.print(MQ9.getR0());Serial.println(" Ohm"); 
+  Serial.print("NOx: ");Serial.print(NOx,2);Serial.println(" ppm");
+  Serial.print("CL2: ");Serial.print(CL2,2);Serial.println(" ppm");
+  Serial.print("O3: ");Serial.print(O3,2);Serial.println(" ppm");
+  Serial.println("***************************");  
 }
