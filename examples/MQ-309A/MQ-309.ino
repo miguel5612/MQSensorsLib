@@ -21,10 +21,13 @@
 #define type 309 //MQ309
 
 //Declare Sensor
-
 MQUnifiedsensor MQ309(pin, type);
 
+//Variables
+float H2, CH4, CO, Alcohol;
+
 void setup() {
+  Serial.begin(9600); //Init serial port
     //init the sensor
   /*****************************  MQInicializar****************************************
   Input:  pin, type 
@@ -42,11 +45,20 @@ void loop() {
   ************************************************************************************/ 
   //Read the sensor and print in serial port
   //Lecture will be saved in lecture variable
-  int lecture =  MQ309.readSensor("", true); // Return CO concentration
+  //float lecture =  MQ309.readSensor("", true); // Return CO concentration
   // Options, uncomment where you need
-  //int lecture =  MQ309.readSensor("H2", true); // Return H2 concentration
-  //int lecture =  MQ309.readSensor("CH4", true); // Return CH4 concentration
-  //int lecture =  MQ309.readSensor("CO", true); // Return CO concentration
-  //int lecture =  MQ309.readSensor("Alcohol", true); // Return Alcohol concentration
-  delay(400);
+  H2 =  MQ309.readSensor("H2"); // Return H2 concentration
+  CH4 =  MQ309.readSensor("CH4"); // Return CH4 concentration
+  CO =  MQ309.readSensor("CO"); // Return CO concentration
+  Alcohol =  MQ309.readSensor("Alcohol"); // Return Alcohol concentration
+
+  Serial.println("***************************");
+  Serial.println("Lectures for MQ-309");
+  Serial.print("Volt: ");Serial.print(MQ309.getVoltage(false));Serial.println(" V"); 
+  Serial.print("R0: ");Serial.print(MQ309.getR0());Serial.println(" Ohm"); 
+  Serial.print("H2: ");Serial.print(H2,2);Serial.println(" ppm");
+  Serial.print("CH4: ");Serial.print(CH4,2);Serial.println(" ppm");
+  Serial.print("CO: ");Serial.print(CO,2);Serial.println(" ppm");
+  Serial.print("Alcohol: ");Serial.print(Alcohol,2);Serial.println(" ppm");
+  Serial.println("***************************");  
 }

@@ -27,6 +27,7 @@ MQUnifiedsensor MQ131(pin, type);
 float NOx, CL2, O3;
 
 void setup() {
+  Serial.begin(9600); //Init serial port
    //init the sensor
   /*****************************  MQInicializar****************************************
   Input:  pin, type 
@@ -53,8 +54,8 @@ void loop() {
 
   Serial.println("***************************");
   Serial.println("Lectures for MQ-131");
-  Serial.print("Volt: ");Serial.print(MQ9.getVoltage(false));Serial.println(" V"); 
-  Serial.print("R0: ");Serial.print(MQ9.getR0());Serial.println(" Ohm"); 
+  Serial.print("Volt: ");Serial.print(MQ131.getVoltage(false));Serial.println(" V"); 
+  Serial.print("R0: ");Serial.print(MQ131.getR0());Serial.println(" Ohm"); 
   Serial.print("NOx: ");Serial.print(NOx,2);Serial.println(" ppm");
   Serial.print("CL2: ");Serial.print(CL2,2);Serial.println(" ppm");
   Serial.print("O3: ");Serial.print(O3,2);Serial.println(" ppm");

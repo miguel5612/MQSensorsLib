@@ -17,7 +17,7 @@
 #include <MQUnifiedsensor.h>
 
 //Definitions
-#define pin A3 //Analog input 0 of your arduino
+#define pin A0 //Analog input 0 of your arduino
 #define type 3 //MQ3
 
 //Declare Sensor
@@ -27,7 +27,7 @@ MQUnifiedsensor MQ3(pin, type);
 float CH4, LPG, CO, Alcohol, Hexane, Benzine;
 
 void setup() {
-  Serial.begin(9600);
+  Serial.begin(9600); //Init serial port
   //init the sensor
   /*****************************  MQInicializar****************************************
   Input:  pin, type 

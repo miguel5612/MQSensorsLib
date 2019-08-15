@@ -27,20 +27,21 @@
 #define pin9 A9 //Analog input 9 of your arduino
 
 //Declare Sensor
-
 MQUnifiedsensor MQ2(pin2, 2);
-MQUnifiedsensor MQ3(pin3, 2);
-MQUnifiedsensor MQ4(pin4, 2);
-MQUnifiedsensor MQ5(pin5, 2);
-MQUnifiedsensor MQ6(pin6, 2);
-MQUnifiedsensor MQ7(pin7, 2);
-MQUnifiedsensor MQ8(pin8, 2);
-MQUnifiedsensor MQ9(pin9, 2);
+MQUnifiedsensor MQ3(pin3, 3);
+MQUnifiedsensor MQ4(pin4, 4);
+MQUnifiedsensor MQ5(pin5, 5);
+MQUnifiedsensor MQ6(pin6, 6);
+MQUnifiedsensor MQ7(pin7, 7);
+MQUnifiedsensor MQ8(pin8, 8);
+MQUnifiedsensor MQ9(pin9, 9);
 
+//Variables
+float  LPG, Alcohol, CH4, H2, CH42, CO, H22, LPG2;
 
 void setup() {
   //Init serial port
-  Serial.begin(115200);
+  Serial.begin(9600);
   //init the sensor
   MQ2.inicializar(); 
   MQ3.inicializar(); 
@@ -55,15 +56,35 @@ void setup() {
 }
 
 void loop() {
+  //Update the voltage lectures
+  MQ2.update();
+  MQ3.update();
+  MQ4.update();
+  MQ5.update();
+  MQ6.update();
+  MQ7.update();
+  MQ8.update();
+  MQ9.update();
+  
   //Read the sensor and print in serial port
-  int lecture2 =  MQ2.read("", true);
-  int lecture3 =  MQ3.read("", true);
-  int lecture4 =  MQ4.read("", true);
-  int lecture5 =  MQ5.read("", true);
-  int lecture6 =  MQ6.read("", true);
-  int lecture7 =  MQ7.read("", true);
-  int lecture8 =  MQ8.read("", true);
-  int lecture9 =  MQ9.read("", true);
-  //Wait to measure next sample
-  delay(400);
+  LPG =  MQ2.readSensor();
+  Alcohol =  MQ3.readSensor();
+  CH4 =  MQ4.readSensor();
+  H2 =  MQ5.readSensor();
+  CH42 =  MQ6.readSensor();
+  CO =  MQ7.readSensor();
+  H22 =  MQ8.readSensor();
+  LPG2 =  MQ9.readSensor();
+
+  Serial.println("***************************");
+  Serial.println("Lectures for MQ-Board");
+  Serial.print("LPG: ");Serial.print(LPG,2);Serial.println(" ppm");
+  Serial.print("Alcohol: ");Serial.print(Alcohol,2);Serial.println(" ppm");
+  Serial.print("CH4: ");Serial.print(CH4,2);Serial.println(" ppm");
+  Serial.print("H2: ");Serial.print(H2,2);Serial.println(" ppm");
+  Serial.print("CH4_2: ");Serial.print(CH42,2);Serial.println(" ppm");
+  Serial.print("CO: ");Serial.print(CO,2);Serial.println(" ppm");
+  Serial.print("H2_2: ");Serial.print(H22,2);Serial.println(" ppm");
+  Serial.print("LPG_2: ");Serial.print(LPG2,2);Serial.println(" ppm");
+  Serial.println("***************************");  
 }

@@ -27,6 +27,7 @@ MQUnifiedsensor MQ135(pin, type);
 float CO, Alcohol, CO2, Tolueno, NH4, Acetona;
 
 void setup() {
+  Serial.begin(9600); //Init serial port
    //init the sensor
   /*****************************  MQInicializar****************************************
   Input:  pin, type 
@@ -56,8 +57,8 @@ void loop() {
 
   Serial.println("***************************");
   Serial.println("Lectures for MQ-135");
-  Serial.print("Volt: ");Serial.print(MQ8.getVoltage(false));Serial.println(" V"); 
-  Serial.print("R0: ");Serial.print(MQ8.getR0());Serial.println(" Ohm"); 
+  Serial.print("Volt: ");Serial.print(MQ135.getVoltage(false));Serial.println(" V"); 
+  Serial.print("R0: ");Serial.print(MQ135.getR0());Serial.println(" Ohm"); 
   Serial.print("CO: ");Serial.print(CO,2);Serial.println(" ppm");
   Serial.print("Alcohol: ");Serial.print(Alcohol,2);Serial.println(" ppm");
   Serial.print("CO2: ");Serial.print(CO2,2);Serial.println(" ppm");

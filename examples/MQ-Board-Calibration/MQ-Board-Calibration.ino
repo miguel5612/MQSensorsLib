@@ -61,7 +61,7 @@ unsigned long time = millis();
 
 void setup() {
   //Init serial port
-  Serial.begin(115200);
+  Serial.begin(9600);
   // initialize the LCD
   lcd.begin();
   // Turn on the blacklight and print a message.
@@ -102,7 +102,16 @@ void setup() {
 }
 
 void loop() {
-
+  //Update the voltage lectures
+  MQ2.update();
+  MQ3.update();
+  MQ4.update();
+  MQ5.update();
+  MQ6.update();
+  MQ7.update();
+  MQ8.update();
+  MQ9.update();
+  
   //Read the sensor
   float lecture2 =  MQ2.calibrate();
   float lecture3 =  MQ3.calibrate();

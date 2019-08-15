@@ -27,6 +27,7 @@ MQUnifiedsensor MQ6(pin, type);
 float H2, LPG, CH4, CO, Alcohol;
 
 void setup() {
+  Serial.begin(9600); //Init serial port
   //init the sensor
   /*****************************  MQInicializar****************************************
   Input:  pin, type 

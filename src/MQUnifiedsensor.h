@@ -56,7 +56,7 @@
 /***********************Software Related Macros************************************/
 
 #define ADC_RESOLUTION 10 // for 10bit analog to digital converter.
-#define retries 50
+#define retries 5
 #define retry_interval 20
 
 /**********************Application Related Macros**********************************/

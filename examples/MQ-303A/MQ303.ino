@@ -27,6 +27,7 @@ MQUnifiedsensor MQ303(pin, type);
 float Iso_butano, Hydrogeno, Ethanol;
 
 void setup() {
+  Serial.begin(9600); //Init serial port
    //init the sensor
   /*****************************  MQInicializar****************************************
   Input:  pin, type 
@@ -52,9 +53,9 @@ void loop() {
   Ethanol =  MQ303.readSensor("Ethanol"); // Return Ethanol concentration
   
   Serial.println("***************************");
-  Serial.println("Lectures for MQ-135");
-  Serial.print("Volt: ");Serial.print(MQ8.getVoltage(false));Serial.println(" V"); 
-  Serial.print("R0: ");Serial.print(MQ8.getR0());Serial.println(" Ohm"); 
+  Serial.println("Lectures for MQ-303");
+  Serial.print("Volt: ");Serial.print(MQ303.getVoltage(false));Serial.println(" V"); 
+  Serial.print("R0: ");Serial.print(MQ303.getR0());Serial.println(" Ohm"); 
   Serial.print("Iso_butano: ");Serial.print(Iso_butano,2);Serial.println(" ppm");
   Serial.print("Hydrogeno: ");Serial.print(Hydrogeno,2);Serial.println(" ppm");
   Serial.print("Ethanol: ");Serial.print(Ethanol,2);Serial.println(" ppm");
