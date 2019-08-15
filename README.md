@@ -5,8 +5,8 @@ This is a unified library to use sensors MQ: 2, 3, 4, 5, 6, 7, 8, 9, and 135.
 ## Getting Started
 
 ```
-MQsensorLib Sensor1(MQ4);
-ppmMethano = Sensor1.readPPM();
+MQUnifiedsensor MQ4(pin, 4); //Example if sensor is MQ4, type = 4
+float ppmCH4 = MQ4.readSensor();
 ```
 
 ### Prerequisites
