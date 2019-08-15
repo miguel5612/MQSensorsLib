@@ -1,6 +1,6 @@
 # MQSensorsLib
 
-This is a unified library to use sensors MQ: 2, 3, 4, 5, 6, 7, 8, 9, and 135.
+This is a unified library to use sensors MQ: 2, 3, 4, 5, 6, 7, 8, 9, 131, 135, 303A and 309A.
 
 ## Getting Started
 
