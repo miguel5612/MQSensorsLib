@@ -31,7 +31,7 @@ You'll need Arduino desftop app 1.8.9 or later.
 
 ### Info of datasheets 
 
-Review WPDigitalizer folder [website](https://automeris.io/WebPlotDigitizer/)
+Review WPDigitalizer [folder](https://github.com/miguel5612/MQSensorsLib/tree/master/WPDigitalizer) [website](https://automeris.io/WebPlotDigitizer/)
 
 ### Installing
 
