@@ -83,23 +83,23 @@
 #define MQ2_Benzene_b 2.7901
 /********************** MQ3 ******************************************************/
 
-#define MQ3_LPG_a -3.1851
-#define MQ3_LPG_b 4.7048
+#define MQ3_LPG_a 44771
+#define MQ3_LPG_b -3.245
 
-#define MQ3_CH4_a -17.531
-#define MQ3_CH4_b 28.785
+#define MQ3_CH4_a 2*10^31
+#define MQ3_CH4_b 19.01
 
-#define MQ3_CO_a -4.339
-#define MQ3_CO_b 6.4432
+#define MQ3_CO_a 521853
+#define MQ3_CO_b -3.821
 
-#define MQ3_Alcohol_a -1.435
-#define MQ3_Alcohol_b 0.4103
+#define MQ3_Alcohol_a 0.3934
+#define MQ3_Alcohol_b -1.504
 
-#define MQ3_Benzene_a -2.7009
-#define MQ3_Benzene_b 0.632
+#define MQ3_Benzene_a 1.8006
+#define MQ3_Benzene_b -0.373
 
-#define MQ3_Hexane_a -2.7268
-#define MQ3_Hexane_b 3.6299
+#define MQ3_Hexane_a 22.996
+#define MQ3_Hexane_b -0.351
 /********************** MQ4 ******************************************************/
 
 #define MQ4_LPG_a -2.5818
@@ -267,20 +267,24 @@ class MQUnifiedsensor
 {
   public:
     MQUnifiedsensor(int pin, int type);
+    
+    //Functions to set values
     void inicializar();
+    void update();
     void setR0(double R0);
     void setVoltResolution(float voltaje);
     void setSensorCharacteristics(String nameLectureReqeuired, bool print);
     void setDefaultGas();
     
+    //user functions
+    long calibrate(boolean print = false);
     int readSensor(String nameLectureRequeired = "", bool print = false);
     
-    long calibrate(boolean print = false);
-    double getVoltage(int read =  true);
-    double stringToDouble(String & str);
+    //get function for info
     double getR0();
     float readPPM(int m, int b);
-
+    double getVoltage(int read =  true);
+    double stringToDouble(String & str);
     String getnameLecture();
 
     

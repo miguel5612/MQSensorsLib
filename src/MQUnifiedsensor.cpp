@@ -90,6 +90,10 @@
     //_MQ = MQ309;
   }
 }
+void MQUnifiedsensor::update()
+{
+  _sensor_volt = this->getVoltage();
+}
 void MQUnifiedsensor::setVoltResolution(float voltaje)
 {
   _VOLT_RESOLUTION = voltaje;
@@ -100,18 +104,19 @@ void MQUnifiedsensor::inicializar()
 }
 int MQUnifiedsensor::readSensor(String nameLectureRequeired, bool print)
 {
-  setSensorCharacteristics(nameLectureRequeired, print);
-  _PPM =readPPM(_m, _b);
+  setSensorCharacteristics(nameLectureRequeired, print); //In this function update _a and _b
+  _RS_Calc = ((_VOLT_RESOLUTION*_RLValue)/_sensor_volt)-_RLValue; //Get value of RS in a gas
+  _ratio = _RS_Calc / this->_R0;   // Get ratio RS_gas/RS_air
+  _PPM= a*pow(_ratio, b);
+
   if(print)
   {
     String nameLecture = getnameLecture();
     Serial.println("**********************");
-    Serial.println("* PPM_log = (log10(Rs/R0) - b)/m");
-    Serial.println("* PPM = pow(10, PPM_Log)");
     Serial.println("* Sensor: MQ-" + String(_type));
-    Serial.println("* m =" + String(_m) + " ,b =" + String(_b) + ", R0 = " + _R0);
     Serial.println("* Vcc: " + String(_VOLT_RESOLUTION) + ", RS: " + String(_RS_Calc));
     Serial.println("* RS/R0 = " + String(_ratio) + " ,Voltaje leido(ADC): " + String(_sensor_volt));
+    Serial.println("* PPM = " + _a + "pow(Rs/R0, +" + _b + ")");
     Serial.println("* Lectura(" + nameLecture + ")=" + String(_PPM) + " PPM");
     Serial.println("**********************");
   }
@@ -515,19 +520,6 @@ void MQUnifiedsensor::setSensorCharacteristics(String nameLectureRequeired, bool
     }
   //Serial debugging
 }
-float MQUnifiedsensor::readPPM(int m, int b) {
-  /**
-  * Returns the PPM concentration
-  */
-  //More explained in: https://jayconsystems.com/blog/understanding-a-gas-sensor
-  _sensor_volt = this->getVoltage();
-  //_RS_Calc; //Define variable for sensor resistance
-  _RS_Calc = ((_VOLT_RESOLUTION*_RLValue)/_sensor_volt)-_RLValue; //Get value of RS in a gas
-  _ratio = _RS_Calc / this->_R0;   // Get ratio RS_gas/RS_air
-  float ppm = a*pow(_ratio, b);
-  
-  return floor(ppm);
-}
 long MQUnifiedsensor::calibrate(boolean print) {
   //More explained in: https://jayconsystems.com/blog/understanding-a-gas-sensor
   /*
@@ -541,17 +533,15 @@ long MQUnifiedsensor::calibrate(boolean print) {
   RS = [(VC x RL) - (VRL x RL)] / VRL
   RS = [(VC x RL) / VRL] - RL
   */
-  _sensor_volt; //Define variable for sensor voltage
   float RS_air; //Define variable for sensor resistance
   float R0; //Define variable for R0
-  _sensor_volt = this->getVoltage(); //Convert average to voltage
   RS_air = ((_VOLT_RESOLUTION*_RLValue)/_sensor_volt)-_RLValue; //Calculate RS in fresh air 
   R0 = RS_air/_ratioInCleanAir; //Calculate R0 
   if(print)
   {
     Serial.println("*******Calibrating*********");
-    Serial.println("* Vcc: " + String(_VOLT_RESOLUTION) + "*");
     Serial.println("* Sensor: MQ-" + String(_type) + "*");
+    Serial.println("* Vcc: " + String(_VOLT_RESOLUTION) + "*");
     Serial.println("* _sensor_volt: " + String(_sensor_volt) + "*");
     Serial.println("* _RLValue: " + String(_RLValue) + "*");
     Serial.println("* _ratioInCleanAir: " + String(_ratioInCleanAir) + "*");
@@ -561,7 +551,7 @@ long MQUnifiedsensor::calibrate(boolean print) {
   return R0;
 }
 double MQUnifiedsensor::getVoltage(int read) {
-  double voltage = _sensor_volt;
+  double voltage = 0;
   if(read)
   {
     double avg = 0.0;
