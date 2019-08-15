@@ -34,3 +34,7 @@
 *.exe   binary
 *.out   binary
 *.app   binary
+
+
+#Linguistic exclusions
+Internal_design_documents/* linguist-vendored
