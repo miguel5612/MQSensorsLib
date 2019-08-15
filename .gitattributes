@@ -37,4 +37,4 @@
 
 
 #Linguistic exclusions
-Internal_design_documents/* linguist-vendored
+Internal_design_documents/* linguist-generated=false
