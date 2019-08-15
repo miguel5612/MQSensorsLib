@@ -271,19 +271,18 @@ class MQUnifiedsensor
     //Functions to set values
     void inicializar();
     void update();
-    void setR0(double R0);
-    void setVoltResolution(float voltaje);
-    void setSensorCharacteristics(String nameLectureReqeuired, bool print);
+    void setR0(double R0 = 10);
+    void setVoltResolution(float voltaje = 5);
+    void setSensorCharacteristics(String nameLectureReqeuired = "", bool print = false);
     void setDefaultGas();
     
     //user functions
-    long calibrate(boolean print = false);
-    int readSensor(String nameLectureRequeired = "", bool print = false);
+    float calibrate(boolean print = false);
+    float readSensor(String nameLectureRequeired = "", bool print = false);
     
     //get function for info
     double getR0();
-    float readPPM(int m, int b);
-    double getVoltage(int read =  true);
+    double getVoltage(int read = true);
     double stringToDouble(String & str);
     String getnameLecture();
 

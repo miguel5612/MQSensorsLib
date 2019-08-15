@@ -17,14 +17,17 @@
 #include <MQUnifiedsensor.h>
 
 //Definitions
-#define pin A0 //Analog input 0 of your arduino
+#define pin A3 //Analog input 0 of your arduino
 #define type 3 //MQ3
 
 //Declare Sensor
-
 MQUnifiedsensor MQ3(pin, type);
 
+//Variables
+float CH4, LPG, CO, Alcohol, Hexane, Benzine;
+
 void setup() {
+  Serial.begin(9600);
   //init the sensor
   /*****************************  MQInicializar****************************************
   Input:  pin, type 
@@ -35,6 +38,7 @@ void setup() {
 }
 
 void loop() {
+  MQ3.update(); // Update data, the arduino will be read the voltaje in the analog pin
   /*****************************  MQReadSensor  ****************************************
   Input:   Gas - Serial print flag
   Output:  Value in PPM
@@ -42,12 +46,25 @@ void loop() {
   ************************************************************************************/ 
   //Read the sensor and print in serial port
   //Lecture will be saved in lecture variable
-  int lecture =  MQ3.readSensor("", true); // Return Alcohol concentration
+  //float lecture =  MQ3.readSensor("", true); // Return Alcohol concentration
   // Options, uncomment where you need
-  //int lecture =  MQ3.readSensor("CH4", true); // Return CH4 concentration
-  //int lecture =  MQ3.readSensor("LPG", true); // Return LPG concentration
-  //int lecture =  MQ3.readSensor("CO", true); // Return CO concentration
-  //int lecture =  MQ3.readSensor("Alcohol", true); // Return Alcohol concentration
-  //int lecture =  MQ3.readSensor("Hexane", true); // Return Hexane concentration
-  //int lecture =  MQ3.readSensor("Benzene", true); // Return Benzene concentration
+  CH4 =  MQ3.readSensor("CH4"); // Return CH4 concentration
+  LPG =  MQ3.readSensor("LPG"); // Return LPG concentration
+  CO =  MQ3.readSensor("CO"); // Return CO concentration
+  Alcohol =  MQ3.readSensor("Alcohol"); // Return Alcohol concentration
+  Hexane =  MQ3.readSensor("Hexane"); // Return Hexane concentration
+  Benzine =  MQ3.readSensor("Benzene"); // Return Benzene concentration
+
+  Serial.println("***************************");
+  Serial.println("Lectures for MQ-3");
+  Serial.print("Volt: ");Serial.print(MQ3.getVoltage(false));Serial.println(" V"); 
+  Serial.print("R0: ");Serial.print(MQ3.getR0());Serial.println(" Ohm"); 
+  Serial.print("CH4: ");Serial.print(CH4,2);Serial.println(" mg/L");
+  Serial.print("LPG: ");Serial.print(LPG,2);Serial.println(" mg/L");
+  Serial.print("CO: ");Serial.print(CO,2);Serial.println(" mg/L");
+  Serial.print("Alcohol: ");Serial.print(Alcohol,2);Serial.println(" mg/L");
+  Serial.print("Hexane: ");Serial.print(Hexane,2);Serial.println(" mg/L");
+  Serial.print("Benzine: ");Serial.print(Benzine,2);Serial.println(" mg/L");
+  Serial.println("***************************");
+  
 }

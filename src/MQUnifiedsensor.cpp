@@ -102,12 +102,12 @@ void MQUnifiedsensor::inicializar()
 {
   pinMode(_pin, INPUT);
 }
-int MQUnifiedsensor::readSensor(String nameLectureRequeired, bool print)
+float MQUnifiedsensor::readSensor(String nameLectureRequeired, bool print)
 {
   setSensorCharacteristics(nameLectureRequeired, print); //In this function update _a and _b
   _RS_Calc = ((_VOLT_RESOLUTION*_RLValue)/_sensor_volt)-_RLValue; //Get value of RS in a gas
   _ratio = _RS_Calc / this->_R0;   // Get ratio RS_gas/RS_air
-  _PPM= a*pow(_ratio, b);
+  _PPM= _a*pow(_ratio, _b);
 
   if(print)
   {
@@ -116,8 +116,8 @@ int MQUnifiedsensor::readSensor(String nameLectureRequeired, bool print)
     Serial.println("* Sensor: MQ-" + String(_type));
     Serial.println("* Vcc: " + String(_VOLT_RESOLUTION) + ", RS: " + String(_RS_Calc));
     Serial.println("* RS/R0 = " + String(_ratio) + " ,Voltaje leido(ADC): " + String(_sensor_volt));
-    Serial.println("* PPM = " + _a + "pow(Rs/R0, +" + _b + ")");
-    Serial.println("* Lectura(" + nameLecture + ")=" + String(_PPM) + " PPM");
+    Serial.println("* PPM = " + String(_a) + "*pow(" + String(_ratio) + ","  + String(_b) + ")");
+    Serial.println("* Lectura(" + nameLecture + ") = " + String(_PPM) + " PPM");
     Serial.println("**********************");
   }
   return _PPM;
@@ -148,379 +148,379 @@ void MQUnifiedsensor::setSensorCharacteristics(String nameLectureRequeired, bool
   */
   if(_type == 2)
     {
-      if(_nameLectureRequeired == "H2")
+      if(nameLectureRequeired == "H2")
       {
         _nameLectureRequeired = "H2";
-        _a = MQ2_H2_m;
+        _a = MQ2_H2_a;
         _b = MQ2_H2_b;
       }
-      else if(_nameLectureRequeired == "LPG")
+      else if(nameLectureRequeired == "LPG")
       {
         _nameLectureRequeired = "LPG";
-        _a = MQ2_LPG_m;
+        _a = MQ2_LPG_a;
         _b = MQ2_LPG_b;
       }
-      else if(_nameLectureRequeired == "CO")
+      else if(nameLectureRequeired == "CO")
       {
         _nameLectureRequeired = "CO";
-        _a = MQ2_CO_m;
+        _a = MQ2_CO_a;
         _b = MQ2_CO_b;
       }    
-      else if(_nameLectureRequeired == "Alcohol")
+      else if(nameLectureRequeired == "Alcohol")
       {
         _nameLectureRequeired = "Alcohol";
-        _a = MQ2_Alcohol_m;
+        _a = MQ2_Alcohol_a;
         _b = MQ2_Alcohol_b;
       }  
-      else if(_nameLectureRequeired == "Propane")
+      else if(nameLectureRequeired == "Propane")
       {
         _nameLectureRequeired = "Propane";
-        _a = MQ2_Propane_m;
+        _a = MQ2_Propane_a;
         _b = MQ2_Propane_b;
       }   
-      else if(_nameLectureRequeired == "Benzene")
+      else if(nameLectureRequeired == "Benzene")
       {
         _nameLectureRequeired = "Benzene";
-        _a = MQ2_Benzene_m;
+        _a = MQ2_Benzene_a;
         _b = MQ2_Benzene_b;
       }    
     }
     else if(_type == 3)
     {
-      if(_nameLectureRequeired == "LPG")
+      if(nameLectureRequeired == "LPG")
       {
         _nameLectureRequeired = "LPG";
-        _a = MQ3_LPG_m;
+        _a = MQ3_LPG_a;
         _b = MQ3_LPG_b;
       }
-      else if(_nameLectureRequeired == "CH4")
+      else if(nameLectureRequeired == "CH4")
       {
         _nameLectureRequeired = "CH4";
-        _a = MQ3_CH4_m;
+        _a = MQ3_CH4_a;
         _b = MQ3_CH4_b;
       }
-      else if(_nameLectureRequeired == "CO")
+      else if(nameLectureRequeired == "CO")
       {
         _nameLectureRequeired = "CO";
-        _a = MQ3_CO_m;
+        _a = MQ3_CO_a;
         _b = MQ3_CO_b;
       }    
-      else if(_nameLectureRequeired == "Alcohol")
+      else if(nameLectureRequeired == "Alcohol")
       {
         _nameLectureRequeired = "Alcohol";
-        _a = MQ3_Alcohol_m;
+        _a = MQ3_Alcohol_a;
         _b = MQ3_Alcohol_b;
       }  
-      else if(_nameLectureRequeired == "Hexane")
+      else if(nameLectureRequeired == "Hexane")
       {
         _nameLectureRequeired = "Hexane";
-        _a = MQ3_Hexane_m;
+        _a = MQ3_Hexane_a;
         _b = MQ3_Hexane_b;
       }   
-      else if(_nameLectureRequeired == "Benzene")
+      else if(nameLectureRequeired == "Benzene")
       {
         _nameLectureRequeired = "Benzene";
-        _a = MQ3_Benzene_m;
+        _a = MQ3_Benzene_a;
         _b = MQ3_Benzene_b;
       }
     }
     else if(_type == 4)
     {
-      if(_nameLectureRequeired == "LPG")
+      if(nameLectureRequeired == "LPG")
       {
         _nameLectureRequeired = "LPG";
-        _a = MQ4_LPG_m;
+        _a = MQ4_LPG_a;
         _b = MQ4_LPG_b;
       }
-      else if(_nameLectureRequeired == "CH4")
+      else if(nameLectureRequeired == "CH4")
       {
         _nameLectureRequeired = "CH4";
-        _a = MQ4_CH4_m;
+        _a = MQ4_CH4_a;
         _b = MQ4_CH4_b;
       }
-      else if(_nameLectureRequeired == "CO")
+      else if(nameLectureRequeired == "CO")
       {
         _nameLectureRequeired = "CO";
-        _a = MQ4_CO_m;
+        _a = MQ4_CO_a;
         _b = MQ4_CO_b;
       }    
-      else if(_nameLectureRequeired == "Alcohol")
+      else if(nameLectureRequeired == "Alcohol")
       {
         _nameLectureRequeired = "Alcohol";
-        _a = MQ4_Alcohol_m;
+        _a = MQ4_Alcohol_a;
         _b = MQ4_Alcohol_b;
       }  
-      else if(_nameLectureRequeired == "smoke")
+      else if(nameLectureRequeired == "smoke")
       {
         _nameLectureRequeired = "smoke";
-        _a = MQ4_smoke_m;
+        _a = MQ4_smoke_a;
         _b = MQ4_smoke_b;
       }   
     }
     else if(_type == 5)
     {
-      if(_nameLectureRequeired == "H2")
+      if(nameLectureRequeired == "H2")
       {
         _nameLectureRequeired = "H2";
-        _a = MQ5_H2_m;
+        _a = MQ5_H2_a;
         _b = MQ5_H2_b;
       }   
-      else if(_nameLectureRequeired == "LPG")
+      else if(nameLectureRequeired == "LPG")
       {
         _nameLectureRequeired = "LPG";
-        _a = MQ5_LPG_m;
+        _a = MQ5_LPG_a;
         _b = MQ5_LPG_b;
       }
-      else if(_nameLectureRequeired == "CH4")
+      else if(nameLectureRequeired == "CH4")
       {
         _nameLectureRequeired = "CH4";
-        _a = MQ5_CH4_m;
+        _a = MQ5_CH4_a;
         _b = MQ5_CH4_b;
       }
-      else if(_nameLectureRequeired == "CO")
+      else if(nameLectureRequeired == "CO")
       {
         _nameLectureRequeired = "CO";
-        _a = MQ5_CO_m;
+        _a = MQ5_CO_a;
         _b = MQ5_CO_b;
       }    
-      else if(_nameLectureRequeired == "Alcohol")
+      else if(nameLectureRequeired == "Alcohol")
       {
         _nameLectureRequeired = "Alcohol";
-        _a = MQ5_Alcohol_m;
+        _a = MQ5_Alcohol_a;
         _b = MQ5_Alcohol_b;
       }  
     }
     else if(_type == 6)
     {
-      if(_nameLectureRequeired == "H2")
+      if(nameLectureRequeired == "H2")
       {
         _nameLectureRequeired = "H2";
-        _a = MQ6_H2_m;
+        _a = MQ6_H2_a;
         _b = MQ6_H2_b;
       }   
-      else if(_nameLectureRequeired == "LPG")
+      else if(nameLectureRequeired == "LPG")
       {
         _nameLectureRequeired = "LPG";
-        _a = MQ6_LPG_m;
+        _a = MQ6_LPG_a;
         _b = MQ6_LPG_b;
       }
-      else if(_nameLectureRequeired == "CH4")
+      else if(nameLectureRequeired == "CH4")
       {
         _nameLectureRequeired = "CH4";
-        _a = MQ6_CH4_m;
+        _a = MQ6_CH4_a;
         _b = MQ6_CH4_b;
       }
-      else if(_nameLectureRequeired == "CO")
+      else if(nameLectureRequeired == "CO")
       {
         _nameLectureRequeired = "CO";
-        _a = MQ6_CO_m;
+        _a = MQ6_CO_a;
         _b = MQ6_CO_b;
       }    
-      else if(_nameLectureRequeired == "Alcohol")
+      else if(nameLectureRequeired == "Alcohol")
       {
         _nameLectureRequeired = "Alcohol";
-        _a = MQ6_Alcohol_m;
+        _a = MQ6_Alcohol_a;
         _b = MQ6_Alcohol_b;
       }  
     }
     else if(_type == 7)
     {
-      if(_nameLectureRequeired == "H2")
+      if(nameLectureRequeired == "H2")
       {
         _nameLectureRequeired = "H2";
-        _a = MQ7_H2_m;
+        _a = MQ7_H2_a;
         _b = MQ7_H2_b;
       }   
-      else if(_nameLectureRequeired == "LPG")
+      else if(nameLectureRequeired == "LPG")
       {
         _nameLectureRequeired = "LPG";
-        _a = MQ7_LPG_m;
+        _a = MQ7_LPG_a;
         _b = MQ7_LPG_b;
       }
-      else if(_nameLectureRequeired == "CH4")
+      else if(nameLectureRequeired == "CH4")
       {
         _nameLectureRequeired = "CH4";
-        _a = MQ7_CH4_m;
+        _a = MQ7_CH4_a;
         _b = MQ7_CH4_b;
       }
-      else if(_nameLectureRequeired == "CO")
+      else if(nameLectureRequeired == "CO")
       {
         _nameLectureRequeired = "CO";
-        _a = MQ7_CO_m;
+        _a = MQ7_CO_a;
         _b = MQ7_CO_b;
       }    
-      else if(_nameLectureRequeired == "Alcohol")
+      else if(nameLectureRequeired == "Alcohol")
       {
         _nameLectureRequeired = "Alcohol";
-        _a = MQ7_Alcohol_m;
+        _a = MQ7_Alcohol_a;
         _b = MQ7_Alcohol_b;
       } 
     }
     else if(_type == 8)
     {
-      if(_nameLectureRequeired == "H2")
+      if(nameLectureRequeired == "H2")
       {
         _nameLectureRequeired = "H2";
-        _a = MQ8_H2_m;
+        _a = MQ8_H2_a;
         _b = MQ8_H2_b;
       }   
-      else if(_nameLectureRequeired == "LPG")
+      else if(nameLectureRequeired == "LPG")
       {
         _nameLectureRequeired = "LPG";
-        _a = MQ8_LPG_m;
+        _a = MQ8_LPG_a;
         _b = MQ8_LPG_b;
       }
-      else if(_nameLectureRequeired == "CH4")
+      else if(nameLectureRequeired == "CH4")
       {
         _nameLectureRequeired = "CH4";
-        _a = MQ8_CH4_m;
+        _a = MQ8_CH4_a;
         _b = MQ8_CH4_b;
       }
-      else if(_nameLectureRequeired == "CO")
+      else if(nameLectureRequeired == "CO")
       {
         _nameLectureRequeired = "CO";
-        _a = MQ8_CO_m;
+        _a = MQ8_CO_a;
         _b = MQ8_CO_b;
       }    
-      else if(_nameLectureRequeired == "Alcohol")
+      else if(nameLectureRequeired == "Alcohol")
       {
         _nameLectureRequeired = "Alcohol";
-        _a = MQ8_Alcohol_m;
+        _a = MQ8_Alcohol_a;
         _b = MQ8_Alcohol_b;
       } 
     }
     else if(_type == 9)
     {
-      if(_nameLectureRequeired == "LPG")
+      if(nameLectureRequeired == "LPG")
       {
         _nameLectureRequeired = "LPG";
-        _a = MQ9_LPG_m;
+        _a = MQ9_LPG_a;
         _b = MQ9_LPG_b;
       }
-      else if(_nameLectureRequeired == "CH4")
+      else if(nameLectureRequeired == "CH4")
       {
         _nameLectureRequeired = "CH4";
-        _a = MQ9_CH4_m;
+        _a = MQ9_CH4_a;
         _b = MQ9_CH4_b;
       }
-      else if(_nameLectureRequeired == "CO")
+      else if(nameLectureRequeired == "CO")
       {
         _nameLectureRequeired = "CO";
-        _a = MQ9_CO_m;
+        _a = MQ9_CO_a;
         _b = MQ9_CO_b;
       }    
     }
     else if(_type == 131)
     {
-      if(_nameLectureRequeired == "NOx")
+      if(nameLectureRequeired == "NOx")
       {
         _nameLectureRequeired = "NOx";
-        _a = MQ131_NOx_m;
+        _a = MQ131_NOx_a;
         _b = MQ131_NOx_b;
       }
-      else if(_nameLectureRequeired == "CL2")
+      else if(nameLectureRequeired == "CL2")
       {
         _nameLectureRequeired = "CL2";
-        _a = MQ131_CL2_m;
+        _a = MQ131_CL2_a;
         _b = MQ131_CL2_b;
       }
-      else if(_nameLectureRequeired == "O3")
+      else if(nameLectureRequeired == "O3")
       {
         _nameLectureRequeired = "O3";
-        _a = MQ131_O3_m;
+        _a = MQ131_O3_a;
         _b = MQ131_O3_b;
       }    
     }
     else if(_type == 135)
     {
-      if(_nameLectureRequeired == "CO")
+      if(nameLectureRequeired == "CO")
       {
         _nameLectureRequeired = "CO";
-        _a = MQ135_CO_m;
+        _a = MQ135_CO_a;
         _b = MQ135_CO_b;
       }
-      else if(_nameLectureRequeired == "Alcohol")
+      else if(nameLectureRequeired == "Alcohol")
       {
         _nameLectureRequeired = "Alcohol";
-        _a = MQ135_Alcohol_m;
+        _a = MQ135_Alcohol_a;
         _b = MQ135_Alcohol_b;
       }
-      else if(_nameLectureRequeired == "CO2")
+      else if(nameLectureRequeired == "CO2")
       {
         _nameLectureRequeired = "CO2";
-        _a = MQ135_CO2_m;
+        _a = MQ135_CO2_a;
         _b = MQ135_CO2_b;
       } 
-      else if(_nameLectureRequeired == "Tolueno")
+      else if(nameLectureRequeired == "Tolueno")
       {
         _nameLectureRequeired = "Tolueno";
-        _a = MQ135_Tolueno_m;
+        _a = MQ135_Tolueno_a;
         _b = MQ135_Tolueno_b;
       }
-      else if(_nameLectureRequeired == "NH4")
+      else if(nameLectureRequeired == "NH4")
       {
         _nameLectureRequeired = "NH4";
-        _a = MQ135_NH4_m;
+        _a = MQ135_NH4_a;
         _b = MQ135_NH4_b;
       }
-      else if(_nameLectureRequeired == "Acetona")
+      else if(nameLectureRequeired == "Acetona")
       {
         _nameLectureRequeired = "Acetona";
-        _a = MQ135_Acetona_m;
+        _a = MQ135_Acetona_a;
         _b = MQ135_Acetona_b;
       } 
     }
     else if(_type == 303)
     {
-      if(_nameLectureRequeired == "Iso_butano")
+      if(nameLectureRequeired == "Iso_butano")
       {
         _nameLectureRequeired = "Iso_butano";
-        _a = MQ303_Iso_butano_m;
+        _a = MQ303_Iso_butano_a;
         _b = MQ303_Iso_butano_b;
       }
-      else if(_nameLectureRequeired == "Hydrogeno")
+      else if(nameLectureRequeired == "Hydrogeno")
       {
         _nameLectureRequeired = "Hydrogeno";
-        _a = MQ303_Hydrogeno_m;
+        _a = MQ303_Hydrogeno_a;
         _b = MQ303_Hydrogeno_b;
       }
-      else if(_nameLectureRequeired == "Ethanol")
+      else if(nameLectureRequeired == "Ethanol")
       {
         _nameLectureRequeired = "Ethanol";
-        _a = MQ303_Ethanol_m;
+        _a = MQ303_Ethanol_a;
         _b = MQ303_Ethanol_b;
       } 
     }
     else if(_type == 309)
     {      
-      if(_nameLectureRequeired == "H2")
+      if(nameLectureRequeired == "H2")
       {
         _nameLectureRequeired = "H2";
-        _a = MQ309_H2_m;
+        _a = MQ309_H2_a;
         _b = MQ309_H2_b;
       } 
-      else if(_nameLectureRequeired == "CH4")
+      else if(nameLectureRequeired == "CH4")
       {
         _nameLectureRequeired = "CH4";
-        _a = MQ309_CH4_m;
+        _a = MQ309_CH4_a;
         _b = MQ309_CH4_b;
       }
-      else if(_nameLectureRequeired == "CO")
+      else if(nameLectureRequeired == "CO")
       {
         _nameLectureRequeired = "CO";
-        _a = MQ309_CO_m;
+        _a = MQ309_CO_a;
         _b = MQ309_CO_b;
       }    
-      else if(_nameLectureRequeired == "Alcohol")
+      else if(nameLectureRequeired == "Alcohol")
       {
         _nameLectureRequeired = "Alcohol";
-        _a = MQ309_Alcohol_m;
+        _a = MQ309_Alcohol_a;
         _b = MQ309_Alcohol_b;
       } 
     }
   //Serial debugging
 }
-long MQUnifiedsensor::calibrate(boolean print) {
+float MQUnifiedsensor::calibrate(boolean print) {
   //More explained in: https://jayconsystems.com/blog/understanding-a-gas-sensor
   /*
   V = I x R 
@@ -551,7 +551,7 @@ long MQUnifiedsensor::calibrate(boolean print) {
   return R0;
 }
 double MQUnifiedsensor::getVoltage(int read) {
-  double voltage = 0;
+  double voltage;
   if(read)
   {
     double avg = 0.0;
@@ -560,6 +560,10 @@ double MQUnifiedsensor::getVoltage(int read) {
       delay(retry_interval);
     }
     voltage = (avg/ retries) * _VOLT_RESOLUTION / (pow(2, ADC_RESOLUTION) - 1);
+  }
+  else
+  {
+    voltage = _sensor_volt;
   }
   return voltage;
 }
