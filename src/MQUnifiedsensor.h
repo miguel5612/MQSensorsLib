@@ -60,7 +60,7 @@
 #define retry_interval 20
 
 /**********************Application Related Macros**********************************/
-/* Gas, Value of m (Slope) and b (Cut on x axis) points */
+/* Gas, Value of a and b points */
 //Values consolidated 
 //Equation PPM = a*((x)^b)
 /********************** MQ2 ******************************************************/
