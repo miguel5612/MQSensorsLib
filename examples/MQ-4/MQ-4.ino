@@ -19,6 +19,7 @@
 //Definitions
 #define pin A0 //Analog input 0 of your arduino
 #define type 4 //MQ4
+//#define calibration_button 13 //Pin to calibrate your sensor
 
 //Declare Sensor
 MQUnifiedsensor MQ4(pin, type);
@@ -35,10 +36,19 @@ void setup() {
   Remarks: This function create the sensor object.
   ************************************************************************************/ 
   MQ4.inicializar(); 
+  //pinMode(calibration_button, INPUT);
 }
 
 void loop() {
   MQ4.update(); // Update data, the arduino will be read the voltaje in the analog pin
+  /*
+  //Rutina de calibracion - Uncomment if you need (setup too and header)
+  if(calibration_button)
+  {
+    float R0 = MQ4.calibrate();
+    MQ4.setR0(R0):
+  }
+  */
   /*****************************  MQReadSensor  ****************************************
   Input:   Gas - Serial print flag
   Output:  Value in PPM

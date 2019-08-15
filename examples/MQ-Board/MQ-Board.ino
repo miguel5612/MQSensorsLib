@@ -25,6 +25,7 @@
 #define pin7 A7 //Analog input 7 of your arduino
 #define pin8 A8 //Analog input 8 of your arduino
 #define pin9 A9 //Analog input 9 of your arduino
+//#define calibration_button 13 //Pin to calibrate your sensor
 
 //Declare Sensor
 MQUnifiedsensor MQ2(pin2, 2);
@@ -53,6 +54,7 @@ void setup() {
   MQ9.inicializar(); 
   //Print in serial monitor
   Serial.print("MQ2 to MQ9 - lecture");
+  //pinMode(calibration_button, INPUT);
 }
 
 void loop() {
@@ -65,7 +67,28 @@ void loop() {
   MQ7.update();
   MQ8.update();
   MQ9.update();
-  
+  /*
+  //Rutina de calibracion - Uncomment if you need (setup too and header)
+  if(calibration_button)
+  {
+    float R0 = MQ2.calibrate();
+    MQ2.setR0(R0):
+    R0 = MQ3.calibrate();
+    MQ3.setR0(R0):
+    R0 = MQ4.calibrate();
+    MQ4.setR0(R0):
+    R0 = MQ5.calibrate();
+    MQ5.setR0(R0):
+    R0 = MQ6.calibrate();
+    MQ6.setR0(R0):
+    R0 = MQ7.calibrate();
+    MQ7.setR0(R0):
+    R0 = MQ8.calibrate();
+    MQ8.setR0(R0):
+    R0 = MQ9.calibrate();
+    MQ9.setR0(R0):
+  }
+  */
   //Read the sensor and print in serial port
   LPG =  MQ2.readSensor();
   Alcohol =  MQ3.readSensor();
