@@ -1,6 +1,6 @@
 # MQSensorsLib
 
-This is a unified library to use sensors MQ: 2, 3, 4, 5, 6, 7, 8, 9, and 135.
+This is a unified library to use sensors MQ: 2, 3, 4, 5, 6, 7, 8, 9, 131, 135, 303A and 309A.
 
 ## Getting Started
 
@@ -75,12 +75,13 @@ Please read [CONTRIBUTING.md](https://github.com/miguel5612/MQSensorsLib/blob/NO
 
 * **Miguel A. Califa U.** - [*GitHub*](https://github.com/miguel5612) - [CV](https://scienti.colciencias.gov.co/cvlac/visualizador/generarCurriculoCv.do?cod_rh=0000050477)
 * **Ghiordy F. Contreras C.** - [*GitHub*](https://github.com/Ghiordy) - [CV](https://scienti.colciencias.gov.co/cvlac/visualizador/generarCurriculoCv.do?cod_rh=0000050476) 
-* **Mario A. Rodríguez O.** - [*GitHub*](https://github.com/MarioAndresR) - [CV](https://scienti.colciencias.gov.co/cvlac/visualizador/generarCurriculoCv.do?cod_rh=0000111304)
 * **Yersson R. Carrillo A.** - [*GitHub*](https://github.com/Yercar18/Dronefenix)  - [CV](https://scienti.colciencias.gov.co/cvlac/visualizador/generarCurriculoCv.do?cod_rh=0001637655)
 
-## Thanks
+## Colaborators
 
 * **Andres A. Martinez.** 
+* **Juan A. Rodríguez.** - [*Github*](https://github.com/Obiot24)
+* **Mario A. Rodríguez O.** - [*GitHub*](https://github.com/MarioAndresR) - [CV](https://scienti.colciencias.gov.co/cvlac/visualizador/generarCurriculoCv.do?cod_rh=0000111304)
 
 See also the list of [contributors](https://github.com/miguel5612/MQSensorsLib/contributors) who participated in this project.
 
