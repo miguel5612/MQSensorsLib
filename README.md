@@ -51,7 +51,7 @@ Use calibration systems if you have several sensors that read the same gas.
 These test can re-adjust values defined previously and you can contribute to improve conditions or features obtained from particular scenes.
 
 ```
-testMassive.ino
+Examples/MQ-3
 ```
 
 ### And coding style tests
@@ -59,7 +59,7 @@ testMassive.ino
 These tests may generate statistics validation using descriptive tools for cuantitative variables.
 
 ```
-testStatics.ino
+Examples/MQ-board.ino
 ```
 
 ## Built With
