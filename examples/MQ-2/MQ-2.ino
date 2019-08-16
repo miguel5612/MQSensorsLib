@@ -63,7 +63,6 @@ void setup() {
   CO =  MQ2.readSensor("CO"); // Return CO concentration
   Alcohol =  MQ2.readSensor("Alcohol"); // Return Alcohol concentration
   Propane =  MQ2.readSensor("Propane"); // Return Propane concentration
-  Benzene =  MQ2.readSensor("Benzene"); // Return Benzene concentration
   
   Serial.println("***************************");
   Serial.println("Lectures for MQ-2");
@@ -74,6 +73,5 @@ void setup() {
   Serial.print("CO: ");Serial.print(CO,2);Serial.println(" ppm");
   Serial.print("Alcohol: ");Serial.print(Alcohol,2);Serial.println(" ppm");
   Serial.print("Propane: ");Serial.print(Propane,2);Serial.println(" ppm");
-  Serial.print("Benzene: ");Serial.print(Benzene,2);Serial.println(" ppm");
   Serial.println("***************************");
 }

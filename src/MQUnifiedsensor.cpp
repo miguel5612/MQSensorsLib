@@ -169,12 +169,6 @@ void MQUnifiedsensor::setSensorCharacteristics(String nameLectureRequeired, bool
         _nameLectureRequeired = "Propane";
         _a = MQ2_Propane_a;
         _b = MQ2_Propane_b;
-      }   
-      else if(nameLectureRequeired == "Benzene")
-      {
-        _nameLectureRequeired = "Benzene";
-        _a = MQ2_Benzene_a;
-        _b = MQ2_Benzene_b;
       }    
     }
     else if(_type == 3)
