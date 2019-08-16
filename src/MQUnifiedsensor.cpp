@@ -105,6 +105,7 @@ void MQUnifiedsensor::inicializar()
 float MQUnifiedsensor::readSensor(String nameLectureRequeired, bool print)
 {
   setSensorCharacteristics(nameLectureRequeired, print); //In this function update _a and _b
+  //More explained in: https://jayconsystems.com/blog/understanding-a-gas-sensor
   _RS_Calc = ((_VOLT_RESOLUTION*_RLValue)/_sensor_volt)-_RLValue; //Get value of RS in a gas
   _ratio = _RS_Calc / this->_R0;   // Get ratio RS_gas/RS_air
   _PPM= _a*pow(_ratio, _b);
@@ -137,15 +138,6 @@ void MQUnifiedsensor::setSensorCharacteristics(String nameLectureRequeired, bool
     nameLectureRequeired = _nameLectureRequeired;
   }
 
-  //Dinamic index search
-  /*
-  for (int i=0; i<sizeof(_MQ); i++) {
-      if (nameLectureRequeired == _MQ[i]) {    //modified here
-        _lecturePosInArray = i;
-        break;
-      }
-    }
-  */
   if(_type == 2)
     {
       if(nameLectureRequeired == "H2")
