@@ -11,10 +11,10 @@ float ppmCH4 = MQ4.readSensor();
 
 ### Prerequisites
 
-You'll need Arduino desftop app 1.8.9 or later.
+You'll need Arduino desktop app 1.8.9 or later.
 
-### Sensor manufacter:
-| Sensor | Manufacter | URL Datasheet |
+### Sensor manufacture:
+| Sensor | Manufacture | URL Datasheet |
 |----------|----------|----------|
 | MQ-2 | Pololulu| [datasheet](https://www.pololu.com/file/0J309/MQ2.pdf) |
 | MQ-3 | Sparkfun | [datasheet](https://www.sparkfun.com/datasheets/Sensors/MQ-3.pdf) |
@@ -35,7 +35,7 @@ Review WPDigitalizer [folder](https://github.com/miguel5612/MQSensorsLib/tree/ma
 
 ### Installing
 
-Clone this repositry into your desktop machine
+Clone this repository into your desktop machine
 
 ```
 git clone https://github.com/miguel5612/MQSensorsLib
@@ -48,7 +48,7 @@ Use calibration systems if you have several sensors that read the same gas.
 
 ### Break down into end to end tests
 
-These test can re-adjust values defined previously and you can contribute to improve conditions or features obtained from particular scenes.
+These tests can re-adjust values defined previously and you can contribute to improve conditions or features obtained from particular scenes.
 
 ```
 Examples/MQ-3
@@ -56,7 +56,7 @@ Examples/MQ-3
 
 ### And coding style tests
 
-These tests may generate statistics validation using descriptive tools for cuantitative variables.
+These tests may generate statistics validation using descriptive tools for quantitative variables.
 
 ```
 Examples/MQ-board.ino
@@ -77,7 +77,7 @@ Please read [CONTRIBUTING.md](https://github.com/miguel5612/MQSensorsLib/blob/NO
 * **Ghiordy F. Contreras C.** - [*GitHub*](https://github.com/Ghiordy) - [CV](https://scienti.colciencias.gov.co/cvlac/visualizador/generarCurriculoCv.do?cod_rh=0000050476) 
 * **Yersson R. Carrillo A.** - [*GitHub*](https://github.com/Yercar18/Dronefenix)  - [CV](https://scienti.colciencias.gov.co/cvlac/visualizador/generarCurriculoCv.do?cod_rh=0001637655)
 
-## Colaborators
+## Collaborators
 
 * **Andres A. Martinez.** 
 * **Juan A. Rodríguez.** - [*Github*](https://github.com/Obiot24)
