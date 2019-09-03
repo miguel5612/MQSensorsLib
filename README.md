@@ -1,4 +1,4 @@
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.3384299.svg)](https://doi.org/10.5281/zenodo.3384299)
+[![DOI](https://zenodo.org/badge/170540207.svg)](https://zenodo.org/badge/latestdoi/170540207)
 ![Build Status](https://travis-ci.org/dwyl/esta.svg?branch=master)
 
 # MQSensorsLib
@@ -94,14 +94,44 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 
 ## Cite as
 
-* Plain text: Miguel Angel Califa Urquiza. (2019, September 3). Ghiordy/MQSensorsLib: Arduino Preview V1.0.3 (Version 1.0.3). Zenodo. http://doi.org/10.5281/zenodo.3384299
+* Plain text: Califa Urquiza, Miguel Angel, Contreras Contreras, Ghiordy, & Carrillo Amado, Yerson Ramiro. (2019, September 3). miguel5612/MQSensorsLib: Arduino Preview V1.03 (Version 1.0.3). Zenodo. http://doi.org/10.5281/zenodo.3384301
+* CSL: {
+  "publisher": "Zenodo", 
+  "DOI": "10.5281/zenodo.3384301", 
+  "title": "miguel5612/MQSensorsLib: Arduino Preview V1.03", 
+  "issued": {
+    "date-parts": [
+      [
+        2019, 
+        9, 
+        3
+      ]
+    ]
+  }, 
+  "abstract": "<p>Publishing on Zenodo platform as software in order to extend its applications for other works allowing to recognize MQSensorLib&#39;s Authors this work into scientific community using Digital Object Identifier System (DOI).</p>", 
+  "author": [
+    {
+      "family": "Califa Urquiza, Miguel Angel"
+    }, 
+    {
+      "family": "Contreras Contreras, Ghiordy"
+    }, 
+    {
+      "family": "Carrillo Amado, Yerson Ramiro"
+    }
+  ], 
+  "version": "1.0.3", 
+  "type": "article", 
+  "id": "3384301"
+}
 * BibTeX: 
-@misc{miguel_angel_califa_urquiza_2019_3384299,
-  author       = {Miguel Angel Califa Urquiza},
-  title        = {Ghiordy/MQSensorsLib: Arduino Preview V1.0.3},
+@misc{califa_urquiza_miguel_angel_2019_3384301,
+  author       = {Califa Urquiza, Miguel Angel and
+                  Contreras Contreras, Ghiordy and
+                  Carrillo Amado, Yerson Ramiro},
+  title        = {miguel5612/MQSensorsLib: Arduino Preview V1.03},
   month        = sep,
   year         = 2019,
-  doi          = {10.5281/zenodo.3384299},
-  url          = {https://doi.org/10.5281/zenodo.3384299}
+  doi          = {10.5281/zenodo.3384301},
+  url          = {https://doi.org/10.5281/zenodo.3384301}
 }
-
