@@ -1,3 +1,5 @@
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.3384299.svg)](https://doi.org/10.5281/zenodo.3384299)
+
 # MQSensorsLib
 
 This is a unified library to use sensors MQ: 2, 3, 4, 5, 6, 7, 8, 9, 131, 135, 303A and 309A.
@@ -88,3 +90,17 @@ See also the list of [contributors](https://github.com/miguel5612/MQSensorsLib/c
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
+
+## Cite as
+
+* Plain text: Miguel Angel Califa Urquiza. (2019, September 3). Ghiordy/MQSensorsLib: Arduino Preview V1.0.3 (Version 1.0.3). Zenodo. http://doi.org/10.5281/zenodo.3384299
+* BibTeX: 
+@misc{miguel_angel_califa_urquiza_2019_3384299,
+  author       = {Miguel Angel Califa Urquiza},
+  title        = {Ghiordy/MQSensorsLib: Arduino Preview V1.0.3},
+  month        = sep,
+  year         = 2019,
+  doi          = {10.5281/zenodo.3384299},
+  url          = {https://doi.org/10.5281/zenodo.3384299}
+}
+
