@@ -273,14 +273,14 @@ class MQUnifiedsensor
 
   private:
     /************************Private vars************************************/
-    int _pin, _type, _lecturePosInArray; 
-    double  _R0;
-    String  _nameLectureRequeired;   
-    float _VOLT_RESOLUTION  = 5.0; // if 3.3v use 3.3
-    int _RLValue = 10; //Value in KiloOhms
-    float _PPM, _RS_Calc;
-    float _ratioInCleanAir, _sensor_volt, RS_air, _a, _b, _ratio;
-    
+    byte _pin, _type, _lecturePosInArray; 
+    byte _VOLT_RESOLUTION  = 5.0; // if 3.3v use 3.3
+    byte _ratioInCleanAir, _sensor_volt;
+    byte _RLValue = 10; //Value in KiloOhms
+    float  _R0, RS_air, _ratio, _PPM, _RS_Calc;  
+    float _b;
+    double _a;    
+    String  _nameLectureRequeired; 
 };
 
 #endif //MQUnifiedsensor_H

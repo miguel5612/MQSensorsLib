@@ -107,8 +107,12 @@ float MQUnifiedsensor::readSensor(String nameLectureRequeired, bool print)
   setSensorCharacteristics(nameLectureRequeired, print); //In this function update _a and _b
   //More explained in: https://jayconsystems.com/blog/understanding-a-gas-sensor
   _RS_Calc = ((_VOLT_RESOLUTION*_RLValue)/_sensor_volt)-_RLValue; //Get value of RS in a gas
+  if(_RS_Calc < 0)  _RS_Calc = 0; //No negative values accepted.
   _ratio = _RS_Calc / this->_R0;   // Get ratio RS_gas/RS_air
+  if(_ratio <= 0 || _ratio>100)  _ratio = 0.01; //No negative values accepted or upper datasheet recomendation.
   _PPM= _a*pow(_ratio, _b);
+  if(_PPM < 0)  _PPM = 0; //No negative values accepted or upper datasheet recomendation.
+  if(_PPM > 10000) _PPM = 9999; //No negative values accepted or upper datasheet recomendation.
 
   if(print)
   {
@@ -521,8 +525,10 @@ float MQUnifiedsensor::calibrate(boolean print) {
   */
   float RS_air; //Define variable for sensor resistance
   float R0; //Define variable for R0
-  RS_air = ((_VOLT_RESOLUTION*_RLValue)/_sensor_volt)-_RLValue; //Calculate RS in fresh air 
+  RS_air = ((_VOLT_RESOLUTION*_RLValue)/_sensor_volt)-_RLValue; //Calculate RS in fresh air
+  if(RS_air < 0)  RS_air = 0; //No negative values accepted.
   R0 = RS_air/_ratioInCleanAir; //Calculate R0 
+  if(R0 < 0)  R0 = 0; //No negative values accepted.
   if(print)
   {
     Serial.println("*******Calibrating*********");
