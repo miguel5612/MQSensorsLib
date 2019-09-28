@@ -41,12 +41,16 @@ void setup() {
 
 void loop() {
   MQ303.update();
+  /* 
+    //Si el valor de RL es diferente a 10K por favor asigna tu valor de RL con el siguiente metodo:
+    MQ303.setRL(10);
+  */
   /*
   //Rutina de calibracion - Uncomment if you need (setup too and header)
   if(calibration_button)
   {
     float R0 = MQ303.calibrate();
-    MQ303.setR0(R0):
+    MQ303.setR0(R0);
   }
   */
   /*****************************  MQReadSensor  ****************************************
