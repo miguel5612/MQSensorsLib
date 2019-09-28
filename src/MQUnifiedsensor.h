@@ -255,6 +255,7 @@ class MQUnifiedsensor
     void inicializar();
     void update();
     void setR0(double R0 = 10);
+    void setRL(double RL = 10);
     void setVoltResolution(float voltaje = 5);
     void setSensorCharacteristics(String nameLectureReqeuired = "", bool print = false);
     void setDefaultGas();
@@ -265,6 +266,7 @@ class MQUnifiedsensor
     
     //get function for info
     double getR0();
+    double getRL();
     double getVoltage(int read = true);
     double stringToDouble(String & str);
     String getnameLecture();

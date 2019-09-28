@@ -568,6 +568,14 @@ void MQUnifiedsensor::setR0(double R0) {
 double MQUnifiedsensor::getR0() {
   return _R0;
 }
+void MQUnifiedsensor::setRL(double RL) {
+  this->_RLValue = RL;
+}
+
+double MQUnifiedsensor::getRL() {
+  return _RLValue;
+}
+
 void MQUnifiedsensor::setDefaultGas()
 {
     if(_type == 2)
