@@ -41,12 +41,16 @@ void setup() {
 
 void loop() {
   MQ131.update(); // Update data, the arduino will be read the voltaje in the analog pin
+  /*
+    // Si el valor de RL es diferente a 10K por favor asigna tu valor de RL con el siguiente metodo:
+    MQ131.setRL(10);
+  */
    /*
   //Rutina de calibracion - Uncomment if you need (setup too and header)
   if(calibration_button)
   {
     float R0 = MQ131.calibrate();
-    MQ131.setR0(R0):
+    MQ131.setR0(R0);
   }
   */
   /*****************************  MQReadSensor  ****************************************

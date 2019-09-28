@@ -42,6 +42,10 @@ void setup() {
 void loop() {
   MQ135.update(); // Update data, the arduino will be read the voltaje in the analog pin
   /*
+    //Si el valor de RL es diferente a 10K por favor asigna tu valor de RL con el siguiente metodo:
+    MQ135.setRL(10);
+  */
+  /*
   //Rutina de calibracion - Uncomment if you need (setup too and header)
   if(calibration_button)
   {

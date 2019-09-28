@@ -42,11 +42,15 @@ void setup() {
 void loop() {
   MQ9.update(); // Update data, the arduino will be read the voltaje in the analog pin
   /*
+    //Si el valor de RL es diferente a 10K por favor asigna tu valor de RL con el siguiente metodo:
+    MQ9.setRL(10);
+  */
+  /*
   //Rutina de calibracion - Uncomment if you need (setup too and header)
   if(calibration_button)
   {
     float R0 = MQ9.calibrate();
-    MQ9.setR0(R0):
+    MQ9.setR0(R0);
   }
   */
  /*****************************  MQReadSensor  ****************************************
