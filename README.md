@@ -12,6 +12,11 @@ MQUnifiedsensor MQ4(pin, 4); //Example if sensor is MQ4, type = 4
 float ppmCH4 = MQ4.readSensor();
 ```
 
+### User Manual (New!! 12.2019
+[Manual](https://drive.google.com/open?id=1BAFInlvqKR7h81zETtjz4_RC2EssvFWX)
+
+[Excel_Help_Spreadsheet (Fill only Volaje Between RL - RS - RL Values)](https://drive.google.com/open?id=1MKDcudQ7BHL_vLGi-lgPh9-pblvygRMq)
+
 ### Prerequisites
 
 You'll need Arduino desktop app 1.8.9 or later.
