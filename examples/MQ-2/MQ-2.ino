@@ -9,6 +9,10 @@
   modified 23 May 2019
   by Miguel Califa 
 
+  Updated library usage
+  modified 26 March 2020
+  by Miguel Califa 
+
  This example code is in the public domain.
 
 */
@@ -17,65 +21,50 @@
 #include <MQUnifiedsensor.h>
 
 //Definitions
+#define placa "Arduino UNO"
+#define Voltage_Resolution 5
 #define pin A0 //Analog input 0 of your arduino
-#define type 2 //MQ2
+#define type "MQ-2" //MQ2
+#define ADC_Bit_Resolution 10 // For arduino UNO/MEGA/NANO
 //#define calibration_button 13 //Pin to calibrate your sensor
 
 //Declare Sensor
-MQUnifiedsensor MQ2(pin, type);
+MQUnifiedsensor MQ2(placa, Voltage_Resolution, ADC_Bit_Resolution, pin, type);
 
 //Variables
-float H2, LPG, CO, Alcohol, Propane, Benzene;
+float CH4, LPG, CO, Alcohol, Hexane, Benzine;
 
 void setup() {
+  //Init the serial port communication - to debug the library
   Serial.begin(9600); //Init serial port
-  /*****************************  MQInicializar****************************************
-  Input:   
-  Output:  
-  Remarks: This function configure the pinMode
-  ************************************************************************************/ 
-  //init the sensor
-  MQ2.inicializar(); 
-  //pinMode(calibration_button, INPUT);
-}
 
-  void loop() {
-  MQ2.update(); // Update data, the arduino will be read the voltaje in the analog pin
+  //Set math model to calculate the PPM concentration and the value of constants
+  MQ2.setRegressionMethod("Exponential"); //_PPM =  a*ratio^b
+  MQ2.setA(574.25); MQ2.setB(-2.222); // Configurate the ecuation values to get LPG concentration
+  
+  // Calibration setup
+  MQ2.setR0(9.659574468);
+
   /* 
-    //Si el valor de RL es diferente a 10K por favor asigna tu valor de RL con el siguiente metodo:
+    //If the RL value is different from 10K please assign your RL value with the following method:
     MQ2.setRL(10);
   */
-  /*
-  //Rutina de calibracion - Uncomment if you need (setup too and header)
-  if(calibration_button)
-  {
-    float R0 = MQ2.calibrate();
-    MQ2.setR0(R0);
-  }
-  */
-  /*****************************  MQReadSensor  ****************************************
-  Input:   Gas - Serial print flag
-  Output:  Value in PPM
-  Remarks: This function use readPPM to read the value in PPM the gas in the air.
-  ************************************************************************************/ 
-  //Read the sensor and print in serial port
-  //Lecture will be saved in lecture variable
-  //float lecture =  MQ2.readSensor("", true); // Return LPG concentration
-  // Options, uncomment where you need
-  H2 =  MQ2.readSensor("H2"); // Return H2 concentration
-  LPG =  MQ2.readSensor("LPG"); // Return LPG concentration
-  CO =  MQ2.readSensor("CO"); // Return CO concentration
-  Alcohol =  MQ2.readSensor("Alcohol"); // Return Alcohol concentration
-  Propane =  MQ2.readSensor("Propane"); // Return Propane concentration
-  
-  Serial.println("***************************");
-  Serial.println("Lectures for MQ-2");
-  Serial.print("Volt: ");Serial.print(MQ2.getVoltage(false));Serial.println(" V"); 
-  Serial.print("R0: ");Serial.print(MQ2.getR0());Serial.println(" Ohm"); 
-  Serial.print("H2: ");Serial.print(H2,2);Serial.println(" ppm");
-  Serial.print("LPG: ");Serial.print(LPG,2);Serial.println(" ppm");
-  Serial.print("CO: ");Serial.print(CO,2);Serial.println(" ppm");
-  Serial.print("Alcohol: ");Serial.print(Alcohol,2);Serial.println(" ppm");
-  Serial.print("Propane: ");Serial.print(Propane,2);Serial.println(" ppm");
-  Serial.println("***************************");
+
+  /*****************************  MQ Init ********************************************/ 
+  //Remarks: Configure the pin of arduino as input.
+  /************************************************************************************/ 
+  MQ2.init(); 
+  /*****************************  MQ Init ********************************************/ 
+  //Input: setup flag, if this function are on setup will print the headers (Optional - Default value: False)
+  //Output: print on serial port the information about sensor and sensor readings
+  //Remarks: Configure the pin of arduino as input.
+  /************************************************************************************/ 
+  MQ2.serialDebug(true);
+}
+
+void loop() {
+  MQ2.update(); // Update data, the arduino will be read the voltage on the analog pin
+  MQ2.readSensor(); // Sensor will read PPM concentration using the model and a and b values setted before or in the setup
+  MQ2.serialDebug(); // Will print the table on the serial port
+  delay(500); //Sampling frequency
 }
