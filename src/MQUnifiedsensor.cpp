@@ -46,18 +46,18 @@ void MQUnifiedsensor::serialDebug(bool onSetup)
     Serial.println("MQ sensor reading library for arduino");
 
     Serial.println("Note: remember that all the parameters below can be modified during the program execution with the methods:");
-    Serial.println("setR0, setRL, setA, setB where you will have to send as parameter the new value, example: mySensor.setR0(20); //R0 = 20K");
+    Serial.println("setR0, setRL, setA, setB where you will have to send as parameter the new value, example: mySensor.setR0(20); //R0 = 20KΩ");
 
     Serial.println("Authors: Miguel A. Califa U - Yersson R. Carrillo A - Ghiordy F. Contreras C");
     Serial.println("Contributors: Andres A. Martinez - Juan A. Rodríguez - Mario A. Rodríguez O ");
 
-    Serial.println("Sensor:" + _type);
-    Serial.print("Supply voltage:"); Serial.println(_VOLT_RESOLUTION);
-    Serial.print("R0: "); Serial.println(_R0);
-    Serial.print("RL: "); Serial.println(_RL);
+    Serial.println("Sensor: " + _type);
+    Serial.print("Supply voltage: "); Serial.print(_VOLT_RESOLUTION); Serial.println(" VDC");
+    Serial.print("R0: "); Serial.print(_R0); Serial.println(" KΩ");
+    Serial.print("RL: "); Serial.print(_RL); Serial.println(" KΩ");
 
     Serial.println("Model: Logarithmic regression with parameters.");
-    Serial.print(_type + ":" + "a:"); Serial.print(_a); Serial.print(" | b:"); Serial.println(_b);
+    Serial.print(_type + " -> " + "a:"); Serial.print(_a); Serial.print(" | b:"); Serial.println(_b);
 
     Serial.println("Development board: " + _placa);
   }
@@ -66,7 +66,7 @@ void MQUnifiedsensor::serialDebug(bool onSetup)
     if(!_firstFlag)
     {
       Serial.println("| ********************************************************************" + _type + "*********************************************************************|");
-      Serial.println("|ADC_In | Equation_V_ADC | Voltage_ADC |        Equation_R         | Resistance_RS  |    EQ_Ratio  | Ratio (RS/R0) | Equation_PPM |     PPM    |");
+      Serial.println("|ADC_In | Equation_V_ADC | Voltage_ADC |        Equation_RS        | Resistance_RS  |    EQ_Ratio  | Ratio (RS/R0) | Equation_PPM |     PPM    |");
       _firstFlag = true;  //Headers are printed
     }
     else
