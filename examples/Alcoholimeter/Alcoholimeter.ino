@@ -1,5 +1,5 @@
 /*
-  MQUnifiedsensor Library - implementing an alcoholimeter
+  MQUnifiedsensor Library - reading an MQ3
 
   Demonstrates the use a MQ3 sensor.
   Library originally added 01 may 2019
@@ -7,6 +7,10 @@
  
   Added example
   modified 23 May 2019
+  by Miguel Califa 
+
+  Updated library usage
+  modified 26 March 2020
   by Miguel Califa 
 
  This example code is in the public domain.
@@ -17,49 +21,53 @@
 #include <MQUnifiedsensor.h>
 
 //Definitions
-#define pin A3 //Analog input 0 of your arduino
-#define type 3 //MQ3
+#define placa "Arduino UNO"
+#define Voltage_Resolution 5
+#define pin A0 //Analog input 0 of your arduino
+#define type "MQ-3" //MQ3
+#define ADC_Bit_Resolution 10 // For arduino UNO/MEGA/NANO
+//#define calibration_button 13 //Pin to calibrate your sensor
 
+double alcoholPPM = 0;
 //Declare Sensor
-
-MQUnifiedsensor MQ3(pin, type);
+MQUnifiedsensor MQ3(placa, Voltage_Resolution, ADC_Bit_Resolution, pin, type);
 
 void setup() {
-  Serial.begin(9600);
-  //init the sensor
-  /*****************************  MQInicializar****************************************
-  Input:  pin, type 
-  Output:  
-  Remarks: This function create the sensor object.
-  ************************************************************************************/ 
-  MQ3.inicializar(); 
+  //Init the serial port communication - to debug the library
+  Serial.begin(9600); //Init serial port
 
-  float RoCleanAir = MQ3.calibrate();
+  //Set math model to calculate the PPM concentration and the value of constants
+  MQ3.setRegressionMethod("Exponential"); //_PPM =  a*ratio^b
+  MQ3.setA(0.3934); MQ3.setB(-1.504); // Configurate the ecuation values to get Alcohol concentration
+  /*
+    Exponential regression:
+  Gas    | a      | b
+  LPG    | 44771  | -3.245
+  CH4    | 2*10^31| 19.01
+  CO     | 521853 | -3.821
+  Alcohol| 0.3934 | -1.504
+  Benzene| 4.8387 | -2.68
+  Hexane | 7585.3 | -2.849
+  */
 
-  Serial.print("R0 preconfigurado: ");
-  Serial.println(MQ3.getR0());
-  Serial.print("R0 clean air: ");
-  Serial.println(RoCleanAir);
-  //MQ3.setR0(RoCleanAir);
+  // Calibration setup
+  MQ3.setR0(3.86018237);
+
+  /* 
+    //If the RL value is different from 10K please assign your RL value with the following method:
+    MQ3.setRL(10);
+  */
+
+  /*****************************  MQ Init ********************************************/ 
+  //Remarks: Configure the pin of arduino as input.
+  /************************************************************************************/ 
+  MQ3.init(); 
 }
 
 void loop() {
-  /*****************************  MQReadSensor  ****************************************
-  Input:   Gas - Serial print flag
-  Output:  Value in PPM
-  Remarks: This function use readPPM to read the value in PPM the gas in the air.
-  ************************************************************************************/ 
-  //Read the sensor and print in serial port
-  //Lecture will be saved in lecture variable
-  int lecture =  MQ3.readSensor("", true); // Return Alcohol concentration
-  /*
-  int gL = lecture/1000;
-  Serial.print("Alcohol ppm measured: ");
-  Serial.print(lecture);
-  Serial.println("ppm");
-
-  Serial.print("Alcohol gL measured: ");
-  Serial.print(gL);
-  Serial.println("g/L");
-  */
+  MQ3.update(); // Update data, the arduino will be read the voltage on the analog pin
+  alcoholPPM = MQ3.readSensor(); // Sensor will read PPM concentration using the model and a and b values setted before or in the setup
+  Serial.print("Alcohol now (PPM): ");
+  Serial.println(alcoholPPM);
+  delay(500); //Sampling frequency
 }
