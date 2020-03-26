@@ -9,6 +9,10 @@
   modified 23 May 2019
   by Miguel Califa 
 
+  Updated library usage
+  modified 26 March 2020
+  by Miguel Califa 
+
  This example code is in the public domain.
 
 */
@@ -17,67 +21,58 @@
 #include <MQUnifiedsensor.h>
 
 //Definitions
+#define placa "Arduino UNO"
+#define Voltage_Resolution 5
 #define pin A0 //Analog input 0 of your arduino
-#define type 135 //MQ135
+#define type "MQ-135" //MQ135
+#define ADC_Bit_Resolution 10 // For arduino UNO/MEGA/NANO
 //#define calibration_button 13 //Pin to calibrate your sensor
 
 //Declare Sensor
-MQUnifiedsensor MQ135(pin, type);
-
-//Variables
-float CO, Alcohol, CO2, Tolueno, NH4, Acetona;
+MQUnifiedsensor MQ135(placa, Voltage_Resolution, ADC_Bit_Resolution, pin, type);
 
 void setup() {
+  //Init the serial port communication - to debug the library
   Serial.begin(9600); //Init serial port
-   //init the sensor
-  /*****************************  MQInicializar****************************************
-  Input:  pin, type 
-  Output:  
-  Remarks: This function create the sensor object.
-  ************************************************************************************/ 
-  MQ135.inicializar(); 
-  //pinMode(calibration_button, INPUT);
+
+  //Set math model to calculate the PPM concentration and the value of constants
+  MQ135.setRegressionMethod("Exponential"); //_PPM =  a*ratio^b
+  MQ135.setA(102.2); MQ135.setB(-2.473); // Configurate the ecuation values to get NH4 concentration
+
+  /*
+    Exponential regression:
+  GAS      | a      | b
+  CO       | 605.18 | -3.937  
+  Alcohol  | 77.255 | -3.18 
+  CO2      | 110.47 | -2.862
+  Tolueno  | 44.947 | -3.445
+  NH4      | 102.2  | -2.473
+  Acetona  | 34.668 | -3.369
+  */
+
+  // Calibration setup
+  MQ135.setR0(76.63);
+
+  /* 
+    //If the RL value is different from 10K please assign your RL value with the following method:
+    MQ135.setRL(10);
+  */
+
+  /*****************************  MQ Init ********************************************/ 
+  //Remarks: Configure the pin of arduino as input.
+  /************************************************************************************/ 
+  MQ135.init(); 
+  /*****************************  MQ Init ********************************************/ 
+  //Input: setup flag, if this function are on setup will print the headers (Optional - Default value: False)
+  //Output: print on serial port the information about sensor and sensor readings
+  //Remarks: Configure the pin of arduino as input.
+  /************************************************************************************/ 
+  MQ135.serialDebug(true);
 }
 
 void loop() {
-  MQ135.update(); // Update data, the arduino will be read the voltaje in the analog pin
-  /*
-    //Si el valor de RL es diferente a 10K por favor asigna tu valor de RL con el siguiente metodo:
-    MQ135.setRL(10);
-  */
-  /*
-  //Rutina de calibracion - Uncomment if you need (setup too and header)
-  if(calibration_button)
-  {
-    float R0 = MQ135.calibrate();
-    MQ135.setR0(R0):
-  }
-  */
-   /*****************************  MQReadSensor  ****************************************
-  Input:   Gas - Serial print flag
-  Output:  Value in PPM
-  Remarks: This function use readPPM to read the value in PPM the gas in the air.
-  ************************************************************************************/ 
-  //Read the sensor and print in serial port
-  //Lecture will be saved in lecture variable
-  //float lecture =  MQ135.readSensor("", true); // Return NH4 concentration
-  // Options, uncomment where you need
-  CO =  MQ135.readSensor("CO"); // Return CO concentration
-  Alcohol =  MQ135.readSensor("Alcohol"); // Return Alcohol concentration
-  CO2 =  MQ135.readSensor("CO2"); // Return CO2 concentration
-  Tolueno =  MQ135.readSensor("Tolueno"); // Return Tolueno concentration
-  NH4 =  MQ135.readSensor("NH4"); // Return NH4 concentration
-  Acetona =  MQ135.readSensor("Acetona"); // Return Acetona concentration
-
-  Serial.println("***************************");
-  Serial.println("Lectures for MQ-135");
-  Serial.print("Volt: ");Serial.print(MQ135.getVoltage(false));Serial.println(" V"); 
-  Serial.print("R0: ");Serial.print(MQ135.getR0());Serial.println(" Ohm"); 
-  Serial.print("CO: ");Serial.print(CO,2);Serial.println(" ppm");
-  Serial.print("Alcohol: ");Serial.print(Alcohol,2);Serial.println(" ppm");
-  Serial.print("CO2: ");Serial.print(CO2,2);Serial.println(" ppm");
-  Serial.print("Tolueno: ");Serial.print(Tolueno,2);Serial.println(" ppm");
-  Serial.print("NH4: ");Serial.print(NH4,2);Serial.println(" ppm");
-  Serial.print("Acetona: ");Serial.print(Acetona,2);Serial.println(" ppm");
-  Serial.println("***************************");  
+  MQ135.update(); // Update data, the arduino will be read the voltage on the analog pin
+  MQ135.readSensor(); // Sensor will read PPM concentration using the model and a and b values setted before or in the setup
+  MQ135.serialDebug(); // Will print the table on the serial port
+  delay(500); //Sampling frequency
 }
