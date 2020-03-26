@@ -57,7 +57,7 @@ void MQUnifiedsensor::inicializar()
 {
   pinMode(_pin, INPUT);
 }
-float MQUnifiedsensor::readSensor(String nameLectureRequeired, bool print)
+float MQUnifiedsensor::readSensor(String nameLectureRequeired)
 {
   setSensorCharacteristics(nameLectureRequeired, print); //In this function update _a and _b
   //More explained in: https://jayconsystems.com/blog/understanding-a-gas-sensor
@@ -68,25 +68,13 @@ float MQUnifiedsensor::readSensor(String nameLectureRequeired, bool print)
   _PPM= _a*pow(_ratio, _b);
   if(_PPM < 0)  _PPM = 0; //No negative values accepted or upper datasheet recomendation.
   if(_PPM > 10000) _PPM = 9999; //No negative values accepted or upper datasheet recomendation.
-
-  if(print)
-  {
-    String nameLecture = getnameLecture();
-    Serial.println("**********************");
-    Serial.println("* Sensor: MQ-" + String(_type));
-    Serial.println("* Vcc: " + String(_VOLT_RESOLUTION) + ", RS: " + String(_RS_Calc));
-    Serial.println("* RS/R0 = " + String(_ratio) + " ,Voltaje leido(ADC): " + String(_sensor_volt));
-    Serial.println("* PPM = " + String(_a) + "*pow(" + String(_ratio) + ","  + String(_b) + ")");
-    Serial.println("* Lectura(" + nameLecture + ") = " + String(_PPM) + " PPM");
-    Serial.println("**********************");
-  }
   return _PPM;
 }
 String MQUnifiedsensor::getnameLecture()
 {
   return _nameLectureRequeired;
 }
-float MQUnifiedsensor::calibrate(boolean print) {
+float MQUnifiedsensor::calibrate() {
   //More explained in: https://jayconsystems.com/blog/understanding-a-gas-sensor
   /*
   V = I x R 
@@ -105,17 +93,6 @@ float MQUnifiedsensor::calibrate(boolean print) {
   if(RS_air < 0)  RS_air = 0; //No negative values accepted.
   R0 = RS_air/_ratioInCleanAir; //Calculate R0 
   if(R0 < 0)  R0 = 0; //No negative values accepted.
-  if(print)
-  {
-    Serial.println("*******Calibrating*********");
-    Serial.println("* Sensor: MQ-" + String(_type) + "*");
-    Serial.println("* Vcc: " + String(_VOLT_RESOLUTION) + "*");
-    Serial.println("* _sensor_volt: " + String(_sensor_volt) + "*");
-    Serial.println("* _RLValue: " + String(_RLValue) + "*");
-    Serial.println("* _ratioInCleanAir: " + String(_ratioInCleanAir) + "*");
-    Serial.println("* R0: " + String(R0) + "*");
-    Serial.println("*******Calibrating*********");
-  }
   return R0;
 }
 double MQUnifiedsensor::getVoltage(int read) {
