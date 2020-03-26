@@ -1,18 +1,43 @@
 #include "MQUnifiedsensor.h"
 
-MQUnifiedsensor::MQUnifiedsensor(String Placa, int Voltage_Resolution, int pin, String type) {
+MQUnifiedsensor::MQUnifiedsensor(String Placa, double Voltage_Resolution, int pin, String type) {
   this->_pin = pin;
   this->_type = type; //MQ-2, MQ-3 ... MQ-309A
   this->_placa = Placa;
   this-> _VOLT_RESOLUTION = Voltage_Resolution;
 }
-MQUnifiedsensor::setA(double a) {
+void MQUnifiedsensor::init()
+{
+  pinMode(_pin, INPUT);
+}
+void MQUnifiedsensor::setA(double a) {
   this->_a = a;
 }
-MQUnifiedsensor::setB(double b) {
+void MQUnifiedsensor::setB(double b) {
   this->_b = b;
 }
-MQUnifiedsensor::serialDebug(boolean onSetup, String regressionMethod)
+void MQUnifiedsensor::setR0(double R0) {
+  this->_R0 = R0;
+}
+void MQUnifiedsensor::setRL(double RL) {
+  this->_RL = RL;
+}
+void MQUnifiedsensor::setVoltResolution(double voltage_resolution)
+{
+  _VOLT_RESOLUTION = voltage_resolution;
+}
+void MQUnifiedsensor::setRegressionMethod(String regressionMethod)
+{
+  this->_regressionMethod = regressionMethod;
+}
+
+double MQUnifiedsensor::getR0() {
+  return _R0;
+}
+double MQUnifiedsensor::getRL() {
+  return _RL;
+}
+void MQUnifiedsensor::serialDebug(bool onSetup)
 {
   if(onSetup)
   {
@@ -26,12 +51,12 @@ MQUnifiedsensor::serialDebug(boolean onSetup, String regressionMethod)
     Serial.println("Contributors: Andres A. Martinez - Juan A. Rodríguez - Mario A. Rodríguez O ");
 
     Serial.println("Sensor:" + _type);
-    Serial.println("Supply voltage:" + _VOLT_RESOLUTION);
-    Serial.println("R0: " + _R0);
-    Serial.println("RL: " + _RL);
+    Serial.print("Supply voltage:"); Serial.println(_VOLT_RESOLUTION);
+    Serial.print("R0: "); Serial.println(_R0);
+    Serial.print("RL: "); Serial.println(_RL);
 
     Serial.println("Model: Logarithmic regression with parameters.");
-    Serial.println(_type + ":" + "a:" + _a + " | b:" + _b);
+    Serial.print(_type + ":" + "a:"); Serial.print(_a); Serial.print(" | b:"); Serial.println(_b);
 
     Serial.println("Development board: " + _placa);
   }
@@ -46,9 +71,11 @@ MQUnifiedsensor::serialDebug(boolean onSetup, String regressionMethod)
     else
     {
       String eq = "";
-      if(regression == "Linear") eq = "ratio*a + b"
-      if(regression == "Exponential") eq = "a*ratio^b"
-      Serial.println("|" + _adc + "|" + "v = ADC*" + _VOLT_RESOLUTION + "/1024" + "|" + _sensor_volt + "|" + "RS = ((" + _VOLT_RESOLUTION + "*RL)/Voltage) - RL" + "|" + _RS_Calc + "|" + "Ratio = RS/R0" + "|" + _ratio + "|" + eq + "|" + _PPM);
+      if(_regressionMethod == "Linear") eq = "ratio*a + b";
+      if(_regressionMethod == "Exponential") eq = "a*ratio^b";
+      Serial.print("|"); Serial.print(_adc);  Serial.print("| v = ADC*"); Serial.print(_VOLT_RESOLUTION); Serial.print("/1024 |"); Serial.print(_sensor_volt);
+      Serial.print("| RS = ((" ); Serial.print(_VOLT_RESOLUTION ); Serial.print("*RL)/Voltage) - RL |"); Serial.print(_RS_Calc); Serial.print("| Ratio = RS/R0 |");
+      Serial.print(_ratio);  Serial.print( "|" + eq + "|"); Serial.print(_PPM); Serial.println("|");
     }
   }
 }
@@ -56,30 +83,18 @@ void MQUnifiedsensor::update()
 {
   _sensor_volt = this->getVoltage();
 }
-void MQUnifiedsensor::setVoltResolution(float voltaje)
-{
-  _VOLT_RESOLUTION = voltaje;
-}
-void MQUnifiedsensor::init()
-{
-  pinMode(_pin, INPUT);
-}
-float MQUnifiedsensor::readSensor(String regressionMethod)
+float MQUnifiedsensor::readSensor()
 {
   //More explained in: https://jayconsystems.com/blog/understanding-a-gas-sensor
-  _RS_Calc = ((_VOLT_RESOLUTION*_RLValue)/_sensor_volt)-_RLValue; //Get value of RS in a gas
+  _RS_Calc = ((_VOLT_RESOLUTION*_RL)/_sensor_volt)-_RL; //Get value of RS in a gas
   if(_RS_Calc < 0)  _RS_Calc = 0; //No negative values accepted.
   _ratio = _RS_Calc / this->_R0;   // Get ratio RS_gas/RS_air
   if(_ratio <= 0 || _ratio>100)  _ratio = 0.01; //No negative values accepted or upper datasheet recomendation.
-  if(regressionMethod == "Exponential") _PPM= _a*pow(_ratio, _b);
-  if(regressionMethod == "Linear") _PPM= _a*_ratio + _b);
+  if(_regressionMethod == "Exponential") _PPM= _a*pow(_ratio, _b);
+  if(_regressionMethod == "Linear") _PPM= _a*_ratio + _b;
   if(_PPM < 0)  _PPM = 0; //No negative values accepted or upper datasheet recomendation.
   if(_PPM > 10000) _PPM = 9999; //No negative values accepted or upper datasheet recomendation.
   return _PPM;
-}
-String MQUnifiedsensor::getnameLecture()
-{
-  return _nameLectureRequeired;
 }
 float MQUnifiedsensor::calibrate() {
   //More explained in: https://jayconsystems.com/blog/understanding-a-gas-sensor
@@ -96,7 +111,7 @@ float MQUnifiedsensor::calibrate() {
   */
   float RS_air; //Define variable for sensor resistance
   float R0; //Define variable for R0
-  RS_air = ((_VOLT_RESOLUTION*_RLValue)/_sensor_volt)-_RLValue; //Calculate RS in fresh air
+  RS_air = ((_VOLT_RESOLUTION*_RL)/_sensor_volt)-_RL; //Calculate RS in fresh air
   if(RS_air < 0)  RS_air = 0; //No negative values accepted.
   R0 = RS_air/_ratioInCleanAir; //Calculate R0 
   if(R0 < 0)  R0 = 0; //No negative values accepted.
@@ -120,23 +135,6 @@ double MQUnifiedsensor::getVoltage(int read) {
   }
   return voltage;
 }
-
-
-void MQUnifiedsensor::setR0(double R0) {
-  this->_R0 = R0;
-}
-
-double MQUnifiedsensor::getR0() {
-  return _R0;
-}
-void MQUnifiedsensor::setRL(double RL) {
-  this->_RLValue = RL;
-}
-
-double MQUnifiedsensor::getRL() {
-  return _RLValue;
-}
-
 double MQUnifiedsensor::stringToDouble(String & str)
 {
   return atof( str.c_str() );
