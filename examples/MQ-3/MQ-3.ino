@@ -39,7 +39,7 @@ void setup() {
   Remarks: This function create the sensor object.
   ************************************************************************************/ 
   MQ3.setRegressionMethod("Exponential");
-  MQ3.setA(4.8387); MQ3.setB(-2.68); // Configurate the ecuation values
+  MQ3.setA(4.8387); MQ3.setB(-2.68); // Configurate the ecuation values to get Benzene concentration
   
   /* 
     //Si el valor de RL es diferente a 10K por favor asigna tu valor de RL con el siguiente metodo:
