@@ -13,40 +13,36 @@
 class MQUnifiedsensor
 {
   public:
-    MQUnifiedsensor(int pin, int type);
+    MQUnifiedsensor(String Placa = "Arduino", int Voltage_Resolution =  5, int pin, String type);
     
     //Functions to set values
     void inicializar();
     void update();
     void setR0(double R0 = 10);
     void setRL(double RL = 10);
-    void setVoltResolution(float voltaje = 5);
-    void setSensorCharacteristics(String nameLectureReqeuired = "", bool print = false);
-    void setDefaultGas();
+    void setVoltResolution(double voltage_resolution =  5);
+    void serialDebug(boolean onSetup = false); //Show on serial port information about sensor
     
     //user functions
     float calibrate(boolean print = false);
-    float readSensor(String nameLectureRequeired = "", bool print = false);
+    float readSensor(<String regressionMethod = "Exponential", float _a, float _b);
     
     //get function for info
     double getR0();
     double getRL();
     double getVoltage(int read = true);
-    double stringToDouble(String & str);
-    String getnameLecture();
-
     
+    double stringToDouble(String & str);    
 
   private:
     /************************Private vars************************************/
-    byte _pin, _type, _lecturePosInArray; 
+    byte _pin;
+    String _type;
+    String _placa; 
     byte _VOLT_RESOLUTION  = 5.0; // if 3.3v use 3.3
     byte _ratioInCleanAir, _sensor_volt;
     byte _RLValue = 10; //Value in KiloOhms
     float  _R0, RS_air, _ratio, _PPM, _RS_Calc;  
-    float _b;
-    double _a;    
-    String  _nameLectureRequeired; 
 };
 
 #endif //MQUnifiedsensor_H
