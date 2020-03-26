@@ -16,7 +16,7 @@ class MQUnifiedsensor
     MQUnifiedsensor(String Placa = "Arduino", int Voltage_Resolution =  5, int pin, String type);
     
     //Functions to set values
-    void inicializar();
+    void init();
     void update();
     void setR0(double R0 = 10);
     void setRL(double RL = 10);
@@ -37,11 +37,13 @@ class MQUnifiedsensor
   private:
     /************************Private vars************************************/
     byte _pin;
+    byte _firstFlag = false;
     String _type;
     String _placa; 
     byte _VOLT_RESOLUTION  = 5.0; // if 3.3v use 3.3
     byte _ratioInCleanAir, _sensor_volt;
     byte _RLValue = 10; //Value in KiloOhms
+    double _adc;
     float  _R0, RS_air, _ratio, _PPM, _RS_Calc;  
 };
 

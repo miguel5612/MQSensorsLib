@@ -53,7 +53,7 @@ void MQUnifiedsensor::setVoltResolution(float voltaje)
 {
   _VOLT_RESOLUTION = voltaje;
 }
-void MQUnifiedsensor::inicializar()
+void MQUnifiedsensor::init()
 {
   pinMode(_pin, INPUT);
 }
