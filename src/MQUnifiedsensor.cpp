@@ -58,7 +58,7 @@ void MQUnifiedsensor::serialDebug(bool onSetup)
     Serial.print("R0: "); Serial.print(_R0); Serial.println(" KΩ");
     Serial.print("RL: "); Serial.print(_RL); Serial.println(" KΩ");
 
-    Serial.println("Model: Logarithmic regression with parameters.");
+    Serial.print("Model: "); if(_regressionMethod == "Exponential") Serial.println("Exponential"); else Serial.println("Linear");
     Serial.print(_type + " -> " + "a:"); Serial.print(_a); Serial.print(" | b:"); Serial.println(_b);
 
     Serial.println("Development board: " + _placa);
