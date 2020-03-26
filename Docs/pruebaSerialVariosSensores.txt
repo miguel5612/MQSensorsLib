@@ -1,0 +1,27 @@
+En esta prueba miraremos como apareceria un serial print antes de aplicarlo a la libreria.
+
+************************************************************************************************************************************************
+Libreria de lectura de sensores MQ para arduino
+
+Nota: recuerda que todos los parametros acontinuacion los puedes modificar durante la ejecucion del programa con los metodos:
+setR0, setRL, setA, setB donde tendras que enviar como parametro el nuevo valor, ejemplo: MQ4.setR0(20); //R0 = 20K
+
+Autores: Miguel A. Califa U - Yersson R. Carrillo A - Ghiordy F. Contreras C
+Colaboradores: Andres A. Martinez - Juan A. Rodríguez - Mario A. Rodríguez O
+
+Sensores: MQ-4 | MQ-5 | MQ-6 | MQ-7
+
+Voltaje de alimentacion: 5V
+R0: - Sin determinar - 
+RL: 10KOhm
+
+Modelo: Regresion logaritmica con parametros.
+MQ-4: a = 10000 | b = 50000
+MQ-5: a = 10000 | b = 50000
+
+Tarjeta de desarrollo: Arduino
+
+|----------                  MQ-4                         ----------|----------                  MQ-5                         ----------|
+|ADC_In | Voltaje_ADC | Resistencia_RS | Ratio (RS/R0) |     PPM    |ADC_In | Voltaje_ADC | Resistencia_RS | Ratio (RS/R0) |     PPM    |
+*****************************************************************************************************************************************
+| 224   |  1.09375    | RS = 1.07K     | Ratio = .123K | 100000 PPM | 224   |  1.09375    | RS = 1.07K     | Ratio = .123K | 100000 PPM |  
