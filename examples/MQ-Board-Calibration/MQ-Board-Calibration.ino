@@ -35,6 +35,10 @@
 LiquidCrystal_I2C lcd(0x27, 16, 2);
 
 //Definitions
+#define placa "Arduino Mega 2560"
+#define Voltage_Resolution 5
+#define type "MQ-Board"
+#define ADC_Bit_Resolution 10 // For arduino UNO/MEGA/NANO
 #define pin2 A2 //Analog input 2 of your arduino
 #define pin3 A3 //Analog input 3 of your arduino
 #define pin4 A4 //Analog input 4 of your arduino
@@ -44,17 +48,31 @@ LiquidCrystal_I2C lcd(0x27, 16, 2);
 #define pin8 A8 //Analog input 8 of your arduino
 #define pin9 A9 //Analog input 9 of your arduino
 
+#define RatioMQ2CleanAir 9.83 //RS / R0 = 9.83 ppm 
+#define RatioMQ3CleanAir 60   //RS / R0 = 60 ppm 
+#define RatioMQ4CleanAir 4.4  //RS / R0 = 4.4 ppm 
+#define RatioMQ5CleanAir 6.5  //RS / R0 = 6.5 ppm 
+#define RatioMQ6CleanAir 10   //RS / R0 = 10 ppm 
+#define RatioMQ7CleanAir 27.5 //RS / R0 = 27.5 ppm  
+#define RatioMQ8CleanAir 70   //RS / R0 = 70 ppm   
+#define RatioMQ9CleanAir 9.6  //RS / R0 = 9.6 ppm    
+#define RatioMQ131CleanAir 15 //RS / R0 = 15 ppm
+#define RatioMQ135CleanAir 3.6//RS / R0 = 3.6 ppm     
+#define RatioMQ303CleanAir 1  //RS / R0 = 1 ppm    
+#define RatioMQ309CleanAir 11 //RS / R0 = 11 ppm    
+
+
 #define timeDelay 500
 //Declare Sensor
 
-MQUnifiedsensor MQ2(pin2, 2);
-MQUnifiedsensor MQ3(pin3, 3);
-MQUnifiedsensor MQ4(pin4, 4);
-MQUnifiedsensor MQ5(pin5, 5);
-MQUnifiedsensor MQ6(pin6, 6);
-MQUnifiedsensor MQ7(pin7, 7);
-MQUnifiedsensor MQ8(pin8, 8);
-MQUnifiedsensor MQ9(pin9, 9);
+MQUnifiedsensor MQ2(placa, Voltage_Resolution, ADC_Bit_Resolution, pin2, type);
+MQUnifiedsensor MQ3(placa, Voltage_Resolution, ADC_Bit_Resolution, pin3, type);
+MQUnifiedsensor MQ4(placa, Voltage_Resolution, ADC_Bit_Resolution, pin4, type);
+MQUnifiedsensor MQ5(placa, Voltage_Resolution, ADC_Bit_Resolution, pin5, type);
+MQUnifiedsensor MQ6(placa, Voltage_Resolution, ADC_Bit_Resolution, pin6, type);
+MQUnifiedsensor MQ7(placa, Voltage_Resolution, ADC_Bit_Resolution, pin7, type);
+MQUnifiedsensor MQ8(placa, Voltage_Resolution, ADC_Bit_Resolution, pin8, type);
+MQUnifiedsensor MQ9(placa, Voltage_Resolution, ADC_Bit_Resolution, pin9, type);
 
 unsigned long contador = 0;
 unsigned long time = millis();
@@ -74,24 +92,46 @@ void setup() {
   lcd.print("   Calibrating");
   //init the sensor
   
-  MQ2.inicializar(); 
-  MQ3.inicializar(); 
-  MQ4.inicializar(); 
-  MQ5.inicializar(); 
-  MQ6.inicializar(); 
-  MQ7.inicializar(); 
-  MQ8.inicializar(); 
-  MQ9.inicializar();
+  MQ2.init();
+  MQ2.setRegressionMethod("Exponential"); //_PPM =  a*ratio^b
+  MQ2.setA(574.25); MQ2.setB(-2.222); // Configurate the ecuation values to get LPG concentration
+  MQ2.setR0(9.659574468);
 
-  MQ2.setVoltResolution(5);
-  MQ3.setVoltResolution(5);
-  MQ4.setVoltResolution(5);
-  MQ5.setVoltResolution(5);
-  MQ6.setVoltResolution(5);
-  MQ7.setVoltResolution(5);
-  MQ8.setVoltResolution(5);
-  MQ9.setVoltResolution(5);
+  MQ3.init(); 
+  MQ3.setRegressionMethod("Exponential"); //_PPM =  a*ratio^b
+  MQ3.setA(4.8387); MQ3.setB(-2.68); // Configurate the ecuation values to get Benzene concentration
+  MQ3.setR0(3.86018237);
+
+  MQ4.init(); 
+  MQ4.setRegressionMethod("Exponential"); //_PPM =  a*ratio^b
+  MQ4.setA(1012.7); MQ4.setB(-2.786); // Configurate the ecuation values to get CH4 concentration
+  MQ4.setR0(3.86018237);
+
+  MQ5.init(); 
+  MQ5.setRegressionMethod("Exponential"); //_PPM =  a*ratio^b
+  MQ5.setA(1163.8); MQ5.setB(-3.874); // Configurate the ecuation values to get H2 concentration
+  MQ5.setR0(71.100304);
   
+  MQ6.init(); 
+  MQ6.setRegressionMethod("Exponential"); //_PPM =  a*ratio^b
+  MQ6.setA(2127.2); MQ6.setB(-2.526); // Configurate the ecuation values to get CH4 concentration
+  MQ6.setR0(13.4285714);
+  
+  MQ7.init(); 
+  MQ7.setRegressionMethod("Exponential"); //_PPM =  a*ratio^b
+  MQ7.setA(99.042); MQ7.setB(-1.518); // Configurate the ecuation values to get CO concentration
+  MQ7.setR0(4);
+  
+  MQ8.init(); 
+  MQ8.setRegressionMethod("Exponential"); //_PPM =  a*ratio^b
+  MQ8.setA(976.97); MQ8.setB(-0.688); // Configurate the ecuation values to get H2 concentration
+  MQ8.setR0(1);
+  
+  MQ9.init(); 
+  MQ9.setRegressionMethod("Exponential"); //_PPM =  a*ratio^b
+  MQ9.setA(1000.5); MQ9.setB(-2.186); // Configurate the ecuation values to get LPG concentration
+  MQ9.setR0(9.42857143);
+
   //Print in serial monitor
   Serial.println("MQ2 to MQ9 - Calibracion");
   Serial.println("Note - Make sure you are in a clean room and the sensor has pre-heated almost 4 hours");
@@ -113,14 +153,14 @@ void loop() {
   MQ9.update();
   
   //Read the sensor
-  float lecture2 =  MQ2.calibrate();
-  float lecture3 =  MQ3.calibrate();
-  float lecture4 =  MQ4.calibrate();
-  float lecture5 =  MQ5.calibrate();
-  float lecture6 =  MQ6.calibrate();
-  float lecture7 =  MQ7.calibrate();
-  float lecture8 =  MQ8.calibrate();
-  float lecture9 =  MQ9.calibrate();
+  float lecture2 =  MQ2.calibrate(RatioMQ2CleanAir);
+  float lecture3 =  MQ3.calibrate(RatioMQ3CleanAir);
+  float lecture4 =  MQ4.calibrate(RatioMQ4CleanAir);
+  float lecture5 =  MQ5.calibrate(RatioMQ5CleanAir);
+  float lecture6 =  MQ6.calibrate(RatioMQ6CleanAir);
+  float lecture7 =  MQ7.calibrate(RatioMQ7CleanAir);
+  float lecture8 =  MQ8.calibrate(RatioMQ8CleanAir);
+  float lecture9 =  MQ9.calibrate(RatioMQ9CleanAir);
 
     //Read voltage the sensor
   float v2 =  MQ2.getVoltage(false);
