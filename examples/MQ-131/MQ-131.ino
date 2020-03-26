@@ -1,12 +1,16 @@
 /*
-  MQUnifiedsensor Library - reading an MQ131
+  MQUnifiedsensor Library - reading an MQ9
 
-  Demonstrates the use a MQ131 sensor.
+  Demonstrates the use a MQ9 sensor.
   Library originally added 01 may 2019
   by Miguel A Califa, Yersson Carrillo, Ghiordy Contreras, Mario Rodriguez
  
   Added example
   modified 23 May 2019
+  by Miguel Califa 
+
+  Updated library usage
+  modified 26 March 2020
   by Miguel Califa 
 
  This example code is in the public domain.
@@ -17,61 +21,55 @@
 #include <MQUnifiedsensor.h>
 
 //Definitions
+#define placa "Arduino UNO"
+#define Voltage_Resolution 5
 #define pin A0 //Analog input 0 of your arduino
-#define type 131 //MQ131
+#define type "MQ-8" //MQ9
+#define ADC_Bit_Resolution 10 // For arduino UNO/MEGA/NANO
 //#define calibration_button 13 //Pin to calibrate your sensor
 
 //Declare Sensor
-MQUnifiedsensor MQ131(pin, type);
-
-//Variables
-float NOx, CL2, O3;
+MQUnifiedsensor MQ9(placa, Voltage_Resolution, ADC_Bit_Resolution, pin, type);
 
 void setup() {
+  //Init the serial port communication - to debug the library
   Serial.begin(9600); //Init serial port
-   //init the sensor
-  /*****************************  MQInicializar****************************************
-  Input:  pin, type 
-  Output:  
-  Remarks: This function create the sensor object.
-  ************************************************************************************/ 
-  MQ131.inicializar(); 
-  //pinMode(calibration_button, INPUT);
+
+  //Set math model to calculate the PPM concentration and the value of constants
+  MQ9.setRegressionMethod("Exponential"); //_PPM =  a*ratio^b
+  MQ9.setA(1000.5); MQ9.setB(-2.186); // Configurate the ecuation values to get LPG concentration
+
+  /*
+    Exponential regression:
+  GAS     | a      | b
+  LPG     | 1000.5 | -2.186
+  CH4     | 4269.6 | -2.648
+  CO      | 599.65 | -2.244
+  */
+
+  // Calibration setup
+  MQ9.setR0(9.42857143);
+
+  /* 
+    //If the RL value is different from 10K please assign your RL value with the following method:
+    MQ9.setRL(10);
+  */
+
+  /*****************************  MQ Init ********************************************/ 
+  //Remarks: Configure the pin of arduino as input.
+  /************************************************************************************/ 
+  MQ9.init(); 
+  /*****************************  MQ Init ********************************************/ 
+  //Input: setup flag, if this function are on setup will print the headers (Optional - Default value: False)
+  //Output: print on serial port the information about sensor and sensor readings
+  //Remarks: Configure the pin of arduino as input.
+  /************************************************************************************/ 
+  MQ9.serialDebug(true);
 }
 
 void loop() {
-  MQ131.update(); // Update data, the arduino will be read the voltaje in the analog pin
-  /*
-    // Si el valor de RL es diferente a 10K por favor asigna tu valor de RL con el siguiente metodo:
-    MQ131.setRL(10);
-  */
-   /*
-  //Rutina de calibracion - Uncomment if you need (setup too and header)
-  if(calibration_button)
-  {
-    float R0 = MQ131.calibrate();
-    MQ131.setR0(R0);
-  }
-  */
-  /*****************************  MQReadSensor  ****************************************
-  Input:   Gas - Serial print flag
-  Output:  Value in PPM
-  Remarks: This function use readPPM to read the value in PPM the gas in the air.
-  ************************************************************************************/ 
-  //Read the sensor and print in serial port
-  //Lecture will be saved in lecture variable
-  //float lecture =  MQ131.readSensor("", true); // Return O3 concentration
-  // Options, uncomment where you need
-  NOx =  MQ131.readSensor("NOx"); // Return NOx concentration
-  CL2 =  MQ131.readSensor("CL2"); // Return CL2 concentration
-  O3 =  MQ131.readSensor("O3"); // Return O3 concentration
-
-  Serial.println("***************************");
-  Serial.println("Lectures for MQ-131");
-  Serial.print("Volt: ");Serial.print(MQ131.getVoltage(false));Serial.println(" V"); 
-  Serial.print("R0: ");Serial.print(MQ131.getR0());Serial.println(" Ohm"); 
-  Serial.print("NOx: ");Serial.print(NOx,2);Serial.println(" ppm");
-  Serial.print("CL2: ");Serial.print(CL2,2);Serial.println(" ppm");
-  Serial.print("O3: ");Serial.print(O3,2);Serial.println(" ppm");
-  Serial.println("***************************");  
+  MQ9.update(); // Update data, the arduino will be read the voltage on the analog pin
+  MQ9.readSensor(); // Sensor will read PPM concentration using the model and a and b values setted before or in the setup
+  MQ9.serialDebug(); // Will print the table on the serial port
+  delay(500); //Sampling frequency
 }
