@@ -8,7 +8,17 @@ This is a unified library to use sensors MQ: 2, 3, 4, 5, 6, 7, 8, 9, 131, 135, 3
 ## Getting Started
 
 ```
-MQUnifiedsensor MQ4(pin, 4); //Example if sensor is MQ4, type = 4
+#define placa "Arduino UNO"
+#define Voltage_Resolution 5
+#define pin A0 //Analog input 0 of your arduino
+#define type "MQ-4" //MQ4
+#define ADC_Bit_Resolution 10 // For arduino UNO/MEGA/NANO
+MQUnifiedsensor MQ309(placa, Voltage_Resolution, ADC_Bit_Resolution, pin, type); //Example if sensor is MQ4 on Arduino UNO board
+MQ4.setRegressionMethod("Exponential"); //_PPM =  a*ratio^b
+MQ4.setA(1012.7); MQ4.setB(-2.786); // Configurate the ecuation values to get CH4 concentration
+MQ4.setR0(3.86018237);
+MQ4.init();
+MQ4.update();
 float ppmCH4 = MQ4.readSensor();
 ```
 
