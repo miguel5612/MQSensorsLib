@@ -6,7 +6,13 @@ MQUnifiedsensor::MQUnifiedsensor(String Placa, int Voltage_Resolution, int pin, 
   this->_placa = Placa;
   this-> _VOLT_RESOLUTION = Voltage_Resolution;
 }
-MQUnifiedsensor::serialDebug(boolean onSetup)
+MQUnifiedsensor::setA(double a) {
+  this->_a = a;
+}
+MQUnifiedsensor::setB(double b) {
+  this->_b = b;
+}
+MQUnifiedsensor::serialDebug(boolean onSetup, String regressionMethod)
 {
   if(onSetup)
   {
@@ -40,6 +46,7 @@ MQUnifiedsensor::serialDebug(boolean onSetup)
     else
     {
       String eq = "";
+      if(regression == "Linear") eq = "ratio*a + b"
       if(regression == "Exponential") eq = "a*ratio^b"
       Serial.println("|" + _adc + "|" + "v = ADC*" + _VOLT_RESOLUTION + "/1024" + "|" + _sensor_volt + "|" + "RS = ((" + _VOLT_RESOLUTION + "*RL)/Voltage) - RL" + "|" + _RS_Calc + "|" + "Ratio = RS/R0" + "|" + _ratio + "|" + eq + "|" + _PPM);
     }
@@ -57,15 +64,15 @@ void MQUnifiedsensor::init()
 {
   pinMode(_pin, INPUT);
 }
-float MQUnifiedsensor::readSensor(String nameLectureRequeired)
+float MQUnifiedsensor::readSensor(String regressionMethod)
 {
-  setSensorCharacteristics(nameLectureRequeired, print); //In this function update _a and _b
   //More explained in: https://jayconsystems.com/blog/understanding-a-gas-sensor
   _RS_Calc = ((_VOLT_RESOLUTION*_RLValue)/_sensor_volt)-_RLValue; //Get value of RS in a gas
   if(_RS_Calc < 0)  _RS_Calc = 0; //No negative values accepted.
   _ratio = _RS_Calc / this->_R0;   // Get ratio RS_gas/RS_air
   if(_ratio <= 0 || _ratio>100)  _ratio = 0.01; //No negative values accepted or upper datasheet recomendation.
-  _PPM= _a*pow(_ratio, _b);
+  if(regressionMethod == "Exponential") _PPM= _a*pow(_ratio, _b);
+  if(regressionMethod == "Linear") _PPM= _a*_ratio + _b);
   if(_PPM < 0)  _PPM = 0; //No negative values accepted or upper datasheet recomendation.
   if(_PPM > 10000) _PPM = 9999; //No negative values accepted or upper datasheet recomendation.
   return _PPM;

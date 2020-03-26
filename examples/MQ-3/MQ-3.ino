@@ -35,7 +35,7 @@ void setup() {
   Output:  
   Remarks: This function create the sensor object.
   ************************************************************************************/ 
-  MQ3.inicializar(); 
+  MQ3.init(); 
   //pinMode(calibration_button, INPUT);
 }
 
@@ -62,12 +62,23 @@ void loop() {
   //Lecture will be saved in lecture variable
   //float lecture =  MQ3.readSensor("", true); // Return Alcohol concentration
   // Options, uncomment where you need
-  CH4 =  MQ3.readSensor("CH4"); // Return CH4 concentration
-  LPG =  MQ3.readSensor("LPG"); // Return LPG concentration
-  CO =  MQ3.readSensor("CO"); // Return CO concentration
-  Alcohol =  MQ3.readSensor("Alcohol"); // Return Alcohol concentration
-  Hexane =  MQ3.readSensor("Hexane"); // Return Hexane concentration
-  Benzine =  MQ3.readSensor("Benzene"); // Return Benzene concentration
+  MQ3.setA(2*10^31); MQ3.setB(19.01); // Configurate the ecuation values
+  CH4 =  MQ3.readSensor("Exponential"); // Return CH4 concentration
+
+  MQ3.setA(44771); MQ3.setB(-3.245); // Configurate the ecuation values
+  LPG =  MQ3.readSensor("Exponential"); // Return LPG concentration
+
+  MQ3.setA(521853); MQ3.setB(-3.821); // Configurate the ecuation values
+  CO =  MQ3.readSensor("Exponential"); // Return CO concentration
+  
+  MQ3.setA(0.3934); MQ3.setB(-1.504); // Configurate the ecuation values
+  Alcohol =  MQ3.readSensor("Exponential"); // Return Alcohol concentration
+  
+  MQ3.setA(7585.3); MQ3.setB(-2.849); // Configurate the ecuation values
+  Hexane =  MQ3.readSensor("Exponential"); // Return Hexane concentration
+
+  MQ3.setA(4.8387); MQ3.setB(-2.68); // Configurate the ecuation values
+  Benzine =  MQ3.readSensor("Exponential"); // Return Benzene concentration
 
   Serial.println("***************************");
   Serial.println("Lectures for MQ-3");

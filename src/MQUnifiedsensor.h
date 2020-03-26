@@ -20,12 +20,14 @@ class MQUnifiedsensor
     void update();
     void setR0(double R0 = 10);
     void setRL(double RL = 10);
+    void setA(double a);
+    void setB(double b);
     void setVoltResolution(double voltage_resolution =  5);
     void serialDebug(boolean onSetup = false); //Show on serial port information about sensor
     
     //user functions
-    float calibrate(boolean print = false);
-    float readSensor(<String regressionMethod = "Exponential", float _a, float _b);
+    float calibrate(boolean print = false, String regressionMethod = "Exponential");
+    float readSensor(String regressionMethod = "Exponential", float _a, float _b);
     
     //get function for info
     double getR0();
@@ -43,7 +45,7 @@ class MQUnifiedsensor
     byte _VOLT_RESOLUTION  = 5.0; // if 3.3v use 3.3
     byte _ratioInCleanAir, _sensor_volt;
     byte _RLValue = 10; //Value in KiloOhms
-    double _adc;
+    double _adc, _a, _b;
     float  _R0, RS_air, _ratio, _PPM, _RS_Calc;  
 };
 
