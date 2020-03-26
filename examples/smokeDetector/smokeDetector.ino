@@ -46,6 +46,14 @@ void setup() {
   //Remarks: Configure the pin of arduino as input.
   /************************************************************************************/ 
   MQ4.init(); 
+  
+  // Calibration setup
+  MQ4.setR0(3.86018237);
+  
+  /* 
+    //If the RL value is different from 10K please assign your RL value with the following method:
+    MQ4.setRL(10);
+  */
 }
 
   void loop() {
