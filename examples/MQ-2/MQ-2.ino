@@ -31,9 +31,6 @@
 //Declare Sensor
 MQUnifiedsensor MQ2(placa, Voltage_Resolution, ADC_Bit_Resolution, pin, type);
 
-//Variables
-float CH4, LPG, CO, Alcohol, Hexane, Benzine;
-
 void setup() {
   //Init the serial port communication - to debug the library
   Serial.begin(9600); //Init serial port
