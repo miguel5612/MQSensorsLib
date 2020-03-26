@@ -1,10 +1,11 @@
 #include "MQUnifiedsensor.h"
 
-MQUnifiedsensor::MQUnifiedsensor(String Placa, double Voltage_Resolution, int pin, String type) {
+MQUnifiedsensor::MQUnifiedsensor(String Placa, double Voltage_Resolution, int ADC_Bit_Resolution, int pin, String type) {
   this->_pin = pin;
   this->_type = type; //MQ-2, MQ-3 ... MQ-309A
   this->_placa = Placa;
   this-> _VOLT_RESOLUTION = Voltage_Resolution;
+  this-> _ADC_Bit_Resolution = ADC_Bit_Resolution;
 }
 void MQUnifiedsensor::init()
 {
@@ -53,6 +54,7 @@ void MQUnifiedsensor::serialDebug(bool onSetup)
 
     Serial.println("Sensor: " + _type);
     Serial.print("Supply voltage: "); Serial.print(_VOLT_RESOLUTION); Serial.println(" VDC");
+    Serial.print("ADC Resolution: "); Serial.print(_ADC_Bit_Resolution); Serial.println(" Bits");
     Serial.print("R0: "); Serial.print(_R0); Serial.println(" KΩ");
     Serial.print("RL: "); Serial.print(_RL); Serial.println(" KΩ");
 
@@ -74,7 +76,7 @@ void MQUnifiedsensor::serialDebug(bool onSetup)
       String eq = "";
       if(_regressionMethod == "Linear") eq = "ratio*a + b";
       if(_regressionMethod == "Exponential") eq = "a*ratio^b";
-      Serial.print("|"); Serial.print(_adc);  Serial.print("| v = ADC*"); Serial.print(_VOLT_RESOLUTION); Serial.print("/1024  |    "); Serial.print(_sensor_volt);
+      Serial.print("|"); Serial.print(_adc);  Serial.print("| v = ADC*"); Serial.print(_VOLT_RESOLUTION); Serial.print("/"); Serial.print(pow(2, _ADC_Bit_Resolution)); Serial.print("  |    "); Serial.print(_sensor_volt);
       Serial.print("     | RS = ((" ); Serial.print(_VOLT_RESOLUTION ); Serial.print("*RL)/Voltage) - RL|      "); Serial.print(_RS_Calc); Serial.print("     | Ratio = RS/R0|    ");
       Serial.print(_ratio);  Serial.print( "       |   " + eq + "  |   "); Serial.print(_PPM); Serial.println("  |");
     }
@@ -90,7 +92,7 @@ float MQUnifiedsensor::readSensor()
   _RS_Calc = ((_VOLT_RESOLUTION*_RL)/_sensor_volt)-_RL; //Get value of RS in a gas
   if(_RS_Calc < 0)  _RS_Calc = 0; //No negative values accepted.
   _ratio = _RS_Calc / this->_R0;   // Get ratio RS_gas/RS_air
-  if(_ratio <= 0 || _ratio>100)  _ratio = 0.01; //No negative values accepted or upper datasheet recomendation.
+  if(_ratio <= 0)  _ratio = 0; //No negative values accepted or upper datasheet recomendation.
   if(_regressionMethod == "Exponential") _PPM= _a*pow(_ratio, _b);
   if(_regressionMethod == "Linear") _PPM= _a*_ratio + _b;
   if(_PPM < 0)  _PPM = 0; //No negative values accepted or upper datasheet recomendation.

@@ -13,7 +13,7 @@
 class MQUnifiedsensor
 {
   public:
-    MQUnifiedsensor(String Placa = "Arduino", double Voltage_Resolution =  5, int pin = 1, String type = "CUSTOM MQ");
+    MQUnifiedsensor(String Placa = "Arduino", double Voltage_Resolution =  5, int ADC_Bit_Resolution = 10, int pin = 1, String type = "CUSTOM MQ");
     
     //Functions to set values
     void init();
@@ -44,6 +44,7 @@ class MQUnifiedsensor
     byte _VOLT_RESOLUTION  = 5.0; // if 3.3v use 3.3
     byte _ratioInCleanAir;
     byte _RL = 10; //Value in KiloOhms
+    byte _ADC_Bit_Resolution = 10;
     
     double _adc, _a, _b, _sensor_volt;
     float  _R0, RS_air, _ratio, _PPM, _RS_Calc;  

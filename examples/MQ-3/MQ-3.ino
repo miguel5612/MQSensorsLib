@@ -21,10 +21,11 @@
 #define Voltage_Resolution 5
 #define pin A0 //Analog input 0 of your arduino
 #define type "MQ-3" //MQ3
+#define ADC_Bit_Resolution 10 // For arduino UNO/MEGA/NANO
 //#define calibration_button 13 //Pin to calibrate your sensor
 
 //Declare Sensor
-MQUnifiedsensor MQ3(placa, Voltage_Resolution, pin, type);
+MQUnifiedsensor MQ3(placa, Voltage_Resolution, ADC_Bit_Resolution, pin, type);
 
 //Variables
 float CH4, LPG, CO, Alcohol, Hexane, Benzine;
