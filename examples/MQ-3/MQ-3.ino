@@ -38,17 +38,22 @@ void setup() {
   Remarks: This function create the sensor object.
   ************************************************************************************/ 
   MQ3.setRegressionMethod("Exponential");
+  MQ3.setA(4.8387); MQ3.setB(-2.68); // Configurate the ecuation values
+  
+  /* 
+    //Si el valor de RL es diferente a 10K por favor asigna tu valor de RL con el siguiente metodo:
+    MQ3.setRL(10);
+  */
+
   MQ3.init(); 
   MQ3.serialDebug(true);
   //pinMode(calibration_button, INPUT);
 }
 
 void loop() {
-  MQ3.update(); // Update data, the arduino will be read the voltaje in the analog pin
-  /* 
-    //Si el valor de RL es diferente a 10K por favor asigna tu valor de RL con el siguiente metodo:
-    MQ3.setRL(10);
-  */
+  MQ3.update(); // Update data, the arduino will be read the voltage on the analog pin
+  MQ3.readSensor(); // Sensor will read PPM concentration using the a and b values setted before or on setup
+  MQ3.serialDebug(); // Will print the table on the serial port
   /*
   //Rutina de calibracion - Uncomment if you need (setup too and header)
   if(calibration_button)
@@ -57,6 +62,7 @@ void loop() {
     MQ3.setR0(R0);
   }
   */
+  
   /*****************************  MQReadSensor  ****************************************
   Input:   Gas - Serial print flag
   Output:  Value in PPM
@@ -66,6 +72,7 @@ void loop() {
   //Lecture will be saved in lecture variable
   //float lecture =  MQ3.readSensor("", true); // Return Alcohol concentration
   // Options, uncomment where you need
+  /*
   MQ3.setA(2*10^31); MQ3.setB(19.01); // Configurate the ecuation values
   CH4 =  MQ3.readSensor(); // Return CH4 concentration
 
@@ -83,6 +90,7 @@ void loop() {
 
   MQ3.setA(4.8387); MQ3.setB(-2.68); // Configurate the ecuation values
   Benzine =  MQ3.readSensor(); // Return Benzene concentration
+  */
 
   /*
   Serial.println("***************************");
@@ -97,5 +105,4 @@ void loop() {
   Serial.print("Benzine: ");Serial.print(Benzine,2);Serial.println(" mg/L");
   Serial.println("***************************");
   */
-  MQ3.serialDebug();
 }

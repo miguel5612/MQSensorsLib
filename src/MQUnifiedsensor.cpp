@@ -41,6 +41,7 @@ void MQUnifiedsensor::serialDebug(bool onSetup)
 {
   if(onSetup)
   {
+    Serial.println();
     Serial.println("************************************************************************************************************************************************");
     Serial.println("MQ sensor reading library for arduino");
 
@@ -93,7 +94,7 @@ float MQUnifiedsensor::readSensor()
   if(_regressionMethod == "Exponential") _PPM= _a*pow(_ratio, _b);
   if(_regressionMethod == "Linear") _PPM= _a*_ratio + _b;
   if(_PPM < 0)  _PPM = 0; //No negative values accepted or upper datasheet recomendation.
-  if(_PPM > 10000) _PPM = 9999; //No negative values accepted or upper datasheet recomendation.
+  //if(_PPM > 10000) _PPM = 99999999; //No negative values accepted or upper datasheet recomendation.
   return _PPM;
 }
 float MQUnifiedsensor::calibrate() {
