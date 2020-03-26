@@ -41,7 +41,16 @@ void setup() {
   //Set math model to calculate the PPM concentration and the value of constants
   MQ2.setRegressionMethod("Exponential"); //_PPM =  a*ratio^b
   MQ2.setA(574.25); MQ2.setB(-2.222); // Configurate the ecuation values to get LPG concentration
-  
+  /*
+    Exponential regression:
+    Gas    | a      | b
+    H2     | 987.99 | -2.162
+    LPG    | 574.25 | -2.222
+    CO     | 36974  | -3.109
+    Alcohol| 3616.1 | -2.675
+    Propane| 658.71 | -2.168
+  */
+
   // Calibration setup
   MQ2.setR0(9.659574468);
 
