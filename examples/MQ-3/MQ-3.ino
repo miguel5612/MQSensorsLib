@@ -60,8 +60,6 @@ void setup() {
   //Remarks: Configure the pin of arduino as input.
   /************************************************************************************/ 
   MQ3.serialDebug(true);
-
-  //pinMode(calibration_button, INPUT);
 }
 
 void loop() {
