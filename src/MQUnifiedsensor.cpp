@@ -99,7 +99,7 @@ float MQUnifiedsensor::readSensor()
   //if(_PPM > 10000) _PPM = 99999999; //No negative values accepted or upper datasheet recomendation.
   return _PPM;
 }
-float MQUnifiedsensor::calibrate() {
+float MQUnifiedsensor::calibrate(float ratioInCleanAir) {
   //More explained in: https://jayconsystems.com/blog/understanding-a-gas-sensor
   /*
   V = I x R 
@@ -116,7 +116,7 @@ float MQUnifiedsensor::calibrate() {
   float R0; //Define variable for R0
   RS_air = ((_VOLT_RESOLUTION*_RL)/_sensor_volt)-_RL; //Calculate RS in fresh air
   if(RS_air < 0)  RS_air = 0; //No negative values accepted.
-  R0 = RS_air/_ratioInCleanAir; //Calculate R0 
+  R0 = RS_air/ratioInCleanAir; //Calculate R0 
   if(R0 < 0)  R0 = 0; //No negative values accepted.
   return R0;
 }

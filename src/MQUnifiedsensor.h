@@ -27,7 +27,7 @@ class MQUnifiedsensor
     void serialDebug(bool onSetup = false); //Show on serial port information about sensor
     
     //user functions
-    float calibrate();
+    float calibrate(float ratioInCleanAir);
     float readSensor();
     
     //get function for info
@@ -42,7 +42,6 @@ class MQUnifiedsensor
     byte _pin;
     byte _firstFlag = false;
     byte _VOLT_RESOLUTION  = 5.0; // if 3.3v use 3.3
-    byte _ratioInCleanAir;
     byte _RL = 10; //Value in KiloOhms
     byte _ADC_Bit_Resolution = 10;
     
