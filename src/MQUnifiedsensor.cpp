@@ -64,7 +64,7 @@ void MQUnifiedsensor::serialDebug(bool onSetup)
   {
     if(!_firstFlag)
     {
-      Serial.println("| ****************************************************************" + _type + "****************************************************************|");
+      Serial.println("| ********************************************************************" + _type + "*********************************************************************|");
       Serial.println("|ADC_In | Equation_V_ADC | Voltage_ADC |        Equation_R         | Resistance_RS  |    EQ_Ratio  | Ratio (RS/R0) | Equation_PPM |     PPM    |");
       _firstFlag = true;  //Headers are printed
     }
@@ -73,9 +73,9 @@ void MQUnifiedsensor::serialDebug(bool onSetup)
       String eq = "";
       if(_regressionMethod == "Linear") eq = "ratio*a + b";
       if(_regressionMethod == "Exponential") eq = "a*ratio^b";
-      Serial.print("|"); Serial.print(_adc);  Serial.print("| v = ADC*"); Serial.print(_VOLT_RESOLUTION); Serial.print("/1024 |"); Serial.print(_sensor_volt);
-      Serial.print("| RS = ((" ); Serial.print(_VOLT_RESOLUTION ); Serial.print("*RL)/Voltage) - RL |"); Serial.print(_RS_Calc); Serial.print("| Ratio = RS/R0 |");
-      Serial.print(_ratio);  Serial.print( "|" + eq + "|"); Serial.print(_PPM); Serial.println("|");
+      Serial.print("|"); Serial.print(_adc);  Serial.print("| v = ADC*"); Serial.print(_VOLT_RESOLUTION); Serial.print("/1024  |    "); Serial.print(_sensor_volt);
+      Serial.print("     | RS = ((" ); Serial.print(_VOLT_RESOLUTION ); Serial.print("*RL)/Voltage) - RL|      "); Serial.print(_RS_Calc); Serial.print("     | Ratio = RS/R0|    ");
+      Serial.print(_ratio);  Serial.print( "       |   " + eq + "  |   "); Serial.print(_PPM); Serial.println("  |");
     }
   }
 }

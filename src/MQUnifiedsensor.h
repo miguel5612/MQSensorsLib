@@ -42,10 +42,10 @@ class MQUnifiedsensor
     byte _pin;
     byte _firstFlag = false;
     byte _VOLT_RESOLUTION  = 5.0; // if 3.3v use 3.3
-    byte _ratioInCleanAir, _sensor_volt;
+    byte _ratioInCleanAir;
     byte _RL = 10; //Value in KiloOhms
     
-    double _adc, _a, _b;
+    double _adc, _a, _b, _sensor_volt;
     float  _R0, RS_air, _ratio, _PPM, _RS_Calc;  
     
     String _type;
