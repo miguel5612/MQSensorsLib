@@ -49,42 +49,42 @@ void setup() {
   Serial.begin(9600);
   //init the sensor
   MQ2.init();
-  MQ2.setRegressionMethod("Exponential"); //_PPM =  a*ratio^b
+  MQ2.setRegressionMethod(1); //_PPM =  a*ratio^b
   MQ2.setA(574.25); MQ2.setB(-2.222); // Configurate the ecuation values to get LPG concentration
   MQ2.setR0(9.659574468);
 
   MQ3.init(); 
-  MQ3.setRegressionMethod("Exponential"); //_PPM =  a*ratio^b
+  MQ3.setRegressionMethod(1); //_PPM =  a*ratio^b
   MQ3.setA(4.8387); MQ3.setB(-2.68); // Configurate the ecuation values to get Benzene concentration
   MQ3.setR0(3.86018237);
 
   MQ4.init(); 
-  MQ4.setRegressionMethod("Exponential"); //_PPM =  a*ratio^b
+  MQ4.setRegressionMethod(1); //_PPM =  a*ratio^b
   MQ4.setA(1012.7); MQ4.setB(-2.786); // Configurate the ecuation values to get CH4 concentration
   MQ4.setR0(3.86018237);
 
   MQ5.init(); 
-  MQ5.setRegressionMethod("Exponential"); //_PPM =  a*ratio^b
+  MQ5.setRegressionMethod(1); //_PPM =  a*ratio^b
   MQ5.setA(1163.8); MQ5.setB(-3.874); // Configurate the ecuation values to get H2 concentration
   MQ5.setR0(71.100304);
   
   MQ6.init(); 
-  MQ6.setRegressionMethod("Exponential"); //_PPM =  a*ratio^b
+  MQ6.setRegressionMethod(1); //_PPM =  a*ratio^b
   MQ6.setA(2127.2); MQ6.setB(-2.526); // Configurate the ecuation values to get CH4 concentration
   MQ6.setR0(13.4285714);
   
   MQ7.init(); 
-  MQ7.setRegressionMethod("Exponential"); //_PPM =  a*ratio^b
+  MQ7.setRegressionMethod(1); //_PPM =  a*ratio^b
   MQ7.setA(99.042); MQ7.setB(-1.518); // Configurate the ecuation values to get CO concentration
   MQ7.setR0(4);
   
   MQ8.init(); 
-  MQ8.setRegressionMethod("Exponential"); //_PPM =  a*ratio^b
+  MQ8.setRegressionMethod(1); //_PPM =  a*ratio^b
   MQ8.setA(976.97); MQ8.setB(-0.688); // Configurate the ecuation values to get H2 concentration
   MQ8.setR0(1);
   
   MQ9.init(); 
-  MQ9.setRegressionMethod("Exponential"); //_PPM =  a*ratio^b
+  MQ9.setRegressionMethod(1); //_PPM =  a*ratio^b
   MQ9.setA(1000.5); MQ9.setB(-2.186); // Configurate the ecuation values to get LPG concentration
   MQ9.setR0(9.42857143);
   //Print in serial monitor

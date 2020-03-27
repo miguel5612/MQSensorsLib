@@ -36,7 +36,7 @@ void setup() {
   Serial.begin(9600); //Init serial port
 
   //Set math model to calculate the PPM concentration and the value of constants
-  MQ7.setRegressionMethod("Exponential"); //_PPM =  a*ratio^b
+  MQ7.setRegressionMethod(1); //_PPM =  a*ratio^b
   MQ7.setA(99.042); MQ7.setB(-1.518); // Configurate the ecuation values to get CO concentration
 
   /*

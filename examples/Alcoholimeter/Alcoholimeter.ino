@@ -37,7 +37,7 @@ void setup() {
   Serial.begin(9600); //Init serial port
 
   //Set math model to calculate the PPM concentration and the value of constants
-  MQ3.setRegressionMethod("Exponential"); //_PPM =  a*ratio^b
+  MQ3.setRegressionMethod(1); //_PPM =  a*ratio^b
   MQ3.setA(0.3934); MQ3.setB(-1.504); // Configurate the ecuation values to get Alcohol concentration
   /*
     Exponential regression:

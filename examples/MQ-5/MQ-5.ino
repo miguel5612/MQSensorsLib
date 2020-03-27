@@ -36,7 +36,7 @@ void setup() {
   Serial.begin(9600); //Init serial port
 
   //Set math model to calculate the PPM concentration and the value of constants
-  MQ5.setRegressionMethod("Exponential"); //_PPM =  a*ratio^b
+  MQ5.setRegressionMethod(1); //_PPM =  a*ratio^b
   MQ5.setA(1163.8); MQ5.setB(-3.874); // Configurate the ecuation values to get H2 concentration
   /*
     Exponential regression:

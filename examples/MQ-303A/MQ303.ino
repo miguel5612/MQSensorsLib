@@ -36,7 +36,7 @@ void setup() {
   Serial.begin(9600); //Init serial port
 
   //Set math model to calculate the PPM concentration and the value of constants
-  MQ303.setRegressionMethod("Exponential"); //_PPM =  a*ratio^b
+  MQ303.setRegressionMethod(1); //_PPM =  a*ratio^b
   MQ303.setA(6.2144); MQ303.setB(-2.894); // Configurate the ecuation values to get Isobutano concentration
 
   /*

@@ -36,7 +36,7 @@ void setup() {
   Serial.begin(9600); //Init serial port
 
   //Set math model to calculate the PPM concentration and the value of constants
-  MQ2.setRegressionMethod("Exponential"); //_PPM =  a*ratio^b
+  MQ2.setRegressionMethod(1); //_PPM =  a*ratio^b
   MQ2.setA(574.25); MQ2.setB(-2.222); // Configurate the ecuation values to get LPG concentration
   /*
     Exponential regression:

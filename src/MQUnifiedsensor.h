@@ -13,30 +13,34 @@
 class MQUnifiedsensor
 {
   public:
-    MQUnifiedsensor(String Placa = "Arduino", double Voltage_Resolution =  5, int ADC_Bit_Resolution = 10, int pin = 1, String type = "CUSTOM MQ");
+    MQUnifiedsensor(String Placa = "Arduino", float Voltage_Resolution =  5, int ADC_Bit_Resolution = 10, int pin = 1, String type = "CUSTOM MQ");
     
     //Functions to set values
     void init();
     void update();
-    void setR0(double R0 = 10);
-    void setRL(double RL = 10);
-    void setA(double a);
-    void setB(double b);
-    void setRegressionMethod(String regressionMethod);
-    void setVoltResolution(double voltage_resolution =  5);
+    void setR0(float R0 = 10);
+    void setRL(float RL = 10);
+    void setA(float a);
+    void setB(float b);
+    void setRegressionMethod(int regressionMethod);
+    void setVoltResolution(float voltage_resolution =  5);
     void serialDebug(bool onSetup = false); //Show on serial port information about sensor
     
     //user functions
     float calibrate(float ratioInCleanAir);
     float readSensor();
-    float calculatePPM(double ratio = 0);
+    float validateEcuation(float ratioInput = 0);
     
     //get function for info
-    double getR0();
-    double getRL();
-    double getVoltage(int read = true);
+    float getA();
+    float getB();
+    float getR0();
+    float getRL();
+    float getVoltResolution();
+    String getRegressionMethod();
+    float getVoltage(int read = true);
     
-    double stringToDouble(String & str);    
+    float stringTofloat(String & str);    
 
   private:
     /************************Private vars************************************/
@@ -45,13 +49,13 @@ class MQUnifiedsensor
     byte _VOLT_RESOLUTION  = 5.0; // if 3.3v use 3.3
     byte _RL = 10; //Value in KiloOhms
     byte _ADC_Bit_Resolution = 10;
+    byte _regressionMethod = 1; // 1 -> Exponential || 2 -> Linear
     
-    double _adc, _a, _b, _sensor_volt;
+    float _adc, _a, _b, _sensor_volt;
     float  _R0, RS_air, _ratio, _PPM, _RS_Calc;  
     
-    String _type;
-    String _placa; 
-    String _regressionMethod;
+    char _type[6];
+    char _placa[20]; 
 };
 
 #endif //MQUnifiedsensor_H

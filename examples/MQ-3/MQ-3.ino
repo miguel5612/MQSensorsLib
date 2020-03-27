@@ -36,7 +36,7 @@ void setup() {
   Serial.begin(9600); //Init serial port
 
   //Set math model to calculate the PPM concentration and the value of constants
-  MQ3.setRegressionMethod("Exponential"); //_PPM =  a*ratio^b
+  MQ3.setRegressionMethod(1); //_PPM =  a*ratio^b
   MQ3.setA(4.8387); MQ3.setB(-2.68); // Configurate the ecuation values to get Benzene concentration
   /*
     Exponential regression:

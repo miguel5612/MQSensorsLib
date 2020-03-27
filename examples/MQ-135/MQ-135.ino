@@ -36,7 +36,7 @@ void setup() {
   Serial.begin(9600); //Init serial port
 
   //Set math model to calculate the PPM concentration and the value of constants
-  MQ135.setRegressionMethod("Exponential"); //_PPM =  a*ratio^b
+  MQ135.setRegressionMethod(1); //_PPM =  a*ratio^b
   MQ135.setA(102.2); MQ135.setB(-2.473); // Configurate the ecuation values to get NH4 concentration
 
   /*

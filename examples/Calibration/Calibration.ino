@@ -46,7 +46,7 @@ unsigned long contador = 0;
 void setup() {
   //Init serial port
   Serial.begin(115200);
-  MQ2.setRegressionMethod("Exponential"); //_PPM =  a*ratio^b
+  MQ2.setRegressionMethod(1); //_PPM =  a*ratio^b
   MQ2.setA(574.25); MQ2.setB(-2.222); // Configurate the ecuation values to get LPG concentration
   //init the sensor
   MQ2.init(); 

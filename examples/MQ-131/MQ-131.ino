@@ -36,7 +36,7 @@ void setup() {
   Serial.begin(9600); //Init serial port
 
   //Set math model to calculate the PPM concentration and the value of constants
-  MQ131.setRegressionMethod("Exponential"); //_PPM =  a*ratio^b
+  MQ131.setRegressionMethod(1); //_PPM =  a*ratio^b
   MQ131.setA(23.943); MQ131.setB(-1.11); // Configurate the ecuation values to get O3 concentration
 
   /*

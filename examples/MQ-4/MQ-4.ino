@@ -36,7 +36,7 @@ void setup() {
   Serial.begin(9600); //Init serial port
 
   //Set math model to calculate the PPM concentration and the value of constants
-  MQ4.setRegressionMethod("Exponential"); //_PPM =  a*ratio^b
+  MQ4.setRegressionMethod(1); //_PPM =  a*ratio^b
   MQ4.setA(1012.7); MQ4.setB(-2.786); // Configurate the ecuation values to get CH4 concentration
   /*
     Exponential regression:
