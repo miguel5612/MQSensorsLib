@@ -36,6 +36,8 @@ MQUnifiedsensor MQ7(placa, Voltage_Resolution, ADC_Bit_Resolution, pin7, type);
 MQUnifiedsensor MQ8(placa, Voltage_Resolution, ADC_Bit_Resolution, pin8, type);
 MQUnifiedsensor MQ9(placa, Voltage_Resolution, ADC_Bit_Resolution, pin9, type);
 
+int ratio[10] = {};
+int expectedValue[10] = {};
 
 void setup()
 {
@@ -87,6 +89,24 @@ void setup()
 
 void loop()
 {
+    // Testing MQ2 LPG
+    ratio = {};
+    expectedValue = {};    
+
+    // Testing MQ3 Benzene
+    
+    // Testing MQ4 CH4
+    
+    // Testing MQ5 H2
+    
+    // Testing MQ6 CH4
+    
+    // Testing MQ7 CO
+    
+    // Testing MQ8 H2
+    
+    // Testing MQ9 LPG
+
 
 }
 

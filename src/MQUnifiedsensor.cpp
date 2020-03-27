@@ -86,6 +86,12 @@ void MQUnifiedsensor::update()
 {
   _sensor_volt = this->getVoltage();
 }
+float MQUnifiedsensor::calculatePPM(double ratio)
+{
+  if(_regressionMethod == "Exponential") _PPM= _a*pow(ratio, _b);
+  if(_regressionMethod == "Linear") _PPM= _a*ratio + _b;
+  return _PPM;  
+}
 float MQUnifiedsensor::readSensor()
 {
   //More explained in: https://jayconsystems.com/blog/understanding-a-gas-sensor

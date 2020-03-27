@@ -29,6 +29,7 @@ class MQUnifiedsensor
     //user functions
     float calibrate(float ratioInCleanAir);
     float readSensor();
+    float calculatePPM(double ratio = 0);
     
     //get function for info
     double getR0();
