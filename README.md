@@ -49,7 +49,7 @@ You'll need Arduino desktop app 1.8.9 or later.
 
 ### Info of datasheets 
 
-Review WPDigitalizer [folder](https://github.com/miguel5612/MQSensorsLib/tree/master/WPDigitalizer) [website](https://automeris.io/WebPlotDigitizer/)
+Review WPDigitalizer [folder](https://github.com/miguel5612/MQSensorsLib_Docs/tree/master/WPDigitalizer) [website](https://automeris.io/WebPlotDigitizer/)
 
 ### Installing
 
@@ -82,12 +82,12 @@ Examples/MQ-board.ino
 
 ## Built With
 
-* [Data sheets](https://github.com/miguel5612/MQSensorsLib/tree/master/Datasheets) - Curves and behavior for each sensor, using logarithmic graphs.
-* [Main purpose](https://github.com/miguel5612/MQSensorsLib/blob/master/static/img/bg.jpg) - Every sensor has high sensibility for a specific gas or material.
+* [Data sheets](https://github.com/miguel5612/MQSensorsLib_Docs/tree/master/Datasheets) - Curves and behavior for each sensor, using logarithmic graphs.
+* [Main purpose](https://github.com/miguel5612/MQSensorsLib_Docs/blob/master/static/img/bg.jpg) - Every sensor has high sensibility for a specific gas or material.
 
 ## Contributing
 
-Please read [CONTRIBUTING.md](https://github.com/miguel5612/MQSensorsLib/blob/NO_Functional/CONTRIBUTING.md) for details on our code of conduct, and the process for submitting pull requests to us.
+Please read [CONTRIBUTING.md](https://github.com/miguel5612/MQSensorsLib/blob/master/CONTRIBUTING.md) for details on our code of conduct, and the process for submitting pull requests to us.
 
 ## Authors
 
