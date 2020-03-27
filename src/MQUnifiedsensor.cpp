@@ -88,6 +88,7 @@ void MQUnifiedsensor::update()
 }
 float MQUnifiedsensor::calculatePPM(double ratio)
 {
+  //Usage of this function: Unit test on ALgorithmTester example;
   if(_regressionMethod == "Exponential") _PPM= _a*pow(ratio, _b);
   if(_regressionMethod == "Linear") _PPM= _a*ratio + _b;
   return _PPM;  
