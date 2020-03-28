@@ -93,8 +93,8 @@ void MQUnifiedsensor::serialDebug(bool onSetup)
       Serial.print("|"); Serial.print(_adc);  Serial.print("| v = ADC*"); Serial.print(_VOLT_RESOLUTION); Serial.print("/"); Serial.print(pow(2, _ADC_Bit_Resolution)); Serial.print("  |    "); Serial.print(_sensor_volt);
       Serial.print("     | RS = ((" ); Serial.print(_VOLT_RESOLUTION ); Serial.print("*RL)/Voltage) - RL|      "); Serial.print(_RS_Calc); Serial.print("     | Ratio = RS/R0|    ");
       Serial.print(_ratio);  Serial.print( "       |   ");
-      if(_regressionMethod != 1) Serial.println("ratio*a + b");
-      else Serial.print("a*ratio^b");
+      if(_regressionMethod == 1) Serial.println("ratio*a + b");
+      else Serial.print("pow(10, (log10(ratio)-b)/a)");
       Serial.print("  |   "); Serial.print(_PPM); Serial.println("  |");
     }
   }
@@ -110,7 +110,11 @@ float MQUnifiedsensor::validateEcuation(float ratioInput)
   //Serial.print("b: "); Serial.println(_b);
   //Usage of this function: Unit test on ALgorithmTester example;
   if(_regressionMethod == 1) _PPM= _a*pow(ratioInput, _b);
-  else _PPM= _a*ratioInput + _b;
+  else 
+  {
+    double ppm_log = (log10(_ratio)-_b)/_a; //Get ppm value in linear scale according to the the ratio value  
+    _PPM = pow(10, ppm_log); //Convert ppm value to log scale  
+  }
   //Serial.println("Regression Method: "); Serial.println(_regressionMethod);
   //Serial.println("Result: "); Serial.println(_PPM);
   return _PPM;  
@@ -123,7 +127,11 @@ float MQUnifiedsensor::readSensor()
   _ratio = _RS_Calc / this->_R0;   // Get ratio RS_gas/RS_air
   if(_ratio <= 0)  _ratio = 0; //No negative values accepted or upper datasheet recomendation.
   if(_regressionMethod == 1) _PPM= _a*pow(_ratio, _b);
-  else _PPM= _a*_ratio + _b;
+  else 
+  {
+    double ppm_log = (log10(_ratio)-_b)/_a; //Get ppm value in linear scale according to the the ratio value  
+    _PPM = pow(10, ppm_log); //Convert ppm value to log scale  
+  }
   if(_PPM < 0)  _PPM = 0; //No negative values accepted or upper datasheet recomendation.
   //if(_PPM > 10000) _PPM = 99999999; //No negative values accepted or upper datasheet recomendation.
   return _PPM;
