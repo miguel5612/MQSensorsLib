@@ -94,7 +94,7 @@ void MQUnifiedsensor::serialDebug(bool onSetup)
       Serial.print("     | RS = ((" ); Serial.print(_VOLT_RESOLUTION ); Serial.print("*RL)/Voltage) - RL|      "); Serial.print(_RS_Calc); Serial.print("     | Ratio = RS/R0|    ");
       Serial.print(_ratio);  Serial.print( "       |   ");
       if(_regressionMethod != 1) Serial.println("ratio*a + b");
-      else Serial.println("a*ratio^b");
+      else Serial.print("a*ratio^b");
       Serial.print("  |   "); Serial.print(_PPM); Serial.println("  |");
     }
   }
