@@ -38,15 +38,6 @@ void setup() {
 
   //Set math model to calculate the PPM concentration and the value of constants
   MQ4.setRegressionMethod(1); //_PPM =  a*ratio^b
-  /*
-    Exponential regression:
-  Gas    | a      | b
-  LPG    | 3811.9 | -3.113
-  CH4    | 1012.7 | -2.786
-  CO     | 200000000000000 | -19.05
-  Alcohol| 60000000000 | -14.01
-  smoke  | 30000000 | -8.308
-  */
 
   
   
@@ -91,6 +82,15 @@ void setup() {
 void loop() {
   MQ4.update(); // Update data, the arduino will be read the voltage on the analog pin
   
+  /*
+    Exponential regression:
+  Gas    | a      | b
+  LPG    | 3811.9 | -3.113
+  CH4    | 1012.7 | -2.786
+  CO     | 200000000000000 | -19.05
+  Alcohol| 60000000000 | -14.01
+  smoke  | 30000000 | -8.308
+  */
   MQ4.setA(3811.9); MQ4.setB(-3.113); // Configurate the ecuation values to get CH4 concentration
   float LPG = MQ4.readSensor(); // Sensor will read PPM concentration using the model and a and b values setted before or in the setup
   
