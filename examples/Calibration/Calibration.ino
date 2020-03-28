@@ -19,7 +19,7 @@
 //Definitions
 #define placa "Arduino UNO"
 #define Voltage_Resolution 5
-#define pin A0 //Analog input 0 of your arduino
+#define pin A2 //Analog input 0 of your arduino
 #define type "MQ-2" //MQ2
 #define ADC_Bit_Resolution 10 // For arduino UNO/MEGA/NANO
 
@@ -40,7 +40,7 @@
 
 //Declare Sensor
 
-MQUnifiedsensor MQ2(placa, Voltage_Resolution, ADC_Bit_Resolution, pin2, type);
+MQUnifiedsensor MQ2(placa, Voltage_Resolution, ADC_Bit_Resolution, pin, type);
 unsigned long contador = 0;
 
 void setup() {
@@ -51,16 +51,18 @@ void setup() {
   //init the sensor
   MQ2.init(); 
   //Print in serial monitor
-  Serial.print("MQ2 - Calibracion");
-  Serial.print("Note - Make sure you are in a clean room and the sensor has pre-heated almost 4 hours");
-  Serial.print("Autonumeric, lecture");
+  Serial.println("MQ2 - Calibracion");
+  Serial.println("Note - Make sure you are in a clean room and the sensor has pre-heated almost 4 hours");
+  Serial.println("Autonumeric | lecture (R0)");
 }
 
 void loop() {
+  MQ2.update();
   //Read the sensor and print in serial port
-  int lecture =  MQ2.calibrate(RatioMQ2CleanAir);
+  float lecture =  MQ2.calibrate(RatioMQ2CleanAir);
   //Print in serial monitor
-  Serial.print(String(contador) + ",");
+  Serial.print(contador);
+  Serial.print(" | ");
   Serial.println(lecture);
   //Increment counter
   contador++;

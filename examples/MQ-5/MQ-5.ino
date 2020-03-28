@@ -58,7 +58,7 @@ void setup() {
   // This routine not need to execute to every restart, you can load your R0 if you know the value
   // Acknowledgements: https://jayconsystems.com/blog/understanding-a-gas-sensor
   Serial.print("Calibrating please wait.");
-  int calcR0 = 0;
+  float calcR0 = 0;
   for(int i = 0; i<=10; i ++)
   {
     MQ5.update(); // Update data, the arduino will be read the voltage on the analog pin

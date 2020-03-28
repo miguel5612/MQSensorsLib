@@ -7,7 +7,7 @@
 /***********************Software Related Macros************************************/
 
 #define ADC_RESOLUTION 10 // for 10bit analog to digital converter.
-#define retries 5
+#define retries 2
 #define retry_interval 20
 
 class MQUnifiedsensor
