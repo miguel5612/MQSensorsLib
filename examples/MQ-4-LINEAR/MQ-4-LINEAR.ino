@@ -37,7 +37,7 @@ void setup() {
   Serial.begin(9600); //Init serial port
 
   //Set math model to calculate the PPM concentration and the value of constants
-  MQ4.setRegressionMethod(1); //_PPM =  a*ratio^b
+  MQ4.setRegressionMethod(0); //_PPM =  a*ratio + b
 
   
   
@@ -75,7 +75,7 @@ void setup() {
   /************************************************************************************/ 
   MQ4.init(); 
 
-  Serial.println("*************** Lectures from MQ-4 **********************");
+  Serial.println("*************************** Lectures from MQ-board ***************************");
   Serial.println("|    LPG   |  CH4 |   CO    |    Alcohol    |   Smoke    |");  
 }
 
