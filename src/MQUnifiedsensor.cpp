@@ -105,9 +105,14 @@ void MQUnifiedsensor::update()
 }
 float MQUnifiedsensor::validateEcuation(float ratioInput)
 {
+  //Serial.print("Ratio input: "); Serial.println(ratioInput);
+  //Serial.print("a: "); Serial.println(_a);
+  //Serial.print("b: "); Serial.println(_b);
   //Usage of this function: Unit test on ALgorithmTester example;
-  if(_regressionMethod != 1) _PPM= _a*pow(ratioInput, _b);
+  if(_regressionMethod == 1) _PPM= _a*pow(ratioInput, _b);
   else _PPM= _a*ratioInput + _b;
+  //Serial.println("Regression Method: "); Serial.println(_regressionMethod);
+  //Serial.println("Result: "); Serial.println(_PPM);
   return _PPM;  
 }
 float MQUnifiedsensor::readSensor()
@@ -117,7 +122,7 @@ float MQUnifiedsensor::readSensor()
   if(_RS_Calc < 0)  _RS_Calc = 0; //No negative values accepted.
   _ratio = _RS_Calc / this->_R0;   // Get ratio RS_gas/RS_air
   if(_ratio <= 0)  _ratio = 0; //No negative values accepted or upper datasheet recomendation.
-  if(_regressionMethod != 1) _PPM= _a*pow(_ratio, _b);
+  if(_regressionMethod == 1) _PPM= _a*pow(_ratio, _b);
   else _PPM= _a*_ratio + _b;
   if(_PPM < 0)  _PPM = 0; //No negative values accepted or upper datasheet recomendation.
   //if(_PPM > 10000) _PPM = 99999999; //No negative values accepted or upper datasheet recomendation.
