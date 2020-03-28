@@ -19,7 +19,7 @@
 //Definitions
 #define placa "Arduino UNO"
 #define Voltage_Resolution 5
-#define pin A2 //Analog input 0 of your arduino
+#define pin A2 //Analog input 2 of your arduino
 #define type "MQ-2" //MQ2
 #define ADC_Bit_Resolution 10 // For arduino UNO/MEGA/NANO
 

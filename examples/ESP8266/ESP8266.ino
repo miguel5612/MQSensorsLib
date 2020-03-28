@@ -25,9 +25,9 @@
 //Definitions
 #define placa "ESP8266" //NodeMcu, WeMos D1, TTGo, ESP32.. etc
 #define Voltage_Resolution 3.3
-#define pin A0 //Analog input 0 of your arduino
+#define pin A0 //Analog input 0 of your ESP Board
 #define type "MQ-3" //MQ3
-#define ADC_Bit_Resolution 10 // For arduino UNO/MEGA/NANO
+#define ADC_Bit_Resolution 10 // For ESP8266
 
 //Declare Sensor
 MQUnifiedsensor MQ3(placa, Voltage_Resolution, ADC_Bit_Resolution, pin, type);

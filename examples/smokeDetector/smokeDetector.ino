@@ -19,7 +19,7 @@
 //Definitions
 #define placa "Arduino UNO"
 #define Voltage_Resolution 5
-#define pin A4 //Analog input 0 of your arduino
+#define pin A4 //Analog input 4 of your arduino
 #define type "MQ-4" //MQ4
 #define ADC_Bit_Resolution 10 // For arduino UNO/MEGA/NANO
 #define RatioMQ4CleanAir 4.4  //RS / R0 = 4.4 ppm 
