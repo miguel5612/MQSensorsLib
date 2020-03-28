@@ -26,7 +26,7 @@
 #define pin A0 //Analog input 0 of your arduino
 #define type "MQ-2" //MQ2
 #define ADC_Bit_Resolution 10 // For arduino UNO/MEGA/NANO
-//#define calibration_button 13 //Pin to calibrate your sensor
+#define RatioMQ2CleanAir 9.83 //RS / R0 = 9.83 ppm 
 
 //Declare Sensor
 MQUnifiedsensor MQ2(placa, Voltage_Resolution, ADC_Bit_Resolution, pin, type);
@@ -48,9 +48,27 @@ void setup() {
     Propane| 658.71 | -2.168
   */
 
-  // Calibration setup
-  MQ2.setR0(9.659574468);
-
+  /*****************************  MQ CAlibration ********************************************/ 
+  // Explanation: 
+  // In this routine the sensor will measure the resistance of the sensor supposing before was pre-heated
+  // and now is on clean air (Calibration conditions), and it will setup R0 value.
+  // We recomend execute this routine only on setup or on the laboratory and save on the eeprom of your arduino
+  // This routine not need to execute to every restart, you can load your R0 if you know the value
+  // Acknowledgements: https://jayconsystems.com/blog/understanding-a-gas-sensor
+  Serial.print("Calibrating please wait.");
+  int calcR0 = 0;
+  for(int i = 0; i<=10; i ++)
+  {
+    MQ2.update(); // Update data, the arduino will be read the voltage on the analog pin
+    calcR0 += MQ2.calibrate(RatioMQ2CleanAir);
+    Serial.print(".");
+  }
+  MQ2.setR0(calcR0/10);
+  Serial.println("  done!.");
+  
+  if(isinf(calcR0)) {Serial.println("Warning: Conection issue founded, R0 is infite (Open circuit detected) please check your wiring and supply"); while(1);}
+  if(calcR0 == 0){Serial.println("Warning: Conection issue founded, R0 is zero (Analog pin with short circuit to ground) please check your wiring and supply"); while(1);}
+  /*****************************  MQ CAlibration ********************************************/ 
   /* 
     //If the RL value is different from 10K please assign your RL value with the following method:
     MQ2.setRL(10);
