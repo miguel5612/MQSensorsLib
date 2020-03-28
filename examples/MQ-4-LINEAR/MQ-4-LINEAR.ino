@@ -75,43 +75,19 @@ void setup() {
   /************************************************************************************/ 
   MQ4.init(); 
 
-  Serial.println("*************************** Lectures from MQ-board ***************************");
-  Serial.println("|    LPG   |  CH4 |   CO    |    Alcohol    |   Smoke    |");  
+  Serial.println("** Lectures from MQ-4**********");
+  Serial.println("|              LPG             |");  
 }
 
 void loop() {
   MQ4.update(); // Update data, the arduino will be read the voltage on the analog pin
   
-  /*
-    Exponential regression:
-  Gas    | a      | b
-  LPG    | 3811.9 | -3.113
-  CH4    | 1012.7 | -2.786
-  CO     | 200000000000000 | -19.05
-  Alcohol| 60000000000 | -14.01
-  smoke  | 30000000 | -8.308
-  */
-  MQ4.setA(3811.9); MQ4.setB(-3.113); // Configurate the ecuation values to get CH4 concentration
+  //https://jayconsystems.com/blog/understanding-a-gas-sensor 
+  MQ4.setA(-0.318; MQ4.setB(1.133); // A -> Slope, B -> Intersect with X - Axis
   float LPG = MQ4.readSensor(); // Sensor will read PPM concentration using the model and a and b values setted before or in the setup
   
-  MQ4.setA(1012.7); MQ4.setB(-2.786); // Configurate the ecuation values to get CH4 concentration
-  float CH4 = MQ4.readSensor(); // Sensor will read PPM concentration using the model and a and b values setted before or in the setup
-  
-  MQ4.setA(200000000000000); MQ4.setB(-19.05); // Configurate the ecuation values to get CH4 concentration
-  float CO = MQ4.readSensor(); // Sensor will read PPM concentration using the model and a and b values setted before or in the setup
-  
-  MQ4.setA(60000000000); MQ4.setB(-14.01); // Configurate the ecuation values to get CH4 concentration
-  float Alcohol = MQ4.readSensor(); // Sensor will read PPM concentration using the model and a and b values setted before or in the setup
-  
-  MQ4.setA(30000000); MQ4.setB(-8.308); // Configurate the ecuation values to get CH4 concentration
-  float Smoke = MQ4.readSensor(); // Sensor will read PPM concentration using the model and a and b values setted before or in the setup
-  
-  Serial.print("|    "); Serial.print(LPG);
-  Serial.print("    |    "); Serial.print(CH4);
-  Serial.print("    |    "); Serial.print(CO);
-  Serial.print("    |    "); Serial.print(Alcohol);
-  Serial.print("    |    "); Serial.print(Smoke);
-  Serial.println("    |");
+  Serial.print("|                "); Serial.print(LPG);
+  Serial.println("                |");
 
   delay(500); //Sampling frequency
 }
