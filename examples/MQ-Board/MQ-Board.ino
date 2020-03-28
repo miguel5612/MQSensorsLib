@@ -49,9 +49,6 @@ MQUnifiedsensor MQ7(placa, Voltage_Resolution, ADC_Bit_Resolution, pin7, type);
 MQUnifiedsensor MQ8(placa, Voltage_Resolution, ADC_Bit_Resolution, pin8, type);
 MQUnifiedsensor MQ9(placa, Voltage_Resolution, ADC_Bit_Resolution, pin9, type);
 
-//Variables
-float  LPG, Alcohol, CH4, H2, CH42, CO, H22, LPG2;
-
 void setup() {
   //Init serial port
   Serial.begin(9600);
