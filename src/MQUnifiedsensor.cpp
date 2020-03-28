@@ -112,6 +112,7 @@ float MQUnifiedsensor::validateEcuation(float ratioInput)
   if(_regressionMethod == 1) _PPM= _a*pow(ratioInput, _b);
   else 
   {
+    // https://jayconsystems.com/blog/understanding-a-gas-sensor
     double ppm_log = (log10(_ratio)-_b)/_a; //Get ppm value in linear scale according to the the ratio value  
     _PPM = pow(10, ppm_log); //Convert ppm value to log scale  
   }
@@ -126,9 +127,10 @@ float MQUnifiedsensor::readSensor()
   if(_RS_Calc < 0)  _RS_Calc = 0; //No negative values accepted.
   _ratio = _RS_Calc / this->_R0;   // Get ratio RS_gas/RS_air
   if(_ratio <= 0)  _ratio = 0; //No negative values accepted or upper datasheet recomendation.
-  if(_regressionMethod == 1) _PPM= _a*pow(_ratio, _b);
+  if(_regressionMethod == 1) _PPM= _a*pow(_ratio, _b); // <- Source excel analisis https://github.com/miguel5612/MQSensorsLib_Docs/tree/master/Internal_design_documents
   else 
   {
+    // https://jayconsystems.com/blog/understanding-a-gas-sensor <- Source of linear ecuation
     double ppm_log = (log10(_ratio)-_b)/_a; //Get ppm value in linear scale according to the the ratio value  
     _PPM = pow(10, ppm_log); //Convert ppm value to log scale  
   }
