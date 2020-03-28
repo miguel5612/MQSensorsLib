@@ -23,7 +23,7 @@
 //Definitions
 #define placa "Arduino UNO"
 #define Voltage_Resolution 5
-#define pin A0 //Analog input 0 of your arduino
+#define pin A4 //Analog input 4 of your arduino
 #define type "MQ-4" //MQ4
 #define ADC_Bit_Resolution 10 // For arduino UNO/MEGA/NANO
 #define RatioMQ4CleanAir 4.4  //RS / R0 = 4.4 ppm 
@@ -83,7 +83,7 @@ void loop() {
   MQ4.update(); // Update data, the arduino will be read the voltage on the analog pin
   
   //https://jayconsystems.com/blog/understanding-a-gas-sensor 
-  MQ4.setA(-0.318; MQ4.setB(1.133); // A -> Slope, B -> Intersect with X - Axis
+  MQ4.setA(-0.318); MQ4.setB(1.133); // A -> Slope, B -> Intersect with X - Axis
   float LPG = MQ4.readSensor(); // Sensor will read PPM concentration using the model and a and b values setted before or in the setup
   
   Serial.print("|                "); Serial.print(LPG);
