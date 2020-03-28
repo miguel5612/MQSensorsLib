@@ -37,7 +37,7 @@ void setup() {
   Serial.begin(9600); //Init serial port
 
   //Set math model to calculate the PPM concentration and the value of constants
-  MQ4.setRegressionMethod(0); //_PPM =  a*ratio + b
+  MQ4.setRegressionMethod(0); //_PPM =  pow(10, (log10(ratio)-b)/a)
 
   
   

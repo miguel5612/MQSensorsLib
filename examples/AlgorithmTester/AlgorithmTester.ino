@@ -99,6 +99,13 @@ void loop()
     expectedValue[0] = 1000; expectedValue[1] = 3000; expectedValue[2] = 5000; expectedValue[3] = 7000;
     testSensor("MQ-309", 1000000, -4.01);
 
+    // Testing linear equation for MQ-4
+    mySensor.setRegressionMethod(0); //_PPM =  pow(10, (log10(ratio)-b)/a)
+    ratio[0] = 2.5; ratio[1] = 1.5; ratio[2] = 0.9; ratio[3] = 0.65;
+    expectedValue[0] = 200; expectedValue[1] = 1000; expectedValue[2] = 5000; expectedValue[3] = 10000;
+    testSensor("MQ-4", -0.318, 1.133);
+
+    while(1);
 }
 
 

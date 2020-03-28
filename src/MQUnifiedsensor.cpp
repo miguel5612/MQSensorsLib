@@ -112,9 +112,9 @@ float MQUnifiedsensor::validateEcuation(float ratioInput)
   if(_regressionMethod == 1) _PPM= _a*pow(ratioInput, _b);
   else 
   {
-    // https://jayconsystems.com/blog/understanding-a-gas-sensor
-    double ppm_log = (log10(_ratio)-_b)/_a; //Get ppm value in linear scale according to the the ratio value  
-    _PPM = pow(10, ppm_log); //Convert ppm value to log scale  
+      // https://jayconsystems.com/blog/understanding-a-gas-sensor
+      double ppm_log = (log10(ratioInput)-_b)/_a; //Get ppm value in linear scale according to the the ratio value  
+      _PPM = pow(10, ppm_log); //Convert ppm value to log scale  
   }
   //Serial.println("Regression Method: "); Serial.println(_regressionMethod);
   //Serial.println("Result: "); Serial.println(_PPM);
