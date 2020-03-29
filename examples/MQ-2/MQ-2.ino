@@ -57,7 +57,7 @@ void setup() {
   // Acknowledgements: https://jayconsystems.com/blog/understanding-a-gas-sensor
   Serial.print("Calibrating please wait.");
   float calcR0 = 0;
-  for(int i = 0; i<=10; i ++)
+  for(int i = 1; i<=10; i ++)
   {
     MQ2.update(); // Update data, the arduino will be read the voltage on the analog pin
     calcR0 += MQ2.calibrate(RatioMQ2CleanAir);
