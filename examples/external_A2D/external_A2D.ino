@@ -10,12 +10,24 @@
   by Miguel Califa 
 
   Updated library usage
-  modified 26 March 2020
+  modified 29 March 2020
   by Miguel Califa 
 
   Wiring:
   https://github.com/miguel5612/MQSensorsLib_Docs/blob/master/static/img/MQ_Arduino.PNG
-  Please take care, arduino A0 pin represent the analog input configured on #define pin
+  Please take care, arduino A0 pin represent the analog input configured on #define pin - For this example this doesn't matter
+  You will connect your sensor to your external A2D Sensor
+
+  Important:
+  1. Although it doesn't matter what pin you put in when initializing your MQ sensor function it is important that you don't 
+  for any reason invoke the MQ.init() method because that method configures the selected pin as input and you may need it for 
+  other use in the program.
+  2.  You must ensure that your analog/digital converter will perform the conversion taking into account the output voltage 
+  levels of the MQ sensor module.
+  3. You must ensure that when invoking the setADC(value) method the value you are passing is within the expected parameters, 
+  for example if it is a 10-bit ADC converter, we expect a value between 0 and 2^10 = 1024 
+
+
 
  This example code is in the public domain.
 
