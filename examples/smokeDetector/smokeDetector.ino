@@ -37,7 +37,7 @@ void setup() {
   Serial.begin(115200);
   //Set math model to calculate the PPM concentration and the value of constants
   MQ4.setRegressionMethod(1); //_PPM =  a*ratio^b
-  MQ4.setA(30000000); MQ4.setB(-2.786); // Configurate the ecuation values to get CH4 concentration
+  MQ4.setA(30000000); MQ4.setB(-8.308); // Configurate the ecuation values to get CH4 concentration
   /*
     Exponential regression:
   Gas    | a      | b
@@ -91,7 +91,8 @@ void setup() {
   //Read the sensor and print in serial port
   //Lecture will be saved in lecture variable
   MQ4.update();
-  MQ4.readSensor(); // Sensor will read PPM concentration using the model and a and b values setted before or in the setup
+  float smokePPM = MQ4.readSensor(); // Sensor will read PPM concentration using the model and a and b values setted before or in the setup
+  if(smokePPM > 1000) {Serial.println("Warning: High concentrations of smoke detected")};
   MQ4.serialDebug(); // Will print the table on the serial port
   delay(400);  
 }
