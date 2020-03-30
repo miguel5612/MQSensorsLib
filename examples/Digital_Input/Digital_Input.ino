@@ -25,7 +25,14 @@
     6. Each time the serial monitor displays an alert, the sensor has detected that the threshold programmed in step 4 has 
        been exceeded.
 
-
+  Warning:
+    For any reason you should not inhale the gases of the atmosphere generated to calibrate the sensor, 
+    this calibration should be done in an open place and ventilate the space once the sensor is calibrated 
+    and should always be done by at least two people, you should always know what to do in case of inhaling or
+    coming into contact with the gases to which the sensor is being subjected.
+    
+    We as a team are not responsible for irresponsible handling of the information contained herein, before 
+    following the instructions contained herein consult with a professional or a responsible teacher.
 */
 
 #define pin 3 // Digital pin connected to your sensor
