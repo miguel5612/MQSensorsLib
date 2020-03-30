@@ -23,18 +23,18 @@
 
 //Include the library
 #include <MQUnifiedsensor.h>
+/************************Hardware Related Macros************************************/
+#define         Board                   ("Arduino UNO")
+#define         Pin                     (A3)  //Analog input 3 of your arduino
+/***********************Software Related Macros************************************/
+#define         Type                    ("MQ-3") //MQ3
+#define         Voltage_Resolution      (5)
+#define         ADC_Bit_Resolution      (10) // For arduino UNO/MEGA/NANO
 
-//Definitions
-#define placa "Arduino UNO"
-#define Voltage_Resolution 5
-#define pin A3 //Analog input 3 of your arduino
-#define type "MQ-3" //MQ3
-#define ADC_Bit_Resolution 10 // For arduino UNO/MEGA/NANO
-//#define calibration_button 13 //Pin to calibrate your sensor
-
-double alcoholPPM = 0;
-//Declare Sensor
-MQUnifiedsensor MQ3(placa, Voltage_Resolution, ADC_Bit_Resolution, pin, type);
+/*****************************Globals***********************************************/
+double          alcoholPPM          =   (0);
+/**************************Object_Sensor********************************************/
+MQUnifiedsensor MQ3(Board, Voltage_Resolution, ADC_Bit_Resolution, Pin, Type);
 
 void setup() {
   //Init the serial port communication - to debug the library
@@ -45,7 +45,7 @@ void setup() {
   MQ3.setA(0.3934); MQ3.setB(-1.504); // Configurate the ecuation values to get Alcohol concentration
   /*
     Exponential regression:
-  Gas    | a      | b
+  Gas    | a      | b     
   LPG    | 44771  | -3.245
   CH4    | 2*10^31| 19.01
   CO     | 521853 | -3.821

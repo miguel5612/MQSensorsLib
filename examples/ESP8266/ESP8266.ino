@@ -22,16 +22,17 @@
 
 //Include the library
 #include <MQUnifiedsensor.h>
+/************************Hardware Related Macros************************************/
+#define         Board                   ("Arduino UNO")
+#define         Pin                     (A3)  //Analog input 3 of your arduino
+/***********************Software Related Macros************************************/
+#define         Type                    ("MQ-3") //MQ3
+#define         Voltage_Resolution      (5)
+#define         ADC_Bit_Resolution      (10) // For arduino UNO/MEGA/NANO
 
-//Definitions
-#define placa "ESP8266" //NodeMcu, WeMos D1, TTGo, ESP32.. etc
-#define Voltage_Resolution 3.3
-#define pin A0 //Analog input 0 of your ESP Board
-#define type "MQ-3" //MQ3
-#define ADC_Bit_Resolution 10 // For ESP8266
-
-//Declare Sensor
-MQUnifiedsensor MQ3(placa, Voltage_Resolution, ADC_Bit_Resolution, pin, type);
+/*****************************Globals***********************************************/
+MQUnifiedsensor MQ3(Board, Voltage_Resolution, ADC_Bit_Resolution, Pin, Type);
+/*****************************Globals***********************************************/
 
 void setup() {
   //Init the serial port communication - to debug the library

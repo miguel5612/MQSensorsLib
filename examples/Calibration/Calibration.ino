@@ -15,15 +15,16 @@
 
 //Include the library
 #include <MQUnifiedsensor.h>
+/************************Hardware Related Macros************************************/
+#define         Board                   ("Arduino UNO")
+#define         Pin                     (A2)  //Analog input 2 of your arduino
+/***********************Software Related Macros************************************/
+#define         Type                    ("MQ-2") //MQ2
+#define         Voltage_Resolution      (5)
+#define         ADC_Bit_Resolution      (10) // For arduino UNO/MEGA/NANO
 
-//Definitions
-#define placa "Arduino UNO"
-#define Voltage_Resolution 5
-#define pin A2 //Analog input 2 of your arduino
-#define type "MQ-2" //MQ2
-#define ADC_Bit_Resolution 10 // For arduino UNO/MEGA/NANO
-
-
+/*****************************Globals***********************************************/
+double          alcoholPPM          =   (0);
 //Defaults, uncomment if you need
 #define RatioMQ2CleanAir 9.83 //RS / R0 = 9.83 ppm 
 //#define RatioMQ3CleanAir 60   //RS / R0 = 60 ppm 
@@ -37,11 +38,10 @@
 //#define RatioMQ135CleanAir 3.6//RS / R0 = 3.6 ppm     
 //#define RatioMQ303CleanAir 1  //RS / R0 = 1 ppm    
 //#define RatioMQ309CleanAir 11 //RS / R0 = 11 ppm    
-
-//Declare Sensor
-
-MQUnifiedsensor MQ2(placa, Voltage_Resolution, ADC_Bit_Resolution, pin, type);
 unsigned long contador = 0;
+/**************************Object_Sensor********************************************/
+
+MQUnifiedsensor MQ2(Board, Voltage_Resolution, ADC_Bit_Resolution, Pin, Type);
 
 void setup() {
   //Init serial port

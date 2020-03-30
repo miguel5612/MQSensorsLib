@@ -13,20 +13,25 @@
     with which the library was made.
 */
 
-//Definitions
-#define placa "Arduino Mega 2560"
-#define Voltage_Resolution 5
-#define type "Algorithm Tester"
-#define ADC_Bit_Resolution 10 // For arduino UNO/MEGA/NANO
-// On this program pin value doesn't matter
-#define pin2 A2 //Analog input 2 of your arduino
-//Declare Sensor
-MQUnifiedsensor mySensor(placa, Voltage_Resolution, ADC_Bit_Resolution, pin2, type);
+//Include the library
+#include <MQUnifiedsensor.h>
+/************************Hardware Related Macros************************************/
+#define         Board                   ("Arduino UNO")
+#define         Pin                     (A3)  //Analog input 3 of your arduino
+/***********************Software Related Macros************************************/
+#define         Type                    ("MQ-3") //MQ3
+#define         Voltage_Resolution      (5)
+#define         ADC_Bit_Resolution      (10) // For arduino UNO/MEGA/NANO
 
-double ratio[4] = {};
-double expectedValue[4] = {};
-double calculatedValues[4] = {};
-double error[4] = {};
+//Declare Sensor
+MQUnifiedsensor mySensor(Board, Voltage_Resolution, ADC_Bit_Resolution, Pin, Type);
+
+/*****************************Globals***********************************************/
+double          ratio[4]                = {};
+double          expectedValue[4]        = {};
+double          calculatedValues[4]     = {};
+double          error[4]                = {};
+/**************************Object_Sensor********************************************/
 
 void setup()
 {

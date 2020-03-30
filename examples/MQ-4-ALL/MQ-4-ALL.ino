@@ -23,18 +23,17 @@
 
 //Include the library
 #include <MQUnifiedsensor.h>
-
-//Definitions
-#define placa "Arduino UNO"
-#define Voltage_Resolution 5
-#define pin A0 //Analog input 0 of your arduino
-#define type "MQ-4" //MQ4
-#define ADC_Bit_Resolution 10 // For arduino UNO/MEGA/NANO
-#define RatioMQ4CleanAir 4.4  //RS / R0 = 4.4 ppm 
-//#define calibration_button 13 //Pin to calibrate your sensor
-
+/************************Hardware Related Macros************************************/
+#define         Board                   ("Arduino UNO")
+#define         Pin                     (A4)  //Analog input 4 of your arduino
+/***********************Software Related Macros************************************/
+#define         Type                    ("MQ-4") //MQ4
+#define         Voltage_Resolution      (5)
+#define         ADC_Bit_Resolution      (10) // For arduino UNO/MEGA/NANO
+#define         RatioMQ4CleanAir        (4.4) //RS / R0 = 60 ppm 
+/*****************************Globals***********************************************/
 //Declare Sensor
-MQUnifiedsensor MQ4(placa, Voltage_Resolution, ADC_Bit_Resolution, pin, type);
+MQUnifiedsensor MQ4(Board, Voltage_Resolution, ADC_Bit_Resolution, Pin, Type);
 
 void setup() {
   //Init the serial port communication - to debug the library
