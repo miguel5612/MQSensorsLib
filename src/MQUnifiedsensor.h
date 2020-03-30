@@ -25,6 +25,7 @@ class MQUnifiedsensor
     void setRegressionMethod(int regressionMethod);
     void setVoltResolution(float voltage_resolution =  5);
     void serialDebug(bool onSetup = false); //Show on serial port information about sensor
+    void setADC(int value); //For external ADC Usage
     
     //user functions
     float calibrate(float ratioInCleanAir);

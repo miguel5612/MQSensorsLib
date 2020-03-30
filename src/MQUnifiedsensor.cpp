@@ -25,6 +25,11 @@ void MQUnifiedsensor::setR0(float R0) {
 void MQUnifiedsensor::setRL(float RL) {
   this->_RL = RL;
 }
+void MQUnifiedsensor::setADC(int value)
+{
+  this-> _sensor_volt = (value) * _VOLT_RESOLUTION / (pow(2, ADC_RESOLUTION) - 1); 
+  this-> _adc =  value;
+}
 void MQUnifiedsensor::setVoltResolution(float voltage_resolution)
 {
   _VOLT_RESOLUTION = voltage_resolution;
@@ -93,7 +98,7 @@ void MQUnifiedsensor::serialDebug(bool onSetup)
       Serial.print("|"); Serial.print(_adc);  Serial.print("| v = ADC*"); Serial.print(_VOLT_RESOLUTION); Serial.print("/"); Serial.print(pow(2, _ADC_Bit_Resolution)); Serial.print("  |    "); Serial.print(_sensor_volt);
       Serial.print("     | RS = ((" ); Serial.print(_VOLT_RESOLUTION ); Serial.print("*RL)/Voltage) - RL|      "); Serial.print(_RS_Calc); Serial.print("     | Ratio = RS/R0|    ");
       Serial.print(_ratio);  Serial.print( "       |   ");
-      if(_regressionMethod == 1) Serial.println("ratio*a + b");
+      if(_regressionMethod == 1) Serial.print("ratio*a + b");
       else Serial.print("pow(10, (log10(ratio)-b)/a)");
       Serial.print("  |   "); Serial.print(_PPM); Serial.println("  |");
     }
