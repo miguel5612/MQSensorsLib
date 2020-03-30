@@ -60,7 +60,7 @@ void setup() {
 
   MQ3.init(); 
   MQ3.setRegressionMethod(1); //_PPM =  a*ratio^b
-  MQ3.setA(4.8387); MQ3.setB(-2.68); // Configurate the ecuation values to get Benzene concentration
+  MQ3.setA(0.3934); MQ3.setB(-1.504); // Configurate the ecuation values to get Alcohol concentration
   MQ3.setR0(3.86018237);
 
   MQ4.init(); 
@@ -70,7 +70,7 @@ void setup() {
 
   MQ5.init(); 
   MQ5.setRegressionMethod(1); //_PPM =  a*ratio^b
-  MQ5.setA(1163.8); MQ5.setB(-3.874); // Configurate the ecuation values to get H2 concentration
+  MQ5.setA(97124); MQ5.setB(-4.918); // Configurate the ecuation values to get Alcohol concentration
   MQ5.setR0(71.100304);
   
   MQ6.init(); 
@@ -82,7 +82,7 @@ void setup() {
   MQ7.setRegressionMethod(1); //_PPM =  a*ratio^b
   MQ7.setA(99.042); MQ7.setB(-1.518); // Configurate the ecuation values to get CO concentration
   MQ7.setR0(4);
-  
+    
   MQ8.init(); 
   MQ8.setRegressionMethod(1); //_PPM =  a*ratio^b
   MQ8.setA(976.97); MQ8.setB(-0.688); // Configurate the ecuation values to get H2 concentration
@@ -159,7 +159,7 @@ void setup() {
   //Print in serial monitor
   Serial.println("MQ2 to MQ9 - lecture");
   Serial.println("*************************** Lectures from MQ-board ***************************");
-  Serial.println("|    LPG   |  Benzene |   CH4    |    H2    |   CH4    |    CO    |    H2    |    LPG   |");  
+  Serial.println("|    LPG   |  Alcohol |   CH4    |  Alcohol |   CH4    |    CO    |    H2    |    LPG   |");  
   Serial.println("|    MQ-2  |   MQ-3   |   MQ-4   |   MQ-5   |   MQ-6   |   MQ-7   |   MQ-8   |   MQ-9   |");  
   //pinMode(calibration_button, INPUT);
 }
