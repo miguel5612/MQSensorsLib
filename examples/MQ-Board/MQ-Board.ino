@@ -19,39 +19,38 @@
 
 //Include the library
 #include <MQUnifiedsensor.h>
-
-//Definitions
-#define placa "Arduino Mega 2560"
-#define Voltage_Resolution 5
-#define type "MQ-Board"
-#define ADC_Bit_Resolution 10 // For arduino UNO/MEGA/NANO
-#define pin2 A2 //Analog input 2 of your arduino
-#define pin3 A3 //Analog input 3 of your arduino
-#define pin4 A4 //Analog input 4 of your arduino
-#define pin5 A5 //Analog input 5 of your arduino
-#define pin6 A6 //Analog input 6 of your arduino
-#define pin7 A7 //Analog input 7 of your arduino
-#define pin8 A8 //Analog input 8 of your arduino
-#define pin9 A9 //Analog input 9 of your arduino
-
-#define RatioMQ2CleanAir 9.83 //RS / R0 = 9.83 ppm 
-#define RatioMQ3CleanAir 60   //RS / R0 = 60 ppm 
-#define RatioMQ4CleanAir 4.4  //RS / R0 = 4.4 ppm 
-#define RatioMQ5CleanAir 6.5  //RS / R0 = 6.5 ppm 
-#define RatioMQ6CleanAir 10   //RS / R0 = 10 ppm 
-#define RatioMQ7CleanAir 27.5 //RS / R0 = 27.5 ppm  
-#define RatioMQ8CleanAir 70   //RS / R0 = 70 ppm   
-#define RatioMQ9CleanAir 9.6  //RS / R0 = 9.6 ppm  
-
+/************************Hardware Related Macros************************************/
+#define         Board                   ("Arduino Mega")
+#define         Pin2                     (A2)  //Analog input 2 of your arduino
+#define         Pin3                     (A3)  //Analog input 3 of your arduino
+#define         Pin4                     (A4)  //Analog input 4 of your arduino
+#define         Pin5                     (A5)  //Analog input 5 of your arduino
+#define         Pin6                     (A6)  //Analog input 6 of your arduino
+#define         Pin7                     (A7)  //Analog input 7 of your arduino
+#define         Pin8                     (A8)  //Analog input 8 of your arduino
+#define         Pin9                     (A9)  //Analog input 9 of your arduino
+/***********************Software Related Macros************************************/
+#define         RatioMQ2CleanAir          (9.83) //RS / R0 = 9.83 ppm 
+#define         RatioMQ3CleanAir          (60) //RS / R0 = 60 ppm 
+#define         RatioMQ4CleanAir          (4.4) //RS / R0 = 4.4 ppm 
+#define         RatioMQ5CleanAir          (6.5) //RS / R0 = 6.5 ppm 
+#define         RatioMQ6CleanAir          (10) //RS / R0 = 10 ppm 
+#define         RatioMQ7CleanAir          (27.5) //RS / R0 = 27.5 ppm  
+#define         RatioMQ8CleanAir          (70) //RS / R0 = 70 ppm   
+#define         RatioMQ9CleanAir          (9.6) //RS / R0 = 9.6 ppm 
+#define         ADC_Bit_Resolution        (10) // 10 bit ADC 
+#define         Voltage_Resolution        (5) // Volt resolution to calc the voltage
+#define         Type                      ("Arduino Mega 2560") //Board used
+/*****************************Globals***********************************************/
 //Declare Sensor
-MQUnifiedsensor MQ2(placa, Voltage_Resolution, ADC_Bit_Resolution, pin2, type);
-MQUnifiedsensor MQ3(placa, Voltage_Resolution, ADC_Bit_Resolution, pin3, type);
-MQUnifiedsensor MQ4(placa, Voltage_Resolution, ADC_Bit_Resolution, pin4, type);
-MQUnifiedsensor MQ5(placa, Voltage_Resolution, ADC_Bit_Resolution, pin5, type);
-MQUnifiedsensor MQ6(placa, Voltage_Resolution, ADC_Bit_Resolution, pin6, type);
-MQUnifiedsensor MQ7(placa, Voltage_Resolution, ADC_Bit_Resolution, pin7, type);
-MQUnifiedsensor MQ8(placa, Voltage_Resolution, ADC_Bit_Resolution, pin8, type);
-MQUnifiedsensor MQ9(placa, Voltage_Resolution, ADC_Bit_Resolution, pin9, type);
+MQUnifiedsensor MQ2(Board, Voltage_Resolution, ADC_Bit_Resolution, Pin2, Type);
+MQUnifiedsensor MQ3(Board, Voltage_Resolution, ADC_Bit_Resolution, Pin3, Type);
+MQUnifiedsensor MQ4(Board, Voltage_Resolution, ADC_Bit_Resolution, Pin4, Type);
+MQUnifiedsensor MQ5(Board, Voltage_Resolution, ADC_Bit_Resolution, Pin5, Type);
+MQUnifiedsensor MQ6(Board, Voltage_Resolution, ADC_Bit_Resolution, Pin6, Type);
+MQUnifiedsensor MQ7(Board, Voltage_Resolution, ADC_Bit_Resolution, Pin7, Type);
+MQUnifiedsensor MQ8(Board, Voltage_Resolution, ADC_Bit_Resolution, Pin8, Type);
+MQUnifiedsensor MQ9(Board, Voltage_Resolution, ADC_Bit_Resolution, Pin9, Type);
 
 void setup() {
   //Init serial port
