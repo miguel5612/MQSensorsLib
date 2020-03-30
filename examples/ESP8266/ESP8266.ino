@@ -11,9 +11,10 @@
   Library originally added 01 may 2019
   by Miguel A Califa, Yersson Carrillo, Ghiordy Contreras, Mario Rodriguez
  
-  Updated library usage
-  modified 26 March 2020
-  by Miguel Califa 
+  Added ESP8266 example 
+  29.03.2020
+  Wiring:
+  https://github.com/miguel5612/MQSensorsLib_Docs/blob/master/static/img/MQ_ESP8266.PNG
 
  This example code is in the public domain.
 

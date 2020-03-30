@@ -13,6 +13,10 @@
   modified 26 March 2020
   by Miguel Califa 
 
+  Wiring:
+  https://github.com/miguel5612/MQSensorsLib_Docs/blob/master/static/img/MQ_Arduino.PNG
+  Please take care, arduino A0 pin represent the analog input configured on #define pin
+
  This example code is in the public domain.
 
 */

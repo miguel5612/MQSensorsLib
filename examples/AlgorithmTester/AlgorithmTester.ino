@@ -1,6 +1,8 @@
 //Include the library
 #include <MQUnifiedsensor.h>
 
+// Wiring NOT required, only an arduino or esp8266 board
+
 /*
     This program was made to test the algorithm that from the ratio obtains 
     the PPM (The core of this library), regardless of the plate in which the 
