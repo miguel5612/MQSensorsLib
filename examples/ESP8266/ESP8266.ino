@@ -27,7 +27,7 @@
 #define         Pin                     (A3)  //Analog input 3 of your arduino
 /***********************Software Related Macros************************************/
 #define         Type                    ("MQ-3") //MQ3
-#define         Voltage_Resolution      (5)
+#define         Voltage_Resolution      (3.3) // 3V3 <- IMPORTANT
 #define         ADC_Bit_Resolution      (10) // For arduino UNO/MEGA/NANO
 
 /*****************************Globals***********************************************/
