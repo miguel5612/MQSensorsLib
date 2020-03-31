@@ -56,9 +56,7 @@ void setup() {
   //Remarks: Configure the pin of arduino as input.
   /************************************************************************************/ 
   MQ3.init(); 
-  // Calibration setup
-  MQ3.setR0(3.86018237);
-
+ 
   /* 
     //If the RL value is different from 10K please assign your RL value with the following method:
     MQ3.setRL(10);
