@@ -177,28 +177,6 @@ void loop() {
   MQ7.update();
   MQ8.update();
   MQ9.update();
-  /*
-  //Rutina de calibracion - Uncomment if you need (setup too and header)
-  if(calibration_button)
-  {
-    float R0 = MQ2.calibrate();
-    MQ2.setR0(R0):
-    R0 = MQ3.calibrate();
-    MQ3.setR0(R0):
-    R0 = MQ4.calibrate();
-    MQ4.setR0(R0):
-    R0 = MQ5.calibrate();
-    MQ5.setR0(R0):
-    R0 = MQ6.calibrate();
-    MQ6.setR0(R0):
-    R0 = MQ7.calibrate();
-    MQ7.setR0(R0):
-    R0 = MQ8.calibrate();
-    MQ8.setR0(R0):
-    R0 = MQ9.calibrate();
-    MQ9.setR0(R0):
-  }
-  */
   //Read the sensor and print in serial port
   float MQ2Lecture =  MQ2.readSensor();
   float MQ3Lecture =  MQ3.readSensor();

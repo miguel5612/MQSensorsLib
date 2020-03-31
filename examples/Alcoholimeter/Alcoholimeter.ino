@@ -54,18 +54,35 @@ void setup() {
   Hexane | 7585.3 | -2.849
   */
 
-  // Calibration setup
-  MQ3.setR0(3.86018237);
-
   /* 
     //If the RL value is different from 10K please assign your RL value with the following method:
     MQ3.setRL(10);
   */
-
   /*****************************  MQ Init ********************************************/ 
   //Remarks: Configure the pin of arduino as input.
   /************************************************************************************/ 
-  MQ3.init(); 
+  MQ3.init();
+  /*****************************  MQ CAlibration ********************************************/ 
+  // Explanation: 
+  // In this routine the sensor will measure the resistance of the sensor supposing before was pre-heated
+  // and now is on clean air (Calibration conditions), and it will setup R0 value.
+  // We recomend execute this routine only on setup or on the laboratory and save on the eeprom of your arduino
+  // This routine not need to execute to every restart, you can load your R0 if you know the value
+  // Acknowledgements: https://jayconsystems.com/blog/understanding-a-gas-sensor
+  Serial.print("Calibrating please wait.");
+  float calcR0 = 0;
+  for(int i = 1; i<=10; i ++)
+  {
+    MQ3.update(); // Update data, the arduino will be read the voltage on the analog pin
+    calcR0 += MQ3.calibrate(RatioMQ3CleanAir);
+    Serial.print(".");
+  }
+  MQ3.setR0(calcR0/10);
+  Serial.println("  done!.");
+  
+  if(isinf(calcR0)) {Serial.println("Warning: Conection issue founded, R0 is infite (Open circuit detected) please check your wiring and supply"); while(1);}
+  if(calcR0 == 0){Serial.println("Warning: Conection issue founded, R0 is zero (Analog pin with short circuit to ground) please check your wiring and supply"); while(1);}
+  /*****************************  MQ CAlibration ********************************************/  
 }
 
 void loop() {

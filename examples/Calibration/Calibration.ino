@@ -48,6 +48,10 @@ void setup() {
   Serial.begin(115200);
   MQ2.setRegressionMethod(1); //_PPM =  a*ratio^b
   MQ2.setA(574.25); MQ2.setB(-2.222); // Configurate the ecuation values to get LPG concentration
+  /* 
+    //If the RL value is different from 10K please assign your RL value with the following method:
+    MQ3.setRL(10);
+  */
   //init the sensor
   MQ2.init(); 
   //Print in serial monitor

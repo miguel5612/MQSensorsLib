@@ -18,6 +18,8 @@
   Please take care, arduino A0 pin represent the analog input configured on #define pin - For this example this doesn't matter
   You will connect your sensor to your external A2D Sensor
 
+  This example code is in the public domain.
+
   Important:
   1. Although it doesn't matter what pin you put in when initializing your MQ sensor function it is important that you don't 
   for any reason invoke the MQ.init() method because that method configures the selected pin as input and you may need it for 
@@ -26,10 +28,6 @@
   levels of the MQ sensor module.
   3. You must ensure that when invoking the setADC(value) method the value you are passing is within the expected parameters, 
   for example if it is a 10-bit ADC converter, we expect a value between 0 and 2^10 = 1024 
-
-
-
- This example code is in the public domain.
 
 */
 
@@ -67,6 +65,11 @@ void setup() {
   */
 
   
+  /* 
+    //If the RL value is different from 10K please assign your RL value with the following method:
+    MQ3.setRL(10);
+  */
+
   /*****************************  MQ CAlibration ********************************************/ 
   // Explanation: 
   // In this routine the sensor will measure the resistance of the sensor supposing before was pre-heated
@@ -89,11 +92,6 @@ void setup() {
   if(isinf(calcR0)) {Serial.println("Warning: Conection issue founded, R0 is infite (Open circuit detected) please check your wiring and supply"); while(1);}
   if(calcR0 == 0){Serial.println("Warning: Conection issue founded, R0 is zero (Analog pin with short circuit to ground) please check your wiring and supply"); while(1);}
   /*****************************  MQ CAlibration ********************************************/ 
-
-  /* 
-    //If the RL value is different from 10K please assign your RL value with the following method:
-    MQ3.setRL(10);
-  */
 
   MQ3.serialDebug(true);
 }

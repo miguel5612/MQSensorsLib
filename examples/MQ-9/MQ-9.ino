@@ -50,8 +50,15 @@ void setup() {
   CH4     | 4269.6 | -2.648
   CO      | 599.65 | -2.244
   */
-
   
+  /*****************************  MQ Init ********************************************/ 
+  //Remarks: Configure the pin of arduino as input.
+  /************************************************************************************/ 
+  MQ9.init(); 
+  /* 
+    //If the RL value is different from 10K please assign your RL value with the following method:
+    MQ9.setRL(10);
+  */
   /*****************************  MQ CAlibration ********************************************/ 
   // Explanation: 
   // In this routine the sensor will measure the resistance of the sensor supposing before was pre-heated
@@ -73,21 +80,6 @@ void setup() {
   if(isinf(calcR0)) {Serial.println("Warning: Conection issue founded, R0 is infite (Open circuit detected) please check your wiring and supply"); while(1);}
   if(calcR0 == 0){Serial.println("Warning: Conection issue founded, R0 is zero (Analog pin with short circuit to ground) please check your wiring and supply"); while(1);}
   /*****************************  MQ CAlibration ********************************************/ 
-
-  /* 
-    //If the RL value is different from 10K please assign your RL value with the following method:
-    MQ9.setRL(10);
-  */
-
-  /*****************************  MQ Init ********************************************/ 
-  //Remarks: Configure the pin of arduino as input.
-  /************************************************************************************/ 
-  MQ9.init(); 
-  /*****************************  MQ Init ********************************************/ 
-  //Input: setup flag, if this function are on setup will print the headers (Optional - Default value: False)
-  //Output: print on serial port the information about sensor and sensor readings
-  //Remarks: Configure the pin of arduino as input.
-  /************************************************************************************/ 
   MQ9.serialDebug(true);
 }
 
