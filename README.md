@@ -8,30 +8,50 @@ This is a unified library to use sensors MQ: 2, 3, 4, 5, 6, 7, 8, 9, 131, 135, 3
 ## Getting Started
 
 ```
-#define placa "Arduino UNO"
-#define Voltage_Resolution 5
-#define pin A0 //Analog input 0 of your arduino
-#define type "MQ-4" //MQ4
-#define ADC_Bit_Resolution 10 // For arduino UNO/MEGA/NANO
-MQUnifiedsensor MQ4(placa, Voltage_Resolution, ADC_Bit_Resolution, pin, type); //Example if sensor is MQ4 on Arduino UNO board
+//Include the library
+#include <MQUnifiedsensor.h>
+/************************Hardware Related Macros************************************/
+#define         Board                   ("Arduino UNO")
+#define         Pin                     (A4)  //Analog input 4 of your arduino
+/***********************Software Related Macros************************************/
+#define         Type                    ("MQ-4") //MQ4
+#define         Voltage_Resolution      (5)
+#define         ADC_Bit_Resolution      (10) // For arduino UNO/MEGA/NANO
+#define         RatioMQ4CleanAir        (4.4) //RS / R0 = 60 ppm 
+/*****************************Globals***********************************************/
+//Declare Sensor
+MQUnifiedsensor MQ4(Board, Voltage_Resolution, ADC_Bit_Resolution, Pin, Type);
+// Setup
 MQ4.setRegressionMethod("Exponential"); //_PPM =  a*ratio^b
 MQ4.setA(1012.7); MQ4.setB(-2.786); // Configurate the ecuation values to get CH4 concentration
-MQ4.setR0(3.86018237);
+MQ4.setR0(3.86018237); // Value getted on calibration
+// Loop
 MQ4.init();
 MQ4.update();
 float ppmCH4 = MQ4.readSensor();
 ```
 
 ## Wiring
-
+### Sensor
+#### Important points:
+##### Points you should identify
+* VCC -> 5V Power supply (+) wire
+* GND -> GND Ground (-) wire
+* AO -> Analog Output of the sensor
+##### Data of board that you should have
+* RL Value in KOhms
+##### Graph
+![Wiring_MQSensor](https://raw.githubusercontent.com/miguel5612/MQSensorsLib_Docs/master/static/img/Points_explanation.jpeg)
 ### Arduino
 ![Arduino_Wiring_MQSensor](https://raw.githubusercontent.com/miguel5612/MQSensorsLib_Docs/master/static/img/MQ_Arduino.PNG)
 
 ### ESP8266
 ![ESP8266_Wiring_MQSensor](https://raw.githubusercontent.com/miguel5612/MQSensorsLib_Docs/master/static/img/MQ_ESP8266.PNG)
 
-### User Manual New!! 12.2019
+### User Manual (v1.0) 12.2019
 [Manual](https://drive.google.com/open?id=1BAFInlvqKR7h81zETtjz4_RC2EssvFWX)
+### User Manual (v2.0) 04.2020
+[Manual](https://github.com/miguel5612/MQSensorsLib_Docs/blob/master/Docs/MQSensorLib_2.0.pdf)
 
 [Excel_Help_Spreadsheet (Fill only Volaje Between RL - RS - RL Values)](https://drive.google.com/open?id=1MKDcudQ7BHL_vLGi-lgPh9-pblvygRMq)
 
