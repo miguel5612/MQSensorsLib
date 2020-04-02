@@ -42,6 +42,10 @@ float ppmCH4 = MQ4.readSensor();
 * RL Value in KOhms
 ##### Graph
 ![Wiring_MQSensor](https://raw.githubusercontent.com/miguel5612/MQSensorsLib_Docs/master/static/img/Points_explanation.jpeg)
+#### RS/R0 value (From datasheet of your sensor)
+* RS (Clean air - English) -> (Aire puro - Spanish)
+* **Note**: RS/R0 is equal to Ratio variable on the program
+![Graph from datasheet](https://raw.githubusercontent.com/miguel5612/MQSensorsLib_Docs/master/static/img/Graph_Explanation.jpeg)
 ### Arduino
 ![Arduino_Wiring_MQSensor](https://raw.githubusercontent.com/miguel5612/MQSensorsLib_Docs/master/static/img/MQ_Arduino.PNG)
 
@@ -54,6 +58,29 @@ float ppmCH4 = MQ4.readSensor();
 [Manual](https://github.com/miguel5612/MQSensorsLib_Docs/blob/master/Docs/MQSensorLib_2.0.pdf)
 
 [Excel_Help_Spreadsheet (Fill only Volaje Between RL - RS - RL Values)](https://drive.google.com/open?id=1MKDcudQ7BHL_vLGi-lgPh9-pblvygRMq)
+
+### Serial debug (optional)
+If your sensor is an **MQ2** (Same for others sensors):
+* To enable on setup wrote
+```
+MQ2.serialDebug(true); 
+```
+* And on Loop Wrote
+```
+MQ2.serialDebug(); 
+```
+* Result:
+
+![Serial debug output](https://github.com/miguel5612/MQSensorsLib_Docs/blob/master/static/img/Serial_Mon_Explanation.jpeg?raw=true)
+
+**Note**: 
+* ![#c5f015](https://placehold.it/15/c5f015/000000?text=+) `Yellow -> Calibration status.`
+* ![#008000](https://placehold.it/15/008000/000000?text=+) `Green -> Hardware and software characteristics.`
+* ![#f03c15](https://placehold.it/15/f03c15/000000?text=+) `Red -> Headers of the library calculations.`
+* Only valid for **1** gas sensor readings.
+
+**Usage**
+* Quick troubleshooting, since it shows everything the library does and the results of the calculations in each function.
 
 ### Prerequisites
 
