@@ -57,7 +57,6 @@ float ppmCH4 = MQ4.readSensor();
 ### User Manual (v2.0) 04.2020
 [Manual](https://github.com/miguel5612/MQSensorsLib_Docs/blob/master/Docs/MQSensorLib_2.0.pdf)
 
-[Excel_Help_Spreadsheet (Fill only Volaje Between RL - RS - RL Values)](https://drive.google.com/open?id=1MKDcudQ7BHL_vLGi-lgPh9-pblvygRMq)
 
 ### Serial debug (optional)
 If your sensor is an **MQ2** (Same for others sensors):
