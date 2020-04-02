@@ -43,7 +43,7 @@ float ppmCH4 = MQ4.readSensor();
 ##### Graph
 ![Wiring_MQSensor](https://raw.githubusercontent.com/miguel5612/MQSensorsLib_Docs/master/static/img/Points_explanation.jpeg)
 #### RS/R0 value (From datasheet of your sensor)
-* RS (Clean air - English) -> (Aire puro - Spanish)
+* RS/R0 (Clean air - English) -> (Aire puro - Spanish)
 * **Note**: RS/R0 is equal to Ratio variable on the program
 ![Graph from datasheet](https://raw.githubusercontent.com/miguel5612/MQSensorsLib_Docs/master/static/img/Graph_Explanation.jpeg)
 ### Arduino
