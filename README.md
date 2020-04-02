@@ -151,8 +151,8 @@ Please read [CONTRIBUTING.md](https://github.com/miguel5612/MQSensorsLib/blob/ma
 
 ## Collaborators
 
-* **Andres A. Martinez.** 
-* **Juan A. Rodríguez.** - [*Github*](https://github.com/Obiot24)
+* **Andres A. Martinez.** - [*Github*](https://github.com/macsi) - [CV] (https://www.linkedin.com/in/andr%C3%A9s-acevedo-mart%C3%ADnez-73ab35185/?originalSubdomain=co)
+* **Juan A. Rodríguez.** - [*Github*](https://github.com/Obiot24) - [CV] ()
 * **Mario A. Rodríguez O.** - [*GitHub*](https://github.com/MarioAndresR) - [CV](https://scienti.colciencias.gov.co/cvlac/visualizador/generarCurriculoCv.do?cod_rh=0000111304)
 
 See also the list of [contributors](https://github.com/miguel5612/MQSensorsLib/contributors) who participated in this project.
