@@ -27,8 +27,8 @@
 #define         Pin                     (A0)  //Analog input 3 of your arduino
 /***********************Software Related Macros************************************/
 #define         Type                    ("MQ-3") //MQ3
-#define         Voltage_Resolution      (3.3) // 3V3 <- IMPORTANT
-#define         ADC_Bit_Resolution      (12) // ESP-32
+#define         Voltage_Resolution      (3.3) // 3V3 <- IMPORTANT. Source: https://randomnerdtutorials.com/esp32-adc-analog-read-arduino-ide/
+#define         ADC_Bit_Resolution      (12) // ESP-32 bit resolution. Source: https://randomnerdtutorials.com/esp32-adc-analog-read-arduino-ide/
 #define         RatioMQ3CleanAir        (60)
 /*****************************Globals***********************************************/
 MQUnifiedsensor MQ3(Board, Voltage_Resolution, ADC_Bit_Resolution, Pin, Type);
