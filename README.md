@@ -28,7 +28,7 @@ This is a unified library to use sensors MQ: 2, 3, 4, 5, 6, 7, 8, 9, 131, 135, 3
   * [Arduino](#Arduino)
   * [ESP8266](#ESP8266)
 * [User Manual](#usage)
-* [Sensor manufacture](#roadmap)
+* [Sensor manufacturers](#Sensor-manufacturers)
 * [Contributing](#Contributing)
 * [Authors](#Authors)
 
@@ -112,7 +112,7 @@ MQ2.serialDebug();
 
 You'll need Arduino desktop app 1.8.9 or later.
 
-### Sensor manufacture:
+### Sensor manufacturers:
 | Sensor | Manufacture | URL Datasheet |
 |----------|----------|----------|
 | MQ-2 | Pololulu| [datasheet](https://www.pololu.com/file/0J309/MQ2.pdf) |
