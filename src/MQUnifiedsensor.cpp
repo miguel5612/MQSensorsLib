@@ -27,7 +27,7 @@ void MQUnifiedsensor::setRL(float RL) {
 }
 void MQUnifiedsensor::setADC(int value)
 {
-  this-> _sensor_volt = (value) * _VOLT_RESOLUTION / (pow(2, ADC_RESOLUTION) - 1); 
+  this-> _sensor_volt = (value) * _VOLT_RESOLUTION / (pow(2, _ADC_Bit_Resolution) - 1); 
   this-> _adc =  value;
 }
 void MQUnifiedsensor::setVoltResolution(float voltage_resolution)
@@ -95,7 +95,7 @@ void MQUnifiedsensor::serialDebug(bool onSetup)
     }
     else
     {
-      Serial.print("|"); Serial.print(_adc);  Serial.print("| v = ADC*"); Serial.print(_VOLT_RESOLUTION); Serial.print("/"); Serial.print(pow(2, _ADC_Bit_Resolution)); Serial.print("  |    "); Serial.print(_sensor_volt);
+      Serial.print("|"); Serial.print(_adc);  Serial.print("| v = ADC*"); Serial.print(_VOLT_RESOLUTION); Serial.print("/"); Serial.print(pow(2, _ADC_Bit_Resolution) - 1); Serial.print("  |    "); Serial.print(_sensor_volt);
       Serial.print("     | RS = ((" ); Serial.print(_VOLT_RESOLUTION ); Serial.print("*RL)/Voltage) - RL|      "); Serial.print(_RS_Calc); Serial.print("     | Ratio = RS/R0|    ");
       Serial.print(_ratio);  Serial.print( "       |   ");
       if(_regressionMethod == 1) Serial.print("ratio*a + b");
@@ -174,7 +174,7 @@ float MQUnifiedsensor::getVoltage(int read) {
       avg += _adc;
       delay(retry_interval);
     }
-    voltage = (avg/ retries) * _VOLT_RESOLUTION / (pow(2, ADC_RESOLUTION) - 1);
+    voltage = (avg/ retries) * _VOLT_RESOLUTION / (pow(2, _ADC_Bit_Resolution) - 1);
   }
   else
   {
