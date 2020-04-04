@@ -26,7 +26,7 @@ This is a unified library to use sensors MQ: 2, 3, 4, 5, 6, 7, 8, 9, 131, 135, 3
 * [Wiring](#Wiring)
   * [Sensor](#Sensor)
   * [Arduino](#Arduino)
-  * [ESP8266 - ESP-32](#ESP8266-ESP32)
+  * [ESP8266 or ESP-32](#ESP8266-ESP32)
 * [User Manual](#Manuals)
 * [Sensor manufacturers](#Sensor-manufacturers)
 * [Contributing](#Contributing)
