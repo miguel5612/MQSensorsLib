@@ -80,9 +80,9 @@ float ppmCH4 = MQ4.readSensor();
 ![ESP8266_Wiring_MQSensor](https://raw.githubusercontent.com/miguel5612/MQSensorsLib_Docs/master/static/img/MQ_ESP8266.PNG)
 
 ### Manuals
-### User Manual (v1.0) 12.2019
+#### User Manual (v1.0) 12.2019
 [Manual](https://drive.google.com/open?id=1BAFInlvqKR7h81zETtjz4_RC2EssvFWX)
-### User Manual (v2.0) 04.2020
+#### User Manual (v2.0) 04.2020
 [Manual](https://github.com/miguel5612/MQSensorsLib_Docs/blob/master/Docs/MQSensorLib_2.0.pdf)
 
 
