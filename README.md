@@ -26,7 +26,7 @@ This is a unified library to use sensors MQ: 2, 3, 4, 5, 6, 7, 8, 9, 131, 135, 3
 * [Wiring](#Wiring)
   * [Sensor](#Sensor)
   * [Arduino](#Arduino)
-  * [ESP8266](#ESP8266)
+  * [ESP8266 - ESP-32](#ESP8266-ESP32)
 * [User Manual](#usage)
 * [Sensor manufacturers](#Sensor-manufacturers)
 * [Contributing](#Contributing)
@@ -76,7 +76,7 @@ float ppmCH4 = MQ4.readSensor();
 ### Arduino
 ![Arduino_Wiring_MQSensor](https://raw.githubusercontent.com/miguel5612/MQSensorsLib_Docs/master/static/img/MQ_Arduino.PNG)
 
-### ESP8266
+### ESP8266-ESP32
 ![ESP8266_Wiring_MQSensor](https://raw.githubusercontent.com/miguel5612/MQSensorsLib_Docs/master/static/img/MQ_ESP8266.PNG)
 
 ### User Manual (v1.0) 12.2019
