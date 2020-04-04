@@ -1,9 +1,36 @@
+<!-- PROJECT SHIELDS -->
+<!--
+*** I'm using markdown "reference style" links for readability.
+*** Reference links are enclosed in brackets [ ] instead of parentheses ( ).
+*** See the bottom of this document for the declaration of the reference variables
+*** for contributors-url, forks-url, etc. This is an optional, concise syntax you may use.
+*** https://www.markdownguide.org/basic-syntax/#reference-style-links
+-->
 [![DOI](https://zenodo.org/badge/170540207.svg)](https://zenodo.org/badge/latestdoi/170540207)
-![Build Status](https://travis-ci.org/dwyl/esta.svg?branch=master)
+![Build Status][build-url]
+[![Contributors][contributors-shield]][contributors-url]
+[![Forks][forks-shield]][forks-url]
+[![Stargazers][stars-shield]][stars-url]
+[![Issues][issues-shield]][issues-url]
+[![MIT License][license-shield]][license-url]
+[![LinkedIn][linkedin-shield]][linkedin-url]
 
 # MQSensorsLib
 
 This is a unified library to use sensors MQ: 2, 3, 4, 5, 6, 7, 8, 9, 131, 135, 303A and 309A.
+
+<!-- TABLE OF CONTENTS -->
+## Table of Contents
+
+* [Getting Started](#Getting-Started)
+* [Wiring](#Wiring)
+  * [Sensor](#Sensor)
+  * [Arduino](#Arduino)
+  * [ESP8266](#ESP8266)
+* [User Manual](#usage)
+* [Sensor manufacture](#roadmap)
+* [Contributing](#Contributing)
+* [Authors](#Authors)
 
 ## Getting Started
 
@@ -204,3 +231,22 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
   doi          = {10.5281/zenodo.3384301},
   url          = {https://doi.org/10.5281/zenodo.3384301}
 }
+
+
+
+<!-- MARKDOWN LINKS & IMAGES -->
+<!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
+[contributors-shield]: https://img.shields.io/github/contributors/miguel5612/MQSensorsLib.svg?style=flat-square
+[contributors-url]: https://github.com/miguel5612/MQSensorsLib/graphs/contributors
+[forks-shield]: https://img.shields.io/github/forks/miguel5612/MQSensorsLib.svg?style=flat-square
+[forks-url]: https://github.com/miguel5612/MQSensorsLib/network/members
+[stars-shield]: https://img.shields.io/github/stars/miguel5612/MQSensorsLib.svg?style=flat-square
+[stars-url]: https://github.com/miguel5612/MQSensorsLib/stargazers
+[issues-shield]: https://img.shields.io/github/issues/miguel5612/MQSensorsLib.svg?style=flat-square
+[issues-url]: https://github.com/miguel5612/MQSensorsLib/issues
+[license-shield]: https://img.shields.io/github/license/miguel5612/MQSensorsLib.svg?style=flat-square
+[license-url]: https://github.com/miguel5612/MQSensorsLib/blob/master/LICENSE.txt
+[linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=flat-square&logo=linkedin&colorB=555
+[build-url]: https://travis-ci.org/dwyl/esta.svg?branch=master
+[linkedin-url]: https://www.linkedin.com/in/miguel5612
+[product-screenshot]: images/screenshot.png
