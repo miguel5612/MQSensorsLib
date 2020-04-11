@@ -17,7 +17,7 @@
 
 # MQSensorsLib
 
-This is a unified library to use sensors MQ: 2, 3, 4, 5, 6, 7, 8, 9, 131, 135, 303A and 309A.
+We present a unified library for MQ sensors, this library allows to read MQ signals easily from Arduino, Genuino, ESP8266, ESP-32 boards whose references are MQ2, MQ3, MQ4, MQ5, MQ6, MQ7, MQ8, MQ9, MQ131, MQ135, MQ303A, MQ309A.
 
 <!-- TABLE OF CONTENTS -->
 ## Table of Contents
