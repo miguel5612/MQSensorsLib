@@ -76,7 +76,7 @@ float ppmCH4 = MQ4.readSensor();
 ### Arduino
 ![Arduino_Wiring_MQSensor](https://raw.githubusercontent.com/miguel5612/MQSensorsLib_Docs/master/static/img/MQ_Arduino.PNG)
 #### MQ-7 / MQ-309A
-** Note ** MQ-7 and MQ-309 needs two different voltages for heater, they can be supplied by PWM and DC Signal controlled by your controller, another option is to use two different power sources, you should use the best option for you, next i will show the PWM option and on the examples this will be the way [issue](https://github.com/miguel5612/MQSensorsLib/issues/26).
+** Note ** [issue](https://github.com/miguel5612/MQSensorsLib/issues/26): MQ-7 and MQ-309 needs two different voltages for heater, they can be supplied by PWM and DC Signal controlled by your controller, another option is to use two different power sources, you should use the best option for you, next i will show the PWM option and on the examples this will be the way .
 ![MQ-7_MQ-309](https://raw.githubusercontent.com/miguel5612/MQSensorsLib_Docs/master/static/img/MQ-309_MQ-7.PNG)
 ### ESP8266-ESP32
 ![ESP8266_Wiring_MQSensor](https://raw.githubusercontent.com/miguel5612/MQSensorsLib_Docs/master/static/img/MQ_ESP8266.PNG)
