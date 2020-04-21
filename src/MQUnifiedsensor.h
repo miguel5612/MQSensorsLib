@@ -30,6 +30,7 @@ class MQUnifiedsensor
     //user functions
     float calibrate(float ratioInCleanAir);
     float readSensor();
+    float readSensorR0Rs();
     float validateEcuation(float ratioInput = 0);
     
     //get function for info

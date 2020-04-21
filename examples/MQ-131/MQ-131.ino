@@ -17,6 +17,8 @@
   https://github.com/miguel5612/MQSensorsLib_Docs/blob/master/static/img/MQ_Arduino.PNG
   Please take care, arduino A0 pin represent the analog input configured on #define pin
 
+  Note: high concentration MQ-131 sensor.
+
  This example code is in the public domain.
 
 */
@@ -83,11 +85,12 @@ void setup() {
   if(calcR0 == 0){Serial.println("Warning: Conection issue founded, R0 is zero (Analog pin with short circuit to ground) please check your wiring and supply"); while(1);}
   /*****************************  MQ CAlibration ********************************************/ 
   MQ131.serialDebug(true);
+  Serial.println("Ignore Ratio = RS/R0, for this example we will use readSensorR0Rs, the ratio calculated will be R0/Rs. Thanks :)");
 }
 
 void loop() {
   MQ131.update(); // Update data, the arduino will be read the voltage on the analog pin
-  MQ131.readSensor(); // Sensor will read PPM concentration using the model and a and b values setted before or in the setup
+  MQ131.readSensorR0Rs(); // Sensor will read PPM concentration using the model and a and b values setted before or in the setup
   MQ131.serialDebug(); // Will print the table on the serial port
   delay(500); //Sampling frequency
 }
