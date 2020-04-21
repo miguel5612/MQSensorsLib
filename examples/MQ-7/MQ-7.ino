@@ -13,6 +13,10 @@
   modified 26 March 2020
   by Miguel Califa 
 
+  Updated example of MQ-7 AND MQ-309A
+  modified 20 April 2020
+  by Miguel Califa
+
   Wiring:
   https://github.com/miguel5612/MQSensorsLib_Docs/blob/master/static/img/MQ_Arduino.PNG
   Please take care, arduino A0 pin represent the analog input configured on #define pin
@@ -31,14 +35,16 @@
 #define type "MQ-7" //MQ7
 #define ADC_Bit_Resolution 10 // For arduino UNO/MEGA/NANO
 #define RatioMQ7CleanAir 27.5 //RS / R0 = 27.5 ppm 
-//#define calibration_button 13 //Pin to calibrate your sensor
+#define PWMPin 5 // Pin connected to mosfet
 
 //Declare Sensor
 MQUnifiedsensor MQ7(placa, Voltage_Resolution, ADC_Bit_Resolution, pin, type);
+unsigned long oldTime = 0;
 
 void setup() {
   //Init the serial port communication - to debug the library
   Serial.begin(9600); //Init serial port
+  pinMode(PWMPin, OUTPUT);
 
   //Set math model to calculate the PPM concentration and the value of constants
   MQ7.setRegressionMethod(1); //_PPM =  a*ratio^b
@@ -87,8 +93,28 @@ void setup() {
 }
 
 void loop() {
-  MQ7.update(); // Update data, the arduino will be read the voltage on the analog pin
-  MQ7.readSensor(); // Sensor will read PPM concentration using the model and a and b values setted before or in the setup
-  MQ7.serialDebug(); // Will print the table on the serial port
-  delay(500); //Sampling frequency
+  // 60s cycle
+  oldTime = millis();
+  while(millis() - oldTime <= (60*1000))
+  {
+    // VH 5 Volts
+    analogWrite(5, 255); // 255 is DC 5V output
+    MQ7.update(); // Update data, the arduino will be read the voltage on the analog pin
+    MQ7.readSensor(); // Sensor will read PPM concentration using the model and a and b values setted before or in the setup
+    MQ7.serialDebug(); // Will print the table on the serial port
+    delay(500); //Sampling frequency
+  }
+
+  // 90s cycle
+  oldTime = millis();
+  while(millis() - oldTime <= (90*1000))
+  {
+    // VH 1.4 Volts
+    analogWrite(5, 20); // 255 is 100%, 20.4 is aprox 8% of Duty cycle for 90s
+    MQ7.update(); // Update data, the arduino will be read the voltage on the analog pin
+    MQ7.readSensor(); // Sensor will read PPM concentration using the model and a and b values setted before or in the setup
+    MQ7.serialDebug(); // Will print the table on the serial port
+    delay(500); //Sampling frequency
+  } 
+  // Total: 60 + 90s =  2.5 minutes.
 }

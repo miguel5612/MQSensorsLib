@@ -31,14 +31,16 @@
 #define type "MQ-309" //MQ309
 #define ADC_Bit_Resolution 10 // For arduino UNO/MEGA/NANO
 #define RatioMQ309CleanAir 11 //RS / R0 = 11 ppm 
-//#define calibration_button 13 //Pin to calibrate your sensor
+#define PWMPin 5 // Pin connected to mosfet
 
 //Declare Sensor
 MQUnifiedsensor MQ309(placa, Voltage_Resolution, ADC_Bit_Resolution, pin, type);
+unsigned long oldTime = 0;
 
 void setup() {
   //Init the serial port communication - to debug the library
   Serial.begin(9600); //Init serial port
+  pinMode(PWMPin, OUTPUT);
 
   //Set math model to calculate the PPM concentration and the value of constants
   MQ309.setRegressionMethod(1); //_PPM =  a*ratio^b
@@ -86,8 +88,28 @@ void setup() {
 }
 
 void loop() {
-  MQ309.update(); // Update data, the arduino will be read the voltage on the analog pin
-  MQ309.readSensor(); // Sensor will read PPM concentration using the model and a and b values setted before or in the setup
-  MQ309.serialDebug(); // Will print the table on the serial port
-  delay(500); //Sampling frequency
+  // 60s cycle
+  oldTime = millis();
+  while(millis() - oldTime <= (30*1000))
+  {
+    // VH 0.9 Volts
+    analogWrite(5, 2); // 255 is 100%, 2.295 is aprox 0.9% of Duty cycle for 60s
+    MQ309.update(); // Update data, the arduino will be read the voltage on the analog pin
+    MQ309.readSensor(); // Sensor will read PPM concentration using the model and a and b values setted before or in the setup
+    MQ309.serialDebug(); // Will print the table on the serial port
+    delay(500); //Sampling frequency
+  }
+
+  // 90s cycle
+  oldTime = millis();
+  while(millis() - oldTime <= (120*1000))
+  {
+    // VL 0.2 Volts
+    analogWrite(5, 1); // 255 is 100%, 0.51 is aprox 0.2% of Duty cycle for 120s
+    MQ309.update(); // Update data, the arduino will be read the voltage on the analog pin
+    MQ309.readSensor(); // Sensor will read PPM concentration using the model and a and b values setted before or in the setup
+    MQ309.serialDebug(); // Will print the table on the serial port
+    delay(500); //Sampling frequency
+  } 
+  // Total: 30 + 120s =  2.5 minutes.
 }

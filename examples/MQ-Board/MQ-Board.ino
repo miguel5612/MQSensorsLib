@@ -29,6 +29,7 @@
 #define         Pin7                     (A7)  //Analog input 7 of your arduino
 #define         Pin8                     (A8)  //Analog input 8 of your arduino
 #define         Pin9                     (A9)  //Analog input 9 of your arduino
+#define         PWMPin                   (5)   // Pin connected to mosfet
 /***********************Software Related Macros************************************/
 #define         RatioMQ2CleanAir          (9.83) //RS / R0 = 9.83 ppm 
 #define         RatioMQ3CleanAir          (60) //RS / R0 = 60 ppm 
@@ -51,6 +52,8 @@ MQUnifiedsensor MQ6(Board, Voltage_Resolution, ADC_Bit_Resolution, Pin6, Type);
 MQUnifiedsensor MQ7(Board, Voltage_Resolution, ADC_Bit_Resolution, Pin7, Type);
 MQUnifiedsensor MQ8(Board, Voltage_Resolution, ADC_Bit_Resolution, Pin8, Type);
 MQUnifiedsensor MQ9(Board, Voltage_Resolution, ADC_Bit_Resolution, Pin9, Type);
+
+unsigned long oldTime = 0;
 
 void setup() {
   //Init serial port
@@ -168,6 +171,27 @@ void setup() {
 }
 
 void loop() {
+  oldTime = millis();
+  while(millis() - oldTime <= (60*1000))
+  { 
+    // VH 5 Volts
+    analogWrite(5, 255); // 255 is DC 5V output
+    readAllSensors();
+    delay(500);
+  }
+  // 90s cycle
+  oldTime = millis();
+  while(millis() - oldTime <= (90*1000))
+  {
+    // VH 1.4 Volts
+    analogWrite(5, 20); // 255 is 100%, 20.4 is aprox 8% of Duty cycle for 90s
+    readAllSensors();
+    delay(500);
+  }
+}
+
+void readAllSensors()
+{
   //Update the voltage lectures
   MQ2.update();
   MQ3.update();
