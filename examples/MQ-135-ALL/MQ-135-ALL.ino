@@ -98,8 +98,15 @@ void loop() {
   float Acetona = MQ135.readSensor(); // Sensor will read PPM concentration using the model and a and b values setted before or in the setup
 
   Serial.print("|   "); Serial.print(CO); 
-  Serial.print("   |   "); Serial.print(Alcohol); 
-  Serial.print("   |   "); Serial.print(CO2); 
+  Serial.print("   |   "); Serial.print(Alcohol);
+  // Note: 200 Offset for CO2 source: https://github.com/miguel5612/MQSensorsLib/issues/29
+  /*
+  Motivation:
+  We have added 200 PPM because when the library is calibrated it assumes the current state of the
+  air as 0 PPM, and it is considered today that the CO2 present in the atmosphere is around 400 PPM.
+  https://www.lavanguardia.com/natural/20190514/462242832581/concentracion-dioxido-cabono-co2-atmosfera-bate-record-historia-humanidad.html
+  */
+  Serial.print("   |   "); Serial.print(CO2 + 400); 
   Serial.print("   |   "); Serial.print(Tolueno); 
   Serial.print("   |   "); Serial.print(NH4); 
   Serial.print("   |   "); Serial.print(Acetona);
