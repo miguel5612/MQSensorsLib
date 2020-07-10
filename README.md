@@ -175,7 +175,7 @@ Please read [CONTRIBUTING.md](https://github.com/miguel5612/MQSensorsLib/blob/ma
 
 ## Reviewers
 
-* **Jacipt Alexander Ramón Valencia** **PhD. Chemical Engineering**
+* **PhD. Jacipt Alexander Ramón Valencia** [CV](https://scienti.minciencias.gov.co/cvlac/visualizador/generarCurriculoCv.do?cod_rh=0000512702)
 
 ## Authors
 
