@@ -173,6 +173,10 @@ Examples/MQ-board.ino
 
 Please read [CONTRIBUTING.md](https://github.com/miguel5612/MQSensorsLib/blob/master/CONTRIBUTING.md) for details on our code of conduct, and the process for submitting pull requests to us.
 
+## Reviewers
+
+* **Jacipt Alexander Ramón Valencia** **PhD. Chemical Engineering**
+
 ## Authors
 
 * **Miguel A. Califa U.** - [*GitHub*](https://github.com/miguel5612) - [CV](https://scienti.colciencias.gov.co/cvlac/visualizador/generarCurriculoCv.do?cod_rh=0000050477)
