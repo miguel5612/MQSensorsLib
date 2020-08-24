@@ -81,12 +81,14 @@ float ppmCH4 = MQ4.readSensor();
 ### ESP8266-ESP32
 ![ESP8266_Wiring_MQSensor](https://raw.githubusercontent.com/miguel5612/MQSensorsLib_Docs/master/static/img/MQ_ESP8266.PNG)
 
+### ESP32 WROOM 32D
+The ESP32 WROOM 32D does not need an external power supply. A0 goes to PIN36, Vcc to 3v3 and GND to any GND port on the board. Check the **ESP2/ESP32_WROOM_32** folder to fixing the measuring issue when connecting to wifi.
+
 ### Manuals
 #### User Manual (v1.0) 12.2019
 [Manual](https://drive.google.com/open?id=1BAFInlvqKR7h81zETtjz4_RC2EssvFWX)
 #### User Manual (v2.0) 04.2020
 [Manual](https://github.com/miguel5612/MQSensorsLib_Docs/blob/master/Docs/MQSensorLib_2.0.pdf)
-
 
 ### Serial debug (optional)
 If your sensor is an **MQ2** (Same for others sensors):
