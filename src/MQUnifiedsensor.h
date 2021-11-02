@@ -48,7 +48,7 @@ class MQUnifiedsensor
     /************************Private vars************************************/
     byte _pin;
     byte _firstFlag = false;
-    byte _VOLT_RESOLUTION  = 5.0; // if 3.3v use 3.3
+    float _VOLT_RESOLUTION  = 5.0; // if 3.3v use 3.3
     byte _RL = 10; //Value in KiloOhms
     byte _ADC_Bit_Resolution = 10;
     byte _regressionMethod = 1; // 1 -> Exponential || 2 -> Linear
