@@ -15,7 +15,7 @@
 
   Wiring:
   https://github.com/miguel5612/MQSensorsLib_Docs/blob/master/static/img/MQ_Arduino.PNG
-  Please take care, arduino A0 pin represent the analog input configured on #define pin
+  Please make sure arduino A0 pin represents the analog input configured on #define pin
 
  This example code is in the public domain.
 
@@ -53,50 +53,49 @@ void setup() {
   */
   /*****************************  MQ CAlibration ********************************************/ 
   // Explanation: 
-  // In this routine the sensor will measure the resistance of the sensor supposing before was pre-heated
-  // and now is on clean air (Calibration conditions), and it will setup R0 value.
-  // We recomend execute this routine only on setup or on the laboratory and save on the eeprom of your arduino
-  // This routine not need to execute to every restart, you can load your R0 if you know the value
+  // In this routine the sensor will measure the resistance of the sensor supposedly before being pre-heated
+  // and on clean air (Calibration conditions), setting up R0 value.
+  // We recomend executing this routine only on setup in laboratory conditions.
+  // This routine does not need to be executed on each restart, you can load your R0 value from eeprom.
   // Acknowledgements: https://jayconsystems.com/blog/understanding-a-gas-sensor
   Serial.print("Calibrating please wait.");
   float calcR0 = 0;
   for(int i = 1; i<=10; i ++)
   {
-    MQ135.update(); // Update data, the arduino will be read the voltage on the analog pin
+    MQ135.update(); // Update data, the arduino will read the voltage from the analog pin
     calcR0 += MQ135.calibrate(RatioMQ135CleanAir);
     Serial.print(".");
   }
   MQ135.setR0(calcR0/10);
   Serial.println("  done!.");
   
-  if(isinf(calcR0)) {Serial.println("Warning: Conection issue founded, R0 is infite (Open circuit detected) please check your wiring and supply"); while(1);}
-  if(calcR0 == 0){Serial.println("Warning: Conection issue founded, R0 is zero (Analog pin with short circuit to ground) please check your wiring and supply"); while(1);}
+  if(isinf(calcR0)) {Serial.println("Warning: Conection issue, R0 is infinite (Open circuit detected) please check your wiring and supply"); while(1);}
+  if(calcR0 == 0){Serial.println("Warning: Conection issue found, R0 is zero (Analog pin shorts to ground) please check your wiring and supply"); while(1);}
   /*****************************  MQ CAlibration ********************************************/ 
-  Serial.println("** Lectures from MQ-135 ****");
-  Serial.println("|    CO   |  Alcohol |   CO2  |  Tolueno  |  NH4  |  Acteona  |");  
+  Serial.println("** Values from MQ-135 ****");
+  Serial.println("|    CO   |  Alcohol |   CO2  |  Toluen  |  NH4  |  Aceton  |");  
 }
 
 void loop() {
-  MQ135.update(); // Update data, the arduino will be read the voltage on the analog pin
+  MQ135.update(); // Update data, the arduino will read the voltage from the analog pin
 
-  MQ135.setA(605.18); MQ135.setB(-3.937); // Configurate the ecuation values to get CO concentration
-  float CO = MQ135.readSensor(); // Sensor will read PPM concentration using the model and a and b values setted before or in the setup
+  MQ135.setA(605.18); MQ135.setB(-3.937); // Configure the equation to calculate CO concentration value
+  float CO = MQ135.readSensor(); // Sensor will read PPM concentration using the model, a and b values set previously or from the setup
 
-  MQ135.setA(77.255); MQ135.setB(-3.18); // Configurate the ecuation values to get Alcohol concentration
-  float Alcohol = MQ135.readSensor(); // Sensor will read PPM concentration using the model and a and b values setted before or in the setup
+  MQ135.setA(77.255); MQ135.setB(-3.18); //Configure the equation to calculate Alcohol concentration value
+  float Alcohol = MQ135.readSensor(); // SSensor will read PPM concentration using the model, a and b values set previously or from the setup
 
-  MQ135.setA(110.47); MQ135.setB(-2.862); // Configurate the ecuation values to get CO2 concentration
-  float CO2 = MQ135.readSensor(); // Sensor will read PPM concentration using the model and a and b values setted before or in the setup
+  MQ135.setA(110.47); MQ135.setB(-2.862); // Configure the equation to calculate CO2 concentration value
+  float CO2 = MQ135.readSensor(); // Sensor will read PPM concentration using the model, a and b values set previously or from the setup
 
-  MQ135.setA(44.947); MQ135.setB(-3.445); // Configurate the ecuation values to get Tolueno concentration
-  float Tolueno = MQ135.readSensor(); // Sensor will read PPM concentration using the model and a and b values setted before or in the setup
+  MQ135.setA(44.947); MQ135.setB(-3.445); // Configure the equation to calculate Toluen concentration value
+  float Tolueno = MQ135.readSensor(); // Sensor will read PPM concentration using the model, a and b values set previously or from the setup
+  
+  MQ135.setA(102.2 ); MQ135.setB(-2.473); // Configure the equation to calculate NH4 concentration value
+  float NH4 = MQ135.readSensor(); // Sensor will read PPM concentration using the model, a and b values set previously or from the setup
 
-  MQ135.setA(102.2 ); MQ135.setB(-2.473); // Configurate the ecuation values to get NH4 concentration
-  float NH4 = MQ135.readSensor(); // Sensor will read PPM concentration using the model and a and b values setted before or in the setup
-
-  MQ135.setA(34.668); MQ135.setB(-3.369); // Configurate the ecuation values to get Acetona concentration
-  float Acetona = MQ135.readSensor(); // Sensor will read PPM concentration using the model and a and b values setted before or in the setup
-
+  MQ135.setA(34.668); MQ135.setB(-3.369); // Configure the equation to calculate Aceton concentration value
+  float Acetona = MQ135.readSensor(); // Sensor will read PPM concentration using the model, a and b values set previously or from the setup
   Serial.print("|   "); Serial.print(CO); 
   Serial.print("   |   "); Serial.print(Alcohol);
   // Note: 200 Offset for CO2 source: https://github.com/miguel5612/MQSensorsLib/issues/29
