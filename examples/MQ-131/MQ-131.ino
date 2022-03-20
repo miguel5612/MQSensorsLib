@@ -15,7 +15,7 @@
 
   Wiring:
   https://github.com/miguel5612/MQSensorsLib_Docs/blob/master/static/img/MQ_Arduino.PNG
-  Please take care, arduino A0 pin represent the analog input configured on #define pin
+  Please make sure arduino A0 pin represents the analog input configured on #define pin
 
   Note: high concentration MQ-131 sensor.
 
@@ -44,7 +44,7 @@ void setup() {
 
   //Set math model to calculate the PPM concentration and the value of constants
   MQ131.setRegressionMethod(1); //_PPM =  a*ratio^b
-  MQ131.setA(23.943); MQ131.setB(-1.11); // Configurate the ecuation values to get O3 concentration
+  MQ131.setA(23.943); MQ131.setB(-1.11); // Configure the equation to to calculate O3 concentration
 
   /*
     Exponential regression:
@@ -65,32 +65,32 @@ void setup() {
   */
   /*****************************  MQ CAlibration ********************************************/ 
   // Explanation: 
-  // In this routine the sensor will measure the resistance of the sensor supposing before was pre-heated
-  // and now is on clean air (Calibration conditions), and it will setup R0 value.
-  // We recomend execute this routine only on setup or on the laboratory and save on the eeprom of your arduino
-  // This routine not need to execute to every restart, you can load your R0 if you know the value
+   // In this routine the sensor will measure the resistance of the sensor supposedly before being pre-heated
+  // and on clean air (Calibration conditions), setting up R0 value.
+  // We recomend executing this routine only on setup in laboratory conditions.
+  // This routine does not need to be executed on each restart, you can load your R0 value from eeprom.
   // Acknowledgements: https://jayconsystems.com/blog/understanding-a-gas-sensor
   Serial.print("Calibrating please wait.");
   float calcR0 = 0;
   for(int i = 1; i<=10; i ++)
   {
-    MQ131.update(); // Update data, the arduino will be read the voltage on the analog pin
+    MQ131.update(); // Update data, the arduino will read the voltage from the analog pin
     calcR0 += MQ131.calibrate(RatioMQ131CleanAir);
     Serial.print(".");
   }
   MQ131.setR0(calcR0/10);
   Serial.println("  done!.");
   
-  if(isinf(calcR0)) {Serial.println("Warning: Conection issue founded, R0 is infite (Open circuit detected) please check your wiring and supply"); while(1);}
-  if(calcR0 == 0){Serial.println("Warning: Conection issue founded, R0 is zero (Analog pin with short circuit to ground) please check your wiring and supply"); while(1);}
+  if(isinf(calcR0)) {Serial.println("Warning: Conection issue, R0 is infinite (Open circuit detected) please check your wiring and supply"); while(1);}
+  if(calcR0 == 0){Serial.println("Warning: Conection issue found, R0 is zero (Analog pin shorts to ground) please check your wiring and supply"); while(1);}
   /*****************************  MQ CAlibration ********************************************/ 
   MQ131.serialDebug(true);
   Serial.println("Ignore Ratio = RS/R0, for this example we will use readSensorR0Rs, the ratio calculated will be R0/Rs. Thanks :)");
 }
 
 void loop() {
-  MQ131.update(); // Update data, the arduino will be read the voltage on the analog pin
-  MQ131.readSensorR0Rs(); // Sensor will read PPM concentration using the model and a and b values setted before or in the setup
+  MQ131.update(); // Update data, the arduino will read the voltage from the analog pin
+  MQ131.readSensorR0Rs(); // Sensor will read PPM concentration using the model, a and b values set previously or from the setup
   MQ131.serialDebug(); // Will print the table on the serial port
   delay(500); //Sampling frequency
 }

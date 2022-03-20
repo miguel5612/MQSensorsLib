@@ -15,7 +15,7 @@
 
   Wiring:
   https://github.com/miguel5612/MQSensorsLib_Docs/blob/master/static/img/MQ_Arduino.PNG
-  Please take care, arduino A0 pin represent the analog input configured on #define pin
+  Please make sure arduino A0 pin represents the analog input configured on #define pin
 
  This example code is in the public domain.
 
@@ -81,7 +81,7 @@ void setup() {
   
   //Set math model to calculate the PPM concentration and the value of constants
   MQ135.setRegressionMethod(1); //_PPM =  a*ratio^b
-  MQ135.setA(102.2); MQ135.setB(-2.473); // Configurate the ecuation values to get NH4 concentration
+  MQ135.setA(102.2); MQ135.setB(-2.473); // Configure the equation to to calculate NH4 concentration
 
   /*
     Exponential regression:
@@ -89,9 +89,9 @@ void setup() {
   CO       | 605.18 | -3.937  
   Alcohol  | 77.255 | -3.18 
   CO2      | 110.47 | -2.862
-  Tolueno  | 44.947 | -3.445
+  Toluen  | 44.947 | -3.445
   NH4      | 102.2  | -2.473
-  Acetona  | 34.668 | -3.369
+  Aceton  | 34.668 | -3.369
   */
   
   /*****************************  MQ Init ********************************************/ 
@@ -104,24 +104,24 @@ void setup() {
   */
   /*****************************  MQ CAlibration ********************************************/ 
   // Explanation: 
-  // In this routine the sensor will measure the resistance of the sensor supposing before was pre-heated
-  // and now is on clean air (Calibration conditions), and it will setup R0 value.
-  // We recomend execute this routine only on setup or on the laboratory and save on the eeprom of your arduino
-  // This routine not need to execute to every restart, you can load your R0 if you know the value
+   // In this routine the sensor will measure the resistance of the sensor supposedly before being pre-heated
+  // and on clean air (Calibration conditions), setting up R0 value.
+  // We recomend executing this routine only on setup in laboratory conditions.
+  // This routine does not need to be executed on each restart, you can load your R0 value from eeprom.
   // Acknowledgements: https://jayconsystems.com/blog/understanding-a-gas-sensor
   Serial.print("Calibrating please wait.");
   float calcR0 = 0;
   for(int i = 1; i<=10; i ++)
   {
-    MQ135.update(); // Update data, the arduino will be read the voltage on the analog pin
+    MQ135.update(); // Update data, the arduino will read the voltage from the analog pin
     calcR0 += MQ135.calibrate(RatioMQ135CleanAir);
     Serial.print(".");
   }
   MQ135.setR0(calcR0/10);
   Serial.println("  done!.");
   
-  if(isinf(calcR0)) {Serial.println("Warning: Conection issue founded, R0 is infite (Open circuit detected) please check your wiring and supply"); while(1);}
-  if(calcR0 == 0){Serial.println("Warning: Conection issue founded, R0 is zero (Analog pin with short circuit to ground) please check your wiring and supply"); while(1);}
+  if(isinf(calcR0)) {Serial.println("Warning: Conection issue, R0 is infinite (Open circuit detected) please check your wiring and supply"); while(1);}
+  if(calcR0 == 0){Serial.println("Warning: Conection issue found, R0 is zero (Analog pin shorts to ground) please check your wiring and supply"); while(1);}
   /*****************************  MQ CAlibration ********************************************/ 
   MQ135.serialDebug(true);
   // Set delay between sensor readings based on sensor details.
@@ -138,8 +138,8 @@ void loop() {
   float cFactor = 0;
   if (!isnan(event.temperature) && !isnan(event.relative_humidity)) cFactor = getCorrectionFactor(event.temperature, event.relative_humidity);
   Serial.print("Correction Factor: "); Serial.println(cFactor);
-  MQ135.update(); // Update data, the arduino will be read the voltage on the analog pin
-  MQ135.readSensor(false, cFactor); // Sensor will read PPM concentration using the model and a and b values setted before or in the setup
+  MQ135.update(); // Update data, the arduino will read the voltage from the analog pin
+  MQ135.readSensor(false, cFactor); // Sensor will read PPM concentration using the model, a and b values set previously or from the setup
   MQ135.serialDebug(); // Will print the table on the serial port
   
 }

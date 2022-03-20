@@ -50,7 +50,7 @@ We present a unified library for MQ sensors, this library allows to read MQ sign
 MQUnifiedsensor MQ4(Board, Voltage_Resolution, ADC_Bit_Resolution, Pin, Type);
 // Setup
 MQ4.setRegressionMethod("Exponential"); //_PPM =  a*ratio^b
-MQ4.setA(1012.7); MQ4.setB(-2.786); // Configurate the ecuation values to get CH4 concentration
+MQ4.setA(1012.7); MQ4.setB(-2.786); // Configure the equation to to calculate CH4 concentration
 MQ4.setR0(3.86018237); // Value getted on calibration
 // Loop
 MQ4.init();

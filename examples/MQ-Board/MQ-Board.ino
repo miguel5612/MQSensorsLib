@@ -11,7 +11,7 @@
 
   Wiring:
   https://github.com/miguel5612/MQSensorsLib_Docs/blob/master/static/img/MQ_Arduino.PNG
-  Please take care, arduino A0 pin represent the analog input configured on #define pin
+  Please make sure arduino A0 pin represents the analog input configured on #define pin
 
  This example code is in the public domain.
 
@@ -61,50 +61,50 @@ void setup() {
   //init the sensor
   MQ2.init();
   MQ2.setRegressionMethod(1); //_PPM =  a*ratio^b
-  MQ2.setA(574.25); MQ2.setB(-2.222); // Configurate the ecuation values to get LPG concentration
+  MQ2.setA(574.25); MQ2.setB(-2.222); // Configure the equation to to calculate LPG concentration
   MQ2.setR0(9.659574468);
 
   MQ3.init(); 
   MQ3.setRegressionMethod(1); //_PPM =  a*ratio^b
-  MQ3.setA(0.3934); MQ3.setB(-1.504); // Configurate the ecuation values to get Alcohol concentration
+  MQ3.setA(0.3934); MQ3.setB(-1.504); //Configure the equation to calculate Alcohol concentration value
   MQ3.setR0(3.86018237);
 
   MQ4.init(); 
   MQ4.setRegressionMethod(1); //_PPM =  a*ratio^b
-  MQ4.setA(1012.7); MQ4.setB(-2.786); // Configurate the ecuation values to get CH4 concentration
+  MQ4.setA(1012.7); MQ4.setB(-2.786); // Configure the equation to to calculate CH4 concentration
   MQ4.setR0(3.86018237);
 
   MQ5.init(); 
   MQ5.setRegressionMethod(1); //_PPM =  a*ratio^b
-  MQ5.setA(97124); MQ5.setB(-4.918); // Configurate the ecuation values to get Alcohol concentration
+  MQ5.setA(97124); MQ5.setB(-4.918); //Configure the equation to calculate Alcohol concentration value
   MQ5.setR0(71.100304);
   
   MQ6.init(); 
   MQ6.setRegressionMethod(1); //_PPM =  a*ratio^b
-  MQ6.setA(2127.2); MQ6.setB(-2.526); // Configurate the ecuation values to get CH4 concentration
+  MQ6.setA(2127.2); MQ6.setB(-2.526); // Configure the equation to to calculate CH4 concentration
   MQ6.setR0(13.4285714);
   
   MQ7.init(); 
   MQ7.setRegressionMethod(1); //_PPM =  a*ratio^b
-  MQ7.setA(99.042); MQ7.setB(-1.518); // Configurate the ecuation values to get CO concentration
+  MQ7.setA(99.042); MQ7.setB(-1.518); // Configure the equation to calculate CO concentration value
   MQ7.setR0(4);
     
   MQ8.init(); 
   MQ8.setRegressionMethod(1); //_PPM =  a*ratio^b
-  MQ8.setA(976.97); MQ8.setB(-0.688); // Configurate the ecuation values to get H2 concentration
+  MQ8.setA(976.97); MQ8.setB(-0.688); // Configure the equation to to calculate H2 concentration
   MQ8.setR0(1);
   
   MQ9.init(); 
   MQ9.setRegressionMethod(1); //_PPM =  a*ratio^b
-  MQ9.setA(1000.5); MQ9.setB(-2.186); // Configurate the ecuation values to get LPG concentration
+  MQ9.setA(1000.5); MQ9.setB(-2.186); // Configure the equation to to calculate LPG concentration
   MQ9.setR0(9.42857143);
 
    /*****************************  MQ CAlibration ********************************************/ 
   // Explanation: 
-  // In this routine the sensor will measure the resistance of the sensor supposing before was pre-heated
-  // and now is on clean air (Calibration conditions), and it will setup R0 value.
-  // We recomend execute this routine only on setup or on the laboratory and save on the eeprom of your arduino
-  // This routine not need to execute to every restart, you can load your R0 if you know the value
+   // In this routine the sensor will measure the resistance of the sensor supposedly before being pre-heated
+  // and on clean air (Calibration conditions), setting up R0 value.
+  // We recomend executing this routine only on setup in laboratory conditions.
+  // This routine does not need to be executed on each restart, you can load your R0 value from eeprom.
   // Acknowledgements: https://jayconsystems.com/blog/understanding-a-gas-sensor
   Serial.print("Calibrating please wait.");
   float MQ2calcR0 = 0, 
@@ -117,7 +117,7 @@ void setup() {
   MQ9calcR0 = 0;
   for(int i = 1; i<=10; i ++)
   {
-    //Update the voltage lectures
+    //Update the voltage Values
     MQ2.update();
     MQ3.update();
     MQ4.update();
@@ -164,7 +164,7 @@ void setup() {
  
   //Print in serial monitor
   Serial.println("MQ2 to MQ9 - lecture");
-  Serial.println("*************************** Lectures from MQ-board ***************************");
+  Serial.println("*************************** Values from MQ-board ***************************");
   Serial.println("|    LPG   |  Alcohol |   CH4    |  Alcohol |   CH4    |    CO    |    H2    |    LPG   |");  
   Serial.println("|    MQ-2  |   MQ-3   |   MQ-4   |   MQ-5   |   MQ-6   |   MQ-7   |   MQ-8   |   MQ-9   |");  
   //pinMode(calibration_button, INPUT);
@@ -192,7 +192,7 @@ void loop() {
 
 void readAllSensors()
 {
-  //Update the voltage lectures
+  //Update the voltage Values
   MQ2.update();
   MQ3.update();
   MQ4.update();

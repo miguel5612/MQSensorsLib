@@ -85,13 +85,13 @@ void loop() {
   float CO2 = MQ135.readSensor(); // Sensor will read PPM concentration using the model, a and b values set previously or from the setup
 
   MQ135.setA(44.947); MQ135.setB(-3.445); // Configure the equation to calculate Toluen concentration value
-  float Tolueno = MQ135.readSensor(); // Sensor will read PPM concentration using the model, a and b values set previously or from the setup
+  float Toluen = MQ135.readSensor(); // Sensor will read PPM concentration using the model, a and b values set previously or from the setup
 
   MQ135.setA(102.2 ); MQ135.setB(-2.473); // Configure the equation to calculate NH4 concentration value
   float NH4 = MQ135.readSensor(); // Sensor will read PPM concentration using the model, a and b values set previously or from the setup
 
   MQ135.setA(34.668); MQ135.setB(-3.369); // Configure the equation to calculate Aceton concentration value
-  float Acetona = MQ135.readSensor(); // Sensor will read PPM concentration using the model, a and b values set previously or from the setup
+  float Aceton = MQ135.readSensor(); // Sensor will read PPM concentration using the model, a and b values set previously or from the setup
   Serial.print("|   "); Serial.print(CO); 
   Serial.print("   |   "); Serial.print(Alcohol);
   // Note: 200 Offset for CO2 source: https://github.com/miguel5612/MQSensorsLib/issues/29
@@ -105,9 +105,9 @@ void loop() {
   https://www.lavanguardia.com/natural/20190514/462242832581/concentracion-dioxido-cabono-co2-atmosfera-bate-record-historia-humanidad.html
   */
   Serial.print("   |   "); Serial.print(CO2 + 400); 
-  Serial.print("   |   "); Serial.print(Tolueno); 
+  Serial.print("   |   "); Serial.print(Toluen); 
   Serial.print("   |   "); Serial.print(NH4); 
-  Serial.print("   |   "); Serial.print(Acetona);
+  Serial.print("   |   "); Serial.print(Aceton);
   Serial.println("   |"); 
   /*
     Exponential regression:
@@ -115,9 +115,9 @@ void loop() {
   CO       | 605.18 | -3.937  
   Alcohol  | 77.255 | -3.18 
   CO2      | 110.47 | -2.862
-  Tolueno  | 44.947 | -3.445
+  Toluen  | 44.947 | -3.445
   NH4      | 102.2  | -2.473
-  Acetona  | 34.668 | -3.369
+  Aceton  | 34.668 | -3.369
   */
 
   delay(500); //Sampling frequency
