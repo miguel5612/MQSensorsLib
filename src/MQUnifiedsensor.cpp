@@ -9,6 +9,10 @@ MQUnifiedsensor::MQUnifiedsensor(String Placa, float Voltage_Resolution, int ADC
   this-> _VOLT_RESOLUTION = Voltage_Resolution;
   this-> _ADC_Bit_Resolution = ADC_Bit_Resolution;
 }
+MQUnifiedsensor::MQUnifiedsensor(String Placa, String type) {
+  Placa.toCharArray(this->_placa, 20);
+  type.toCharArray(this->_type, 6);
+}
 void MQUnifiedsensor::init()
 {
   pinMode(_pin, INPUT);
@@ -107,6 +111,10 @@ void MQUnifiedsensor::serialDebug(bool onSetup)
 void MQUnifiedsensor::update()
 {
   _sensor_volt = this->getVoltage();
+}
+void MQUnifiedsensor::externalADCUpdate(float volt)
+{
+  _sensor_volt = volt;
 }
 float MQUnifiedsensor::validateEcuation(float ratioInput)
 {

@@ -14,10 +14,12 @@ class MQUnifiedsensor
 {
   public:
     MQUnifiedsensor(String Placa = "Arduino", float Voltage_Resolution =  5, int ADC_Bit_Resolution = 10, int pin = 1, String type = "CUSTOM MQ");
+    MQUnifiedsensor(String Placa = "Arduino", String type = "CUSTOM MQ");
     
     //Functions to set values
     void init();
     void update();
+    void externalADCUpdate(float volt);
     void setR0(float R0 = 10);
     void setRL(float RL = 10);
     void setA(float a);
