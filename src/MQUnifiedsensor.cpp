@@ -133,9 +133,12 @@ float MQUnifiedsensor::validateEcuation(float ratioInput)
   //Serial.println("Result: "); Serial.println(_PPM);
   return _PPM;  
 }
-float MQUnifiedsensor::readSensor()
+float MQUnifiedsensor::readSensor(bool isMQ303A)
 {
   //More explained in: https://jayconsystems.com/blog/understanding-a-gas-sensor
+  if(isMQ303A) {
+    _VOLT_RESOLUTION = _VOLT_RESOLUTION - 0.45; //Calculations for RS using mq303a sensor look wrong #42
+  }
   _RS_Calc = ((_VOLT_RESOLUTION*_RL)/_sensor_volt)-_RL; //Get value of RS in a gas
   if(_RS_Calc < 0)  _RS_Calc = 0; //No negative values accepted.
   _ratio = _RS_Calc / this->_R0;   // Get ratio RS_gas/RS_air
