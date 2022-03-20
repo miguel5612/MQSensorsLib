@@ -117,5 +117,5 @@ void loop() {
   MQ9.update(); // Update data, the arduino will be read the voltage on the analog pin
   MQ9.readSensor(); // Sensor will read PPM concentration using the model and a and b values setted before or in the setup
   MQ9.serialDebug(); // Will print the table on the serial port
-  delay(500); //Sampling frequency
+  
 }
