@@ -25,12 +25,14 @@
 #include <MQUnifiedsensor.h>
 /************************Hardware Related Macros************************************/
 #define         Board                   ("Arduino UNO")
-#define         Pin                     (A9)  //Analog input 4 of your arduino
+#define         Pin                     (A0)  //Analog input 4 of your arduino
 /***********************Software Related Macros************************************/
 #define         Type                    ("MQ-9") //MQ9
 #define         Voltage_Resolution      (5)
 #define         ADC_Bit_Resolution      (10) // For arduino UNO/MEGA/NANO
 #define         RatioMQ9CleanAir        (9.6) //RS / R0 = 60 ppm 
+#define         PreaheatControlPin5      (3) // Preaheat pin to control with 5 volts
+#define         PreaheatControlPin14      (4) // Preaheat pin to control with 1.4 volts
 /*****************************Globals***********************************************/
 //Declare Sensor
 MQUnifiedsensor MQ9(Board, Voltage_Resolution, ADC_Bit_Resolution, Pin, Type);
@@ -38,6 +40,8 @@ MQUnifiedsensor MQ9(Board, Voltage_Resolution, ADC_Bit_Resolution, Pin, Type);
 void setup() {
   //Init the serial port communication - to debug the library
   Serial.begin(9600); //Init serial port
+  pinMode(PreaheatControlPin5, OUTPUT);
+  pinMode(PreaheatControlPin14, OUTPUT);
 
   //Set math model to calculate the PPM concentration and the value of constants
   MQ9.setRegressionMethod(1); //_PPM =  a*ratio^b
@@ -66,6 +70,26 @@ void setup() {
   // We recomend execute this routine only on setup or on the laboratory and save on the eeprom of your arduino
   // This routine not need to execute to every restart, you can load your R0 if you know the value
   // Acknowledgements: https://jayconsystems.com/blog/understanding-a-gas-sensor
+  // ISSUE 44 - MQ9 needs a low/high temperature cycle like MQ7 #44
+
+  Serial.println("Preheating, please wait 2.5 minutes");
+  digitalWrite(PreaheatControlPin5, HIGH);
+  digitalWrite(PreaheatControlPin14, LOW);
+  delay(60000);
+  digitalWrite(PreaheatControlPin5, LOW);
+  digitalWrite(PreaheatControlPin14, HIGH);
+  delay(90000);
+  digitalWrite(PreaheatControlPin5, HIGH);
+  digitalWrite(PreaheatControlPin14, LOW);
+  delay(60000);
+  digitalWrite(PreaheatControlPin5, LOW);
+  digitalWrite(PreaheatControlPin14, HIGH);
+  delay(90000);
+  digitalWrite(PreaheatControlPin5, HIGH);
+  digitalWrite(PreaheatControlPin14, LOW);
+  
+  // End pre-heat cycle
+
   Serial.print("Calibrating please wait.");
   float calcR0 = 0;
   for(int i = 1; i<=10; i ++)
@@ -84,6 +108,12 @@ void setup() {
 }
 
 void loop() {
+  digitalWrite(PreaheatControlPin5, LOW);
+  digitalWrite(PreaheatControlPin14, HIGH);
+  delay(90000);
+  digitalWrite(PreaheatControlPin5, HIGH);
+  digitalWrite(PreaheatControlPin14, LOW);
+  
   MQ9.update(); // Update data, the arduino will be read the voltage on the analog pin
   MQ9.readSensor(); // Sensor will read PPM concentration using the model and a and b values setted before or in the setup
   MQ9.serialDebug(); // Will print the table on the serial port
