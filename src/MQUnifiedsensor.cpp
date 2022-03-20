@@ -133,7 +133,7 @@ float MQUnifiedsensor::validateEcuation(float ratioInput)
   //Serial.println("Result: "); Serial.println(_PPM);
   return _PPM;  
 }
-float MQUnifiedsensor::readSensor(bool isMQ303A)
+float MQUnifiedsensor::readSensor(bool isMQ303A, float correctionFactor)
 {
   //More explained in: https://jayconsystems.com/blog/understanding-a-gas-sensor
   if(isMQ303A) {
@@ -142,6 +142,7 @@ float MQUnifiedsensor::readSensor(bool isMQ303A)
   _RS_Calc = ((_VOLT_RESOLUTION*_RL)/_sensor_volt)-_RL; //Get value of RS in a gas
   if(_RS_Calc < 0)  _RS_Calc = 0; //No negative values accepted.
   _ratio = _RS_Calc / this->_R0;   // Get ratio RS_gas/RS_air
+  _ratio += correctionFactor;
   if(_ratio <= 0)  _ratio = 0; //No negative values accepted or upper datasheet recomendation.
   if(_regressionMethod == 1) _PPM= _a*pow(_ratio, _b); // <- Source excel analisis https://github.com/miguel5612/MQSensorsLib_Docs/tree/master/Internal_design_documents
   else 

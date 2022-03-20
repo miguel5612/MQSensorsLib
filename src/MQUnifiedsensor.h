@@ -31,7 +31,7 @@ class MQUnifiedsensor
     
     //user functions
     float calibrate(float ratioInCleanAir);
-    float readSensor(bool isMQ303A = false);
+    float readSensor(bool isMQ303A = false, float correctionFactor = 0.0);
     float readSensorR0Rs();
     float validateEcuation(float ratioInput = 0);
     
