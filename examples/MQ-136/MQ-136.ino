@@ -38,14 +38,14 @@ void setup() {
 
   //Set math model to calculate the PPM concentration and the value of constants
   MQ136.setRegressionMethod(1); //_PPM =  a*ratio^b
-  MQ136.setA(1043.3); MQ136.setB(-3.282); // Configure the equation to to calculate H2S Concentration
+  MQ136.setA(36.737); MQ136.setB(-3.536); // Configure the equation to to calculate H2S Concentration
 
   /*
     Exponential regression:
   GAS      | a      | b
-  H2S      | 1043.3 | -3.282  
-  NH4      | 309.6  | -1.407 
-  CO       | 1728.9 | -1.879
+  H2S      | 36.737 | -3.536
+  NH4      | 98.551 | -2.475
+  CO       | 503.34 | -3.774
   */
   
   /*****************************  MQ Init ********************************************/ 
