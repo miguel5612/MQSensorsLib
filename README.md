@@ -31,6 +31,7 @@ We present a unified library for MQ sensors, this library allows to read MQ sign
 * [Sensor manufacturers](#Sensor-manufacturers)
 * [Contributing](#Contributing)
 * [Authors](#Authors)
+* [Be a sponsor 💖](#sponsor)
 
 ## Getting Started
 
@@ -130,6 +131,7 @@ You'll need Arduino desktop app 1.8.9 or later.
 | MQ-9 | Haoyuelectronics | [datasheet](http://www.haoyuelectronics.com/Attachment/MQ-9/MQ9.pdf) |
 | MQ-131 | Sensorsportal | [datasheet](http://www.sensorsportal.com/DOWNLOADS/MQ131.pdf) |
 | MQ-135 | HANWEI Electronics | [datasheet](https://www.electronicoscaldas.com/datasheet/MQ-135_Hanwei.pdf) |
+| MQ-136 | HANWEI Electronics | [datasheet](https://github.com/miguel5612/MQSensorsLib_Docs/blob/master/Datasheets/MQ136%20-%20Hanwei.pdf) |
 | MQ-303A | HANWEI Electronics | [datasheet](http://www.kosmodrom.com.ua/pdf/MQ303A.pdf) |
 | MQ-309A | HANWEI Electronics | [datasheet](http://www.sensorica.ru/pdf/MQ-309A.pdf) |
 
@@ -241,6 +243,10 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
   url          = {https://doi.org/10.5281/zenodo.3384301}
 }
 
+
+## sponsor
+
+* [Paypal](https://www.paypal.com/paypalme/miguel5612)
 
 
 <!-- MARKDOWN LINKS & IMAGES -->
