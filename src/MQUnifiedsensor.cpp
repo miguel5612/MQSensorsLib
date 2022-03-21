@@ -133,7 +133,7 @@ float MQUnifiedsensor::validateEcuation(float ratioInput)
   //Serial.println("Result: "); Serial.println(_PPM);
   return _PPM;  
 }
-float MQUnifiedsensor::readSensor(bool isMQ303A, float correctionFactor)
+float MQUnifiedsensor::readSensor(bool isMQ303A, float correctionFactor, bool injected)
 {
   //More explained in: https://jayconsystems.com/blog/understanding-a-gas-sensor
   if(isMQ303A) {
@@ -141,7 +141,7 @@ float MQUnifiedsensor::readSensor(bool isMQ303A, float correctionFactor)
   }
   _RS_Calc = ((_VOLT_RESOLUTION*_RL)/_sensor_volt)-_RL; //Get value of RS in a gas
   if(_RS_Calc < 0)  _RS_Calc = 0; //No negative values accepted.
-  _ratio = _RS_Calc / this->_R0;   // Get ratio RS_gas/RS_air
+  if(!injected) _ratio = _RS_Calc / this->_R0;   // Get ratio RS_gas/RS_air
   _ratio += correctionFactor;
   if(_ratio <= 0)  _ratio = 0; //No negative values accepted or upper datasheet recomendation.
   if(_regressionMethod == 1) _PPM= _a*pow(_ratio, _b); // <- Source excel analisis https://github.com/miguel5612/MQSensorsLib_Docs/tree/master/Internal_design_documents
@@ -194,7 +194,7 @@ float MQUnifiedsensor::calibrate(float ratioInCleanAir) {
   if(R0 < 0)  R0 = 0; //No negative values accepted.
   return R0;
 }
-float MQUnifiedsensor::getVoltage(int read) {
+float MQUnifiedsensor::getVoltage(bool read, bool injected, int value) {
   float voltage;
   if(read)
   {
@@ -206,12 +206,30 @@ float MQUnifiedsensor::getVoltage(int read) {
     }
     voltage = (avg/ retries) * _VOLT_RESOLUTION / ((pow(2, _ADC_Bit_Resolution)) - 1);
   }
-  else
+  else if(!injected)
   {
     voltage = _sensor_volt;
   }
+  else 
+  {
+    voltage = (value) * _VOLT_RESOLUTION / ((pow(2, _ADC_Bit_Resolution)) - 1);
+    _sensor_volt = voltage; //to work on testing
+  }
   return voltage;
 }
+float MQUnifiedsensor:: setRsR0RatioGetPPM(float value)
+{
+  _ratio = value;
+  return readSensor(false, 0, true);
+}
+float MQUnifiedsensor::getRS()
+{
+  //More explained in: https://jayconsystems.com/blog/understanding-a-gas-sensor
+  _RS_Calc = ((_VOLT_RESOLUTION*_RL)/_sensor_volt)-_RL; //Get value of RS in a gas
+  if(_RS_Calc < 0)  _RS_Calc = 0; //No negative values accepted.
+  return _RS_Calc;
+}
+
 float MQUnifiedsensor::stringTofloat(String & str)
 {
   return atof( str.c_str() );

@@ -31,7 +31,7 @@ class MQUnifiedsensor
     
     //user functions
     float calibrate(float ratioInCleanAir);
-    float readSensor(bool isMQ303A = false, float correctionFactor = 0.0);
+    float readSensor(bool isMQ303A = false, float correctionFactor = 0.0, bool injected=false);
     float readSensorR0Rs();
     float validateEcuation(float ratioInput = 0);
     
@@ -42,9 +42,12 @@ class MQUnifiedsensor
     float getRL();
     float getVoltResolution();
     String getRegressionMethod();
-    float getVoltage(int read = true);
-    
-    float stringTofloat(String & str);    
+    float getVoltage(bool read = true, bool injected = false, int value = 0);
+    float stringTofloat(String & str);
+
+    // functions for testing
+    float getRS();    
+    float setRsR0RatioGetPPM(float value);
 
   private:
     /************************Private vars************************************/
