@@ -31,7 +31,7 @@ We present a unified library for MQ sensors, this library allows to read MQ sign
 * [Sensor manufacturers](#Sensor-manufacturers)
 * [Contributing](#Contributing)
 * [Authors](#Authors)
-* [Be a sponsor 💖](#sponsor)
+* [Be a sponsor 💖](#Sponsor)
 
 ## Getting Started
 
@@ -244,7 +244,7 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 }
 
 
-## sponsor
+## Sponsor
 
 * [Paypal](https://www.paypal.com/paypalme/miguel5612)
 
