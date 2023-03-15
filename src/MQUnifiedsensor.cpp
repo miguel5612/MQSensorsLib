@@ -3,7 +3,7 @@
 MQUnifiedsensor::MQUnifiedsensor(String Placa, float Voltage_Resolution, int ADC_Bit_Resolution, int pin, String type) {
   this->_pin = pin;
   Placa.toCharArray(this->_placa, 20);
-  type.toCharArray(this->_type, 6);
+  type.toCharArray(this->_type, 7);
   //this->_type = type; //MQ-2, MQ-3 ... MQ-309A
   //this->_placa = Placa;
   this-> _VOLT_RESOLUTION = Voltage_Resolution;
@@ -11,7 +11,7 @@ MQUnifiedsensor::MQUnifiedsensor(String Placa, float Voltage_Resolution, int ADC
 }
 MQUnifiedsensor::MQUnifiedsensor(String Placa, String type) {
   Placa.toCharArray(this->_placa, 20);
-  type.toCharArray(this->_type, 6);
+  type.toCharArray(this->_type, 7);
 }
 void MQUnifiedsensor::init()
 {
