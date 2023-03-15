@@ -61,7 +61,7 @@ class MQUnifiedsensor
     float _adc, _a, _b, _sensor_volt;
     float  _R0, RS_air, _ratio, _PPM, _RS_Calc;  
     
-    char _type[6];
+    char _type[7];
     char _placa[20]; 
 };
 
