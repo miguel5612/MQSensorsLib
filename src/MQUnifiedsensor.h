@@ -22,6 +22,7 @@ class MQUnifiedsensor
     void setB(float b);
     void setRegressionMethod(int regressionMethod);
     void setVoltResolution(float voltage_resolution =  5);
+    void setPin(int pin = 1);
     void serialDebug(bool onSetup = false); //Show on serial port information about sensor
     void setADC(int value); //For external ADC Usage
     
@@ -47,7 +48,7 @@ class MQUnifiedsensor
 
   private:
     /************************Private vars************************************/
-    byte _pin;
+    byte _pin = 1;
     byte _firstFlag = false;
     float _VOLT_RESOLUTION  = 5.0; // if 3.3v use 3.3
     float _RL = 10; //Value in KiloOhms
