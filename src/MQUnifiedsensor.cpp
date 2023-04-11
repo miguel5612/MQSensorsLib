@@ -1,5 +1,8 @@
 #include "MQUnifiedsensor.h"
 
+#define retries 2
+#define retry_interval 20
+
 MQUnifiedsensor::MQUnifiedsensor(String Placa, float Voltage_Resolution, int ADC_Bit_Resolution, int pin, String type) {
   this->_pin = pin;
   Placa.toCharArray(this->_placa, 20);
