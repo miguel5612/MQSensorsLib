@@ -41,6 +41,9 @@ void MQUnifiedsensor::setVoltResolution(float voltage_resolution)
 {
   _VOLT_RESOLUTION = voltage_resolution;
 }
+void MQUnifiedsensor::setPin(int pin) {
+  this->_pin = pin;
+}
 void MQUnifiedsensor::setRegressionMethod(int regressionMethod)
 {
   //this->_regressionMethod = regressionMethod;
