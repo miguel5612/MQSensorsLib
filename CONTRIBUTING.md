@@ -20,3 +20,7 @@ Pull request will be check by three main authors who are linked in
 [REAMDE.md](https://github.com/miguel5612/MQSensorsLib/README.md) and they determine to merge to
 master branch. Later than assessment and debbuging procedures was completed, the contribution 
 will be released.
+
+## Versioning
+
+When making a pull request, please remember to update the `library.properties` file to reflect the changes you've made. If your change is minor, consider advancing the version by 0.01. If you're adding a new feature, you may want to advance the version by a whole number.

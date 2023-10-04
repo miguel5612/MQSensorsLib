@@ -12,6 +12,8 @@ Please delete options that are not relevant.
 - [ ] New feature (non-breaking change which adds functionality)
 - [ ] Breaking change (fix or feature that would cause existing functionality to not work as expected)
 - [ ] This change requires a documentation update
+- [ ] I have updated the version in `library.properties` to reflect my changes (advance by 0.01 for minor changes, or a whole number for new features)
+- [ ] I have submitted the pull request
 
 # How Has This Been Tested?
 
