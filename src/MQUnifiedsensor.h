@@ -3,6 +3,12 @@
 
 #include <Arduino.h>
 #include <stdint.h>
+#include <float.h>
+#include <math.h>
+
+// Maximum coefficients allowed for the regression model
+#define MQ_MAX_A 1e30
+#define MQ_MAX_B 100.0
 
 /***********************Software Related Macros************************************/
 
