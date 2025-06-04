@@ -1,4 +1,6 @@
 #include "MQUnifiedsensor.h"
+#include <float.h>
+#include <math.h>
 
 #define retries 2
 #define retry_interval 20
@@ -21,11 +23,39 @@ void MQUnifiedsensor::init()
 {
   pinMode(_pin, INPUT);
 }
+static inline double safePow(double base, double exp){
+  if(exp == 0.0) return 1.0;
+  if(exp == 1.0) return base;
+  if(exp == 2.0) return base * base;
+  return pow(base, exp);
+}
+static inline bool willOverflow(double log_ppm){
+  static const double maxLog = log10((double)FLT_MAX);
+  static const double minLog = log10((double)FLT_MIN);
+  return (log_ppm > maxLog || log_ppm < minLog);
+}
+
 void MQUnifiedsensor::setA(float a) {
-  this->_a = a;
+  if(isinf(a) || isnan(a)) {
+    this->_a = 0;
+  } else if(a > MQ_MAX_A) {
+    this->_a = MQ_MAX_A;
+  } else if(a < -MQ_MAX_A) {
+    this->_a = -MQ_MAX_A;
+  } else {
+    this->_a = a;
+  }
 }
 void MQUnifiedsensor::setB(float b) {
-  this->_b = b;
+  if(isinf(b) || isnan(b)) {
+    this->_b = 0;
+  } else if(b > MQ_MAX_B) {
+    this->_b = MQ_MAX_B;
+  } else if(b < -MQ_MAX_B) {
+    this->_b = -MQ_MAX_B;
+  } else {
+    this->_b = b;
+  }
 }
 void MQUnifiedsensor::setR0(float R0) {
   this->_R0 = R0;
@@ -134,20 +164,23 @@ void MQUnifiedsensor::externalADCUpdate(float volt)
 }
 float MQUnifiedsensor::validateEcuation(float ratioInput)
 {
-  //Serial.print("Ratio input: "); Serial.println(ratioInput);
-  //Serial.print("a: "); Serial.println(_a);
-  //Serial.print("b: "); Serial.println(_b);
-  //Usage of this function: Unit test on ALgorithmTester example;
-  if(_regressionMethod == 1) _PPM= _a*pow(ratioInput, _b);
-  else 
-  {
-      // https://jayconsystems.com/blog/understanding-a-gas-sensor
-      double ppm_log = (log10(ratioInput)-_b)/_a; //Get ppm value in linear scale according to the the ratio value  
-      _PPM = pow(10, ppm_log); //Convert ppm value to log scale  
+  double ppm;
+  if(_regressionMethod == 1){
+      if(ratioInput <= 0 || _a == 0) return 0;
+      double logppm = log10((double)_a) + (double)_b * log10((double)ratioInput);
+      if(willOverflow(logppm)) ppm = (logppm > 0) ? FLT_MAX : 0.0;
+      else ppm = safePow(10.0, logppm);
   }
-  //Serial.println("Regression Method: "); Serial.println(_regressionMethod);
-  //Serial.println("Result: "); Serial.println(_PPM);
-  return _PPM;  
+  else
+  {
+      if(ratioInput <= 0 || _a == 0) return 0;
+      double logppm = (log10((double)ratioInput)-(double)_b)/(double)_a;
+      if(willOverflow(logppm)) ppm = (logppm > 0) ? FLT_MAX : 0.0;
+      else ppm = safePow(10.0, logppm);
+  }
+  if(isinf(ppm) || isnan(ppm)) ppm = FLT_MAX;
+  _PPM = (float)ppm;
+  return _PPM;
 }
 float MQUnifiedsensor::readSensor(bool isMQ303A, float correctionFactor, bool injected)
 {
@@ -162,14 +195,23 @@ float MQUnifiedsensor::readSensor(bool isMQ303A, float correctionFactor, bool in
   if(!injected) _ratio = _RS_Calc / this->_R0;   // Get ratio RS_gas/RS_air
   _ratio += correctionFactor;
   if(_ratio <= 0)  _ratio = 0; //No negative values accepted or upper datasheet recommendation.
-  if(_regressionMethod == 1) _PPM= _a*pow(_ratio, _b); // <- Source excel analysis https://github.com/miguel5612/MQSensorsLib_Docs/tree/master/Internal_design_documents
-  else 
-  {
-    // https://jayconsystems.com/blog/understanding-a-gas-sensor <- Source of linear equation
-    double ppm_log = (log10(_ratio)-_b)/_a; //Get ppm value in linear scale according to the the ratio value  
-    _PPM = pow(10, ppm_log); //Convert ppm value to log scale  
+  double ppm;
+  if(_regressionMethod == 1){
+    if(_ratio <= 0 || _a == 0) return 0;
+    double logppm = log10((double)_a) + (double)_b * log10((double)_ratio);
+    if(willOverflow(logppm)) ppm = (logppm > 0) ? FLT_MAX : 0.0;
+    else ppm = safePow(10.0, logppm);
   }
-  if(_PPM < 0)  _PPM = 0; //No negative values accepted or upper datasheet recommendation.
+  else
+  {
+    if(_ratio <= 0 || _a == 0) return 0;
+    double logppm = (log10((double)_ratio)-(double)_b)/(double)_a;
+    if(willOverflow(logppm)) ppm = (logppm > 0) ? FLT_MAX : 0.0;
+    else ppm = safePow(10.0, logppm);
+  }
+  if(ppm < 0)  ppm = 0; //No negative values accepted or upper datasheet recommendation.
+  if(isinf(ppm) || isnan(ppm)) ppm = FLT_MAX;
+  _PPM = (float)ppm;
   //if(_PPM > 10000) _PPM = 99999999; //No negative values accepted or upper datasheet recommendation.
   return _PPM;
 }
@@ -180,14 +222,23 @@ float MQUnifiedsensor::readSensorR0Rs()
   if(_RS_Calc < 0)  _RS_Calc = 0; //No negative values accepted.
   _ratio = this->_R0/_RS_Calc;   // Get ratio RS_air/RS_gas <- INVERTED for MQ-131 issue 28 https://github.com/miguel5612/MQSensorsLib/issues/28
   if(_ratio <= 0)  _ratio = 0; //No negative values accepted or upper datasheet recommendation.
-  if(_regressionMethod == 1) _PPM= _a*pow(_ratio, _b); // <- Source excel analysis https://github.com/miguel5612/MQSensorsLib_Docs/tree/master/Internal_design_documents
-  else 
-  {
-    // https://jayconsystems.com/blog/understanding-a-gas-sensor <- Source of linear equation
-    double ppm_log = (log10(_ratio)-_b)/_a; //Get ppm value in linear scale according to the the ratio value  
-    _PPM = pow(10, ppm_log); //Convert ppm value to log scale  
+  double ppm;
+  if(_regressionMethod == 1){
+    if(_ratio <= 0 || _a == 0) return 0;
+    double logppm = log10((double)_a) + (double)_b * log10((double)_ratio);
+    if(willOverflow(logppm)) ppm = (logppm > 0) ? FLT_MAX : 0.0;
+    else ppm = safePow(10.0, logppm);
   }
-  if(_PPM < 0)  _PPM = 0; //No negative values accepted or upper datasheet recommendation.
+  else
+  {
+    if(_ratio <= 0 || _a == 0) return 0;
+    double logppm = (log10((double)_ratio)-(double)_b)/(double)_a;
+    if(willOverflow(logppm)) ppm = (logppm > 0) ? FLT_MAX : 0.0;
+    else ppm = safePow(10.0, logppm);
+  }
+  if(ppm < 0)  ppm = 0; //No negative values accepted or upper datasheet recommendation.
+  if(isinf(ppm) || isnan(ppm)) ppm = FLT_MAX;
+  _PPM = (float)ppm;
   //if(_PPM > 10000) _PPM = 99999999; //No negative values accepted or upper datasheet recommendation.
   return _PPM;
 }

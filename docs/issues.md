@@ -5,9 +5,11 @@ Este documento resume los problemas reportados en el repositorio y las solucione
 ## Abiertos
 
 ### #75 MQ-3 sensor and CH4 gas reading 'ovf' failure
-**Estado:** abierto
+**Estado:** resuelto en la rama `main`
 
 El usuario reporta desbordamiento ("ovf") al utilizar valores muy altos en `setA` y `setB` para leer CH4 con un sensor MQ-3. La solución propuesta es revisar los valores utilizados en `setA` y `setB`, ya que `2*10^31` en C++ no corresponde a `2e31`. Se recomienda usar notación exponencial (`2e31`) o `pow(10,31)` y comprobar que los parámetros no excedan el rango de `float`.
+
+**Actualización:** se añadieron validaciones de entrada, predicción de desbordamiento mediante logaritmos y verificación del resultado final para evitar valores "ovf" incluso con coeficientes muy altos. Las nuevas funciones limitan `setA` y `setB` y emplean cálculos en doble precisión.
 
 ### #74 possible error in the calculation formula for `_RS_Calc`
 **Estado:** resuelto en la rama `work`
