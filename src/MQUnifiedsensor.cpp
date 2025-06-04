@@ -152,8 +152,10 @@ float MQUnifiedsensor::validateEcuation(float ratioInput)
 float MQUnifiedsensor::readSensor(bool isMQ303A, float correctionFactor, bool injected)
 {
   //More explained in: https://jayconsystems.com/blog/understanding-a-gas-sensor
+
+  float voltRes = _VOLT_RESOLUTION; // preserve global resolution
   if(isMQ303A) {
-    _VOLT_RESOLUTION = _VOLT_RESOLUTION - 0.45; //Calculations for RS using mq303a sensor look wrong #42
+    voltRes = voltRes - 0.45; //Calculations for RS using mq303a sensor look wrong #42
   }
   _RS_Calc = ((_VCC*_RL)/_sensor_volt)-_RL; //Get value of RS in a gas
   if(_RS_Calc < 0)  _RS_Calc = 0; //No negative values accepted.

@@ -237,13 +237,22 @@ test(MQ303A_Ethanol)
 {
   MQ303A.setRegressionMethod(1); //_PPM =  a*ratio^b
   MQ303A.setA(3.4916); MQ303A.setB(-2.432); // Configure the equation to to calculate Ethanol concentration
-  MQ303A.init(); 
+  MQ303A.init();
   MQ303A.setR0(10);
-  
+
   int ppmExp=944;
   int PPM = MQ303A.setRsR0RatioGetPPM(0.1); // Send and Rs/R0 and return PPM (Using datasheet)
-  
+
   assertEqual(PPM,ppmExp);
+}
+
+test(MQ303A_VoltResolution)
+{
+  float vRes = 4.7;
+  MQ303A.setVoltResolution(vRes);
+  MQ303A.setADC(100);            // provide dummy ADC value
+  MQ303A.readSensor(true);       // dummy read for MQ303A
+  assertEqualFloat(MQ303A.getVoltResolution(), vRes);
 }
 
 test(MQ309A_CO)
