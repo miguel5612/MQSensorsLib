@@ -68,6 +68,7 @@ float ppmCH4 = MQ4.readSensor();
 * AO -> Analog Output of the sensor
 ##### Data of board that you should have
 * RL Value in KOhms
+* If the sensor uses a different supply voltage than the ADC reference, call `yourSensor.setVCC(<voltage>);`
 ##### Graph
 ![Wiring_MQSensor](https://raw.githubusercontent.com/miguel5612/MQSensorsLib_Docs/master/static/img/Points_explanation.jpeg)
 #### RS/R0 value (From datasheet of your sensor)
@@ -172,6 +173,10 @@ Examples/MQ-board.ino
 
 * [Data sheets](https://github.com/miguel5612/MQSensorsLib_Docs/tree/master/Datasheets) - Curves and behavior for each sensor, using logarithmic graphs.
 * [Main purpose](https://github.com/miguel5612/MQSensorsLib_Docs/blob/master/static/img/bg.jpg) - Every sensor has high sensibility for a specific gas or material.
+
+## Issues
+
+Consulte [docs/issues.md](docs/issues.md) para un resumen de los problemas abiertos y sus soluciones.
 
 ## Contributing
 
