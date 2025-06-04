@@ -27,11 +27,11 @@
 #define         Pin7                     (A7)  //Analog input 7 of your arduino
 #define         Pin8                     (A8)  //Analog input 8 of your arduino
 #define         Pin9                     (A9)  //Analog input 9 of your arduino
-#define         Pin10                    (A10) //Analog input 9 of your arduino
-#define         Pin11                    (A11) //Analog input 9 of your arduino
-#define         Pin12                    (A12) //Analog input 9 of your arduino
-#define         Pin13                    (A13) //Analog input 9 of your arduino
-#define         Pin14                    (A14) //Analog input 9 of your arduino
+#define         Pin10                    (A10) //Analog input 10 of your arduino
+#define         Pin11                    (A11) //Analog input 11 of your arduino
+#define         Pin12                    (A12) //Analog input 12 of your arduino
+#define         Pin13                    (A13) //Analog input 13 of your arduino
+#define         Pin14                    (A14) //Analog input 14 of your arduino
 #define         PWMPin                   (5)   // Pin connected to mosfet
 /***********************Software Related Macros************************************/
 #define         RatioMQ2CleanAir          (9.83) //RS / R0 = 9.83 ppm 
