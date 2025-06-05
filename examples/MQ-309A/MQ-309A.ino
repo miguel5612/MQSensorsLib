@@ -95,7 +95,8 @@ void loop() {
     // VH 0.9 Volts
     analogWrite(5, 2); // 255 is 100%, 2.295 is aprox 0.9% of Duty cycle for 60s
     MQ309.update(); // Update data, the arduino will read the voltage from the analog pin
-    MQ309.readSensor(); // Sensor will read PPM concentration using the model, a and b values set previously or from the setup
+    float correctionFactor = 0; // Optional environmental correction
+    MQ309.readSensor(false, correctionFactor); // Sensor will read PPM concentration using the model, a and b values set previously or from the setup
     MQ309.serialDebug(); // Will print the table on the serial port
     delay(500); //Sampling frequency
   }
@@ -107,7 +108,8 @@ void loop() {
     // VL 0.2 Volts
     analogWrite(5, 1); // 255 is 100%, 0.51 is aprox 0.2% of Duty cycle for 120s
     MQ309.update(); // Update data, the arduino will read the voltage from the analog pin
-    MQ309.readSensor(); // Sensor will read PPM concentration using the model, a and b values set previously or from the setup
+    float correctionFactor2 = 0; // Optional environmental correction
+    MQ309.readSensor(false, correctionFactor2); // Sensor will read PPM concentration using the model, a and b values set previously or from the setup
     MQ309.serialDebug(); // Will print the table on the serial port
     delay(500); //Sampling frequency
   } 

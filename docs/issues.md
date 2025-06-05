@@ -17,9 +17,9 @@ El usuario reporta desbordamiento ("ovf") al utilizar valores muy altos en `setA
 Se detectó que la resistencia del sensor se calculaba con `_VOLT_RESOLUTION` en lugar del voltaje de alimentación real. Se añadieron los métodos `setVCC` y `getVCC` y se modificaron las ecuaciones para usar `VCC`. Esta corrección se refleja en la versión 3.0.1 de la biblioteca.
 
 ### #70 Parameters to model temperature and humidity dependence
-**Estado:** abierto
+**Estado:** resuelto en la rama `work`
 
-Los usuarios solicitan factores de corrección para temperatura y humedad aplicables a otros sensores (MQ-4 y MQ-8) además del MQ-135. Aún no se han añadido estos parámetros. Se anima a la comunidad a contribuir con implementaciones y ejemplos.
+Se añadieron variables opcionales de "correction factor" en todos los ejemplos y se extendieron las funciones `calibrate` y `readSensorR0Rs` para aceptar este parámetro opcional. Así, el usuario puede ajustar las lecturas en función de temperatura y humedad cuando el datasheet lo permita. Los coeficientes deben consultarse para cada sensor.
 
 ### #67 Sensor won't finish the Calibration process if done in clean air
 **Estado:** abierto

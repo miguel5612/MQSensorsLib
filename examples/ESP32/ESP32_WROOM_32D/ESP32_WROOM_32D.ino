@@ -129,7 +129,8 @@ void loop()
 {
   MQ2.update(); // Update data, the arduino will read the voltage from the analog pin
   //MQ2.serialDebug(); // Will print the table on the serial port
-  Serial.print(MQ2.readSensor()); // Sensor will read PPM concentration using the model, a and b values set previously or from the setup
+  float correctionFactor = 0; // Optional environmental correction
+  Serial.print(MQ2.readSensor(false, correctionFactor)); // Sensor will read PPM concentration using the model, a and b values set previously or from the setup
   Serial.println(" PPM");
   delay(500); //Sampling frequency
 }

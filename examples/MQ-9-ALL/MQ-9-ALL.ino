@@ -78,6 +78,7 @@ void setup() {
 
 void loop() {
   MQ9.update(); // Update data, the arduino will read the voltage from the analog pin
+  float correctionFactor = 0; // Optional environmental correction
   /*
   Exponential regression:
   GAS     | a      | b
@@ -87,13 +88,13 @@ void loop() {
   */
 
   MQ9.setA(1000.5); MQ9.setB(-2.186); // Configure the equation to to calculate LPG concentration
-  float LPG = MQ9.readSensor(); // Sensor will read PPM concentration using the model, a and b values set previously or from the setup
+  float LPG = MQ9.readSensor(false, correctionFactor); // Sensor will read PPM concentration using the model, a and b values set previously or from the setup
 
   MQ9.setA(4269.6); MQ9.setB(-2.648); // Configure the equation to to calculate LPG concentration
-  float CH4 = MQ9.readSensor(); // Sensor will read PPM concentration using the model, a and b values set previously or from the setup
+  float CH4 = MQ9.readSensor(false, correctionFactor); // Sensor will read PPM concentration using the model, a and b values set previously or from the setup
 
   MQ9.setA(599.65); MQ9.setB(-2.244); // Configure the equation to to calculate LPG concentration
-  float CO = MQ9.readSensor(); // Sensor will read PPM concentration using the model, a and b values set previously or from the setup
+  float CO = MQ9.readSensor(false, correctionFactor); // Sensor will read PPM concentration using the model, a and b values set previously or from the setup
 
   Serial.print("|    "); Serial.print(LPG);
   Serial.print("    |    "); Serial.print(CH4);

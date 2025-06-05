@@ -99,7 +99,8 @@ void setup() {
 void loop() {
   int yourA2DValue = random(0, 1024); // 10-bit emulation
   MQ3.setADC(yourA2DValue); // Update data, the arduino will read the voltage from the analog pin
-  MQ3.readSensor(); // Sensor will read PPM concentration using the model, a and b values set previously or from the setup
+  float correctionFactor = 0; // Optional environmental correction
+  MQ3.readSensor(false, correctionFactor); // Sensor will read PPM concentration using the model, a and b values set previously or from the setup
   MQ3.serialDebug(); // Will print the table on the serial port
   delay(500); //Sampling frequency
 }

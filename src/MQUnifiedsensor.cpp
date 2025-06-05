@@ -215,12 +215,13 @@ float MQUnifiedsensor::readSensor(bool isMQ303A, float correctionFactor, bool in
   //if(_PPM > 10000) _PPM = 99999999; //No negative values accepted or upper datasheet recommendation.
   return _PPM;
 }
-float MQUnifiedsensor::readSensorR0Rs()
+float MQUnifiedsensor::readSensorR0Rs(float correctionFactor)
 {
   //More explained in: https://jayconsystems.com/blog/understanding-a-gas-sensor
   _RS_Calc = ((_VCC*_RL)/_sensor_volt)-_RL; //Get value of RS in a gas
   if(_RS_Calc < 0)  _RS_Calc = 0; //No negative values accepted.
   _ratio = this->_R0/_RS_Calc;   // Get ratio RS_air/RS_gas <- INVERTED for MQ-131 issue 28 https://github.com/miguel5612/MQSensorsLib/issues/28
+  _ratio += correctionFactor;
   if(_ratio <= 0)  _ratio = 0; //No negative values accepted or upper datasheet recommendation.
   double ppm;
   if(_regressionMethod == 1){
@@ -242,7 +243,7 @@ float MQUnifiedsensor::readSensorR0Rs()
   //if(_PPM > 10000) _PPM = 99999999; //No negative values accepted or upper datasheet recommendation.
   return _PPM;
 }
-float MQUnifiedsensor::calibrate(float ratioInCleanAir) {
+float MQUnifiedsensor::calibrate(float ratioInCleanAir, float correctionFactor) {
   //More explained in: https://jayconsystems.com/blog/understanding-a-gas-sensor
   /*
   V = I x R 
@@ -259,7 +260,8 @@ float MQUnifiedsensor::calibrate(float ratioInCleanAir) {
   float R0; //Define variable for R0
   RS_air = ((_VCC*_RL)/_sensor_volt)-_RL; //Calculate RS in fresh air
   if(RS_air < 0)  RS_air = 0; //No negative values accepted.
-  R0 = RS_air/ratioInCleanAir; //Calculate R0 
+  R0 = RS_air/ratioInCleanAir; //Calculate R0
+  R0 += correctionFactor;
   if(R0 < 0)  R0 = 0; //No negative values accepted.
   return R0;
 }

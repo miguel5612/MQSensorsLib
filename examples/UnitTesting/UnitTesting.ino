@@ -251,7 +251,8 @@ test(MQ303A_VoltResolution)
   float vRes = 4.7;
   MQ303A.setVoltResolution(vRes);
   MQ303A.setADC(100);            // provide dummy ADC value
-  MQ303A.readSensor(true);       // dummy read for MQ303A
+  float correctionFactor = 0; // Optional environmental correction
+  MQ303A.readSensor(true, correctionFactor);       // dummy read for MQ303A
   assertEqualFloat(MQ303A.getVoltResolution(), vRes);
 }
 

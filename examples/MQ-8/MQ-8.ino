@@ -88,7 +88,8 @@ void setup() {
 
 void loop() {
   MQ8.update(); // Update data, the arduino will read the voltage from the analog pin
-  MQ8.readSensor(); // Sensor will read PPM concentration using the model, a and b values set previously or from the setup
+  float correctionFactor = 0; // Optional environmental correction
+  MQ8.readSensor(false, correctionFactor); // Sensor will read PPM concentration using the model, a and b values set previously or from the setup
   MQ8.serialDebug(); // Will print the table on the serial port
   delay(500); //Sampling frequency
 }
