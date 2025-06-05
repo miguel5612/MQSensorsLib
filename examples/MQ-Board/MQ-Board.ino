@@ -201,15 +201,16 @@ void readAllSensors()
   MQ7.update();
   MQ8.update();
   MQ9.update();
+  float correctionFactor = 0; // Optional environmental correction
   //Read the sensor and print in serial port
-  float MQ2Lecture =  MQ2.readSensor();
-  float MQ3Lecture =  MQ3.readSensor();
-  float MQ4Lecture =  MQ4.readSensor();
-  float MQ5Lecture =  MQ5.readSensor();
-  float MQ6Lecture =  MQ6.readSensor();
-  float MQ7Lecture =  MQ7.readSensor();
-  float MQ8Lecture =  MQ8.readSensor();
-  float MQ9Lecture =  MQ9.readSensor();
+  float MQ2Lecture =  MQ2.readSensor(false, correctionFactor);
+  float MQ3Lecture =  MQ3.readSensor(false, correctionFactor);
+  float MQ4Lecture =  MQ4.readSensor(false, correctionFactor);
+  float MQ5Lecture =  MQ5.readSensor(false, correctionFactor);
+  float MQ6Lecture =  MQ6.readSensor(false, correctionFactor);
+  float MQ7Lecture =  MQ7.readSensor(false, correctionFactor);
+  float MQ8Lecture =  MQ8.readSensor(false, correctionFactor);
+  float MQ9Lecture =  MQ9.readSensor(false, correctionFactor);
 
   Serial.print("| "); Serial.print(MQ2Lecture);
   Serial.print("   |   "); Serial.print(MQ3Lecture);

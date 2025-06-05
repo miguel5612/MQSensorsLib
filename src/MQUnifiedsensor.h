@@ -34,9 +34,9 @@ class MQUnifiedsensor
     void setADC(int value); //For external ADC Usage
     
     //user functions
-    float calibrate(float ratioInCleanAir);
+    float calibrate(float ratioInCleanAir, float correctionFactor = 0.0);
     float readSensor(bool isMQ303A = false, float correctionFactor = 0.0, bool injected=false);
-    float readSensorR0Rs();
+    float readSensorR0Rs(float correctionFactor = 0.0);
     float validateEcuation(float ratioInput = 0);
     
     //get function for info

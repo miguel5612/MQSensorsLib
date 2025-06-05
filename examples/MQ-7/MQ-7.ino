@@ -100,7 +100,8 @@ void loop() {
     // VH 5 Volts
     analogWrite(5, 255); // 255 is DC 5V output
     MQ7.update(); // Update data, the arduino will read the voltage from the analog pin
-    MQ7.readSensor(); // Sensor will read PPM concentration using the model, a and b values set previously or from the setup
+    float correctionFactor = 0; // Optional environmental correction
+    MQ7.readSensor(false, correctionFactor); // Sensor will read PPM concentration using the model, a and b values set previously or from the setup
     MQ7.serialDebug(); // Will print the table on the serial port
     delay(500); //Sampling frequency
   }
@@ -112,7 +113,8 @@ void loop() {
     // VH 1.4 Volts
     analogWrite(5, 20); // 255 is 100%, 20.4 is aprox 8% of Duty cycle for 90s
     MQ7.update(); // Update data, the arduino will read the voltage from the analog pin
-    MQ7.readSensor(); // Sensor will read PPM concentration using the model, a and b values set previously or from the setup
+    float correctionFactor2 = 0; // Optional environmental correction
+    MQ7.readSensor(false, correctionFactor2); // Sensor will read PPM concentration using the model, a and b values set previously or from the setup
     MQ7.serialDebug(); // Will print the table on the serial port
     delay(500); //Sampling frequency
   } 

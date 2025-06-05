@@ -88,7 +88,8 @@ void setup() {
   //Read the sensor and print in serial port
   //Lecture will be saved in lecture variable
   MQ4.update();
-  float smokePPM = MQ4.readSensor(); // Sensor will read PPM concentration using the model, a and b values set previously or from the setup
+  float correctionFactor = 0; // Optional environmental correction
+  float smokePPM = MQ4.readSensor(false, correctionFactor); // Sensor will read PPM concentration using the model, a and b values set previously or from the setup
   if(smokePPM > 1000) {Serial.println("Warning: High concentrations of smoke detected");}
   MQ4.serialDebug(); // Will print the table on the serial port
   delay(400);  

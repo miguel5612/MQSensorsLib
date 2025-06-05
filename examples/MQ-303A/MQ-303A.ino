@@ -86,7 +86,8 @@ void setup() {
 
 void loop() {
   MQ303.update(); // Update data, the arduino will read the voltage from the analog pin
-  MQ303.readSensor(true); // Sensor will read PPM concentration using the model, a and b values set previously or from the setup
+  float correctionFactor = 0; // Optional environmental correction
+  MQ303.readSensor(true, correctionFactor); // Sensor will read PPM concentration using the model, a and b values set previously or from the setup
   MQ303.serialDebug(); // Will print the table on the serial port
   delay(500); //Sampling frequency
 }

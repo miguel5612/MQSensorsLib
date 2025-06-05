@@ -81,17 +81,18 @@ void setup() {
 
 void loop() {
   MQ4.update(); // Update data, the arduino will read the voltage from the analog pin
+  float correctionFactor = 0; // Optional environmental correction
   
   //https://jayconsystems.com/blog/understanding-a-gas-sensor 
   //Set math model to calculate the PPM concentration and the value of constants
   MQ4.setRegressionMethod(0); //_PPM =  pow(10, (log10(ratio)-b)/a)
   MQ4.setA(-0.318); MQ4.setB(1.133); // A -> Slope, B -> Intersect with X - Axis
-  float LPG1 = MQ4.readSensor(); // Sensor will read PPM concentration using the model, a and b values set previously or from the setup
+  float LPG1 = MQ4.readSensor(false, correctionFactor); // Sensor will read PPM concentration using the model, a and b values set previously or from the setup
   
   //Set math model to calculate the PPM concentration and the value of constants
   MQ4.setRegressionMethod(1); //_PPM =  a*ratio^b
   MQ4.setA(1012.7); MQ4.setB(-2.786); // Configure the equation to to calculate CH4 concentration
-  float LPG2 = MQ4.readSensor(); // Sensor will read PPM concentration using the model, a and b values set previously or from the setup
+  float LPG2 = MQ4.readSensor(false, correctionFactor); // Sensor will read PPM concentration using the model, a and b values set previously or from the setup
 
   //  exposure to 2000 ppm of LPG gas is immediately dangerous to life and health. In this section
   if(LPG1>=2000 || LPG2>=2000) Serial.println("Warning - Very high concentrations detected!");
